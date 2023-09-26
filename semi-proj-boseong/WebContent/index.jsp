@@ -13,7 +13,10 @@
         color: black;
 	}
 	#background-image{
-		
+		background-image: url(https://t1.daumcdn.net/cfile/blog/1357444D4F66A32929);
+		background-repeat : no-repeat;
+        background-position : center;
+        background-size : 100%
 	}
 </style>
 </head>
@@ -26,7 +29,7 @@
 	</div>
 	<div class="page" id="content">
 		<div class="page">
-		
+			
 		</div>
 	
 		<div class="page">02</div>
