@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,8 +30,8 @@
         width: 100%;
         height: 100vh;
         background-size:cover;
-        /* ¿¹½Ã) »çÁø ¡æ ¿µ»ó */
-        /* background-image: url("resources/image/semi-boseong/º¸¼º»çÁø.jpg");*/
+        /* ì˜ˆì‹œ) ì‚¬ì§„ â†’ ì˜ìƒ */
+        /* background-image: url("resources/image/semi-boseong/ë³´ì„±ì‚¬ì§„.jpg");*/
     }
     .page {
         padding : 0;
@@ -42,7 +45,7 @@
         padding : 0;
         width: 100%;
         height: 200px;
-        /* ¡é ½ºÅ©·ÑÀ» ÇØµµ °°ÀÌ ³»·Á¿À´Â È¿°ú */
+        /* â†“ ìŠ¤í¬ë¡¤ì„ í•´ë„ ê°™ì´ ë‚´ë ¤ì˜¤ëŠ” íš¨ê³¼ */
         position : fixed;
         top : 0;
     }
@@ -57,7 +60,7 @@
         text-align: right;
         float : right;
     }
-    /* ---------------- navigator ¿µ¿ª ºÎºÐ ---------------- */ 
+    /* ---------------- navigator ì˜ì—­ ë¶€ë¶„ ---------------- */ 
     #navi{
         width: 50%;
         padding : 0;
@@ -101,7 +104,7 @@
     }
     #navi > li > ul a{font-size : 17px;}
     #navi > li > ul a:hover{font-size : 20px;}
-    /* ---------------- navigator ¿µ¿ª ºÎºÐ end ---------------- */ 
+    /* ---------------- navigator ì˜ì—­ ë¶€ë¶„ end ---------------- */ 
     #userBox{
         width:60px;
         height : 60px;
@@ -111,56 +114,56 @@
 </style>
 </head>
 <body>
-    <!-- È¸¿øÀÏ¶§ º¸¿©Áö´Â È¸¿øÁ¤º¸ div -->
+    <!-- íšŒì›ì¼ë•Œ ë³´ì—¬ì§€ëŠ” íšŒì›ì •ë³´ div -->
     <div id="userBox">
-        <p style="font-size: 13px;">È¸¿ø Á¤º¸</p>
+        <p style="font-size: 13px;">íšŒì› ì •ë³´</p>
     </div>
     <div id="header">
-        <!-- È¸¿øÀÌ ¾Æ´Ò¶§ º¸¿©Áö´Â ÅÂ±× -->
+        <!-- íšŒì›ì´ ì•„ë‹ë•Œ ë³´ì—¬ì§€ëŠ” íƒœê·¸ -->
         <div id="login-form"> 
-            <a href="#">·Î±×ÀÎ</a> | <a href="#">È¸¿ø°¡ÀÔ</a>
+            <a href="#">ë¡œê·¸ì¸</a> | <a href="#">íšŒì›ê°€ìž…</a>
         </div>
 
-        <!-- navigator¿µ¿ª start -->
+        <!-- navigatorì˜ì—­ start -->
         <ul id="navi">
             <li>
-                <a href="">Ä¿¹Â´ÏÆ¼</a>
+                <a href="">ì»¤ë®¤ë‹ˆí‹°</a>
                 <ul>
-                    <li><a href="#">ÀÚÀ¯°Ô½ÃÆÇ</a></li>
-                    <li><a href="#">µµ¿òÀÇ ¼Õ</a></li>
-                    <li><a href="#">º¸¼º ¸¶ÄÏ</a></li>
+                    <li><a href="#">ìžìœ ê²Œì‹œíŒ</a></li>
+                    <li><a href="#">ë„ì›€ì˜ ì†</a></li>
+                    <li><a href="#">ë³´ì„± ë§ˆì¼“</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#">°¶·¯¸®</a>
+                <a href="#">ê°¤ëŸ¬ë¦¬</a>
             </li>
             <li>
-                <a href="">¿¹¾à</a>
+                <a href="">ì˜ˆì•½</a>
                 <ul>
-                        <li><a href="#">½Â¸¶Àå</a></li>
-                        <li><a href="#">ÁÖ¸»³óÀå</a></li>
-                        <li><a href="#">ÇÑ¿Á</a></li>
-                        <li><a href="#">ÇÑ´Þ»ì±â</a></li>
+                        <li><a href="#">ìŠ¹ë§ˆìž¥</a></li>
+                        <li><a href="#">ì£¼ë§ë†ìž¥</a></li>
+                        <li><a href="#">í•œì˜¥</a></li>
+                        <li><a href="#">í•œë‹¬ì‚´ê¸°</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="">Æ¯»êÇ°</a>
+                    <a href="">íŠ¹ì‚°í’ˆ</a>
                     <ul>
-                        <li><a href="#">·¹½ÃÇÇ</a></li>
-                    <li><a href="#">±¸¸Å</a></li>
+                        <li><a href="#">ë ˆì‹œí”¼</a></li>
+                    <li><a href="#">êµ¬ë§¤</a></li>
                 </ul>
             </li>
             <li>
-                <a href="">º¸¼º¼Ò°³</a>
+                <a href="">ë³´ì„±ì†Œê°œ</a>
                 <ul>
-                    <li><a href="#">±³Åë¾È³»</a></li>
-                    <li><a href="#">°ü±¤ÄÚ½º</a></li>
-                    <li><a href="#">¸ÀÁý</a></li>
-                    <li><a href="#">¿À½Ã´Â±æ</a></li>
+                    <li><a href="#">êµí†µì•ˆë‚´</a></li>
+                    <li><a href="#">ê´€ê´‘ì½”ìŠ¤</a></li>
+                    <li><a href="#">ë§›ì§‘</a></li>
+                    <li><a href="#">ì˜¤ì‹œëŠ”ê¸¸</a></li>
                 </ul>
             </li>
         </ul>
-        <!-- navi ¿µ¿ª end -->
+        <!-- navi ì˜ì—­ end -->
     </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
