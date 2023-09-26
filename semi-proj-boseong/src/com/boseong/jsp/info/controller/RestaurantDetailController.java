@@ -1,4 +1,4 @@
-package com.boseong.jsp.info;
+package com.boseong.jsp.info.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
