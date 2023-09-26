@@ -57,7 +57,6 @@
     </style>
 </head>
 <body>
-<%@ include file="../views/common/menubar.jsp" %>
     <div class="outer">
         <!--겉 껍질-->
         <div id="food-list"></div>
