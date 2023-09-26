@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% String food = (String)request.getAttribute("food"); %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>º¸¼ºÀÇ ¸À</title>
+    <title>ë³´ì„±ì˜ ë§›</title>
 
     <style>
             @font-face {
@@ -85,17 +86,16 @@
 </head>
 <body>
     <div class="outer">
-        <!--°Ñ ²®Áú-->
+        <!--ê²‰ ê»ì§ˆ-->
         <div id="food-list"></div>
             <div id="left"></div>
             <div id="center">
-                <h1 align="left">º¸¼º ³ìÂ÷ ¶±°¥ºñ</h1>
+                <h1 align="left"><%=food %></h1>
                 <div>
                     <table>
-<!--                      <tr><td rowspan="4" width="40%" align="center"><img src="https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=13279199&filePath=L2Rpc2sxL25ld2RhdGEvMjAyMC8yMS9DTFMxMDAwNi8xMzI3OTE5OV9XUlRfMjFfQ0xTMTAwMDZfMjAyMDEyMThfMQ==&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10006" alt=""></td></tr>
- -->                      <tr><td>Àü¶ó³²µµ º¸¼º±º º¸¼ºÀ¾ Èï¼º·Î 2541-4</td></tr>
+						  <tr><td>ì „ë¼ë‚¨ë„ ë³´ì„±êµ° ë³´ì„±ì í¥ì„±ë¡œ 2541-4</td></tr>
                           <tr><td>061-853-0300</td></tr>
-                          <tr><td><h4>ÇÑ½Ä</h4></td></tr>
+                          <tr><td><h4>í•œì‹</h4></td></tr>
 
                     </table>
                 </div>
@@ -108,24 +108,24 @@
                         <table>
                             <tr><td colspan="2">
                                 <p>
-                                    20³â ³ÑÀº ÀüÅëÀ» ÀÚ¶ûÇÏ´Â ¶±°¥ºñ Àü¹®Á¡À¸·Î <br>
-                                    ÇÑ¿ì·Î ¸¸µç ¶±°¥ºñ¿Í º¸¼ºÀÌ ÀÚ¶ûÇÏ´Â ³ìÂ÷¸¦ ¸ÔÀÎ µÅÁö¸¦ Àç·á·Î ÇÏ¿© ¸¸µç ¶±°¥ºñ·Î µÎ Á¾·ù°¡ ÀÖ½À´Ï´Ù.<br>
-                                    °Ü¿ïÃ¶ º°¹Ì·Î TV¸ÀÁý ÇÁ·Î¿¡¼­ ¼Ò°³µµ µÈ ÁýÀ¸·Î ³ìÂ÷°¡ ¶±°¥ºñ ¾È¿¡ µé¾îÀÖ´Â ³ìÂ÷¸ÔÀÎ µÅÁö¶±°¥ºñ°¡ ÀÎ±â ¸Þ´ºÀÔ´Ï´Ù.
+                                    20ë…„ ë„˜ì€ ì „í†µì„ ìžëž‘í•˜ëŠ” ë–¡ê°ˆë¹„ ì „ë¬¸ì ìœ¼ë¡œ <br>
+                                    í•œìš°ë¡œ ë§Œë“  ë–¡ê°ˆë¹„ì™€ ë³´ì„±ì´ ìžëž‘í•˜ëŠ” ë…¹ì°¨ë¥¼ ë¨¹ì¸ ë¼ì§€ë¥¼ ìž¬ë£Œë¡œ í•˜ì—¬ ë§Œë“  ë–¡ê°ˆë¹„ë¡œ ë‘ ì¢…ë¥˜ê°€ ìžˆìŠµë‹ˆë‹¤.<br>
+                                    ê²¨ìš¸ì²  ë³„ë¯¸ë¡œ TVë§›ì§‘ í”„ë¡œì—ì„œ ì†Œê°œë„ ëœ ì§‘ìœ¼ë¡œ ë…¹ì°¨ê°€ ë–¡ê°ˆë¹„ ì•ˆì— ë“¤ì–´ìžˆëŠ” ë…¹ì°¨ë¨¹ì¸ ë¼ì§€ë–¡ê°ˆë¹„ê°€ ì¸ê¸° ë©”ë‰´ìž…ë‹ˆë‹¤.
                                 </p>
                                 
                             </td></tr>
                             <tr>
-                                <th>¿µ¾÷½Ã°£</th>
-                                <td>ÁÖÁß 10:30 ~ 22:30</td></tr>
+                                <th>ì˜ì—…ì‹œê°„</th>
+                                <td>ì£¼ì¤‘ 10:30 ~ 22:30</td></tr>
                             <tr>
-                                <th>ÃßÃµ ¸Þ´º</th>
-                                <td>³ìÂ÷¸ÔÀÎ µÅÁö ¶±°¥ºñ 
-                                    <br>¼Ò¶±°¥ºñ
+                                <th>ì¶”ì²œ ë©”ë‰´</th>
+                                <td>ë…¹ì°¨ë¨¹ì¸ ë¼ì§€ ë–¡ê°ˆë¹„ 
+                                    <br>ì†Œë–¡ê°ˆë¹„
                                 </td>
                             </tr>
                             <tr>
-                                <th>ÀÎ´ç Æò±Õ °¡°Ý´ë</th>
-                                <td>12000¿ø</td>
+                                <th>ì¸ë‹¹ í‰ê·  ê°€ê²©ëŒ€</th>
+                                <td>12000ì›</td>
                             </tr>
                         </table>
                     </div>
@@ -134,7 +134,7 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25393.822063311898!2d126.9667784425303!3d37.2897355642192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b42d198c1bcaf%3A0x121089b6ff26f8ca!2z67O07ISx64W57LCo65ah6rCI67mE!5e0!3m2!1sko!2skr!4v1695706091297!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
-                <button>¸®ºä È®ÀÎÇÏ±â</button>                
+                <button>ë¦¬ë·° í™•ì¸í•˜ê¸°</button>                
             </div>
             <div id="right"></div>
 

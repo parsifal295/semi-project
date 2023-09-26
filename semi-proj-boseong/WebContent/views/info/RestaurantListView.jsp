@@ -24,10 +24,10 @@
 
         }
         .outer{
-        width : 1000px;
-        height: 650px;
-        margin: auto;
-        border: 1px solid brown;
+									        width : 1000px;
+									        height: 650px;
+									        margin: auto;
+									        border: 1px solid brown;
         }
         #left, #center, #right {
             float: left;
@@ -57,6 +57,7 @@
     </style>
 </head>
 <body>
+<%@ include file="../views/common/menubar.jsp" %>
     <div class="outer">
         <!--겉 껍질-->
         <div id="food-list"></div>
