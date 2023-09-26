@@ -12,12 +12,18 @@
         height: 100vh;
         color: black;
 	}
+	#background-image{
+		
+	}
 </style>
 </head>
 <body>
 	<%@ include file="../views/common/menubar.jsp" %>
 	
-	<div class="front-page">main</div>
+	<div class="front-page" id="background-image">
+	
+	
+	</div>
 	<div class="page" id="content">
 		<div class="page">
 		
