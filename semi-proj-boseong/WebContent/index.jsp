@@ -8,14 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Nanum+Gothic&display=swap" rel="stylesheet">
-    <style>
+<style>
         .font-family{
             font-family: 'Kirang Haerang', cursive;
             font-family: 'Nanum Gothic', sans-serif;
         }
         body{
             background-color: rgb(5, 85, 5);
-
             margin : 0;
             padding : 0;
             font-size: 30px;
@@ -42,7 +41,6 @@
             background-color: #fff;
         }
         #header{
-            background-color: brown;
             margin : 0;
             padding : 0;
             width: 100%;
@@ -58,26 +56,22 @@
         }
         #login-form{
             font-size: 16px;
-            width: 8%;
+            width: 100%;
+            text-align: right;
             float : right;
         }
         /* ---------------- navigator 영역 부분 ---------------- */ 
-        #navigator{
-            width: 100%;
-            height: 100%;
-            margin-left: 0;
-            padding : 0;
-        }
         #navi{
             width: 50%;
             padding : 0;
-            padding-top: 20px;
+            padding-top: 110px;
+            padding-right: 100px;
             margin : 0;
             list-style : none;
             text-decoration : none;
             font-size : 22px;
             text-align: right;
-            float : right;
+            float:right;
             display: block;
         }
         #navi > li{
@@ -91,12 +85,13 @@
             width : 100%;
             height : 100%;
             display: block;
-            line-height: 20px;
+            line-height: 30px;
         }
         #navi a:hover{
-            color : rgb(229, 0, 172);
+            color : orangered
         }
         #navi > li > ul{
+            background-color: rgba(0, 128, 0, 0.457);
             list-style : none;
             padding:0;
             display : none; 
@@ -122,10 +117,10 @@
             text-align: center;
             
         }
-        </style>
+</style>
 </head>
 <body>
-    <div id="wrap">
+    <div id="wrap" class="page">
         <!-- 회원일때 보여지는 회원정보 div -->
         <div id="userBox">
             <p style="font-size: 13px;">회원 정보</p>
@@ -137,19 +132,21 @@
             </div>
 
             <!-- navigator영역 start -->
-            <div id="navi">
+            <ul id="navi">
                 <li>
-                    <a href="">보성소개</a>
+                    <a href="#">커뮤니티</a>
                     <ul>
-                        <li><a href="#">교통안내</a></li>
-                        <li><a href="#">관광코스</a></li>
-                        <li><a href="#">맛집</a></li>
-                        <li><a href="#">오시는길</a></li>
+                        <li><a href="#">자유게시판</a></li>
+                        <li><a href="#">도움의 손</a></li>
+                        <li><a href="#">보성 마켓</a></li>
                     </ul>
                 </li>
                 <li>
-                        <a href="">예약</a>
-                        <ul>
+                    <a href="#">갤러리</a>
+                </li>
+                <li>
+                    <a href="#">예약</a>
+                    <ul>
                             <li><a href="#">승마장</a></li>
                             <li><a href="#">주말농장</a></li>
                             <li><a href="#">한옥</a></li>
@@ -157,24 +154,22 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="">특산품</a>
-                    <ul>
-                        <li><a href="#">레시피</a></li>
+                        <a href="#">특산품</a>
+                        <ul>
+                            <li><a href="#">레시피</a></li>
                         <li><a href="#">구매</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="">커뮤니티</a>
-                <ul>
-                    <li><a href="#">자유게시판</a></li>
-                    <li><a href="#">도움의 손</a></li>
-                    <li><a href="#">보성 마켓</a></li>
-                </ul>
+                    <a href="#">보성소개</a>
+                    <ul>
+                        <li><a href="#">교통안내</a></li>
+                        <li><a href="#">관광코스</a></li>
+                        <li><a href="#">맛집</a></li>
+                        <li><a href="#">오시는길</a></li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="#">갤러리</a>
-                </li>
-            </div>
+            </ul>
             <!-- navi 영역 end -->
         </div>
     </div>
@@ -192,8 +187,8 @@
         <span>
             (예시) <br><br><br><br>
             Copyright ⓒ 2023. All Rights Reserved by AJY Company. Designed By JIJI. <br><br>
-		            본 사이트에 대한 저작권은 소유자에게 있으며, 무료로 이용할 수 없다  <br><br>
-		            본 사이트를 사용함으로 인해 발생하는 어떠한 피해에 대해서도 책임지지 않을거임 <br><br>
+            본 사이트에 대한 저작권은 소유자에게 있으며, 무료로 이용할 수 없다  <br><br>
+            본 사이트를 사용함으로 인해 발생하는 어떠한 피해에 대해서도 책임지지 않을거임 <br><br>
         </span>
     </div>
 
