@@ -113,6 +113,9 @@ Icon
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 
+#vscode
+.vscode/
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
