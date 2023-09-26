@@ -19,6 +19,7 @@
 	
 	<div class="front-page">main</div>
 	<div class="page" id="content">
+		<div class="page">
 		
 		</div>
 	
