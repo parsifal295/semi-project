@@ -117,6 +117,16 @@
 		position: fixed;
 		bottom: 0;
 	}
+	#logoPlace{
+		width : 200px;
+		height : 200px;
+		margin-left : 50px;
+		background-image : url(resources/image/BoseongLogo.png);
+		/*일단은 로고 사진은 임시 */
+		background-repeat : no-repeat;
+        background-position : center;
+        background-size : 100%;
+	}
 </style>
 </head>
 <body>
@@ -168,6 +178,7 @@
 			</li>
 		</ul>
 		<!-- navi 영역 end -->
+	<div id="logoPlace"></div>
 	</div>
 </body>
 </html>
