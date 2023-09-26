@@ -1,11 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>∫∏º∫¿« ∏¿</title>
+    <title>Î≥¥ÏÑ±Ïùò Îßõ</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
     <style>
             @font-face {
@@ -45,46 +50,67 @@
             height: 180px;
             margin: auto;
         }
-        h2{
-            margin: 8px;
+        th{
+        	font-size:20px;
+        	text-align:left;
         }
     </style>
 </head>
 <body>
     <div class="outer">
-        <!--∞— ≤Æ¡˙-->
+        <!--Í≤â ÍªçÏßà-->
         <div id="food-list"></div>
             <div id="left"></div>
             <div id="center">
-                <h2 align="left">∫∏º∫¿« ∏¿</h2>
+                <h2 align="left">Î≥¥ÏÑ±Ïùò Îßõ</h2>
                 <div>
                     <table>
-                        <tr><td rowspan="5" width="40%" align="center"><img src="https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=13279199&filePath=L2Rpc2sxL25ld2RhdGEvMjAyMC8yMS9DTFMxMDAwNi8xMzI3OTE5OV9XUlRfMjFfQ0xTMTAwMDZfMjAyMDEyMThfMQ==&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10006" alt=""></td></tr>
-                        <tr><td><h2>∫∏º∫ ≥Ï¬˜ ∂±∞•∫Ò</h2></td></tr>
-                        <tr><td>¿¸∂Û≥≤µµ ∫∏º∫±∫ ∫∏º∫¿æ »Ôº∫∑Œ 2541-4</td></tr>
+                        <tr>
+                        	<td rowspan="5" width="40%" align="center"><img src="https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=13279199&filePath=L2Rpc2sxL25ld2RhdGEvMjAyMC8yMS9DTFMxMDAwNi8xMzI3OTE5OV9XUlRfMjFfQ0xTMTAwMDZfMjAyMDEyMThfMQ==&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10006" alt=""></td>
+                        	<th>Î≥¥ÏÑ± ÎÖπÏ∞® Îñ°Í∞àÎπÑ</th>
+                        </tr>
+                        <tr></tr>
+                        <tr><td>Ï†ÑÎùºÎÇ®ÎèÑ Î≥¥ÏÑ±Íµ∞ Î≥¥ÏÑ±Ïùç Ìù•ÏÑ±Î°ú 2541-4</td></tr>
                         <tr><td>061-853-0300</td></tr>
-                        <tr><td>«—Ωƒ</td></tr>
+                        <tr><td>ÌïúÏãù</td></tr>
 
-                        <tr><td rowspan="5" width="40%" align="center"><img src="https://img.siksinhot.com/place/1499990936640921.jpg" alt=""></td></tr>
-                        <tr><td><h2>√ª±§µµøπø¯</h2></td></tr>
-                        <tr><td>¿¸∂Û≥≤µµ ∫∏º∫±∫ ∫∏º∫¿æ ∫¿ªÍ∏Æ 1154-1</td></tr>
+                        <tr>
+                        	<td rowspan="5" width="40%" align="center"><img src="https://img.siksinhot.com/place/1499990936640921.jpg" alt=""></td>
+                        	<th>Ï≤≠Í¥ëÎèÑÏòàÏõê</th>
+                        </tr>
+                        <tr></tr>
+                        <tr><td>Ï†ÑÎùºÎÇ®ÎèÑ Î≥¥ÏÑ±Íµ∞ Î≥¥ÏÑ±Ïùç Î¥âÏÇ∞Î¶¨ 1154-1</td></tr>
                         <tr><td>061-853-4125</td></tr>
-                        <tr><td>«—Ωƒ</td></tr>
+                        <tr><td>ÌïúÏãù</td></tr>
 
-                        <tr><td rowspan="5" width="40%" align="center"><img src="https://mblogthumb-phinf.pstatic.net/MjAxODA5MTlfMTk1/MDAxNTM3MzUwMTM5MTEw.tJaRieIWXcRgxxggg6mVDl_voaT2d9jFVGc6bdEgSW0g.Jqq9yzGj63u7ZaprudAO06i8XknKWZN6tgyJump9PN8g.JPEG.boseonglove/IMG_0103.jpg?type=w800" alt=""></td></tr>
-                        <tr><td><h2>ºˆ∫πΩƒ¥Á</h2></td></tr>
-                        <tr><td>¿¸∂Û≥≤µµ ∫∏º∫±∫ ∫∏º∫¿æ ∫∏º∫∏Æ 767-7</td></tr>
+                        <tr>
+                        <td rowspan="5" width="40%" align="center"><img src="https://mblogthumb-phinf.pstatic.net/MjAxODA5MTlfMTk1/MDAxNTM3MzUwMTM5MTEw.tJaRieIWXcRgxxggg6mVDl_voaT2d9jFVGc6bdEgSW0g.Jqq9yzGj63u7ZaprudAO06i8XknKWZN6tgyJump9PN8g.JPEG.boseonglove/IMG_0103.jpg?type=w800" alt=""></td>
+                        <th>ÏàòÎ≥µÏãùÎãπ</th>
+                        </tr>
+                        <tr></tr>
+
+                        <tr><td>Ï†ÑÎùºÎÇ®ÎèÑ Î≥¥ÏÑ±Íµ∞ Î≥¥ÏÑ±Ïùç Î≥¥ÏÑ±Î¶¨ 767-7</td></tr>
                         <tr><td>061-853-3032</td></tr>
-                        <tr><td>«—Ωƒ</td></tr>
+                        <tr><td>ÌïúÏãù</td></tr>
 
                     </table>
                 </div>
                 
             </div>
             <div id="right"></div>
-
+				
         </div>
     </div>
+    <script>
+    	$(function(){
+    		$('table img').click(function(){
+    			let food = $(this).parent().parent().children('th').text();
+    			alert(food);
+    			location.href = "<%=contextPath%>/detail.rs?food="+food;
+    		})
+    	})
+    	
+    </script>
     
 </body>
 </html>
