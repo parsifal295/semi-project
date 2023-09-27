@@ -44,6 +44,7 @@
 <%@ include file = "../common/menubar.jsp" %>
 	<div id="box"></div>
 	<div class="page" id="content">
+	<div class="page">
 		<h1>교통정보 안내</h1>
 		<br>
 		<div class="page" id="trans-list">
@@ -74,6 +75,7 @@
 				<p><h3>시내 버스</h3></p>
 				<div class="empty-box"></div>
 			</div>
+		</div>
 		</div>	
 	</div>
 	<script>
