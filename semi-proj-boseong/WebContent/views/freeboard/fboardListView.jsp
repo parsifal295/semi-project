@@ -58,9 +58,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %> <% ArrayLi
 							<% } %>
 						</ul>
 						<script>
-							$(() => {
-								$("ul>>li:first-child").addClass("active");
-							});
+							console.log(cpage);
 						</script>
 					</div>
 				</div>
