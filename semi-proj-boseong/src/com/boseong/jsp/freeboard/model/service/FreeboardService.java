@@ -18,4 +18,14 @@ public class FreeboardService {
     }
     return list;
   }
+
+  public int getListCount() {
+    int count = 0;
+    try (Connection conn = getConnection()) {
+      count = new FreeboardDao().getListCount(conn);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return count;
+  }
 }
