@@ -29,18 +29,18 @@ public class FreeboardServlet extends HttpServlet {
     String uri = mapping.substring(mapping.lastIndexOf("/") + 1);
     String view = "";
     boolean flag = true;
-    switch (mapping) {
+    switch (uri) {
       case "fboard.fb":
-        view = new FreeboardController().requestA(request, response);
+        view = new FreeboardController().requestFreeboard(request, response);
         flag = false;
         break;
     }
 
-    // if (flag) {
-    //   response.sendRedirect(view);
-    // } else {
-    //   response.getRequestDispatcher("/index.jsp").forward(request, response);
-    // }
+    if (flag) {
+      response.sendRedirect(view);
+    } else {
+      request.getRequestDispatcher(view).forward(request, response);
+    }
   }
 
   /**
