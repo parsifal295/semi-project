@@ -30,7 +30,7 @@ public class FreeboardController {
     pageLimit = 10;
     boardLimit = 10;
     maxPage = (int) Math.ceil((double) listCount / boardLimit);
-    startPage = (currentPage - 1) * pageLimit * pageLimit + 1;
+    startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
     endPage = startPage + pageLimit - 1;
     if (endPage > maxPage) {
       endPage = maxPage;
