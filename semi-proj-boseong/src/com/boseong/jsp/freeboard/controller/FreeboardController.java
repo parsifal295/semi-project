@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FreeboardController {
 
   public String requestFreeboard(HttpServletRequest request, HttpServletResponse response) {
-
-    return "";
+    String returnMe = "/views/freeboard/fboardListView.jsp";
+    return returnMe;
   }
 }
