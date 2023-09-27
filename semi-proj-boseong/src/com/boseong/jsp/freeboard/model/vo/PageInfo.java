@@ -1,6 +1,6 @@
 package com.boseong.jsp.freeboard.model.vo;
 
-public abstract class PageInfo {
+public class PageInfo {
   private int listCount; // 현재 일반게시글의 게시글 총 개수 => DB에서 총 게시글 개수 질의 count(*) / status='Y'
   private int currentPage; // 현재 페이지 => request.getParameter("cpage")
   private int pageLimit; // 한 페이지에 보여질 게시글 최대 갯수 => 10개로 고정
