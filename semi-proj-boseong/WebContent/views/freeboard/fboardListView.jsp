@@ -42,20 +42,37 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %> <% ArrayLi
 								<% } %> <% } %>
 							</tbody>
 						</table>
+						<div class="paging-area" align="center">
 						<ul class="pagination justify-content-center" style="margin: 20px 0">
 							<% if(currentPage != 1) { %>
 							<li class="page-item">
-								<a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%= currentPage - 1 %>">Previous</a>
+								<a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%= currentPage - 1 %>"
+									>Previous</a
+								>
 							</li>
-							<% } %> <% for(int i = startPage; i <= endPage; i++) { %>
-							<li class="page-item active"><a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%=i%>"><%=i%></a></li>
+							<% } %> 
+							
+							<% for(int i = startPage; i <= endPage; i++) { %>
+							 <% if(currentPage != i) { %>
+							 <li id="li<%=i%>" class="page-item">
+                                <a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%=i%>"><%=i%></a>
+                            </li>
+							 <% } else { %>
+							  <li id="li<%=i%>" class="page-item">
+							    <a class="page-link" href=""><%=i%></a>
+							  </li>
+							 <% } %> 
+							<% } %> 
+							<% if (currentPage!= maxPage) { %>
+							<li class="page-item"><a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%= currentPage + 1 %>">Next</a></li>
 							<% } %>
-							<li class="page-item"><a class="page-link" href="#">Next</a></li>
 						</ul>
+						</div>
+						<script>
+							console.log(cpage);
+						</script>
 					</div>
 				</div>
 				<%@ include file = "../common/footer.jsp" %>
 			</body>
 		</html>
-	</Freeboard></Freeboard
->

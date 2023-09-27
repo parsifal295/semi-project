@@ -47,7 +47,7 @@
                             </td>
                         </tr>
                     </table>
-                    <div align="center"><button type="submit">등록</button><button type="reset">초기화</button></div>
+                    <div align="center"><a href="<%= contextPath %>/v" type="submit">등록</a><button type="reset">초기화</button></div>
                 </div>
             </div>
         </form>

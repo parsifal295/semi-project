@@ -9,14 +9,23 @@
 			TB_FREEBOARD
 	</entry>
 	<entry key="selectFboardList"> 
-        SELECT
+        SELECT 
+			BOARD_NO,
+			ART_WRITER,
+			IP_ADDRESS,
+			ART_TITLE,
+			COUNT,
+            CREATE_DATE,
+            ROWNUM RNUM
+        FROM    
+        (SELECT
             BOARD_NO,
 			ART_WRITER,
 			IP_ADDRESS,
 			ART_TITLE,
 			COUNT,
             CREATE_DATE,
-            ROWNUM
+            ROWNUM RNUM
         FROM
 		(SELECT
 			BOARD_NO,
@@ -31,7 +40,7 @@
 		WHERE 
 			STATUS = 'Y'
         ORDER BY
-            BOARD_NO DESC)
-        WHERE ROWNUM BETWEEN ? AND ?
+            BOARD_NO DESC) A)
+        WHERE RNUM BETWEEN ? AND ?    
 	</entry>
 </properties>

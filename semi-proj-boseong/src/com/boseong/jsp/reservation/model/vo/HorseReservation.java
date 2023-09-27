@@ -6,7 +6,7 @@ public class HorseReservation {
 	private int reservNo;
 	private int memNo;
 	private String programNo;
-	private Date horseDate;
+	private String horseDate;
 	private int horseTime;
 	private int riderNum;
 	private String message;
@@ -17,7 +17,7 @@ public class HorseReservation {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public HorseReservation(int reservNo, int memNo, String programNo, Date horseDate, int horseTime, int riderNum,
+	public HorseReservation(int reservNo, int memNo, String programNo, String horseDate, int horseTime, int riderNum,
 			String message) {
 		super();
 		this.reservNo = reservNo;
@@ -31,7 +31,7 @@ public class HorseReservation {
 	public HorseReservation() {
 		super();
 	}
-	public HorseReservation(int reservNo, int memNo, String programNo, Date horseDate, int horseTime, int riderNum) {
+	public HorseReservation(int reservNo, int memNo, String programNo, String horseDate, int horseTime, int riderNum) {
 		super();
 		this.reservNo = reservNo;
 		this.memNo = memNo;
@@ -64,10 +64,10 @@ public class HorseReservation {
 	public void setProgramNo(String programNo) {
 		this.programNo = programNo;
 	}
-	public Date getHorseDate() {
+	public String getHorseDate() {
 		return horseDate;
 	}
-	public void setHorseDate(Date horseDate) {
+	public void setHorseDate(String horseDate) {
 		this.horseDate = horseDate;
 	}
 	public int getHorseTime() {
