@@ -64,7 +64,7 @@ public class ItemBoardInsertController extends HttpServlet {
 			ib.setTitle(title);
 			ib.setPrice(price);
 			ib.setContent(content);
-			ib.setMemberNo(memberNo);
+			ib.setMemberNo(memberNo); 
 			
 			Attachment at = new Attachment();
 			at.getOriginName(new
