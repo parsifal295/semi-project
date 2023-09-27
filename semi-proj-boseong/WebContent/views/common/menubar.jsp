@@ -14,9 +14,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-	.font-family {
-
-	}
 	#menubar {
 		margin: 0;
 		padding: 0;
@@ -65,7 +62,7 @@
 	}
 	/* ---------------- navigator 영역 부분 ---------------- */
 	#navi {
-		width: 50%;
+		width: 1000px;
 		padding: 0;
 		padding-top: 110px;
 		padding-right: 100px;
@@ -146,7 +143,7 @@
 				<a href="">커뮤니티</a>
 				<ul>
 					<li><a href="#">자유게시판</a></li>
-					<li><a href="#">도움의 손</a></li>
+					<li><a href="">도움의 손</a></li>
 					<li><a href="#">보성 마켓</a></li>
 				</ul>
 			</li>

@@ -23,10 +23,7 @@
 <body>
 	<%@ include file="../views/common/menubar.jsp" %>
 	
-	<div class="front-page" id="background-image">
-	
-	
-	</div>
+	<div class="front-page" id="background-image"></div>
 	<div class="page" id="content">
 		<div class="page">
 			
