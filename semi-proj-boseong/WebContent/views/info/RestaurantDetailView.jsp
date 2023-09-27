@@ -20,13 +20,14 @@
         }
         table{
             width: 100%;
+            font-size: 20px;
         }
         h4, h6{
             margin: 0%;
         }
         #restaurant-pictures{
             width: 100%;
-            height: 35%;
+            height: 350px;
             padding: 2px;
         }
         .restaurant-detail{
@@ -37,6 +38,7 @@
             width: 60%;
             height: 100%;
             float: left;
+            padding-top: 30px;
         }
         #location{
             width: 40%;
@@ -56,7 +58,7 @@
         }
         #location>iframe{
             width: 500px;
-            height: 220px;
+            height: 300px;
         }
         th, td{
             text-align: left;
@@ -126,9 +128,9 @@
                             <tr>
                             <td colspan="2">
                                 <p>
-                                20년 넘은 전통을 자랑하는 떡갈비 전문점으로 <br>
-                                 한우로 만든 떡갈비와 보성이 자랑하는 녹차를 먹인 돼지를 재료로 하여 만든 떡갈비로 두 종류가 있습니다.<br>
-                                    겨울철 별미로 TV맛집 프로에서 소개도 된 집으로 녹차가 떡갈비 안에 들어있는 녹차먹인 돼지떡갈비가 인기 메뉴입니다.
+                                20년 넘은 전통을 자랑하는 떡갈비 전문점으로 한우로 만든 떡갈비와 <br>
+                                보성이 자랑하는 녹차를 먹인 돼지를 재료로 하여 만든 떡갈비 두 종류가 있습니다.<br>
+                                겨울철 별미로 TV맛집 프로에서 소개도 된 집으로 녹차가 떡갈비 안에 들어있는 녹차먹인 돼지떡갈비가 인기 메뉴입니다.
                                 </p>
                                 
                             </td></tr>
@@ -137,7 +139,7 @@
                                 <td>주중 10:30 ~ 22:30</td></tr>
                             <tr>
                                 <th>추천 메뉴</th>
-                                <td>녹차먹인 돼지 떡갈비, 소떡갈비
+                                <td>녹차먹인 돼지 떡갈비, <br>소떡갈비
                                 </td>
                             </tr>
                             <tr>
