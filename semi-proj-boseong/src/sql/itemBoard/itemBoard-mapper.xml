@@ -3,8 +3,7 @@
 <properties>
 	<comment>중고나라 SQL문 </comment>
 	<entry key="insertBoard">
-		INSERT
-		  INTO
+	
 		  		
 		  	
 	</entry>
