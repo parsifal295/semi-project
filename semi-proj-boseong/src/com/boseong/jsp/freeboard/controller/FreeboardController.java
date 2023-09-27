@@ -39,6 +39,8 @@ public class FreeboardController {
         new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 
     ArrayList<Freeboard> list = new FreeboardService().selectFboardList(pi);
+    request.setAttribute("list", list);
+    request.setAttribute("pi", pi);
     String returnMe = "/views/freeboard/fboardListView.jsp";
     return returnMe;
   }

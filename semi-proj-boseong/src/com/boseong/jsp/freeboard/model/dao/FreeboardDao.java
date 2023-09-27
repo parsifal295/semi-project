@@ -46,6 +46,7 @@ public class FreeboardDao {
           Freeboard fboard = new Freeboard();
           fboard.setBoardNo(rs.getInt("BOARD_NO"));
           fboard.setWriter(rs.getString("ART_WRITER") + "(" + rs.getString("IP_ADDRESS") + ")");
+          fboard.setTitle(rs.getString("ART_TITLE"));
           fboard.setCount(rs.getInt("COUNT"));
           fboard.setCreateDate(rs.getDate("CREATE_DATE"));
           list.add(fboard);
