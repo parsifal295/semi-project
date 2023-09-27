@@ -65,7 +65,8 @@ public class ItemBoardInsertController extends HttpServlet {
 			ib.setContent(content);
 			ib.setMemberNo(memberNo); 
 			
-			int result = new ItemBoardService().iboardInsert();	
+			int result = new ItemBoardService().insertBoard(ib);
+			
 		}
 		
 	}
