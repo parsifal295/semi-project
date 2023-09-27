@@ -19,6 +19,7 @@ public class JDBCTemplate {
     Properties prop = new Properties();
     // 읽어들이고자 하는 파일의 물리적인 경로
     String fileName = JDBCTemplate.class.getResource("/sql/driver/driver.properties").getPath();
+    System.out.println(fileName);
     try {
       prop.load(new FileInputStream(fileName));
       Class.forName(prop.getProperty("driver"));
