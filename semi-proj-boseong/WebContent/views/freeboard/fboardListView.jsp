@@ -42,6 +42,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %> <% ArrayLi
 								<% } %> <% } %>
 							</tbody>
 						</table>
+						<div class="paging-area" align="center">
 						<ul class="pagination justify-content-center" style="margin: 20px 0">
 							<% if(currentPage != 1) { %>
 							<li class="page-item">
@@ -49,18 +50,26 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %> <% ArrayLi
 									>Previous</a
 								>
 							</li>
-							<% } %> <% for(int i = startPage; i <= endPage; i++) { %>
-							<li id="li<%=i%>" class="page-item">
-								<a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%=i%>"><%=i%></a>
-							</li>
-							<% } %> <% if (currentPage!= maxPage) { %>
+							<% } %> 
+							
+							<% for(int i = startPage; i <= endPage; i++) { %>
+							 <% if(currentPage != i) { %>
+							 <li id="li<%=i%>" class="page-item">
+                                <a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%=i%>"><%=i%></a>
+                            </li>
+							 <% } else { %>
+							  <li id="li<%=i%>" class="page-item">
+							    <a class="page-link" href=""><%=i%></a>
+							  </li>
+							 <% } %> 
+							<% } %> 
+							<% if (currentPage!= maxPage) { %>
 							<li class="page-item"><a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%= currentPage + 1 %>">Next</a></li>
 							<% } %>
 						</ul>
+						</div>
 						<script>
-							$(() => {
-								$("ul>>li:first-child").addClass("active");
-							});
+							console.log(cpage);
 						</script>
 					</div>
 				</div>
