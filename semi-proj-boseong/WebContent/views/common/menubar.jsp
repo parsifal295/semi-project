@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<% String contextPath = request.getContextPath(); %>
+<%
+	String contextPath = request.getContextPath(); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,8 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
+	.font-family {
+	}
 	#menubar {
 		margin: 0;
 		padding: 0;
@@ -62,7 +66,7 @@
 	}
 	/* ---------------- navigator 영역 부분 ---------------- */
 	#navi {
-		width: 1000px;
+		width: 60%;
 		padding: 0;
 		padding-top: 110px;
 		padding-right: 100px;
@@ -115,70 +119,70 @@
 		position: fixed;
 		bottom: 0;
 	}
-	#logoPlace{
-		width : 200px;
-		height : 200px;
-		margin-left : 50px;
-		background-image : url('<%= contextPath %>/resources/image/12.png');
+	#logoPlace {
+		width: 200px;
+		height: 200px;
+		margin-left: 50px;
+		background-image: url("<%= contextPath %>/resources/image/12.png");
 		/*일단은 로고 사진은 임시 */
-		background-repeat : no-repeat;
-        background-position : center;
-        background-size : 100%;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
 	}
 </style>
 </head>
 <body>
-<div id="menubar">
-	<!-- 회원일때 보여지는 회원정보 div -->
-	<div id="userBox">
-		<p style="font-size: 13px">회원 정보</p>
-	</div>
-	<div id="header">
-		<!-- 회원이 아닐때 보여지는 태그 -->
-		<div id="login-form"><a href="#">로그인</a> | <a href="#">회원가입</a></div>
+	<div id="menubar">
+		<!-- 회원일때 보여지는 회원정보 div -->
+		<div id="userBox">
+			<p style="font-size: 13px">회원 정보</p>
+		</div>
+		<div id="header">
+			<!-- 회원이 아닐때 보여지는 태그 -->
+			<div id="login-form"><a href="#">로그인</a> | <a href="#">회원가입</a></div>
 
-		<!-- navigator영역 start -->
-		<ul id="navi">
-			<li>
-				<a href="">커뮤니티</a>
-				<ul>
-					<li><a href="#">자유게시판</a></li>
-					<li><a href="">도움의 손</a></li>
-					<li><a href="#">보성 마켓</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="#">갤러리</a>
-			</li>
-			<li>
-				<a href="">예약</a>
-				<ul>
-					<li><a href="#">승마장</a></li>
-					<li><a href="#">주말농장</a></li>
-					<li><a href="#">한옥</a></li>
-					<li><a href="#">한달살기</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="">특산품</a>
-				<ul>
-					<li><a href="#">레시피</a></li>
-					<li><a href="#">구매</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="">보성소개</a>
-				<ul>
-					<li><a href="#">교통안내</a></li>
-					<li><a href="#">관광코스</a></li>
-					<li><a href="#">맛집</a></li>
-					<li><a href="#">오시는길</a></li>
-				</ul>
-			</li>
-		</ul>
-		<!-- navi 영역 end -->
-	<div id="logoPlace"></div>
+			<!-- navigator영역 start -->
+			<ul id="navi">
+				<li>
+					<a href="">커뮤니티</a>
+					<ul>
+						<li><a href="<%= contextPath %>/fboard.fb">자유게시판</a></li>
+						<li><a href="#">도움의 손</a></li>
+						<li><a href="#">보성 마켓</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">갤러리</a>
+				</li>
+				<li>
+					<a href="">예약</a>
+					<ul>
+						<li><a href="#">승마장</a></li>
+						<li><a href="#">주말농장</a></li>
+						<li><a href="#">한옥</a></li>
+						<li><a href="#">한달살기</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="">특산품</a>
+					<ul>
+						<li><a href="#">레시피</a></li>
+						<li><a href="#">구매</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="">보성소개</a>
+					<ul>
+						<li><a href="#">교통안내</a></li>
+						<li><a href="#">관광코스</a></li>
+						<li><a href="#">맛집</a></li>
+						<li><a href="#">오시는길</a></li>
+					</ul>
+				</li>
+			</ul>
+			<!-- navi 영역 end -->
+			<div id="logoPlace"></div>
+		</div>
 	</div>
-</div>
 </body>
 </html>

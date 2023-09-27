@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class JDBCTemplate {
 
-  // don't let anyone instantiate it
+  // don't let anyone instantiate this object
   private JDBCTemplate() {}
 
   public static Connection getConnection() {
