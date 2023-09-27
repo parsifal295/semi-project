@@ -15,28 +15,10 @@
         font-weight: normal;
         font-style: normal;
     	}
-
-        .outer{
-        width : 1000px;
-        height: 650px;
-        margin: auto;
-        border: 1px solid brown;
-        font-family: 'Hangeuljaemin4-Regular';
-        box-sizing: border-box;
+        * {
+	    font-family: 'Hangeuljaemin4-Regular';
         }
-        #left, #center, #right {
-            float: left;
-        }
-
-        #left, #right{
-            width: 10%;
-            height: 100%;
-        }
-        #center{
-            width: 80%;
-            height: 100%;
-        }
-        #center table{
+        table{
             width: 100%;
         }
         h4, h6{
@@ -61,7 +43,7 @@
             height: 100%;
             float: left;
         }
-        #center button{
+        button{
             width: 100%;
             margin: auto;
             height: 5%;
@@ -73,10 +55,10 @@
             margin-top: 10px;
         }
         #location>iframe{
-            width: 320px;
+            width: 500px;
             height: 220px;
         }
-        #center table th,#center table td{
+        th, td{
             text-align: left;
             padding-left: 10px;
         }
@@ -92,11 +74,10 @@
 	    <div id="box">
     	
     	</div>
-    <div class="outer">
+    <div  class="page" id="content">
         <!--겉 껍질-->
         <div id="food-list"></div>
-            <div id="left"></div>
-            <div id="center">
+            
                 <h1 align="left"><%=food %></h1>
                 <div>
                     <table>
@@ -171,8 +152,8 @@
                     </div>
                 </div>
                 <button>리뷰 확인하기</button>                
-            </div>
-            <div id="right"></div>
+        
+            
 
         </div>
     </div>

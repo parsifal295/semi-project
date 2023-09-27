@@ -174,7 +174,7 @@
 				<ul>
 					<li><a href="#">교통안내</a></li>
 					<li><a href="#">관광코스</a></li>
-					<li><a href="#">맛집</a></li>
+					<li><a href="<%=contextPath%>/views/info/RestaurantListView.jsp">맛집</a></li>
 					<li><a href="#">오시는길</a></li>
 				</ul>
 			</li>
