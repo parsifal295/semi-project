@@ -123,7 +123,7 @@
 		width: 200px;
 		height: 200px;
 		margin-left: 50px;
-		background-image: url("<%= contextPath %>/resources/image/12.png");
+		background-image: url('<%= contextPath %>/resources/image/12.png');
 		/*일단은 로고 사진은 임시 */
 		background-repeat: no-repeat;
 		background-position: center;
@@ -148,11 +148,11 @@
 					<ul>
 						<li><a href="<%= contextPath %>/fboard.fb">자유게시판</a></li>
 						<li><a href="#">도움의 손</a></li>
-						<li><a href="#">보성 마켓</a></li>
+						<li><a href="<%= contextPath %>/iboard.ib">보성 마켓</a></li>
 					</ul>
 				</li>
 				<li>
-					<a href="#">갤러리</a>
+					<a href="<%=contextPath%>">갤러리</a>
 				</li>
 				<li>
 					<a href="">예약</a>
