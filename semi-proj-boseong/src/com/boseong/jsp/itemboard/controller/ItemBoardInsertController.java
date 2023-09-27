@@ -67,11 +67,7 @@ public class ItemBoardInsertController extends HttpServlet {
 			ib.setMemberNo(memberNo); 
 			
 			Attachment at = new Attachment();
-			at.getOriginName(new
-			
-			
-			
-			
+			at.getOriginName()
 			
 		}
 		
