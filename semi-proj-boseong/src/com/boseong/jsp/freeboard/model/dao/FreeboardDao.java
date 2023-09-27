@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -31,5 +32,20 @@ public class FreeboardDao {
       e.printStackTrace();
     }
     return list;
+  }
+
+  public int getListCount(Connection conn) {
+    int count = 0;
+    String sql = prop.getProperty("getListCount");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          count = rs.getInt(1);
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return count;
   }
 }
