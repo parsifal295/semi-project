@@ -158,7 +158,7 @@ request.getContextPath(); %>
 					<li>
 						<a href="">예약</a>
 						<ul>
-							<li><a href="#">승마장</a></li>
+							<li><a href="<%=contextPath%>/horse.rsv">승마장</a></li>
 							<li><a href="#">주말농장</a></li>
 							<li><a href="#">한옥</a></li>
 							<li><a href="#">한달살기</a></li>

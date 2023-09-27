@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ page
-import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %> <% ArrayList<Freeboard>
-	list = (ArrayList<Freeboard
-		>)request.getAttribute("list"); PageInfo pi = (PageInfo)request.getAttribute("pi"); int currentPage =
-		pi.getCurrentPage(); int startPage = pi.getStartPage(); int endPage = pi.getEndPage(); int maxPage =
-		pi.getMaxPage(); %>
+import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %> 
+<% ArrayList<Freeboard>
+	list = (ArrayList<Freeboard>)request.getAttribute("list"); 
+    PageInfo pi = (PageInfo)request.getAttribute("pi"); 
+    int currentPage = pi.getCurrentPage(); 
+    int startPage = pi.getStartPage(); 
+    int endPage = pi.getEndPage(); 
+    int maxPage = pi.getMaxPage(); 
+%>
 		<!DOCTYPE html>
 		<html>
 			<head>
@@ -51,26 +55,23 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %> <% ArrayLi
 								>
 							</li>
 							<% } %> 
-							
 							<% for(int i = startPage; i <= endPage; i++) { %>
 							 <% if(currentPage != i) { %>
-							 <li id="li<%=i%>" class="page-item">
+							 <li class="page-item">
                                 <a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%=i%>"><%=i%></a>
-                            </li>
+                             </li>
 							 <% } else { %>
-							  <li id="li<%=i%>" class="page-item">
-							    <a class="page-link" href=""><%=i%></a>
-							  </li>
-							 <% } %> 
+						     <li class="page-item active">
+                                <a class="page-link" href=""><%=i%></a>
+                             </li>
+							 <% } %>
 							<% } %> 
 							<% if (currentPage!= maxPage) { %>
 							<li class="page-item"><a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%= currentPage + 1 %>">Next</a></li>
 							<% } %>
 						</ul>
 						</div>
-						<script>
-							console.log(cpage);
-						</script>
+					
 					</div>
 				</div>
 				<%@ include file = "../common/footer.jsp" %>
