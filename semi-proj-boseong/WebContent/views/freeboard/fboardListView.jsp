@@ -11,7 +11,7 @@
 		<div class="page" id="content">
 			<div style="height: 250px"></div>
 			<div class="page">
-				<table class="table table-hover" align="center" style="width: 78%">
+				<table class="table table-sm table-hover" align="center" style="width: 78%">
 					<thead class="thead-light">
 						<tr>
 							<th width="100">번호</th>
