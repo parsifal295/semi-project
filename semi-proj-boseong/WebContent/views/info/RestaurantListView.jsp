@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-	String contextPath = request.getContextPath();
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +20,10 @@
 
         }
         .outer{
-        width : 1000px;
-        height: 650px;
-        margin: auto;
-        border: 1px solid brown;
+			width : 1000px;
+			height: 650px;
+			margin: auto;
+			border: 1px solid brown;
         }
         #left, #center, #right {
             float: left;
@@ -54,11 +50,20 @@
         	font-size:20px;
         	text-align:left;
         }
+        #box{
+        height :200px;
+        }
     </style>
 </head>
+
 <body>
+<%@ include file = "../common/menubar.jsp" %>
+    	<div id="box">
+    	
+    	</div>
     <div class="outer">
-        <!--겉 껍질-->
+    	<!--겉 껍질-->
+
         <div id="food-list"></div>
             <div id="left"></div>
             <div id="center">

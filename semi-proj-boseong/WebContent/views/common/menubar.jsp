@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR" />
+<meta charset="UTF-8" />
 <title>menubar.jsp</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,14 +15,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	.font-family {
-		font-family: "Kirang Haerang", cursive;
-		font-family: "Nanum Gothic", sans-serif;
+
 	}
-	body {
+	#menubar {
 		margin: 0;
 		padding: 0;
 		font-size: 30px;
 		color: black;
+		font-family: "Kirang Haerang", cursive;
+		font-family: "Nanum Gothic", sans-serif;
 	}
 	div {
 		box-sizing: border-box;
@@ -117,9 +118,20 @@
 		position: fixed;
 		bottom: 0;
 	}
+	#logoPlace{
+		width : 200px;
+		height : 200px;
+		margin-left : 50px;
+		background-image : url(resources/image/BoseongLogo.png);
+		/*일단은 로고 사진은 임시 */
+		background-repeat : no-repeat;
+        background-position : center;
+        background-size : 100%;
+	}
 </style>
 </head>
 <body>
+<div id="menubar">
 	<!-- 회원일때 보여지는 회원정보 div -->
 	<div id="userBox">
 		<p style="font-size: 13px">회원 정보</p>
@@ -168,6 +180,8 @@
 			</li>
 		</ul>
 		<!-- navi 영역 end -->
+	<div id="logoPlace"></div>
 	</div>
+</div>
 </body>
 </html>
