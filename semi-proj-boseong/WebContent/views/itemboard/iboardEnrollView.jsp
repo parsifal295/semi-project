@@ -21,8 +21,8 @@
         중고거래 (구매 임시) 회원 : 스크랩_YN ,회원 번호, 중고거래 게시글 번호, 스크랩 날짜 
         중고거래 구매자 회원 : 후기게시글 번호, 회원번호, 구매한중고거래 게시글 번호, 후기 내용, 별점-->
         <%@ include file="../common/menubar.jsp" %>
-        <form action="<%= contextPath %>/insert.ib" method="post" enctype="multipart/form-data">
-           	<input type="hidden" name="memberNo" value="<%=%>"> <!-- 회원이 되면 MemberNo를 value에 hidden으로 받아야함 -->
+       <form action="<%= contextPath %>/insert.ib" method="post" enctype="multipart/form-data">
+           <input type="hidden" name="memberNo" value=""> <!-- 회원이 되면 MemberNo를 value에 hidden으로 받아야함 -->
             <div class="page" id="content">
                 <div style="height : 300px; text-align: center;"></div>
                 <div class="page" style="height : 700px;">
@@ -43,7 +43,7 @@
                         <tr>
                             <th style="text-align: center;">첨부파일</th>
                             <td colspan="3">
-                                <input type="file" name="upfile1" id="itemImg1" onclick="imageUpload(this);">
+                                <input type="file" name="upfile1" id="itemImg" onclick="imageUpload(this);">
                             </td>
                         </tr>
                     </table>
@@ -59,7 +59,8 @@
                     let reader = new FileReader();
                     reader.readAsDataURL(inputfile.files[0]);
                     // console.log(reader.readAsDataURL(inputfile.files[0]));
-                }
+                    reder.onload = $('#itemImg').attr('src', e.target.result);
+                };
             }
         </script>
 </body>

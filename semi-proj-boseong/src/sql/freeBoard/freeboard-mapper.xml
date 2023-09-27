@@ -8,4 +8,30 @@
 		FROM
 			TB_FREEBOARD
 	</entry>
+	<entry key="selectFboardList"> 
+        SELECT
+            BOARD_NO,
+			ART_WRITER,
+			IP_ADDRESS,
+			ART_TITLE,
+			COUNT,
+            CREATE_DATE,
+            ROWNUM
+        FROM
+		(SELECT
+			BOARD_NO,
+			ART_WRITER,
+			IP_ADDRESS,
+			ART_TITLE,
+			COUNT,
+            CREATE_DATE,
+            ROWNUM
+		FROM
+			TB_FREEBOARD
+		WHERE 
+			STATUS = 'Y'
+        ORDER BY
+            BOARD_NO DESC)
+        WHERE ROWNUM BETWEEN ? AND ?
+	</entry>
 </properties>

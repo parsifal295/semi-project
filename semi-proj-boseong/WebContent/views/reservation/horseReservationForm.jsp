@@ -24,10 +24,10 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<div id="box"></div>
 	<div class="page" id="content">
-		<form action="<%=contextPath%>/insertRide.bk">
+		<form action="<%=contextPath%>/insertRide.rsv" method="post">
 			<div id="ride-info">
 				<h2>프로그램 선택</h2>
-				<table align="center">
+				<table>
 					<tr>
 						<th>프로그램 종류</th>
 						<th>예약일</th>
@@ -36,7 +36,7 @@
 					</tr>
 					<tr>
 						<td>
-							<select name="horseProgram" id="">
+							<select name="programNo" id="">
 								<option value="1">유소년 승마 프로그램</option>
 								<option value="2">일반 체험</option>
 								<option value="3"> 장애물 레선</option>
@@ -60,7 +60,7 @@
 							</select>
 						</td>
 						<td>
-							<select name="" id="riderNum">
+							<select name="riderNum" id="riderNum">
 								<option value="">1명</option>
 								<option value="">2명</option>
 								<option value="">3명</option>
@@ -115,6 +115,13 @@
 
 		</form>
 	</div>
+	<script>
+	$(function(){
+		$(':text').click(function(){
+			alert('예약자 성함과 연락처가 다르다면 회원정보를 변경해주세요!');
+		})
+	})
+	</script>
 	<br>
 	<br>
 	<br>
