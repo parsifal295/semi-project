@@ -1,14 +1,13 @@
 package com.boseong.jsp.itemboard.model.service;
 
-import java.util.ArrayList;
-
-import com.boseong.jsp.itemboard.model.vo.ItemBoard;
+import java.sql.Connection;
+import com.kh.
 
 public class ItemBoardService {
 	
-	public ArrayList<ItemBoard> selectList(){
+	public int iboardInsert() {
 		
-		return null;
+		Connection conn = getConnection();
 	}
 
 }

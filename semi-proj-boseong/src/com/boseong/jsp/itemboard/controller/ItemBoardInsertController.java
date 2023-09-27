@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.boseong.jsp.common.MyFileRenamePolicy;
-import com.boseong.jsp.itemboard.model.vo.Attachment;
+import com.boseong.jsp.itemboard.model.service.ItemBoardService;
 import com.boseong.jsp.itemboard.model.vo.ItemBoard;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -59,16 +59,13 @@ public class ItemBoardInsertController extends HttpServlet {
 			String content = multiRequest.getParameter("content");
 			int memberNo = 1; // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
 			
-			
 			ItemBoard ib = new ItemBoard();
 			ib.setTitle(title);
 			ib.setPrice(price);
 			ib.setContent(content);
 			ib.setMemberNo(memberNo); 
 			
-			Attachment at = new Attachment();
-			at.getOriginName()
-			
+			int result = new ItemBoardService().iboardInsert();	
 		}
 		
 	}
