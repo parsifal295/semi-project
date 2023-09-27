@@ -6,10 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>보성의 맛</title>
+    <title><%=food %></title>
 
     <style>
-            @font-face {
+        @font-face {
         font-family: 'Hangeuljaemin4-Regular';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Hangeuljaemin4-Regular.woff2') format('woff2');
         font-weight: normal;
@@ -100,9 +100,38 @@
                 <h1 align="left"><%=food %></h1>
                 <div>
                     <table>
-						  <tr><td>전라남도 보성군 보성읍 흥성로 2541-4</td></tr>
-                          <tr><td>061-853-0300</td></tr>
-                          <tr><td><h4>한식</h4></td></tr>
+						  <%if(food.equals("보성 녹차 떡갈비")){ %>
+						  <tr><td>
+						  전라남도 보성군 보성읍 흥성로 2541-4
+						  </td></tr>
+                          <tr><td>
+                          061-853-0300
+                          </td></tr>
+                          <tr><td>
+                          <h4>한식</h4>
+                          </td></tr>
+						  <%}else if(food.equals("청광도예원")) {%>
+						  <tr><td>
+						  전라남도 보성군 보성읍 봉산리 1154-1
+						  </td></tr>
+                          <tr><td>
+                          061-853-4125
+                          </td></tr>
+                          <tr><td>
+                          <h4>한식</h4>
+                          </td></tr>
+						  <%}else{ %>
+						 <tr><td>
+						  전라남도 보성군 보성읍 보성리 767-7
+						  </td></tr>
+                          <tr><td>
+                          061-853-3032
+                          </td></tr>
+                          <tr><td>
+                          <h4>한식</h4>
+                          </td></tr>
+						  <%} %>
+
 
                     </table>
                 </div>
@@ -127,7 +156,7 @@
                                 <td>주중 10:30 ~ 22:30</td></tr>
                             <tr>
                                 <th>추천 메뉴</th>
-                                <td>녹차먹인 돼지 떡갈비 ,소떡갈비
+                                <td>녹차먹인 돼지 떡갈비, 소떡갈비
                                 </td>
                             </tr>
                             <tr>
@@ -147,6 +176,6 @@
 
         </div>
     </div>
-    
+ <%@ include file = "../common/footer.jsp" %>   
 </body>
 </html>
