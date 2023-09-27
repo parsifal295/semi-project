@@ -11,7 +11,7 @@
 <style>
 	.outer{
 		width : 1200px;
-		height : 2500px;
+		height : 2370px;
 		margin : auto;
 		margin-top : 250px;
 	}
@@ -20,6 +20,12 @@
 	align : center;
 	
 	}
+	
+	.views, views1{
+	float:right;
+	}
+	
+	
 	
 	.map{
 	width:1200px;
@@ -83,10 +89,12 @@
 		</div>
 		
 		<div class="views" align="right">
-		👀 조회수 : 얼마  
+		얼마   
 		</div>
-		
-		
+		<div class="views" align="right">
+		👀 조회수 : 
+		</div>
+		<br>
 		<hr>
 		<br>
 		<p style="font-size:20px";>

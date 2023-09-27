@@ -83,12 +83,14 @@
 				<span id="totalcount">50</span>
 				<strong>"건"</strong>
 			</div>
-			
+				<!--  
 				<div class="btn_text">
-					<button type="button" style="background-color : white" class="on" id="1">최신순 </button>
+					<button type="button" style="background-color : white" class="on" id="1">최신순</button>
 					|
 					<button type="button" style="background-color : white" id="2">인기순</button>
 				</div>
+				 -->
+				 <br>
 			<hr>
 			
 			
