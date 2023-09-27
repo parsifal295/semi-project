@@ -10,7 +10,7 @@
      width: 100%;
      height: 500px;
      text-align: center;
-  }
+   }
 </style>
 </head>
 <body>
