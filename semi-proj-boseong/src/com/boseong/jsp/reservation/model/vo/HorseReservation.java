@@ -9,6 +9,25 @@ public class HorseReservation {
 	private Date horseDate;
 	private int horseTime;
 	private int riderNum;
+	private String message;
+	
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public HorseReservation(int reservNo, int memNo, String programNo, Date horseDate, int horseTime, int riderNum,
+			String message) {
+		super();
+		this.reservNo = reservNo;
+		this.memNo = memNo;
+		this.programNo = programNo;
+		this.horseDate = horseDate;
+		this.horseTime = horseTime;
+		this.riderNum = riderNum;
+		this.message = message;
+	}
 	public HorseReservation() {
 		super();
 	}
@@ -24,7 +43,8 @@ public class HorseReservation {
 	@Override
 	public String toString() {
 		return "HorseReservation [reservNo=" + reservNo + ", memNo=" + memNo + ", programNo=" + programNo
-				+ ", horseDate=" + horseDate + ", horseTime=" + horseTime + ", riderNum=" + riderNum + "]";
+				+ ", horseDate=" + horseDate + ", horseTime=" + horseTime + ", riderNum=" + riderNum + ", message="
+				+ message + "]";
 	}
 	public int getReservNo() {
 		return reservNo;
