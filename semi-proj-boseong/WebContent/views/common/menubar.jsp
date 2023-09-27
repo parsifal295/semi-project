@@ -65,7 +65,7 @@
 	}
 	/* ---------------- navigator 영역 부분 ---------------- */
 	#navi {
-		width: 50%;
+		width: 60%;
 		padding: 0;
 		padding-top: 110px;
 		padding-right: 100px;
