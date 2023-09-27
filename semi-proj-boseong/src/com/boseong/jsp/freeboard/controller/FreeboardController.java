@@ -1,5 +1,6 @@
 package com.boseong.jsp.freeboard.controller;
 
+import com.boseong.jsp.freeboard.model.service.FreeboardService;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
 import java.io.IOException;
 import java.util.ArrayList;

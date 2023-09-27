@@ -6,45 +6,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>보성의 맛</title>
+    <title><%=food %></title>
 
     <style>
-            @font-face {
+        @font-face {
         font-family: 'Hangeuljaemin4-Regular';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Hangeuljaemin4-Regular.woff2') format('woff2');
         font-weight: normal;
         font-style: normal;
     	}
-
-        .outer{
-        width : 1000px;
-        height: 650px;
-        margin: auto;
-        border: 1px solid brown;
-        font-family: 'Hangeuljaemin4-Regular';
-        box-sizing: border-box;
+        * {
+	    font-family: 'Hangeuljaemin4-Regular';
         }
-        #left, #center, #right {
-            float: left;
-        }
-
-        #left, #right{
-            width: 10%;
-            height: 100%;
-        }
-        #center{
-            width: 80%;
-            height: 100%;
-        }
-        #center table{
+        table{
             width: 100%;
+            font-size: 20px;
         }
         h4, h6{
             margin: 0%;
         }
         #restaurant-pictures{
             width: 100%;
-            height: 35%;
+            height: 350px;
             padding: 2px;
         }
         .restaurant-detail{
@@ -55,13 +38,14 @@
             width: 60%;
             height: 100%;
             float: left;
+            padding-top: 30px;
         }
         #location{
             width: 40%;
             height: 100%;
             float: left;
         }
-        #center button{
+        button{
             width: 100%;
             margin: auto;
             height: 5%;
@@ -73,10 +57,10 @@
             margin-top: 10px;
         }
         #location>iframe{
-            width: 320px;
-            height: 220px;
+            width: 500px;
+            height: 300px;
         }
-        #center table th,#center table td{
+        th, td{
             text-align: left;
             padding-left: 10px;
         }
@@ -92,17 +76,45 @@
 	    <div id="box">
     	
     	</div>
-    <div class="outer">
+    <div  class="page" id="content">
         <!--겉 껍질-->
         <div id="food-list"></div>
-            <div id="left"></div>
-            <div id="center">
+            
                 <h1 align="left"><%=food %></h1>
                 <div>
                     <table>
-						  <tr><td>전라남도 보성군 보성읍 흥성로 2541-4</td></tr>
-                          <tr><td>061-853-0300</td></tr>
-                          <tr><td><h4>한식</h4></td></tr>
+						  <%if(food.equals("보성 녹차 떡갈비")){ %>
+						  <tr><td>
+						  전라남도 보성군 보성읍 흥성로 2541-4
+						  </td></tr>
+                          <tr><td>
+                          061-853-0300
+                          </td></tr>
+                          <tr><td>
+                          <h4>한식</h4>
+                          </td></tr>
+						  <%}else if(food.equals("청광도예원")) {%>
+						  <tr><td>
+						  전라남도 보성군 보성읍 봉산리 1154-1
+						  </td></tr>
+                          <tr><td>
+                          061-853-4125
+                          </td></tr>
+                          <tr><td>
+                          <h4>한식</h4>
+                          </td></tr>
+						  <%}else{ %>
+						 <tr><td>
+						  전라남도 보성군 보성읍 보성리 767-7
+						  </td></tr>
+                          <tr><td>
+                          061-853-3032
+                          </td></tr>
+                          <tr><td>
+                          <h4>한식</h4>
+                          </td></tr>
+						  <%} %>
+
 
                     </table>
                 </div>
@@ -116,9 +128,9 @@
                             <tr>
                             <td colspan="2">
                                 <p>
-                                20년 넘은 전통을 자랑하는 떡갈비 전문점으로 <br>
-                                 한우로 만든 떡갈비와 보성이 자랑하는 녹차를 먹인 돼지를 재료로 하여 만든 떡갈비로 두 종류가 있습니다.<br>
-                                    겨울철 별미로 TV맛집 프로에서 소개도 된 집으로 녹차가 떡갈비 안에 들어있는 녹차먹인 돼지떡갈비가 인기 메뉴입니다.
+                                20년 넘은 전통을 자랑하는 떡갈비 전문점으로 한우로 만든 떡갈비와 <br>
+                                보성이 자랑하는 녹차를 먹인 돼지를 재료로 하여 만든 떡갈비 두 종류가 있습니다.<br>
+                                겨울철 별미로 TV맛집 프로에서 소개도 된 집으로 녹차가 떡갈비 안에 들어있는 녹차먹인 돼지떡갈비가 인기 메뉴입니다.
                                 </p>
                                 
                             </td></tr>
@@ -127,7 +139,7 @@
                                 <td>주중 10:30 ~ 22:30</td></tr>
                             <tr>
                                 <th>추천 메뉴</th>
-                                <td>녹차먹인 돼지 떡갈비 ,소떡갈비
+                                <td>녹차먹인 돼지 떡갈비, <br>소떡갈비
                                 </td>
                             </tr>
                             <tr>
@@ -142,11 +154,11 @@
                     </div>
                 </div>
                 <button>리뷰 확인하기</button>                
-            </div>
-            <div id="right"></div>
+        
+            
 
         </div>
     </div>
-    
+ <%@ include file = "../common/footer.jsp" %>   
 </body>
 </html>
