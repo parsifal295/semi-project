@@ -81,10 +81,18 @@
             text-align: left;
             padding-left: 10px;
         }
+        #box{
+        height :200px;
+        }
 
     </style>
 </head>
 <body>
+
+<%@ include file = "../common/menubar.jsp" %>
+	    <div id="box">
+    	
+    	</div>
     <div class="outer">
         <!--겉 껍질-->
         <div id="food-list"></div>
