@@ -15,14 +15,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	.font-family {
-		font-family: "Kirang Haerang", cursive;
-		font-family: "Nanum Gothic", sans-serif;
+
 	}
-	body {
+	#menubar {
 		margin: 0;
 		padding: 0;
 		font-size: 30px;
 		color: black;
+		font-family: "Kirang Haerang", cursive;
+		font-family: "Nanum Gothic", sans-serif;
 	}
 	div {
 		box-sizing: border-box;
@@ -130,6 +131,7 @@
 </style>
 </head>
 <body>
+<div id="menubar">
 	<!-- 회원일때 보여지는 회원정보 div -->
 	<div id="userBox">
 		<p style="font-size: 13px">회원 정보</p>
@@ -180,5 +182,6 @@
 		<!-- navi 영역 end -->
 	<div id="logoPlace"></div>
 	</div>
+</div>
 </body>
 </html>

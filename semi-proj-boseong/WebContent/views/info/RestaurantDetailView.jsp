@@ -14,16 +14,15 @@
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Hangeuljaemin4-Regular.woff2') format('woff2');
         font-weight: normal;
         font-style: normal;
-    }
-        div{
-            font-family: 'Hangeuljaemin4-Regular';
-            box-sizing: border-box;
-        }
+    	}
+
         .outer{
         width : 1000px;
         height: 650px;
         margin: auto;
         border: 1px solid brown;
+        font-family: 'Hangeuljaemin4-Regular';
+        box-sizing: border-box;
         }
         #left, #center, #right {
             float: left;
@@ -77,7 +76,7 @@
             width: 320px;
             height: 220px;
         }
-        table th, table td{
+        #center table th,#center table td{
             text-align: left;
             padding-left: 10px;
         }
@@ -114,10 +113,11 @@
                 <div class = "restaurant-detail">
                     <div id="description">
                         <table>
-                            <tr><td colspan="2">
+                            <tr>
+                            <td colspan="2">
                                 <p>
-                                    20년 넘은 전통을 자랑하는 떡갈비 전문점으로 <br>
-                                    한우로 만든 떡갈비와 보성이 자랑하는 녹차를 먹인 돼지를 재료로 하여 만든 떡갈비로 두 종류가 있습니다.<br>
+                                20년 넘은 전통을 자랑하는 떡갈비 전문점으로 <br>
+                                 한우로 만든 떡갈비와 보성이 자랑하는 녹차를 먹인 돼지를 재료로 하여 만든 떡갈비로 두 종류가 있습니다.<br>
                                     겨울철 별미로 TV맛집 프로에서 소개도 된 집으로 녹차가 떡갈비 안에 들어있는 녹차먹인 돼지떡갈비가 인기 메뉴입니다.
                                 </p>
                                 
@@ -127,8 +127,7 @@
                                 <td>주중 10:30 ~ 22:30</td></tr>
                             <tr>
                                 <th>추천 메뉴</th>
-                                <td>녹차먹인 돼지 떡갈비 
-                                    <br>소떡갈비
+                                <td>녹차먹인 돼지 떡갈비 ,소떡갈비
                                 </td>
                             </tr>
                             <tr>
