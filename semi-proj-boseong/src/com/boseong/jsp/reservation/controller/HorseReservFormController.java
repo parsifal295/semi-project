@@ -34,17 +34,10 @@ public class HorseReservFormController extends HttpServlet {
 //		request.setCharacterEncoding("UTF-8");
 		
 		String programNo = request.getParameter("programNo");
-		System.out.println(programNo);
 		String horseDate = request.getParameter("horseDate");
-		System.out.println(horseDate);
-		String message = request.getParameter("message");
-		System.out.println(message);
-		
+		String message = request.getParameter("message");		
 		int riderNum = Integer.parseInt(request.getParameter("riderNum"));
-		System.out.println(riderNum);
 		int horseTime = Integer.parseInt(request.getParameter("horseTime"));
-		System.out.println(horseTime);
-
 		int userNo = 1;//나중에 로그인 기능 만들어지고 나면 이것도 request에서 가져오기
 
 		
@@ -56,7 +49,6 @@ public class HorseReservFormController extends HttpServlet {
 		hrsv.setRiderNum(riderNum);
 		hrsv.setMessage(message);
 		
-		System.out.println(hrsv);
 		
 		int result = new HorseService().insertReservation(hrsv);
 		if(result>0) {
