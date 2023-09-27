@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.boseong.jsp.common.MyFileRenamePolicy;
+import com.boseong.jsp.itemboard.model.vo.Attachment;
+import com.boseong.jsp.itemboard.model.vo.ItemBoard;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -50,11 +52,27 @@ public class ItemBoardInsertController extends HttpServlet {
 			// MultipartRequest생성으로 파일이름을 수정 하면서 업로드 가능!!!
 			MultipartRequest multiRequest = 
 					new MultipartRequest(request,savePath,maxSize,"UTF-8", new MyFileRenamePolicy());
+			
 			// 생성한 multipartRequest로 부터 값을 뽑는다
 			String title = multiRequest.getParameter("title");
 			int price = Integer.parseInt(multiRequest.getParameter("price"));
 			String content = multiRequest.getParameter("content");
-			// int memberNo = multiRequest.getParameter(""); // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
+			int memberNo = 1; // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
+			
+			
+			ItemBoard ib = new ItemBoard();
+			ib.setTitle(title);
+			ib.setPrice(price);
+			ib.setContent(content);
+			ib.setMemberNo(memberNo);
+			
+			Attachment at = new Attachment();
+			at.getOriginName(new
+			
+			
+			
+			
+			
 		}
 		
 	}
