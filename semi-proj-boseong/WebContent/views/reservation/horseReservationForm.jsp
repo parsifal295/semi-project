@@ -24,7 +24,8 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<div id="box"></div>
 	<div class="page" id="content">
-		<form action="<%=contextPath%>/insertRide.rsv" method="post">
+		<%=contextPath %>
+		<form action="<%=contextPath%>/insertRide.rsv" method="get">
 			<div id="ride-info">
 				<h2>프로그램 선택</h2>
 				<table>
@@ -46,26 +47,26 @@
 							<input type="date" name="horseDate">
 						</td>
 						<td>
-							<select name="horseTime" id="">
-								<option value="">11시</option>
-								<option value="">12시</option>
-								<option value="">13시</option>
-								<option value="">14시</option>
-								<option value="">15시</option>
-								<option value="">16시</option>
-								<option value="">17시</option>
-								<option value="">18시</option>
-								<option value="">19시</option>
-								<option value="">20시</option>
+							<select name="horseTime">
+								<option value="11">11시</option>
+								<option value="12">12시</option>
+								<option value="13">13시</option>
+								<option value="14">14시</option>
+								<option value="15">15시</option>
+								<option value="16">16시</option>
+								<option value="17">17시</option>
+								<option value="18">18시</option>
+								<option value="19">19시</option>
+								<option value="20">20시</option>
 							</select>
 						</td>
 						<td>
 							<select name="riderNum" id="riderNum">
-								<option value="">1명</option>
-								<option value="">2명</option>
-								<option value="">3명</option>
-								<option value="">4명</option>
-								<option value="">5명</option>
+								<option value="1">1명</option>
+								<option value="2">2명</option>
+								<option value="3">3명</option>
+								<option value="4">4명</option>
+								<option value="5">5명</option>
 							</select>
 						</td>
 
@@ -110,9 +111,6 @@
 				<br>
 				<button type="submit">예약하기</button>
 			</div>
-
-
-
 		</form>
 	</div>
 	<script>

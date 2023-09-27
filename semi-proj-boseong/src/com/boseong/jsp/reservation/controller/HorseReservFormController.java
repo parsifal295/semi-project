@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.boseong.jsp.reservation.model.service.HorseService;
 import com.boseong.jsp.reservation.model.vo.HorseReservation;
 
 /**
@@ -30,14 +31,22 @@ public class HorseReservFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 		
 		String programNo = request.getParameter("programNo");
-		Date horseDate = Date.valueOf(request.getParameter("horseDate"));
-		int horseTime = Integer.parseInt(request.getParameter("horseTime"));
-		int riderNum = Integer.parseInt(request.getParameter("riderNum"));
-		int userNo = 1;//나중에 로그인 기능 만들어지고 나면 이것도 request에서 가져오기
+		System.out.println(programNo);
+		String horseDate = request.getParameter("horseDate");
+		System.out.println(horseDate);
 		String message = request.getParameter("message");
+		System.out.println(message);
+		
+		int riderNum = Integer.parseInt(request.getParameter("riderNum"));
+		System.out.println(riderNum);
+		int horseTime = Integer.parseInt(request.getParameter("horseTime"));
+		System.out.println(horseTime);
+
+		int userNo = 1;//나중에 로그인 기능 만들어지고 나면 이것도 request에서 가져오기
+
 		
 		HorseReservation hrsv = new HorseReservation();
 		hrsv.setMemNo(userNo);
@@ -47,6 +56,12 @@ public class HorseReservFormController extends HttpServlet {
 		hrsv.setRiderNum(riderNum);
 		hrsv.setMessage(message);
 		
+		System.out.println(hrsv);
+		
+		int result = new HorseService().insertReservation(hrsv);
+		if(result>0) {
+			response.sendRedirect(request.getContextPath());
+		}
 		
 			
 		
