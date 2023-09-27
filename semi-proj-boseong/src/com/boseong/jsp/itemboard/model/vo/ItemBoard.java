@@ -12,6 +12,7 @@ public class ItemBoard {
 	private Date modifyDate;   // IBOARD_MODIFY_DATE
 	private int count;         // COUNT
 	private String status;     // STATUS
+	private int price;
 	
 	
 	
@@ -24,7 +25,7 @@ public class ItemBoard {
 	
 
 	public ItemBoard(int boardNo, int memberNo, String title, String content, Date postDate, Date modifyDate, int count,
-			String status) {
+			String status, int price) {
 		super();
 		this.boardNo = boardNo;
 		this.memberNo = memberNo;
@@ -34,6 +35,7 @@ public class ItemBoard {
 		this.modifyDate = modifyDate;
 		this.count = count;
 		this.status = status;
+		this.price = price;
 	}
 
 	
@@ -119,13 +121,21 @@ public class ItemBoard {
 	}
 
 	
+	public int getPrice() {
+		return price;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
 	
 
 	@Override
 	public String toString() {
 		return "ItemBoard [boardNo=" + boardNo + ", memberNo=" + memberNo + ", title=" + title + ", content=" + content
 				+ ", postDate=" + postDate + ", modifyDate=" + modifyDate + ", count=" + count + ", status=" + status
-				+ "]";
+				+ "price="+ price +"]";
 	}
 	
 	
