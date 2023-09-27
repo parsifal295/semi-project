@@ -168,7 +168,7 @@ request.getContextPath(); %>
 						<a href="">특산품</a>
 						<ul>
 							<li><a href="#">레시피</a></li>
-							<li><a href="#">구매</a></li>
+							<li><a href="<%=contextPath%>/list.rp">구매</a></li>
 						</ul>
 					</li>
 					<li>
