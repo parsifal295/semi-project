@@ -21,43 +21,45 @@
         중고거래 (구매 임시) 회원 : 스크랩_YN ,회원 번호, 중고거래 게시글 번호, 스크랩 날짜 
         중고거래 구매자 회원 : 후기게시글 번호, 회원번호, 구매한중고거래 게시글 번호, 후기 내용, 별점-->
         <%@ include file="../common/menubar.jsp" %>
-        
-        <div class="page" id="content">
-            <div style="height : 300px; text-align: center;"></div>
-            <div class="page" style="height : 700px;">
-                <table align="center" id="pageStyle">
-                    <tr><h1 style="text-align:center;">중고거래 게시글 작성</h1></tr>
-                    <tr>
-                        <th style="text-align: center;">제목</th>
-                        <td><input type="text" name="title" style="width:50%;" required></td>
-                    </tr>
-                    <tr>
-                        <th style="text-align: center;">희망가격</th>
-                        <td><input type="text" style="width:50%;" name="price" value="₩"></td>
-                    </tr>
-                    <tr>
-                        <th style="text-align: center;">내용</th>
-                        <td><textarea name="content" style="resize: none; width : 100%; height: 500px;" cols="30" rows="10" required></textarea></td>
-                    </tr>
-                    <tr>
-                        <th style="text-align: center;">첨부파일</th>
-                        <td colspan="3">
-                            <input type="file" name="upfile1" id="itemImg1" onclick="imageUpload(this, 1);" required>
-                        </td>
-                    </tr>
-                    <!-- <tr>
-                        <td><div id="itemImg1"></div></td>
-                        <td><div id="itemImg2"></div></td>
-                        <td><div id="itemImg3"></div></td>
-                    </tr> -->
-                </table>
-                <div align="center"><button type="submit">등록</button><button type="reset">초기화</button></div>
+        <form action="<%= contextPath %>/insert.ib" method="post" enctype="multipart/form-data">
+           	<input type="hidden" name="memberNo" value="<%=%>"> <!-- 회원이 되면 MemberNo를 value에 hidden으로 받아야함 -->
+            <div class="page" id="content">
+                <div style="height : 300px; text-align: center;"></div>
+                <div class="page" style="height : 700px;">
+                    <table align="center" id="pageStyle">
+                        <tr><h1 style="text-align:center;">중고거래 게시글 작성</h1></tr>
+                        <tr>
+                            <th style="text-align: center;">제목</th>
+                            <td><input type="text" name="title" style="width:50%;" required></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: center;">희망가격</th>
+                            <td><input type="text" style="width:50%;" name="price" value="₩"></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: center;">내용</th>
+                            <td><textarea name="content" style="resize: none; width : 100%; height: 500px;" cols="30" rows="10" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: center;">첨부파일</th>
+                            <td colspan="3">
+                                <input type="file" name="upfile1" id="itemImg1" onclick="imageUpload(this);">
+                            </td>
+                        </tr>
+                    </table>
+                    <div align="center"><button type="submit">등록</button><button type="reset">초기화</button></div>
+                </div>
             </div>
-        </div>
+        </form>
         <%@ include file="../common/footer.jsp" %>
         <script>
-            function imageUpload(file, num){
-                
+            function imageUpload(inputFile){
+                console.log(inputFile.files[0]); // 첨부가 되었을때 == 1 , 아닐때 == 0
+                if(inputFile.files.length == 1){
+                    let reader = new FileReader();
+                    reader.readAsDataURL(inputfile.files[0]);
+                    // console.log(reader.readAsDataURL(inputfile.files[0]));
+                }
             }
         </script>
 </body>
