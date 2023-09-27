@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<comment>승마 예약 관련 sql문</comment>
+
+<entry key="insertReservation">
+	INSERT 
+		INTO 
+			HORSE_RESERVATION 
+	VALUES(
+			SEQ_RESERV_NO.NEXTVAL,
+			?,
+			?,
+			?,
+			?,
+			?,
+			DEFAULT,
+			?
+	        )
+</entry>
+
+</properties>
