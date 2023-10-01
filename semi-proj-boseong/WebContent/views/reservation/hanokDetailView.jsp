@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	int roomNo = (int)request.getAttribute("roomNo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Room1 상세정</title>
+<title>Room<%=roomNo %> 상세정보 </title>
 <style>
 #box {
 	height: 200px
