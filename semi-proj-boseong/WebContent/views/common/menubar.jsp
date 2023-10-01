@@ -177,7 +177,7 @@ request.getContextPath(); %>
 					<li>
 						<a href="">보성소개</a>
 						<ul>
-							<li><a href="#">교통안내</a></li>
+							<li><a href="<%=contextPath%>/transList.info">교통안내</a></li>
 							<li><a href="#">관광코스</a></li>
 							<li><a href="<%=contextPath%>/list.rs">맛집</a></li>
 							<li><a href="#">오시는길</a></li>
