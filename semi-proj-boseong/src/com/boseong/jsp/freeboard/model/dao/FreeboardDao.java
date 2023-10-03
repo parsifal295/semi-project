@@ -16,7 +16,7 @@ public class FreeboardDao {
   private Properties prop = new Properties();
 
   public FreeboardDao() {
-    String filePath = Freeboard.class.getResource("/sql/freeboard/freeboard-mapper.xml").getPath();
+    String filePath = Freeboard.class.getResource("/sql/freeBoard/freeboard-mapper.xml").getPath();
     try {
       prop.loadFromXML(new FileInputStream(filePath));
     } catch (IOException e) {

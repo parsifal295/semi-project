@@ -7,9 +7,6 @@
 <title>승마 예약</title>
 
 <style>
-#box {
-	height: 200px;
-}
 #ride-info>table th{
 	width : 200px;
 }
