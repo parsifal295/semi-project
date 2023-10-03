@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <title>승마장 예약 확인</title>
 <style>
-	#box{
-		height:200px;
-	}
 	ul, li{
 		list-style: none;
 	}

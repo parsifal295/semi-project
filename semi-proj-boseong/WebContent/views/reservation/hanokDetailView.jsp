@@ -9,10 +9,6 @@
 <meta charset="UTF-8">
 <title>Room<%=roomNo %> 상세정보 </title>
 <style>
-#box {
-	height: 200px
-}
-
 .outer {
 	float: left;
 }

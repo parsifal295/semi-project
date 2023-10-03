@@ -78,11 +78,7 @@
 		</div>
 		</div>	
 	</div>
-	<script>
-		function showMore(type){
-			
-		}
-	</script>
+
 <%@ include file = "../common/footer.jsp" %>
 </body>
 </html>
