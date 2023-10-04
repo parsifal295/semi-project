@@ -83,7 +83,7 @@
 		</div>
 		
 		<div class="content2">
-			<h2><strong>내 예약 정보</strong></h2>
+			<h2>내 예약 정보</h2>
 			예약일 : 
 			<br><br>
 			예약 회차: 

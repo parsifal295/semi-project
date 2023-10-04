@@ -43,25 +43,31 @@
                         <tr>
                             <th style="text-align: center;">첨부파일</th>
                             <td colspan="3">
-                                <input type="file" name="upfile1" id="itemImg" onclick="imageUpload(this);">
+                                <input type="file" name="upfile" id="itemImg" onclick="imageFile(inputFile);">
                             </td>
                         </tr>
                     </table>
                     <div align="center"><button type="submit">등록</button><button type="reset">초기화</button></div>
                 </div>
             </div>
+            <script>
+            	function imageFile(inputFile){
+            		
+            		if(inputFile.files.length == 1){ // 파일이 첨부 됐을때 == 1 파일이 첨부 안됐을때 == 0
+            			
+            		console.log(inputFile.files);
+            			
+            		let reader = new FileReader();
+            		
+            		reader.readAsDataURL(inputFile.files[0]);
+            		
+            		reader.onload = $('#itemImg').attr('src', e.target.result);
+            		
+            		console.log(reader.onload);
+            		}
+            	}
+            </script>
         </form>
         <%@ include file="../common/footer.jsp" %>
-        <script>
-            function imageUpload(inputFile){
-                console.log(inputFile.files[0]); // 첨부가 되었을때 == 1 , 아닐때 == 0
-                if(inputFile.files.length == 1){
-                    let reader = new FileReader();
-                    reader.readAsDataURL(inputfile.files[0]);
-                    // console.log(reader.readAsDataURL(inputfile.files[0]));
-                    reader.onload = $('#itemImg').attr('src', e.target.result);
-                };
-            }
-        </script>
 </body>
 </html>
