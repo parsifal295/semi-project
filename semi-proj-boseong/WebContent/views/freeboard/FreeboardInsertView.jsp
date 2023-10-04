@@ -5,9 +5,9 @@
 		<meta charset="UTF-8" />
 		<title>자유게시판 작성하기</title>
 		<style>
-		  td {
-		      padding : 2px;
-		  }
+			td {
+				padding: 2px;
+			}
 		</style>
 	</head>
 	<body>
@@ -55,16 +55,16 @@
 								</div>
 							</td>
 						</tr>
-						 <tr>
-                            <td colspan ="6">
-                                   <div class="input-group">
-                                        <div class="input-group-prepend">
-                                         <span class="input-group-text">제목</span>
-                                         </div>
-                                        <input type="text" class="form-control" name="title">
-                                    </div>
-                            </td>
-                           </tr>
+						<tr>
+							<td colspan="6">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">제목</span>
+									</div>
+									<input type="text" class="form-control" name="title" />
+								</div>
+							</td>
+						</tr>
 						<tr>
 							<td colspan="6">
 								<div class="form-group">
@@ -76,7 +76,7 @@
 						<tr>
 							<td colspan="6">
 								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="customFile" />
+									<input type="file" class="custom-file-input" id="customFile" name="upfile" />
 									<label class="custom-file-label" for="customFile">파일 첨부</label>
 								</div>
 							</td>

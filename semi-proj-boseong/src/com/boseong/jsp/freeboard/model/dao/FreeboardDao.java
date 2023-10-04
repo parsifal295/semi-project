@@ -72,4 +72,19 @@ public class FreeboardDao {
     }
     return count;
   }
+
+  public int insertBoard(Connection conn, Freeboard fb) {
+    int result = 0;
+    String sql = prop.getProperty("insertBoard");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public int insertAttachment(Connection conn, Freeboard fb) {
+    int result = 0;
+    return result;
+  }
 }

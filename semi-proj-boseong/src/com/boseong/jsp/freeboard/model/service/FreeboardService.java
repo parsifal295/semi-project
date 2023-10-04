@@ -2,6 +2,7 @@ package com.boseong.jsp.freeboard.model.service;
 
 import static com.boseong.jsp.common.JDBCTemplate.*;
 
+import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.freeboard.model.dao.FreeboardDao;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
@@ -28,5 +29,29 @@ public class FreeboardService {
       e.printStackTrace();
     }
     return count;
+  }
+
+  public int insertBoard(Freeboard fb, Attachment att) {
+    int result1 = 0;
+    int result2 = 0;
+    try (Connection conn = getConnection()) {
+      // 1. 자유게시판 등록
+      result1 = new FreeboardDao().insertBoard(conn, fb);
+
+      // 2. 첨부파일 등록
+      if (att != null) {
+        result2 = new FreeboardDao().insertAttachment(conn, att);
+      }
+
+      // 3. transaction
+      if ((result1 * result2) > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result1 * result2;
   }
 }
