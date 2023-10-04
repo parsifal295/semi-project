@@ -3,7 +3,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Insert title here</title>
+		<title>자유게시판 작성하기</title>
+		<style>
+		  td {
+		      padding : 2px;
+		  }
+		</style>
 	</head>
 	<body>
 		<%@ include file = "../common/menubar.jsp" %>
@@ -24,7 +29,7 @@
 					<tbody>
 						<tr>
 							<td colspan="3">
-								<div class="input-group mb-3">
+								<div class="input-group input-group-sm">
 									<div class="input-group-prepend">
 										<span
 											class="input-group-text"
@@ -33,11 +38,11 @@
 											>닉네임</span
 										>
 									</div>
-									<input type="text" class="form-control" />
+									<input type="text" class="form-control" name="nickname" />
 								</div>
 							</td>
 							<td colspan="3">
-								<div class="input-group mb-3">
+								<div class="input-group input-group-sm">
 									<div class="input-group-prepend">
 										<span
 											class="input-group-text"
@@ -46,15 +51,25 @@
 											>비밀번호</span
 										>
 									</div>
-									<input type="password" class="form-control" />
+									<input type="password" class="form-control" name="password" />
 								</div>
 							</td>
 						</tr>
+						 <tr>
+                            <td colspan ="6">
+                                   <div class="input-group">
+                                        <div class="input-group-prepend">
+                                         <span class="input-group-text">제목</span>
+                                         </div>
+                                        <input type="text" class="form-control" name="title">
+                                    </div>
+                            </td>
+                           </tr>
 						<tr>
 							<td colspan="6">
 								<div class="form-group">
 									<label for="comment">글 작성: </label>
-									<textarea class="form-control" rows="10" id="article"></textarea>
+									<textarea class="form-control" rows="10" id="article" name="content"></textarea>
 								</div>
 							</td>
 						</tr>
