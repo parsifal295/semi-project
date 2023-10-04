@@ -102,7 +102,7 @@
 		</p>
 		
 		<div class="map">
-		<img src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/4434870053/B.jpg?25000000" width="1180" height="780" id="img2">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1679109.252335724!2d124.77562059374998!3d34.717530499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35721322dfb7fb45%3A0xde1b220a30bc536d!2z64yA7ZWc64uk7JuQ!5e0!3m2!1sko!2skr!4v1696402092716!5m2!1sko!2skr" width="1200" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 		</div>
 		
 		<br><br>
