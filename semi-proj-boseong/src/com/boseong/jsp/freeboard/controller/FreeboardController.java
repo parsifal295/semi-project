@@ -76,14 +76,11 @@ public class FreeboardController {
     	// extract values
         Freeboard fb = new Freeboard();
         String writer = request.getParameter("nickname");
-        String password = request.getParameter("passwords");
+        String password = request.getParameter("password");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         System.out.println(writer + password + title + content);
     }
-
-
-
-    return null;
+    return request.getContextPath() + "/fboard.fb?cpage=1";
   }
 }
