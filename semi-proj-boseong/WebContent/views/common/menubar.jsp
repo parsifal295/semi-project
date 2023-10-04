@@ -138,16 +138,31 @@ request.getContextPath(); %>
 			height:200px;
 			}
 		</style>
+		
 	</head>
 	<body>
+		<%@ include file = "../member/memberLoginView.jsp" %>
 		<div id="menubar">
-			<!-- 회원일때 보여지는 회원정보 div -->
+		
+			<!-- 회원일때 보여지는 마이페이지 이동 버튼 -->
 			<div id="userBox">
 				<p style="font-size: 13px">회원 정보</p>
 			</div>
 			<div id="header">
+			
 				<!-- 회원이 아닐때 보여지는 태그 -->
-				<div id="login-form"><a href="#">로그인</a> | <a href="#">회원가입</a></div>
+				
+				<form action="/jsp/login.me" method="post">
+					<div id="login-form"><a href="#" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
+				</form>
+				
+				<!-- 로그인 성공시 보여지는 태그 -->
+				
+				<div id="user-info">
+					<div>
+						<a href="#">로그아웃</a>
+					</div>
+				</div>
 
 				<!-- navigator영역 start -->
 				<ul id="navi">

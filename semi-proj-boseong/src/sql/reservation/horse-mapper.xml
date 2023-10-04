@@ -20,4 +20,8 @@
 	        )
 </entry>
 
+<entry key="dateCheck">
+	SELECT HORSE_TIME FROM HORSE_RESERVATION WHERE HORSE_DATE = ?
+</entry>
+
 </properties>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.itemboard.model.service.ItemBoardService;
 import com.boseong.jsp.itemboard.model.vo.ItemBoard;
@@ -63,9 +64,26 @@ public class ItemBoardInsertController extends HttpServlet {
 			ib.setTitle(title);
 			ib.setPrice(price);
 			ib.setContent(content);
-			ib.setMemberNo(memberNo); 
+			ib.setMemberNo(memberNo);
 			
-			int result = new ItemBoardService().insertBoard(ib);
+			Attachment at = null;
+			if(multiRequest.getOriginalFileName("upfile") != null) {
+				
+				// if문 안에들어온 경우는 첨부파일이 있음  → VO객체로 가공
+				at = new Attachment();
+				
+				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
+				// 파일 경로
+				at.setSavePath("resources/board_upfiles");
+				// 수정된 파일명
+				// multiReuqest.getFilesystemName("key값");
+				at.setModifiedName(multiRequest.getFilesystemName("upfile"));
+				
+				}
+			
+			}
+			
+			int result = new ItemBoardService().insertBoard(ib, at);
 			
 		}
 		
