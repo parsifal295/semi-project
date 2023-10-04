@@ -63,6 +63,7 @@ public class ItemBoardDao {
 			pstmt.setString(1, at.getOriginName());
 			pstmt.setString(2, at.getModifiedName());
 			pstmt.setString(3, at.getSavePath());
+			System.out.println(at.getOriginName() + at.getModifiedName() + at.getSavePath());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

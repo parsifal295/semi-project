@@ -31,7 +31,7 @@
 	<entry key="insertAttachment">
 		INSERT 
 		  INTO 
-		  		ATTCHMENT
+		  		ATTACHMENT
 		  		(
 		  		FILE_NO,
 		  		CATEGORY_NO,
@@ -53,6 +53,5 @@
 		  		SYSDATE,
 		  		'Y'
 		  		)
-		  		
 	</entry>
 </properties>
