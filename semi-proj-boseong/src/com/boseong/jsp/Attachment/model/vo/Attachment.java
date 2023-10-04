@@ -1,4 +1,4 @@
-package com.boseong.jsp.itemboard.model.vo;
+package com.boseong.jsp.Attachment.model.vo;
 
 import java.sql.Date;
 
@@ -32,30 +32,86 @@ public class Attachment {
 		this.status = status;
 	}
 	
-	
+
+
+
 	public int getFileNo() {
 		return fileNo;
 	}
+
+
+	public void setFileNo(int fileNo) {
+		this.fileNo = fileNo;
+	}
+
+
 	public int getCategoryNo() {
 		return categoryNo;
 	}
+
+
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
+	}
+
+
 	public int getRefNo() {
 		return refNo;
 	}
+
+
+	public void setRefNo(int refNo) {
+		this.refNo = refNo;
+	}
+
+
 	public String getOriginName() {
 		return originName;
 	}
+
+
+	public void setOriginName(String originName) {
+		this.originName = originName;
+	}
+
+
 	public String getModifiedName() {
 		return modifiedName;
 	}
+
+
+	public void setModifiedName(String modifiedName) {
+		this.modifiedName = modifiedName;
+	}
+
+
 	public String getSavePath() {
 		return savePath;
 	}
+
+
+	public void setSavePath(String savePath) {
+		this.savePath = savePath;
+	}
+
+
 	public Date getUploadDate() {
 		return uploadDate;
 	}
+
+
+	public void setUploadDate(Date uploadDate) {
+		this.uploadDate = uploadDate;
+	}
+
+
 	public String getStatus() {
 		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 
