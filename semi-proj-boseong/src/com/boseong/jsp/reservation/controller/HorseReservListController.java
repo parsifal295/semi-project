@@ -32,9 +32,10 @@ public class HorseReservListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//회원번호 가져가기
-		int memNo = Integer.parseInt(request.getParameter("memNo"));
-		memNo = 1;//나중에 삭제
+		int memNo =1;//나중에 삭제
+		//Integer.parseInt(request.getParameter("memNo"));
 		ArrayList<HorseReservation> list = new HorseService().selectRides(memNo);
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/reservation/HorseReservListView.jsp").forward(request, response);
 	}
 
