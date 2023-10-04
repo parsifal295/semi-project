@@ -1,5 +1,6 @@
 package com.boseong.jsp.freeboard.model.dao;
 
+import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import java.io.FileInputStream;
@@ -77,13 +78,14 @@ public class FreeboardDao {
     int result = 0;
     String sql = prop.getProperty("insertBoard");
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setString(1, fb.getWriter());
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return result;
   }
 
-  public int insertAttachment(Connection conn, Freeboard fb) {
+  public int insertAttachment(Connection conn, Attachment att) {
     int result = 0;
     return result;
   }

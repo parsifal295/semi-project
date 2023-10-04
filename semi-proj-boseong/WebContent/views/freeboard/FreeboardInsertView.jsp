@@ -9,12 +9,14 @@
 				padding: 2px;
 			}
 		</style>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	</head>
 	<body>
 		<%@ include file = "../common/menubar.jsp" %>
 		<div class="outer" id="content">
 			<div style="height: 250px"></div>
 			<form enctype="multipart/form-data" action="<%=contextPath%>/insert.fb" method="post">
+				<input type="hidden" name="ipAddr" value="" />
 				<table class="table table-borderless table-sm" align="center" style="width: 50%">
 					<thead>
 						<tr>
@@ -23,6 +25,7 @@
 							<th width="100"></th>
 							<th width="100"></th>
 							<th width="100"></th>
+							s
 							<th width="100"></th>
 						</tr>
 					</thead>
@@ -98,6 +101,9 @@
 					var fileName = $(this).val().split("\\").pop();
 					$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 				});
+			});
+			$.getJSON("http://jsonip.appspot.com/?callback=?", function (data) {
+				alert(data.ip);
 			});
 		</script>
 	</body>
