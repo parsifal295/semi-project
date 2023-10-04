@@ -1,14 +1,16 @@
 package com.boseong.jsp.reservation.model.dao;
 
+import static com.boseong.jsp.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
-import static com.boseong.jsp.common.JDBCTemplate.*;
 import com.boseong.jsp.reservation.model.vo.HorseReservation;
 
 public class HorseDao {
@@ -26,8 +28,6 @@ public class HorseDao {
 	
 	}
 
-	
-	
 	
 	public int insertReservation(Connection conn, HorseReservation hrsv) {
 		int result = 0;
@@ -52,5 +52,29 @@ public class HorseDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	public ArrayList dateCheck(Connection conn, String horseDate) {
+		ArrayList list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("dateCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, horseDate);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(rset.getInt("HORSE_TIME"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}		
+		return list;
 	}
 }
