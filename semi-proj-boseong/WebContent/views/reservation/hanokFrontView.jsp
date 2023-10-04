@@ -85,6 +85,9 @@
             return;
         }
     }
+    $(function(){
+    	$('#main-pic').css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"')
+    })
 
 </script>
 

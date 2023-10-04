@@ -10,7 +10,7 @@
 	#horse-top{
 	width:100%;
 	height:45%;
-	background-image: url("https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=18b9ed4e-7f08-4940-a9bc-18c9da58bff2");
+	background-image: url("resources/image/reservation/horsewide.jpg");
 	background-size: cover;
 	float:left;
 	}
