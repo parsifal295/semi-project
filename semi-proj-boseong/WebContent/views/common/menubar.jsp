@@ -12,13 +12,19 @@ request.getContextPath(); %>
 			rel="stylesheet"
 		/>
 		<!--Bootstrap 4-->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
 		
+  		 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 		 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   		 <link rel="stylesheet" href="/resources/demos/style.css">
-  		 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   		 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-		
+		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+		  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 		
 		<style>
 			.font-family {
@@ -140,8 +146,7 @@ request.getContextPath(); %>
 		</style>
 		
 	</head>
-	<body>
-		<%@ include file = "../member/memberLoginView.jsp" %>
+	<body> 
 		<div id="menubar">
 		
 			<!-- 회원일때 보여지는 마이페이지 이동 버튼 -->
@@ -189,7 +194,7 @@ request.getContextPath(); %>
 					<li>
 						<a href="">특산품</a>
 						<ul>
-							<li><a href="#">레시피</a></li>
+							<li><a href="<%=contextPath%>/list.pr">레시피</a></li>
 							<li><a href="<%=contextPath%>/list.rp">구매</a></li>
 						</ul>
 					</li>
@@ -207,5 +212,6 @@ request.getContextPath(); %>
 				<div id="logoPlace"></div>
 			</div>
 		</div>
+		<%@ include file = "../member/memberLoginView.jsp" %>
 	</body>
 </html>

@@ -56,7 +56,7 @@
 				</div>
 				<div id="right2">
 					<button onclick="reserveAride();"><h2>예약하기</h2></button>
-					<button><h2>예약조회</h2></button>
+					<button onclick="rideList();"><h2>예약조회</h2></button>
 				</div>
 			</div>
 			
@@ -84,8 +84,12 @@
 <%@ include file = "../common/footer.jsp" %>
 
 <script>
+//원래는 여기서 둘 다 회원번호를 가져가야 해
 	function reserveAride(){
 		location.href = "<%=contextPath%>/horseForm.rsv";
+	}
+	function rideList(){
+		location.href = "<%=contextPath%>/list.hs";
 	}
 </script>
 

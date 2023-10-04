@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-
 import com.boseong.jsp.reservation.model.service.HorseService;
+import com.boseong.jsp.reservation.model.vo.HorseReservation;
 
 /**
- * Servlet implementation class HorseDateCheck
+ * Servlet implementation class HorseReservListController
  */
-@WebServlet("/datecheck.hs")
-public class HorseDateCheck extends HttpServlet {
+@WebServlet("/list.hs")
+public class HorseReservListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HorseDateCheck() {
+    public HorseReservListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +31,13 @@ public class HorseDateCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String horseDate = request.getParameter("horseDate");
-		System.out.println(horseDate);
-		ArrayList list = new HorseService().dateCheck(horseDate);
-
-		//한글 포함될 일 없음
-		response.setContentType("application/json; charset=UTF-8");
-		JSONArray jArr = new JSONArray();
-		for(int i = 0; i<list.size(); i++) {
-			jArr.add(list.get(i));
-		}
-		response.getWriter().print(jArr);
+		//회원번호 가져가기
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		memNo = 1;//나중에 삭제
+		ArrayList<HorseReservation> list = new HorseService().selectRides(memNo);
+		request.getRequestDispatcher("views/reservation/HorseReservListView.jsp").forward(request, response);
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
