@@ -64,9 +64,7 @@
             text-align: left;
             padding-left: 10px;
         }
-        #box{
-        height :200px;
-        }
+
 
     </style>
 </head>

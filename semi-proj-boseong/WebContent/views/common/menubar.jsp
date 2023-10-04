@@ -130,6 +130,9 @@ request.getContextPath(); %>
 				background-position: center;
 				background-size: 100%;
 			}
+			#box{
+			height:200px;
+			}
 		</style>
 	</head>
 	<body>
@@ -160,7 +163,7 @@ request.getContextPath(); %>
 						<ul>
 							<li><a href="<%=contextPath%>/horse.rsv">승마장</a></li>
 							<li><a href="#">주말농장</a></li>
-							<li><a href="#">한옥</a></li>
+							<li><a href="<%=contextPath%>/hanok.rsv">한옥</a></li>
 							<li><a href="#">한달살기</a></li>
 						</ul>
 					</li>
@@ -174,7 +177,7 @@ request.getContextPath(); %>
 					<li>
 						<a href="">보성소개</a>
 						<ul>
-							<li><a href="#">교통안내</a></li>
+							<li><a href="<%=contextPath%>/transList.info">교통안내</a></li>
 							<li><a href="#">관광코스</a></li>
 							<li><a href="<%=contextPath%>/list.rs">맛집</a></li>
 							<li><a href="#">오시는길</a></li>

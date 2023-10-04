@@ -40,9 +40,6 @@ th {
 td{
 	font-size: 22px;
 }
-#box {
-	height: 200px;
-}
 </style>
 </head>
 

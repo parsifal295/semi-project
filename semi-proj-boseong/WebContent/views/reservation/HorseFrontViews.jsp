@@ -7,9 +7,6 @@
 <title>승마장 소개</title>
 
 <style>
-	#box{
-	height:200px
-	}
 	#horse-top{
 	width:100%;
 	height:45%;
