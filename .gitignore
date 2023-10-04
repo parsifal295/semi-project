@@ -8,16 +8,16 @@ tmp/
 *.swp
 *~.nib
 local.properties
-# .settings/
+.settings/
 .loadpath
 .recommenders
 .idea/
  
 # Eclipse Core       
-# .project 
+.project 
 
 # JDT-specific (Eclipse Java Development Tools)      
-# .classpath
+.classpath
 
 # External tool builders
 .externalToolBuilders/
@@ -167,6 +167,6 @@ replay_pid*
 /.metadata/
 /Servers
 /semi-proj-boseong/src/sql/driver/
-#semi-proj-boseong/.classpath
-#semi-proj-boseong/.project
+semi-proj-boseong/.classpath
+semi-proj-boseong/.project
 semi-proj-boseong/.settings/org.eclipse.wst.jsdt.ui.superType.name
