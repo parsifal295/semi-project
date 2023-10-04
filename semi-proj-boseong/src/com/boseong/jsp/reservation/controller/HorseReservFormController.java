@@ -1,4 +1,4 @@
-package com.boseong.jsp.info.controller;
+package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class TourListController
+ * Servlet implementation class HorseReservFormController
  */
-@WebServlet("/tour.li")
-public class TourListController extends HttpServlet {
+@WebServlet("/horseForm.rsv")
+public class HorseReservFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TourListController() {
+    public HorseReservFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +26,7 @@ public class TourListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-				response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		request.getRequestDispatcher("views/reservation/horseReservationForm.jsp").forward(request, response);
 	}
 
 	/**

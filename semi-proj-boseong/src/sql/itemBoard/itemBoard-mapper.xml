@@ -3,8 +3,55 @@
 <properties>
 	<comment>중고나라 SQL문 </comment>
 	<entry key="insertBoard">
-	
-		  		
-		  	
+		INSERT 
+		  INTO
+		 		TB_ITEMBOARD
+		 		(
+		 		BOARD_NO,
+		 		MEM_NO,
+		 		IBOARD_TITLE, 
+		 		IBOARD_CONTENT, 
+		 		IBOARD_POST_DATE,
+		 		IBOARD_MODIFY_DATE, 
+		 		STATUS, 
+		 		PRICE
+		 		)
+		 		VALUES
+		 		(
+		 		SEQ_IB_NO.NEXTVAL,
+		 		?,
+		 		?,
+		 		?,
+		 		SYSDATE,
+		 		SYSDATE,
+		 		'Y',
+		 		?
+		 		)
+	</entry>
+	<entry key="insertAttachment">
+		INSERT 
+		  INTO 
+		  		ATTACHMENT
+		  		(
+		  		FILE_NO,
+		  		CATEGORY_NO,
+		  		REF_NO,
+		  		ORIGIN_NAME,
+		  		MODIFIED_NAME,
+		  		SAVE_PATH,
+		  		UPLOAD_DATE,
+		  		STATUS
+		  		)
+		  		VALUES
+		  		(
+		  		SEQ_AT_NO.NEXTVAL,
+		  		20,
+		  		SEQ_IB_NO.CURRVAL,
+		  		?,
+		  		?,
+		  		?,
+		  		SYSDATE,
+		  		'Y'
+		  		)
 	</entry>
 </properties>

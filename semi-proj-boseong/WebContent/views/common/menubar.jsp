@@ -13,9 +13,13 @@ request.getContextPath(); %>
 		/>
 		<!--Bootstrap 4-->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+		
+		 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  		 <link rel="stylesheet" href="/resources/demos/style.css">
+  		 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  		 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+		
+		
 		<style>
 			.font-family {
 			}
@@ -134,16 +138,31 @@ request.getContextPath(); %>
 			height:200px;
 			}
 		</style>
+		
 	</head>
 	<body>
+		<%@ include file = "../member/memberLoginView.jsp" %>
 		<div id="menubar">
-			<!-- 회원일때 보여지는 회원정보 div -->
+		
+			<!-- 회원일때 보여지는 마이페이지 이동 버튼 -->
 			<div id="userBox">
 				<p style="font-size: 13px">회원 정보</p>
 			</div>
 			<div id="header">
+			
 				<!-- 회원이 아닐때 보여지는 태그 -->
-				<div id="login-form"><a href="#">로그인</a> | <a href="#">회원가입</a></div>
+				
+				<form action="/jsp/login.me" method="post">
+					<div id="login-form"><a href="#" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
+				</form>
+				
+				<!-- 로그인 성공시 보여지는 태그 -->
+				
+				<div id="user-info">
+					<div>
+						<a href="#">로그아웃</a>
+					</div>
+				</div>
 
 				<!-- navigator영역 start -->
 				<ul id="navi">

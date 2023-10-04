@@ -1,7 +1,8 @@
 package com.boseong.jsp.common;
 
-import com.oreilly.servlet.multipart.FileRenamePolicy;
 import java.io.File;
+
+import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 public class MyFileRenamePolicy implements FileRenamePolicy {
 
@@ -15,7 +16,7 @@ public class MyFileRenamePolicy implements FileRenamePolicy {
     String extension = originName.substring(originName.lastIndexOf("."));
     String changeName = "BS_" + currentTime + "_" + randomNumber + extension;
 
-    // 기존파일을 수정된 파일명으로 적용시켜서 반환
+    //  기존파일을 수정된 파일명으로 적용시켜서 반환
     return new File(arg0.getParent(), changeName);
   }
 }

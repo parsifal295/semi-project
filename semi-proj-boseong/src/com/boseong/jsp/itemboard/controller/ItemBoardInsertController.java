@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.itemboard.model.service.ItemBoardService;
 import com.boseong.jsp.itemboard.model.vo.ItemBoard;
@@ -57,19 +58,29 @@ public class ItemBoardInsertController extends HttpServlet {
 			String title = multiRequest.getParameter("title");
 			int price = Integer.parseInt(multiRequest.getParameter("price"));
 			String content = multiRequest.getParameter("content");
-			int memberNo = 1; // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
+			int memberNo = 1;  // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
 			
 			ItemBoard ib = new ItemBoard();
 			ib.setTitle(title);
 			ib.setPrice(price);
 			ib.setContent(content);
-			ib.setMemberNo(memberNo); 
+			ib.setMemberNo(memberNo);
 			
-			int result = new ItemBoardService().insertBoard(ib);
-			
+			Attachment at = null;
+			if(multiRequest.getOriginalFileName("upfile") != null) {
+				
+				at = new Attachment();
+				
+				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
+				at.setSavePath("resources/board_upfiles");
+				at.setModifiedName(multiRequest.getFilesystemName("upfile"));
+				
+				}
+			int result = new ItemBoardService().insertBoard(ib, at);
+			}
 		}
 		
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
