@@ -10,7 +10,7 @@
 	<style>
 	.outer{
 		width : 1200px;
-		height : 2500px;
+		height : 2000px;
 		margin : auto;
 		margin-top : 250px;
 	}
@@ -79,9 +79,9 @@
 		
 			<hr style="border:solid 0.5px grey;">
 			<div class="total_check">
-				<strong>"총"</strong>
-				<span id="totalcount">50</span>
-				<strong>"건"</strong>
+				<strong>총</strong>
+				<span id="totalcount">5</span>
+				<strong>건</strong>
 			</div>
 				<!--  
 				<div class="btn_text">
@@ -111,10 +111,10 @@
 						<li>
 							<div class="area_text">
 							<br>
-							<div class="title"><h2>제목제목제목</h2></div>
+							<div class="title"><h4>보성으로 떠나는 힐링여행 [웰촌]</h4></div>
 							<br>
-							<p><h5>위치</h5></p>
-							<p><h5>한줄소개</h5></p>
+							<p><h6>전남 보성군</h6></p>
+							<p><h6>#1박2일 #2박3일 #겨울1박2일 #당일코스 #인증샷백만개_인스타_갬성여행 #추천코스</h6></p>
 							</div>
 						</li>
 					</ul>
@@ -141,10 +141,10 @@
 						<li>
 							<div class="area_text">
 							<br>
-							<div class="title"><h2>제목제목제목</h2></div>
+							<div class="title"><h4>보성으로 떠나는 힐링여행 [웰촌]</h4></div>
 							<br>
-							<p><h5>위치</h5></p>
-							<p><h5>한줄소개</h5></p>
+							<p><h6>전남 보성군</h6></p>
+							<p><h6>#1박2일 #2박3일 #겨울1박2일 #당일코스 #인증샷백만개_인스타_갬성여행 #추천코스</h6></p>
 							</div>
 						</li>
 					</ul>
@@ -171,10 +171,10 @@
 						<li>
 							<div class="area_text">
 							<br>
-							<div class="title"><h2>제목제목제목</h2></div>
+							<div class="title"><h4>보성으로 떠나는 힐링여행 [웰촌]</h4></div>
 							<br>
-							<p><h5>위치</h5></p>
-							<p><h5>한줄소개</h5></p>
+							<p><h6>전남 보성군</h6></p>
+							<p><h6>#1박2일 #2박3일 #겨울1박2일 #당일코스 #인증샷백만개_인스타_갬성여행 #추천코스</h6></p>
 							</div>
 						</li>
 					</ul>
@@ -201,10 +201,10 @@
 						<li>
 							<div class="area_text">
 							<br>
-							<div class="title"><h2>제목제목제목</h2></div>
+							<div class="title"><h4>보성으로 떠나는 힐링여행 [웰촌]</h4></div>
 							<br>
-							<p><h5>위치</h5></p>
-							<p><h5>한줄소개</h5></p>
+							<p><h6>전남 보성군</h6></p>
+							<p><h6>#1박2일 #2박3일 #겨울1박2일 #당일코스 #인증샷백만개_인스타_갬성여행 #추천코스</h6></p>
 							</div>
 						</li>
 					</ul>
@@ -231,10 +231,10 @@
 						<li>
 							<div class="area_text">
 							<br>
-							<div class="title"><h2>제목제목제목</h2></div>
+							<div class="title"><h4>보성으로 떠나는 힐링여행 [웰촌]</h4></div>
 							<br>
-							<p><h5>위치</h5></p>
-							<p><h5>한줄소개</h5></p>
+							<p><h6>전남 보성군</h6></p>
+							<p><h6>#1박2일 #2박3일 #겨울1박2일 #당일코스 #인증샷백만개_인스타_갬성여행 #추천코스</h6></p>
 							</div>
 						</li>
 					</ul>
@@ -245,7 +245,7 @@
 				
 			</div>
 			
-			<hr>
+			
 			
 			
 			
