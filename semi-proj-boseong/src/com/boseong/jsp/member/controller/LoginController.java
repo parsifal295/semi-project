@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.boseong.jsp.member.model.service.MemberService;
+
 /**
  * Servlet implementation class LoginController
  */
@@ -29,7 +31,13 @@ public class LoginController extends HttpServlet {
 
 		request.setCharacterEncoding("UFT-8");
 		
-		//System.out.println(request.getParameter("memId"));
+		System.out.println(request.getParameter("memId"));
+		System.out.println(request.getParameter("memPwd"));
+		
+		String memId = request.getParameter("memId");
+		String memPwd = request.getParameter("memPwd");
+		
+		new MemberService().loginMember(memId, memPwd);
 	
 	
 	
