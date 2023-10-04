@@ -1,10 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="EUC-KR">
- <title>Æ¯»êÇ° ¼îÇÎ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+ <title>íŠ¹ì‚°í’ˆ ì‡¼í•‘</title>
+ <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+ 
     <style>
         div{
             border : 1px solid red;
@@ -18,7 +23,7 @@
             text-align: center;
             
         }
-        /* Å©°Ô ¼¼°¡Áö ¿µ¿ª */
+        /* í¬ê²Œ ì„¸ê°€ì§€ ì˜ì—­ */
         /* header, content, footer */
         #wrap > div{
             width: 100%;
@@ -94,9 +99,10 @@
         <img src="https://boseongmall.co.kr/web/product/big/202206/aee1f475b681d59881dbc1546f92b33d.jpg" width="300" height="300" id="tea2">
         <img src="https://boseongmall.co.kr/web/product/big/202212/4c77008f9b37dbe43ad6e5fbfe69552c.jpg" width="300" height="300" id="soap">
         <div id="footer"></div>
-        <h2 id="notice">°øÁö»çÇ×</h2>
-        <h2 id="review">±¸¸ÅÈÄ±â</h2>
+        <h2 id="notice">ê³µì§€ì‚¬í•­</h2>
+        <h2 id="review">êµ¬ë§¤í›„ê¸°</h2>
     </div>
+   
     
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
