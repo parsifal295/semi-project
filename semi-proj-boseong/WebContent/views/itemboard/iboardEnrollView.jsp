@@ -52,8 +52,10 @@
             </div>
             <script>
             	function imageFile(inputFile){
+            		
             		if(inputFile.files.length == 1){ // 파일이 첨부 됐을때 == 1 파일이 첨부 안됐을때 == 0
-            			console.log(inputFile.files);
+            			
+            		console.log(inputFile.files);
             			
             		let reader = new FileReader();
             		
