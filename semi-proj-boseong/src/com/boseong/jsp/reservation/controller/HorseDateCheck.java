@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+
 import com.boseong.jsp.reservation.model.service.HorseService;
 
 /**
@@ -33,12 +35,16 @@ public class HorseDateCheck extends HttpServlet {
 		String horseDate = request.getParameter("horseDate");
 		System.out.println(horseDate);
 		ArrayList list = new HorseService().dateCheck(horseDate);
-		System.out.println(list);
-		request.setAttribute("list", list);
-		request.setAttribute("horseDate", "horseDate");
-		request.getRequestDispatcher("views/reservation/horseReservationForm.jsp").forward(request, response);
-	}
 
+		//한글 포함될 일 없음
+		response.setContentType("application/json; charset=UTF-8");
+		JSONArray jArr = new JSONArray();
+		for(int i = 0; i<list.size(); i++) {
+			jArr.add(list.get(i));
+		}
+		response.getWriter().print(jArr);
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

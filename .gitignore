@@ -167,3 +167,5 @@ replay_pid*
 /.metadata/
 /Servers
 /semi-proj-boseong/src/sql/driver/
+semi-proj-boseong/.classpath
+semi-proj-boseong/.project

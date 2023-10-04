@@ -1,15 +1,23 @@
 package com.boseong.jsp.freeboard.controller;
 
+import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.freeboard.model.service.FreeboardService;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
+import com.oreilly.servlet.MultipartRequest;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 public class FreeboardController {
 
@@ -52,14 +60,27 @@ public class FreeboardController {
 
   public String insertFreeboard(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
-
-    Freeboard fb = new Freeboard();
-    String writer = request.getParameter("nickname");
-    String password = request.getParameter("passwords");
-    String title = request.getParameter("title");
-    String content = request.getParameter("content");
-    System.out.println(writer + password + title + content);
-
-    return this.requestFreeboard();
+    // change encoding to UTF
+    request.setCharacterEncoding("UTF-8");
+    if (ServletFileUpload.isMultipartContent(request)) {
+    	int maxSize = 1024 * 1024 * 20;
+    	HttpSession session = request.getSession();
+    	ServletContext application = session.getServletContext();
+    	
+    	// assign file path
+    	String savePath = application.getRealPath("/resources/board_upfiles");
+    	
+    	// renaming uploaded file
+    	MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
+    	
+    	// extract values
+        Freeboard fb = new Freeboard();
+        String writer = request.getParameter("nickname");
+        String password = request.getParameter("password");
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+        System.out.println(writer + password + title + content);
+    }
+    return request.getContextPath() + "/fboard.fb?cpage=1";
   }
 }
