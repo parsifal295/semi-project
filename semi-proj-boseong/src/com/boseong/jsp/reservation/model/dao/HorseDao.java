@@ -1,6 +1,7 @@
 package com.boseong.jsp.reservation.model.dao;
 
 import static com.boseong.jsp.common.JDBCTemplate.close;
+import static com.boseong.jsp.common.JDBCTemplate.getConnection;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -75,6 +76,23 @@ public class HorseDao {
 			close(rset);
 			close(pstmt);
 		}		
+		return list;
+	}
+	public ArrayList<HorseReservation> selectRides(Connection conn, int memNo){
+		ArrayList<HorseReservation> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectRides");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNo);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
 		return list;
 	}
 }

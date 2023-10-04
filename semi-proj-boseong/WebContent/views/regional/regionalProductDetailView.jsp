@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String local = (String)request.getContextPath("local"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>레시피</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%=local %></title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -112,43 +114,49 @@
     }
 
     #tea{
-            padding: 300px 60px 5px 80px;
-            text-align: left;
-            height: 400px;
-            width: 300px;
+            padding: 300px 60px 5px 50px;
+            text-align: center;
+            height: 500px;
+            width: 500px;
             
         }
 
-    #tea2{
-            padding: 300px 60px 5px 50px;
-            text-align: left;
-            height: 400px;
-            width: 300px;
-            
-        }
-    
-    #soap{
-            padding: 300px 60px 5px 50px;
-            text-align: left;
-            height: 400px;
-            width: 300px;
-            
-        }
-    
-     
+    #option1{
+              line-height: 100px;
+
+    }   
+
+    #option2{
+        margin-bottom: 100px;
+        line-height: 10px;
+
+    }   
+
+    #option3{
+        line-height: 10px;
+
+    }
+
+    #option4{
+        line-height: 10px;
+
+    }
+
+    #option5{
+        line-height: 10px;
+
+    }   
 
     #box {
 	height: 200px;
     
     }
-    
 
 
 </style>
 </head>
 <body>
-
-	<div id="box"></div>
+ <div id="box"></div>
     <!-- 회원일때 보여지는 회원정보 div -->
     <div id="userBox">
         <p style="font-size: 13px;">회원 정보</p>
@@ -202,21 +210,23 @@
     </div>
 
     <div class="page" id="content">
-        <div class="page" id="recipe">
-            <table>
-
-            <td rowspan="10" width="100px" align="center"></td>
-                <img src="https://boseongmall.co.kr/web/product/big/202203/7ff954440e14e7773f1a2b8dc2458c24.jpg" id="tea">
-            <td rowspan="10" width="100px" align="center"></td>        
-                <img src="https://boseongmall.co.kr/web/product/big/202206/aee1f475b681d59881dbc1546f92b33d.jpg" id="tea2">
-            <td rowspan="10" width="100px" align="center"></td>    
-                <img src="https://boseongmall.co.kr/web/product/big/202212/4c77008f9b37dbe43ad6e5fbfe69552c.jpg" id="soap">
-
+        <div class="page">
+            <table cell-spacing="0">
+                <td rowspan="10" width="100px" align="center">
+                    <img src="https://boseongmall.co.kr/web/product/big/202203/7ff954440e14e7773f1a2b8dc2458c24.jpg" id="tea"></td>
+                <tr><td id="option1" width="200">원산지</td><td>국내</td></tr>
+                <tr><td id="option2">소비자가</td><td><td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td></td></td></td></td></td><td>7000원</td></tr>
+                <tr><td id="option3">판매가</td><td><td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td></td></td></td></td></td><td>7000원</td></tr>
+                <tr><td id="option4">배송방법</td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td><td><td></td></td></td></td></td><td>배송</td></tr>
+                <tr><td id="option5">배송비</td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td><td><td></td></td></td></td></td><td>무료</td></tr>
+                
+                </td>
+                
+                
             </table>
-           
         </div>
+
     </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
 </body>
 </html>

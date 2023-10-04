@@ -12,6 +12,7 @@ request.getContextPath(); %>
 			rel="stylesheet"
 		/>
 		<!--Bootstrap 4-->
+
   		<link rel="stylesheet" href="/resources/demos/style.css">
 		
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -23,6 +24,7 @@ request.getContextPath(); %>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 		<style>
 		
+
 		
 		<style>
 			.font-family {
@@ -144,8 +146,7 @@ request.getContextPath(); %>
 		</style>
 		
 	</head>
-	<body>
-		<%@ include file = "../member/memberLoginView.jsp" %>
+	<body> 
 		<div id="menubar">
 		
 			<!-- 회원일때 보여지는 마이페이지 이동 버튼 -->
@@ -175,7 +176,7 @@ request.getContextPath(); %>
 						<ul>
 							<li><a href="<%= contextPath %>/fboard.fb?cpage=1">자유게시판</a></li>
 							<li><a href="#">도움의 손</a></li>
-							<li><a href="<%= contextPath %>/iboard.ib">보성 마켓</a></li>
+							<li><a href="<%= contextPath %>/iboard.ib?cpage=1">보성 마켓</a></li>
 						</ul>
 					</li>
 					<li>
@@ -193,7 +194,7 @@ request.getContextPath(); %>
 					<li>
 						<a href="">특산품</a>
 						<ul>
-							<li><a href="#">레시피</a></li>
+							<li><a href="<%=contextPath%>/list.pr">레시피</a></li>
 							<li><a href="<%=contextPath%>/list.rp">구매</a></li>
 						</ul>
 					</li>
@@ -211,5 +212,6 @@ request.getContextPath(); %>
 				<div id="logoPlace"></div>
 			</div>
 		</div>
+		<%@ include file = "../member/memberLoginView.jsp" %>
 	</body>
 </html>

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.ArrayList, java.util.Date"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList"%>
 <%
-	ArrayList<Integer> list = (ArrayList)request.getAttribute("list");
-	Date horseDate = (Date)request.getAttribute("horseDate");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -50,17 +49,9 @@
 						</select></td>
 						<td><input type="date" name="horseDate" id="horseDate">
 						</td>
-						<td><select name="horseTime">
-								<%for(int i = 11; i<21; i++){%>
-									<%if(list==null) {%>
-									<option value="<%=i%>"><%=i%>시</option>
-									<% }else {%>
-										<%if(list.contains(i)){continue;} %>
-									<option value="<%=i%>"><%=i%>시</option>
-									<%} %>
-								<% }%>
-
-						</select></td>
+						<td><select name="horseTime" id="horseTime">
+								<option>시간</option>
+						</select>시</td>
 						<td><select name="riderNum" id="riderNum">
 								<option value="1">1명</option>
 								<option value="2">2명</option>
@@ -107,7 +98,7 @@
 				</pre>
 			</div>
 			<div id="confirm" align="center">
-				<input type="checkbox">주의사항을 읽었고 확인하였습니다. <br>
+				<input type="checkbox" required>주의사항을 읽었고 확인하였습니다. <br>
 				<button type="submit">예약하기</button>
 			</div>
 		</form>
@@ -116,25 +107,46 @@
 		$(function() {
 			$(':text').click(function() {
 				alert('예약자 성함과 연락처가 다르다면 회원정보를 변경해주세요!');
-			})
-		})
-		let horseDate = document.getElementById("horseDate");
-		horseDate.onchange=function(){
-			console.log(horseDate.value);
-			$.ajax({
-				url : 'datecheck.hs',
-				data :{
-					horseDate : horseDate.value
-				},
-				success : function(result){
-					console.log(result);
-				},
-				error : function(){
-					alert('실패..');
-				}
-			})
-		}
+			});
+			$('#horseDate').change(
+					function() {
+						$.ajax({
+							url : 'datecheck.hs',
+							data : {
+								horseDate : $('#horseDate').val()
+							},
+							type : 'get',
+							success : function(result) {
+								console.log(result);
+								$('#horseTime').empty();
+								var before = document.createElement('option');
+								var choice = document.createTextNode('시간');
+								before.appendChild(choice);
+								document.getElementById('horseTime')
+										.appendChild(before);
+								for (let i = 10; i < 21; i++) {
+									if (result.indexOf(i) == -1) {
+										var time = document
+												.createElement('option');
+										var value = document.createTextNode(i);
+										time.appendChild(value);
+										//     $('input[type $= box]').attr('checked', 'true');
+										document.getElementById('horseTime')
+												.appendChild(time);
 
+									}
+
+								}
+
+							},
+							error : function(result) {
+								console.log('실패');
+								console.log(result);
+
+							}
+						})
+					})
+		})
 	</script>
 	<br>
 	<br>

@@ -36,9 +36,11 @@ public class FreeboardServlet extends HttpServlet {
         break;
       case "enrollForm.fb":
         flag = false;
-        view = new FreeboardController().insertFreeboard(request, response);
+        view = new FreeboardController().insertFreeboardView(request, response);
         break;
       case "insert.fb":
+        flag = false;
+        view = new FreeboardController().insertFreeboard(request, response);
         break;
     }
 

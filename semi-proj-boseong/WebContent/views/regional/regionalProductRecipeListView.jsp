@@ -111,15 +111,15 @@
         bottom : 0;
     }
 
-    #tea{
-            padding: 300px 60px 5px 80px;
+    #jam{
+            padding: 300px 60px 5px 50px;
             text-align: left;
             height: 400px;
             width: 300px;
             
         }
 
-    #tea2{
+    #cookie{
             padding: 300px 60px 5px 50px;
             text-align: left;
             height: 400px;
@@ -127,7 +127,7 @@
             
         }
     
-    #soap{
+    #soup{
             padding: 300px 60px 5px 50px;
             text-align: left;
             height: 400px;
@@ -142,7 +142,20 @@
     
     }
     
+    #pic1{
+            padding: 20px 0.1px;
+            text-align: center;
+    }
 
+    #pic2{
+            
+            text-align: center;
+            width: 410px;
+    }
+
+    #pic3{
+            width: 210px;
+    }
 
 </style>
 </head>
@@ -206,14 +219,16 @@
             <table>
 
             <td rowspan="10" width="100px" align="center"></td>
-                <img src="https://boseongmall.co.kr/web/product/big/202203/7ff954440e14e7773f1a2b8dc2458c24.jpg" id="tea">
+                <img src="https://recipe1.ezmember.co.kr/cache/recipe/2016/06/05/dbaea0e7d63620706871aaaef7f18b2c1.jpg" id="jam">
+                <th id="pic1">녹차 스프레드</th>
             <td rowspan="10" width="100px" align="center"></td>        
-                <img src="https://boseongmall.co.kr/web/product/big/202206/aee1f475b681d59881dbc1546f92b33d.jpg" id="tea2">
+                <img src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/01/14075610194c7d61815497474494ff4b1.jpg" id="cookie">
+                <th id="pic2">녹차 쿠키</th>
             <td rowspan="10" width="100px" align="center"></td>    
-                <img src="https://boseongmall.co.kr/web/product/big/202212/4c77008f9b37dbe43ad6e5fbfe69552c.jpg" id="soap">
+                <img src="https://recipe1.ezmember.co.kr/cache/recipe/2020/11/03/a98c68c45690fab5d25fa4366eec52dc1.jpg" id="soup">
+                <th id="pic3">녹차 수제비</th>
 
             </table>
-           
         </div>
     </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

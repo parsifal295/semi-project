@@ -58,7 +58,7 @@ public class ItemBoardInsertController extends HttpServlet {
 			String title = multiRequest.getParameter("title");
 			int price = Integer.parseInt(multiRequest.getParameter("price"));
 			String content = multiRequest.getParameter("content");
-			int memberNo = 1; // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
+			int memberNo = 1;  // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
 			
 			ItemBoard ib = new ItemBoard();
 			ib.setTitle(title);
@@ -69,25 +69,23 @@ public class ItemBoardInsertController extends HttpServlet {
 			Attachment at = null;
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				
-				// if문 안에들어온 경우는 첨부파일이 있음  → VO객체로 가공
 				at = new Attachment();
 				
 				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
-				// 파일 경로
 				at.setSavePath("resources/board_upfiles");
-				// 수정된 파일명
-				// multiReuqest.getFilesystemName("key값");
 				at.setModifiedName(multiRequest.getFilesystemName("upfile"));
 				
 				}
-			
-			}
-			
 			int result = new ItemBoardService().insertBoard(ib, at);
 			
+			if(result > 0) {
+				request.setAttribute("alertMsg", "게시글 등록에 성공하였습니다!");
+				response.sendRedirect(request.getContextPath() + "/iboard.ib?cpage=1");
+			}
+			}
 		}
 		
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
