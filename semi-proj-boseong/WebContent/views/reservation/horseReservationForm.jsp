@@ -119,6 +119,11 @@
 							success : function(result) {
 								console.log(result);
 								$('#horseTime').empty();
+								var before = document.createElement('option');
+								var choice = document.createTextNode('시간');
+								before.appendChild(choice);
+								document.getElementById('horseTime')
+										.appendChild(before);
 								for (let i = 10; i < 21; i++) {
 									if (result.indexOf(i) == -1) {
 										var time = document
