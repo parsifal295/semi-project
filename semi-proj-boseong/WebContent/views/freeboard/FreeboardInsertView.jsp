@@ -16,7 +16,7 @@
 		<div class="outer" id="content">
 			<div style="height: 250px"></div>
 			<form enctype="multipart/form-data" action="<%=contextPath%>/insert.fb" method="post">
-			<input type="hidden" name="ipAddr" value="<%= getClientIP()%>">
+				<input type="hidden" name="ipAddr" value="" />
 				<table class="table table-borderless table-sm" align="center" style="width: 50%">
 					<thead>
 						<tr>
@@ -25,6 +25,7 @@
 							<th width="100"></th>
 							<th width="100"></th>
 							<th width="100"></th>
+							s
 							<th width="100"></th>
 						</tr>
 					</thead>
@@ -90,7 +91,6 @@
 						</tr>
 					</tbody>
 				</table>
-				
 			</form>
 		</div>
 		<%@ include file = "../common/footer.jsp" %>
@@ -102,14 +102,11 @@
 					$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 				});
 			});
-			async function getClientIP() {
-				try {
-					const response = await axios.get("https://api.ipify.org?format=json");
-					console.log(response);
-				} catch (error) {
-					console.error(error);
-				}
-			}
+			$(function () {
+				$.getJSON("https://api.ipify.org?format=jsonp&callback=?", function (json) {
+					console.log(json.ip);
+				});
+			});
 		</script>
 	</body>
 </html>
