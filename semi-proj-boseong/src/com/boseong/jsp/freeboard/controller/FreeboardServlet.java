@@ -40,7 +40,7 @@ public class FreeboardServlet extends HttpServlet {
         break;
       case "insert.fb":
         flag = false;
-        view = new FreeboardController().insertFreeboard(request, response);
+        
         break;
     }
 
