@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <th style="text-align: center;">희망가격</th>
-                            <td><input type="text" style="width:50%;" name="price" value="₩"></td>
+                            <td><input type="text" style="width:50%;" name="price"></td>
                         </tr>
                         <tr>
                             <th style="text-align: center;">내용</th>
@@ -47,7 +47,7 @@
                             </td>
                         </tr>
                     </table>
-                    <div align="center"><a href="<%= contextPath %>/v" type="submit">등록</a><button type="reset">초기화</button></div>
+                    <div align="center"><button type="submit">등록</button><button type="reset">초기화</button></div>
                 </div>
             </div>
         </form>
@@ -59,7 +59,7 @@
                     let reader = new FileReader();
                     reader.readAsDataURL(inputfile.files[0]);
                     // console.log(reader.readAsDataURL(inputfile.files[0]));
-                    reder.onload = $('#itemImg').attr('src', e.target.result);
+                    reader.onload = $('#itemImg').attr('src', e.target.result);
                 };
             }
         </script>
