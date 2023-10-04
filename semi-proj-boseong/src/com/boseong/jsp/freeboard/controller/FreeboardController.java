@@ -44,10 +44,22 @@ public class FreeboardController {
     return "/views/freeboard/fboardListView.jsp";
   }
 
+  public String insertFreeboardView(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+
+    return "/views/freeboard/FreeboardInsertView.jsp";
+  }
+
   public String insertFreeboard(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
 
     Freeboard fb = new Freeboard();
-    return "/views/freeboard/FreeboardInsertView.jsp";
+    String writer = request.getParameter("nickname");
+    String password = request.getParameter("passwords");
+    String title = request.getParameter("title");
+    String content = request.getParameter("content");
+    System.out.println(writer + password + title + content);
+
+    return this.requestFreeboard();
   }
 }
