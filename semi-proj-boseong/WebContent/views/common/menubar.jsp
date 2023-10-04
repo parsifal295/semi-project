@@ -171,7 +171,7 @@ request.getContextPath(); %>
 						<ul>
 							<li><a href="<%= contextPath %>/fboard.fb?cpage=1">자유게시판</a></li>
 							<li><a href="#">도움의 손</a></li>
-							<li><a href="<%= contextPath %>/iboard.ib">보성 마켓</a></li>
+							<li><a href="<%= contextPath %>/iboard.ib?cpage=1">보성 마켓</a></li>
 						</ul>
 					</li>
 					<li>
