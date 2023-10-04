@@ -77,6 +77,11 @@ public class ItemBoardInsertController extends HttpServlet {
 				
 				}
 			int result = new ItemBoardService().insertBoard(ib, at);
+			
+			if(result > 0) {
+				request.setAttribute("alertMsg", "게시글 등록에 성공하였습니다!");
+				response.sendRedirect(request.getContextPath() + "/iboard.ib?cpage=1");
+			}
 			}
 		}
 		
