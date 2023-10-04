@@ -25,11 +25,11 @@
 	      <div class="modal-body">
 	      <form>
 		     <div class="form-group">
-		     	<input type="text" name="userId" placeholder="아이디" required >
+		     	<input type="text" name="memId" placeholder="아이디" required >
 		     </div>
 		    
 		     <div class="form-group">
-		         <input type="password" name="userPwd" placeholder="비밀번호" required >
+		         <input type="password" name="memPwd" placeholder="비밀번호" required >
 		     </div>
 		    
 		     <div class="form-group">

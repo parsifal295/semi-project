@@ -29,7 +29,7 @@ public class LoginController extends HttpServlet {
 
 		request.setCharacterEncoding("UFT-8");
 		
-		//System.out.println(request.getParameter("userId"));
+		//System.out.println(request.getParameter("memId"));
 	
 	
 	

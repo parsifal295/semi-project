@@ -4,4 +4,30 @@
 
 	<comment> 회원 관련 SQL문 </comment>
 	
+	<entry key="loginMember">
+		SELECT
+		       MEM_NO,
+		       MEM_ID,	
+		       MEM_PWD,
+		       MEM_NAME,
+		       EMAIL,
+		       PHONE,
+		       AREA,
+		       ENROLL_DATE,
+		       STATUS
+		  FROM
+		       TB_MEMBER
+		 WHERE
+		       MEM_ID = ?
+		   AND
+		       MEM_PWD = ?
+		   AND 
+		       STATUS = 'Y'
+		    
+				
+	
+	
+	
+	</entry>
+	
 </properties>
