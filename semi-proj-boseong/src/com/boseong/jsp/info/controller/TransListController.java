@@ -1,4 +1,4 @@
-package com.boseong.jsp.reservation.controller;
+package com.boseong.jsp.info.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class HanokReservHomeController
+ * Servlet implementation class TransListController
  */
-@WebServlet("/hanok.rsv")
-public class HanokReservHomeController extends HttpServlet {
+@WebServlet("/transList.info")
+public class TransListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HanokReservHomeController() {
+    public TransListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class HanokReservHomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/reservation/hanokFrontView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/info/TransListView.jsp").forward(request, response);
 	}
 
 	/**

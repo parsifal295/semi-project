@@ -26,7 +26,7 @@ public class RestaurantListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/info/RestaurantListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/info/RestaurantListView.jsp").forward(request, response);
 	}
 
 	/**

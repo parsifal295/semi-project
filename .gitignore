@@ -13,6 +13,12 @@ local.properties
 .recommenders
 .idea/
 
+# Eclipse Core       
+.project 
+
+# JDT-specific (Eclipse Java Development Tools)      
+.classpath
+
 # External tool builders
 .externalToolBuilders/
 
@@ -161,5 +167,3 @@ replay_pid*
 /.metadata/
 /Servers
 /semi-proj-boseong/src/sql/driver/
-/semi-proj-boseong/.classpath
-semi-proj-boseong/.classpath
