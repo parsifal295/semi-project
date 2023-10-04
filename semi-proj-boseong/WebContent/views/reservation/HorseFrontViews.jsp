@@ -7,9 +7,6 @@
 <title>승마장 소개</title>
 
 <style>
-	#box{
-	height:200px
-	}
 	#horse-top{
 	width:100%;
 	height:45%;
@@ -58,7 +55,7 @@
 				<div id="right1">
 				</div>
 				<div id="right2">
-					<button><h2>예약하기</h2></button>
+					<button onclick="reserveAride();"><h2>예약하기</h2></button>
 					<button><h2>예약조회</h2></button>
 				</div>
 			</div>
@@ -85,5 +82,12 @@
 
 	</div>
 <%@ include file = "../common/footer.jsp" %>
+
+<script>
+	function reserveAride(){
+
+	}
+</script>
+
 </body>
 </html>

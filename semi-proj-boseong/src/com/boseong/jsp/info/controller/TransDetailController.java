@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RestaurantListController
+ * Servlet implementation class TransDetailController
  */
-@WebServlet("/list.rs")
-public class RestaurantListController extends HttpServlet {
+@WebServlet("/detail.tr")
+public class TransDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestaurantListController() {
+    public TransDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,10 @@ public class RestaurantListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/info/RestaurantListView.jsp").forward(request, response);
+		String type = request.getParameter("type");
+		String page = "views/info/"+type+".jsp";
+		System.out.println(page);
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.boseong.jsp.info.controller;
+package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RestaurantListController
+ * Servlet implementation class HanokReservHomeController
  */
-@WebServlet("/list.rs")
-public class RestaurantListController extends HttpServlet {
+@WebServlet("/hanok.rsv")
+public class HanokReservHomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestaurantListController() {
+    public HanokReservHomeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class RestaurantListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/info/RestaurantListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/reservation/hanokFrontView.jsp").forward(request, response);
 	}
 
 	/**
