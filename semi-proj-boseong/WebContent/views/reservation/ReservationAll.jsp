@@ -49,9 +49,11 @@
 
 	<div class="title"><h2>예약 전체 조회</h2></div>
 	
+	
+	<div class="title1"><h4>한옥 예약</h4></div>
 	<table border="1" id="table1">
 		<tr bgcolor="#DCDCDC">
-			<th width="300" height="60">숙소명</th>
+			<th width="300" height="60">Room No</th>
 			<th width="350">예약 날짜</th>
 			<th width="250">인원</th>
 			<th width="250">가격</th>
