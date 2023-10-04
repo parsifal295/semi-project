@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String local = (String)request.getContextPath("local"); %>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><%=local %></title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>레시피</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -113,50 +111,42 @@
         bottom : 0;
     }
 
-    #tea{
-            padding: 300px 60px 5px 50px;
-            text-align: center;
+    #jam{
+            padding: 400px 60px 5px 50px;
+            text-align: left;
             height: 500px;
-            width: 500px;
+            width: 300px;
             
         }
 
-    #option1{
-              line-height: 100px;
-
-    }   
-
-    #option2{
-        margin-bottom: 100px;
-        line-height: 10px;
-
-    }   
-
-    #option3{
-        line-height: 10px;
-
-    }
-
-    #option4{
-        line-height: 10px;
-
-    }
-
-    #option5{
-        line-height: 10px;
-
-    }   
+    #cookie{
+            padding: 300px 60px 5px 50px;
+            text-align: left;
+            height: 500px;
+            width: 300px;
+            
+        }
+    
+    #soup{
+            padding: 300px 60px 5px 50px;
+            text-align: left;
+            height: 500px;
+            width: 300px;
+            
+        }
+    
+     
 
     #box {
 	height: 200px;
     
     }
 
-
 </style>
 </head>
 <body>
- <div id="box"></div>
+
+	<div id="box"></div>
     <!-- 회원일때 보여지는 회원정보 div -->
     <div id="userBox">
         <p style="font-size: 13px;">회원 정보</p>
@@ -210,23 +200,20 @@
     </div>
 
     <div class="page" id="content">
-        <div class="page">
-            <table cell-spacing="0">
-                <td rowspan="10" width="100px" align="center">
-                    <img src="https://boseongmall.co.kr/web/product/big/202203/7ff954440e14e7773f1a2b8dc2458c24.jpg" id="tea"></td>
-                <tr><td id="option1" width="200">원산지</td><td>국내</td></tr>
-                <tr><td id="option2">소비자가</td><td><td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td></td></td></td></td></td><td>7000원</td></tr>
-                <tr><td id="option3">판매가</td><td><td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td></td></td></td></td></td><td>7000원</td></tr>
-                <tr><td id="option4">배송방법</td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td><td><td></td></td></td></td></td><td>배송</td></tr>
-                <tr><td id="option5">배송비</td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td><td><td></td></td></td></td></td><td>무료</td></tr>
-                
-                </td>
-                
-                
+        <div class="page" id="recipe">
+            <table>
+
+            <td rowspan="10" width="100px" align="center"></td>
+                <img src="https://recipe1.ezmember.co.kr/cache/recipe/2016/06/05/dbaea0e7d63620706871aaaef7f18b2c1.jpg" id="jam">
+            <td rowspan="10" width="100px" align="center"></td>        
+                <img src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/01/14075610194c7d61815497474494ff4b1.jpg" id="cookie">
+            <td rowspan="10" width="100px" align="center"></td>    
+                <img src="https://recipe1.ezmember.co.kr/cache/recipe/2020/11/03/a98c68c45690fab5d25fa4366eec52dc1.jpg" id="soup">
+            
             </table>
         </div>
-
     </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 </body>
 </html>
