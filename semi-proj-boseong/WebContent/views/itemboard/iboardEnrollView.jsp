@@ -43,7 +43,7 @@
                         <tr>
                             <th style="text-align: center;">첨부파일</th>
                             <td colspan="3">
-                                <input type="file" name="upfile1" id="itemImg" onclick="imageFile(inputFile);">
+                                <input type="file" name="upfile" id="itemImg" onclick="imageFile(inputFile);">
                             </td>
                         </tr>
                     </table>
