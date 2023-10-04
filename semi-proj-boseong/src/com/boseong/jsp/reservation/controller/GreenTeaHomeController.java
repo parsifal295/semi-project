@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MonthLivingHomeController
+ * Servlet implementation class GreenTeaHomeController
  */
-@WebServlet("/month.main")
-public class MonthLivingHomeController extends HttpServlet {
+@WebServlet("/green.ho")
+public class GreenTeaHomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MonthLivingHomeController() {
+    public GreenTeaHomeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,8 +27,7 @@ public class MonthLivingHomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("/views/reservation/MonthLivingFrontView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/reservation/GreenteaFrontView.jsp").forward(request, response);
 	}
 
 	/**
