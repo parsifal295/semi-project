@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+	import = "java.util.ArrayList"%>
+<%
+	ArrayList list = (ArrayList)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +11,17 @@
 <title>승마 예약</title>
 
 <style>
-#ride-info>table th{
-	width : 200px;
+#ride-info>table th {
+	width: 300px;
+	text-align: center;
 }
-#confirm{
+
+#ride-info input {
+	width: 80%;
+}
+
+
+#confirm {
 	margin: auto;
 }
 </style>
@@ -21,7 +32,7 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<div id="box"></div>
 	<div class="page" id="content">
-		<%=contextPath %>
+		<%=contextPath%>
 		<form action="<%=contextPath%>/insertRide.rsv" method="get">
 			<div id="ride-info">
 				<h2>프로그램 선택</h2>
@@ -33,18 +44,15 @@
 						<th>인원</th>
 					</tr>
 					<tr>
-						<td>
-							<select name="programNo" id="">
+						<td><select name="programNo" id="">
 								<option value="1">유소년 승마 프로그램</option>
 								<option value="2">일반 체험</option>
-								<option value="3"> 장애물 레선</option>
-							</select>
-						</td>
+								<option value="3">장애물 레선</option>
+						</select></td>
 						<td>
-							<input type="date" name="horseDate">
+								<input type="date" name="horseDate" id="horseDate">
 						</td>
-						<td>
-							<select name="horseTime">
+						<td><select name="horseTime">
 								<option value="11">11시</option>
 								<option value="12">12시</option>
 								<option value="13">13시</option>
@@ -55,17 +63,14 @@
 								<option value="18">18시</option>
 								<option value="19">19시</option>
 								<option value="20">20시</option>
-							</select>
-						</td>
-						<td>
-							<select name="riderNum" id="riderNum">
+						</select></td>
+						<td><select name="riderNum" id="riderNum">
 								<option value="1">1명</option>
 								<option value="2">2명</option>
 								<option value="3">3명</option>
 								<option value="4">4명</option>
 								<option value="5">5명</option>
-							</select>
-						</td>
+						</select></td>
 
 					</tr>
 				</table>
@@ -75,17 +80,18 @@
 				<table>
 					<tr>
 						<th>예약자 성함</th>
-						<td><input type="text" name="userName" placeholder="회원 이름"  readonly></td>
+						<td><input type="text" name="userName" placeholder="회원 이름"
+							readonly></td>
 						<input type="hidden" name="userNo" value="">
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td><input type="text" name="phone" placeholder="회원 전화번호" readonly></td>
+						<td><input type="text" name="phone" placeholder="회원 전화번호"
+							readonly></td>
 					</tr>
 					<tr>
 						<th>요청사항</th>
-						<td>
-							<textarea name="message" id="" cols="100" rows="5">내용을 입력해주세요.</textarea>
+						<td><textarea name="message" id="" cols="100" rows="5">내용을 입력해주세요.</textarea>
 						</td>
 					</tr>
 				</table>
@@ -104,18 +110,21 @@
 				</pre>
 			</div>
 			<div id="confirm" align="center">
-				<input type="checkbox">주의사항을 읽었고 확인하였습니다.
-				<br>
+				<input type="checkbox">주의사항을 읽었고 확인하였습니다. <br>
 				<button type="submit">예약하기</button>
 			</div>
 		</form>
 	</div>
 	<script>
-	$(function(){
-		$(':text').click(function(){
-			alert('예약자 성함과 연락처가 다르다면 회원정보를 변경해주세요!');
+		$(function() {
+			$(':text').click(function() {
+				alert('예약자 성함과 연락처가 다르다면 회원정보를 변경해주세요!');
+			})
 		})
-	})
+		let horseDate = document.getElementById("horseDate");
+		horseDate.onchange=function(){
+			location.href="<%=contextPath%>/datecheck.hs?horseDate="+horseDate.value;
+		}
 	</script>
 	<br>
 	<br>

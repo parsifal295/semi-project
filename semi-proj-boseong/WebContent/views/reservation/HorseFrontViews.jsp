@@ -85,7 +85,7 @@
 
 <script>
 	function reserveAride(){
-
+		location.href = "<%=contextPath%>/horseForm.rsv";
 	}
 </script>
 
