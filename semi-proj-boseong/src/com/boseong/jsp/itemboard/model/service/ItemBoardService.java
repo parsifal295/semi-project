@@ -9,7 +9,7 @@ import java.sql.Connection;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.itemboard.model.dao.ItemBoardDao;
 import com.boseong.jsp.itemboard.model.vo.ItemBoard;
-
+  
 public class ItemBoardService {
 	
 	public int insertBoard(ItemBoard ib, Attachment at) {
