@@ -27,7 +27,7 @@ public class TransDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type = request.getParameter("type");
-		String page = "views/info/transportation/"+type+".jsp";
+		String page = "views/info/"+type+".jsp";
 		System.out.println(page);
 		request.getRequestDispatcher(page).forward(request, response);
 	}
