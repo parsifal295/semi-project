@@ -9,14 +9,12 @@
 				padding: 2px;
 			}
 		</style>
-		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	</head>
 	<body>
 		<%@ include file = "../common/menubar.jsp" %>
 		<div class="outer" id="content">
 			<div style="height: 250px"></div>
 			<form enctype="multipart/form-data" action="<%=contextPath%>/insert.fb" method="post">
-			<input type="hidden" name="ipAddr" value="<%= getClientIP()%>">
 				<table class="table table-borderless table-sm" align="center" style="width: 50%">
 					<thead>
 						<tr>
@@ -90,7 +88,6 @@
 						</tr>
 					</tbody>
 				</table>
-				
 			</form>
 		</div>
 		<%@ include file = "../common/footer.jsp" %>
@@ -102,14 +99,6 @@
 					$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 				});
 			});
-			async function getClientIP() {
-				try {
-					const response = await axios.get("https://api.ipify.org?format=json");
-					console.log(response);
-				} catch (error) {
-					console.error(error);
-				}
-			}
 		</script>
 	</body>
 </html>

@@ -43,26 +43,4 @@
             BOARD_NO DESC) A)
         WHERE RNUM BETWEEN ? AND ?    
 	</entry>
-	<entry key="insertBoard">
-		INSERT
-			INTO
-				TB_FREEBOARD
-				(
-				BOARD_NO,
-				ART_WRITER,
-				IP_ADDRESS,
-				ART_TITLE,
-				ART_PASSWORD,
-				ART_CONTENT
-				)
-			VALUES
-				(
-				SEQ_FB_BN.NEXTVAL,
-				?,
-				?,
-				?,
-				?,
-				?
-				)
-	</entry>
 </properties>
