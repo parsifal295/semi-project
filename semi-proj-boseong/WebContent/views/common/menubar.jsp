@@ -134,8 +134,10 @@ request.getContextPath(); %>
 			height:200px;
 			}
 		</style>
+		
 	</head>
 	<body>
+		<%@ include file = "../member/memberLoginView.jsp" %>
 		<div id="menubar">
 		
 			<!-- 회원일때 보여지는 마이페이지 이동 버튼 -->
@@ -147,7 +149,7 @@ request.getContextPath(); %>
 				<!-- 회원이 아닐때 보여지는 태그 -->
 				
 				<form action="/jsp/login.me" method="post">
-					<div id="login-form"><a href="#">로그인</a> | <a href="#">회원가입</a></div>
+					<div id="login-form"><a href="#" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
 				</form>
 				
 				<!-- 로그인 성공시 보여지는 태그 -->
