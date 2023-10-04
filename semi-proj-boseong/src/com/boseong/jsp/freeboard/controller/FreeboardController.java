@@ -41,7 +41,13 @@ public class FreeboardController {
     ArrayList<Freeboard> list = new FreeboardService().selectFboardList(pi);
     request.setAttribute("list", list);
     request.setAttribute("pi", pi);
-    String returnMe = "/views/freeboard/fboardListView.jsp";
-    return returnMe;
+    return "/views/freeboard/fboardListView.jsp";
+  }
+
+  public String insertFreeboard(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+
+    Freeboard fb = new Freeboard();
+    return "/views/freeboard/FreeboardInsertView.jsp";
   }
 }

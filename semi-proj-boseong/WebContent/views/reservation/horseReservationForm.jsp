@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-	import = "java.util.ArrayList"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList, java.util.Date"%>
 <%
-	ArrayList list = (ArrayList)request.getAttribute("list");
+	ArrayList<Integer> list = (ArrayList)request.getAttribute("list");
+	Date horseDate = (Date)request.getAttribute("horseDate");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,6 @@
 #ride-info input {
 	width: 80%;
 }
-
 
 #confirm {
 	margin: auto;
@@ -49,20 +48,18 @@
 								<option value="2">일반 체험</option>
 								<option value="3">장애물 레선</option>
 						</select></td>
-						<td>
-								<input type="date" name="horseDate" id="horseDate">
+						<td><input type="date" name="horseDate" id="horseDate">
 						</td>
 						<td><select name="horseTime">
-								<option value="11">11시</option>
-								<option value="12">12시</option>
-								<option value="13">13시</option>
-								<option value="14">14시</option>
-								<option value="15">15시</option>
-								<option value="16">16시</option>
-								<option value="17">17시</option>
-								<option value="18">18시</option>
-								<option value="19">19시</option>
-								<option value="20">20시</option>
+								<%for(int i = 11; i<21; i++){%>
+									<%if(list==null) {%>
+									<option value="<%=i%>"><%=i%>시</option>
+									<% }else {%>
+										<%if(list.contains(i)){continue;} %>
+									<option value="<%=i%>"><%=i%>시</option>
+									<%} %>
+								<% }%>
+
 						</select></td>
 						<td><select name="riderNum" id="riderNum">
 								<option value="1">1명</option>
@@ -123,8 +120,21 @@
 		})
 		let horseDate = document.getElementById("horseDate");
 		horseDate.onchange=function(){
-			location.href="<%=contextPath%>/datecheck.hs?horseDate="+horseDate.value;
+			console.log(horseDate.value);
+			$.ajax({
+				url : 'datecheck.hs',
+				data :{
+					horseDate : horseDate.value
+				},
+				success : function(result){
+					console.log(result);
+				},
+				error : function(){
+					alert('실패..');
+				}
+			})
 		}
+
 	</script>
 	<br>
 	<br>

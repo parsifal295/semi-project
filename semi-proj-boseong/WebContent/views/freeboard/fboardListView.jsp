@@ -31,7 +31,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 		<div class="outer" id="content">
 			<div style="height:200px"></div>
 			<div id="btn" align="right">
-              <button type="button" class="btn btn-primary" href="">글쓰기</button>
+              <a class="btn btn-primary" href="<%= contextPath %>/enrollForm.fb">글쓰기</a>
             </div>
 			<table class="table table-sm table-hover" align="center" style="width: 78%">
 				<thead class="thead-light">

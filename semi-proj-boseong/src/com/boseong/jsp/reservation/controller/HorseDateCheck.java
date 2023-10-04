@@ -35,7 +35,8 @@ public class HorseDateCheck extends HttpServlet {
 		ArrayList list = new HorseService().dateCheck(horseDate);
 		System.out.println(list);
 		request.setAttribute("list", list);
-		response.sendRedirect("views/reservation/horseReservationForm.jsp");
+		request.setAttribute("horseDate", "horseDate");
+		request.getRequestDispatcher("views/reservation/horseReservationForm.jsp").forward(request, response);
 	}
 
 	/**
