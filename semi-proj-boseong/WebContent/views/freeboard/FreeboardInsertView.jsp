@@ -102,10 +102,8 @@
 					$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 				});
 			});
-			$(function () {
-				$.getJSON("https://api.ipify.org?format=jsonp&callback=?", function (json) {
-					console.log(json.ip);
-				});
+			$.getJSON("http://jsonip.appspot.com/?callback=?", function (data) {
+				alert(data.ip);
 			});
 		</script>
 	</body>
