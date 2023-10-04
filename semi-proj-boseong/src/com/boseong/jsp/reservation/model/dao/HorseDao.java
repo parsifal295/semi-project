@@ -1,7 +1,6 @@
 package com.boseong.jsp.reservation.model.dao;
 
 import static com.boseong.jsp.common.JDBCTemplate.close;
-import static com.boseong.jsp.common.JDBCTemplate.getConnection;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -88,9 +87,25 @@ public class HorseDao {
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, memNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				HorseReservation hrsv = new HorseReservation();
+				hrsv.setReservNo(rset.getInt("RESERVATION_NO"));
+				hrsv.setMemNo(memNo);
+				hrsv.setProgramNo(rset.getString("HORSE_PRO_NAME"));
+				hrsv.setHorseDate(rset.getString("HORSE_DATE"));
+				hrsv.setHorseTime(rset.getInt("HORSE_TIME"));
+				hrsv.setRiderNum(rset.getInt("RIDER_NUM"));
+				
+				list.add(hrsv);
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 	
 		return list;
