@@ -29,7 +29,6 @@ public class LoginController extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		
-		System.out.println(request.getParameter("userId"));
 	
 	
 	
