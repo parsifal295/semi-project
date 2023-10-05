@@ -5,10 +5,12 @@ import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.freeboard.model.service.FreeboardService;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
+import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 public class FreeboardController {
+  private static String ip;
 
   public String requestFreeboard(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -57,6 +60,15 @@ public class FreeboardController {
     return "/views/freeboard/FreeboardInsertView.jsp";
   }
 
+  public void getIpAddress(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+    // 0. IP 주소 얻기
+    String ipAddr = request.getParameter("obj");
+    Gson gson = new Gson();
+    Map<String, String> map = gson.fromJson(ipAddr, Map.class);
+    ip = map.get("ip");
+  }
+
   public String insertFreeboard(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
     String returnMe = "";
@@ -77,11 +89,15 @@ public class FreeboardController {
       // 1. 자유게시판 내용 => 무조건 업로드 되어야 함.
       Freeboard fb = new Freeboard();
       String writer = multiRequest.getParameter("nickname");
-      String ipAddr = multiRequest.getParameter("response");
-      System.out.println(ipAddr);
       String password = multiRequest.getParameter("password");
       String title = multiRequest.getParameter("title");
       String content = multiRequest.getParameter("content");
+      fb.setWriter(writer);
+      fb.setIpAddress(ip);
+      fb.setPassword(password);
+      fb.setTitle(title);
+      fb.setContent(content);
+      System.out.println(fb.toString());
 
       // 2. 첨부파일 => 선택적임. 업로드 안할수도 있다고 가정.
       Attachment att = null;

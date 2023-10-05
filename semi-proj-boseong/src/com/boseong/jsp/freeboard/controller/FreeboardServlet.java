@@ -42,6 +42,10 @@ public class FreeboardServlet extends HttpServlet {
         flag = false;
         view = new FreeboardController().insertFreeboard(request, response);
         break;
+      case "getIp.fb":
+        flag = false;
+        new FreeboardController().getIpAddress(request, response);
+        break;
     }
 
     if (flag) {
