@@ -25,7 +25,7 @@ public class ItemBoardService {
 		if(at != null) {
 			file = new ItemBoardDao().insertAttachment(conn, at);
 		}
-		if((board*file)>0) {
+		if((board*file) > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
@@ -42,14 +42,17 @@ public class ItemBoardService {
 		
 		int listCount = new ItemBoardDao().selectListCount(conn);
 		
+		close(conn);
+		
 		return listCount;
 	}
 	
-	public ArrayList<ItemBoard> selectList(PageInfo pi){
+	// 해당 페이지의 starRow에서 endRow까지의 리스트
+	public ArrayList<ItemBoard> selectIboardList(PageInfo pi){
 		
 		Connection conn = getConnection();
 		
-		ArrayList<ItemBoard> list = new ItemBoardDao().selectList(conn, pi);
+		ArrayList<ItemBoard> list = new ItemBoardDao().selectIboardList(conn, pi);
 		
 		close(conn);
 		

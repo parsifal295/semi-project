@@ -37,6 +37,7 @@
 		                    완전 새거유~~~~~~ <br>
                 </p>
             </div>
+            <a href="<%= contextPath %>/iboard.ib?cpage=1">목록으로</a>
             <div class="random">
                 <div class="random1"></div>
                 <div class="random2"></div>

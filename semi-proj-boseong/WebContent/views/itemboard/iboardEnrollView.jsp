@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String alertMsg = (String)request.getAttribute("alertMsg"); 
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +23,7 @@
         
         <%@ include file="../common/menubar.jsp" %>
        <form action="<%= contextPath %>/insert.ib" method="post" enctype="multipart/form-data">
-           <input type="hidden" name="memberNo" value=""> <!-- 회원이 되면 MemberNo를 value에 hidden으로 받아야함 -->
+           <!-- <input type="hidden" name="memberNo" value="">  회원이 되면 MemberNo를 value에 hidden으로 받아야함 -->
             <div class="page" id="content">
                 <div style="height : 300px; text-align: center;"></div>
                 <div class="page" style="height : 700px;">

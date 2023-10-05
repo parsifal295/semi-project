@@ -12,8 +12,8 @@ public class ItemBoard {
 	private Date modifyDate;   // IBOARD_MODIFY_DATE
 	private int count;         // COUNT
 	private String status;     // STATUS
-	private int price;
-	private String memberName;
+	private int price;         // PRICE
+	private String memberName; // MEM_NAME
 	
 	
 	
@@ -40,7 +40,7 @@ public class ItemBoard {
 		this.memberName = memberName;
 	}
 
-	public String memberName() {
+	public String getMemberName() {
 		return memberName;
 	}
 	public void setMemberName(String memberName) {
@@ -142,7 +142,7 @@ public class ItemBoard {
 	public String toString() {
 		return "ItemBoard [boardNo=" + boardNo + ", memberNo=" + memberNo + ", title=" + title + ", content=" + content
 				+ ", postDate=" + postDate + ", modifyDate=" + modifyDate + ", count=" + count + ", status=" + status
-				+ "price="+ price + "memberName="+memberName+"]";
+				+ ", price="+ price + ", memberName=" + memberName +"]";
 	}
 	
 	

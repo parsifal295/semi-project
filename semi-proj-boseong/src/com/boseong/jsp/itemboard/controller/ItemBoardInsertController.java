@@ -56,6 +56,7 @@ public class ItemBoardInsertController extends HttpServlet {
 			
 			// 생성한 multipartRequest로 부터 값을 뽑는다
 			String title = multiRequest.getParameter("title");
+			// type = text로 했기 에  pardseInt해주기
 			int price = Integer.parseInt(multiRequest.getParameter("price"));
 			String content = multiRequest.getParameter("content");
 			int memberNo = 1;  // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
