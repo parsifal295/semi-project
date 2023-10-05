@@ -97,12 +97,24 @@
                   </td>
               </tr>
               <tr>
-                  <td colspan="6">
-                      <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="customFile" name="upfile" />
-                          <label class="custom-file-label" for="customFile">파일 첨부</label>
+                <td colspan="6">
+                  <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                          <span
+                              class="input-group-text"
+                              data-toggle="tooltip"
+                              title="비밀번호를 잊어버리면 글 수정 및 삭제가 불가능합니다."
+                              >첨부파일</span
+                          >
                       </div>
-                  </td>
+                      <% if (att == null) { %>
+                        <p class="form-control" name="viewcount" style="cursor : default">첨부파일 없음</p>
+                      <% } else { %>
+                        <a href="<%=contextPath %>/<%=att.getSavePath()%>/<%= att.getModifiedName()%>" download="<%= att.getOriginName()%>"><%= att.getOriginName()%></a>
+                      <% } %>
+                      
+                  </div>
+              </td>
               </tr>
               <tr>
                   <td colspan="2">

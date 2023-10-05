@@ -94,10 +94,9 @@ public class FreeboardDao {
     int result = 0;
     String sql = prop.getProperty("insertAttachment");
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
-      ps.setInt(1, att.getRefNo());
-      ps.setString(2, att.getOriginName());
-      ps.setString(3, att.getModifiedName());
-      ps.setString(4, att.getSavePath());
+      ps.setString(1, att.getOriginName());
+      ps.setString(2, att.getModifiedName());
+      ps.setString(3, att.getSavePath());
       result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -140,5 +139,28 @@ public class FreeboardDao {
       e.printStackTrace();
     }
     return fb;
+  }
+
+  public Attachment selectAttachment(Connection conn, int boardNo) {
+    Attachment att = null;
+    String sql = prop.getProperty("selectAttachment");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          att = new Attachment();
+          att.setFileNo(rs.getInt("FILE_NO"));
+          att.setRefNo(rs.getInt("REF_NO"));
+          att.setOriginName(rs.getString("ORIGIN_NAME"));
+          att.setModifiedName(rs.getString("MODIFIED_NAME"));
+          att.setSavePath(rs.getString("SAVE_PATH"));
+          att.setUploadDate(rs.getDate("UPLOAD_DATE"));
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return att;
   }
 }

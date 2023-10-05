@@ -109,10 +109,27 @@
 				(
 				SEQ_AT_NO.NEXTVAL,
 				10,
-				?,
+				SEQ_FB_BN.CURRVAL,
 				?,
 				?,
 				?
 				)
+	</entry>
+	<entry key="selectAttachment">
+		SELECT
+			FILE_NO,
+			REF_NO,
+			ORIGIN_NAME,
+			MODIFIED_NAME,
+			SAVE_PATH,
+			UPLOAD_DATE
+		FROM
+			ATTACHMENT
+		WHERE
+			CATEGORY_NO = 10
+		AND	
+			REF_NO = ?
+		AND 
+			STATUS = 'Y'
 	</entry>
 </properties>
