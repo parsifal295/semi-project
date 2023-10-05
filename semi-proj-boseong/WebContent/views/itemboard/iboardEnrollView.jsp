@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String alertMsg = (String)request.getAttribute("alertMsg"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +23,7 @@
         중고거래 게시판 작성시 : 중고거래 게시글 번호(NUMBER), 작성하는 회원 번호, 게시글 제목,내용,작성일,수정일,조회수,상태값
         중고거래 (구매 임시) 회원 : 스크랩_YN ,회원 번호, 중고거래 게시글 번호, 스크랩 날짜 
         중고거래 구매자 회원 : 후기게시글 번호, 회원번호, 구매한중고거래 게시글 번호, 후기 내용, 별점-->
+        
         <%@ include file="../common/menubar.jsp" %>
        <form action="<%= contextPath %>/insert.ib" method="post" enctype="multipart/form-data">
            <input type="hidden" name="memberNo" value=""> <!-- 회원이 되면 MemberNo를 value에 hidden으로 받아야함 -->
@@ -43,30 +47,13 @@
                         <tr>
                             <th style="text-align: center;">첨부파일</th>
                             <td colspan="3">
-                                <input type="file" name="upfile" id="itemImg" onclick="imageFile(inputFile);">
+                                <input type="file" name="upfile" id="itemImg" required>
                             </td>
                         </tr>
                     </table>
                     <div align="center"><button type="submit">등록</button><button type="reset">초기화</button></div>
                 </div>
             </div>
-            <script>
-            	function imageFile(inputFile){
-            		
-            		if(inputFile.files.length == 1){ // 파일이 첨부 됐을때 == 1 파일이 첨부 안됐을때 == 0
-            			
-            		console.log(inputFile.files);
-            			
-            		let reader = new FileReader();
-            		
-            		reader.readAsDataURL(inputFile.files[0]);
-            		
-            		reader.onload = $('#itemImg').attr('src', e.target.result);
-            		
-            		console.log(reader.onload);
-            		}
-            	}
-            </script>
         </form>
         <%@ include file="../common/footer.jsp" %>
 </body>
