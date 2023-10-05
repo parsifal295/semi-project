@@ -32,7 +32,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 			<div id="btn" align="right">
             <a class="btn btn-primary" href="<%= contextPath %>/enrollForm.fb">글쓰기</a>
             </div>
-			<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%">
+			<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default">
 				<thead class="thead-light">
 					<tr>
 						<th width="100">번호</th>
@@ -42,7 +42,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 						<th width="100">작성일</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody style="cursor:default">
 					<% if (list.isEmpty()) { %>
 					<tr>
 						<td colspan="5">조회된 게시글이 없습니다..</td>

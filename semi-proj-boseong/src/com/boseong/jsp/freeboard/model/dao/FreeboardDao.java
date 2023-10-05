@@ -117,6 +117,7 @@ public class FreeboardDao {
           fb = new Freeboard();
           fb.setBoardNo(rs.getInt("BOARD_NO"));
           fb.setCategoryNo(rs.getInt("CATEGORY_NO"));
+          fb.setContent(rs.getString("ART_CONTENT"));
           fb.setWriter(rs.getString("ART_WRITER"));
           fb.setIpAddress(rs.getString("IP_ADDRESS"));
           fb.setTitle(rs.getString("ART_TITLE"));

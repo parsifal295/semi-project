@@ -77,13 +77,17 @@
 	</entry>
 	<entry key="selectFreeboard">
 		SELECT
+			BOARD_NO,
 			CATEGORY_NO,
 			ART_WRITER,
 			IP_ADDRESS,
 			ART_TITLE,
+			ART_CONTENT,
 			ART_PASSWORD,
 			COUNT,
 			CREATE_DATE
+		FROM
+			TB_FREEBOARD
 		WHERE
 			BOARD_NO = ?
 		AND
