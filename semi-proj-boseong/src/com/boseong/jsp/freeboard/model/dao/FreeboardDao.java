@@ -98,6 +98,7 @@ public class FreeboardDao {
       ps.setString(2, att.getOriginName());
       ps.setString(3, att.getModifiedName());
       ps.setString(4, att.getSavePath());
+      result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
