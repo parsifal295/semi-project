@@ -38,10 +38,23 @@ public class LoginController extends HttpServlet {
 
     Member loginUser = new MemberService().loginMember(memId, memPwd);
 
-    System.out.println(loginUser);
+    //System.out.println(loginUser);
+    
+    // 로그인 실패
+    if(loginUser == null) {
+		alert("잘못된 아이디 또는 비밀번호입니다.");
+		
+	} else { // 로그인 성공
+		
+		HttpSession session = request.getSession();
+	}
+
+    
+    
+    
   }
 
-  /**
+/**
    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
    */
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
