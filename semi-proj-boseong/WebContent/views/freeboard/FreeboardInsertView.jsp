@@ -9,7 +9,6 @@
 				padding: 2px;
 			}
 		</style>
-		<!--node.js CDN to get IP Address-->
 	</head>
 	<body>
 		<%@ include file = "../common/menubar.jsp" %>

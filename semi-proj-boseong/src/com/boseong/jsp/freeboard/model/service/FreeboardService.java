@@ -33,7 +33,7 @@ public class FreeboardService {
 
   public int insertBoard(Freeboard fb, Attachment att) {
     int result1 = 0;
-    int result2 = 0;
+    int result2 = 1;
     try (Connection conn = getConnection()) {
       // 1. 자유게시판 등록
       result1 = new FreeboardDao().insertBoard(conn, fb);
