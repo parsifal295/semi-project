@@ -3,7 +3,8 @@ request.getContextPath(); %>
 <%@ page import="com.boseong.jsp.member.model.vo.Member" %>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
-	String alertmsg = (String)session.getAttribute("alertMsg");
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -148,6 +149,17 @@ request.getContextPath(); %>
 		
 	</head>
 	<body> 
+	
+		<script>
+			var msg  = '<%= alertMsg %>';
+			
+			if(msg != 'null'){
+				alert(msg);
+			}
+			
+		
+		</script>
+		
 		<div id="menubar">
 				
 			<div id="header">

@@ -45,8 +45,9 @@ public class LoginController extends HttpServlet {
     
     // 로그인 실패
     if(loginUser == null) {
-		//alert("잘못된 아이디 또는 비밀번호입니다.");
-    	System.out.println("test");
+    	
+    	//session.setAttribute("alertMsg", "로그인실패");
+    	//System.out.println("test");
 		
 	} else { // 로그인 성공
 		
