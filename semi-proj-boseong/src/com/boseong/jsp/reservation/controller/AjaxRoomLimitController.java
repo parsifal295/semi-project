@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.boseong.jsp.reservation.model.service.HanokService;
 import com.boseong.jsp.reservation.model.vo.Room;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class AjaxHanokPplNum
@@ -32,6 +33,9 @@ public class AjaxRoomLimitController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
 		Room r  = new HanokService().getRoomLimit(roomNo);
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gsn = new Gson();
+		gsn.toJson(r, response.getWriter());
 	}
 
 	/**
