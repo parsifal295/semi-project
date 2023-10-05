@@ -42,6 +42,10 @@ public class FreeboardServlet extends HttpServlet {
         flag = false;
         view = new FreeboardController().insertFreeboard(request, response);
         break;
+      case "detailView.fb":
+        flag = true;
+        view = new FreeboardController().detailViewFreeboard(request, response);
+        break;
     }
 
     if (flag) {

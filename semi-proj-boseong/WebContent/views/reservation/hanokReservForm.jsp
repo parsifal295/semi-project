@@ -39,29 +39,34 @@
 						<th>객실 타입</th>
 						<th colspan="2">숙박 기간</th>
 						<th>숙박 인원</th>
-						<th>금액</th>
+						<th>기준 금액</th>
+						<th>기준인원 초과 시</th>
 					</tr>
 
-					<tr>
+					<tr id="reserv-info">
 						<td>
-							<select name="roomType" id="">
-								<option value="">룸룸루루룰루룸룸</option>
-								<%for(int i = 0; i<list.size();i++){ %>
-									<option value="<%=(list.get(i)).getRoomNo()%>"><%=(list.get(i)).getRoomType() %></option>
+							<select name="roomType" id="roomType" required>
+									<option value="0">객실 타입 선택</option>
+								<%for(Room r : list){ %>
+									<option value="<%=r.getRoomNo()%>"><%=r.getRoomType() %></option>
 								<%} %>
 							</select>
 						</td>
 						<td>
-							<input type="date" name="fromDate" placeholder="new Date()">
+							<input type="date" name="fromDate">
 						</td>
 						<td>
 							<input type="date" name="toDate">
 						</td>
 						<td>
-							<input type ="number" max=4 min =2 placeholder=2> / 4
+							<input type ="number" max=4 min =2 placeholder=2 name="clientNum" id="clientNum">
+							<span>최대 인원 : </span>
 						</td>
 						<td>
-							오조오억원
+							객실 타입을 선택하세요.
+						</td>
+						<td>
+							객실 타입을 선택하세요.
 						</td>
 					</tr>
 				</table>
@@ -82,18 +87,42 @@
 						</td>
 					</tr>
 				 </table>
-
-
-
-
 			</form>
 		
 		</div>
 	</div>
 
 <%@ include file = "../common/footer.jsp" %>
+<script>
+	$(function(){
+		$('#roomType').change(function(){
+			let roomNo = $(this).val();
+//			let index = $(this).children('option:selected').val();
+//			let maxNum = $('#reserv-info').children().eq(3).children().text();
+			$.ajax({
+				url : 'detail.hk',
+				data : {roomNo : roomNo},
+				success : function(e){
+				$('#clientNum').attr({min :e.baseNum, placeholder:e.baseNum, max : e.maxNum}).val('');
+				$('#reserv-info').children().eq(4).text(e.price+'원');
+				if(e.extraPrice == 0){
+					e.extraPrice = '해당 없음';
+					$('#reserv-info').children().eq(5).text(e.extraPrice);
+				}
+				else{
+					$('#reserv-info').children().eq(5).text(e.extraPrice+'원');
+				}
+				$('#reserv-info span').text('최대인원 : '+e.maxNum);
+				},
+				error : function(e){
+					alert('실패');
+					console.log(e);
+				}
+				})
+			})
+			
+		});
 
-
-
+</script>
 </body>
 </html>

@@ -54,4 +54,29 @@ public class FreeboardService {
     }
     return result1 * result2;
   }
+
+  public int increaseCount(int boardNo) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new FreeboardDao().increaseCount(conn, boardNo);
+      if (result > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public Freeboard selectFreeboard(int boardNo) {
+    Freeboard fb = null;
+    try (Connection conn = getConnection()) {
+      fb = new FreeboardDao().selectFreeboard(conn, boardNo);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return fb;
+  }
 }

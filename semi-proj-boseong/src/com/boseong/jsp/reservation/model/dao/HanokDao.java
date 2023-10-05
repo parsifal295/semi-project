@@ -1,5 +1,7 @@
 package com.boseong.jsp.reservation.model.dao;
 
+import static com.boseong.jsp.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,8 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.boseong.jsp.reservation.model.vo.HanokReservation;
 import com.boseong.jsp.reservation.model.vo.Room;
-import static com.boseong.jsp.common.JDBCTemplate.*;
 
 public class HanokDao {
 	private Properties prop = new Properties();
@@ -34,14 +36,9 @@ public class HanokDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				Room r = new Room(
-						rset.getInt("ROOM_NO"),
-						rset.getString("ROOM_TYPE"),
-						rset.getInt("BASE_NUM"),
-						rset.getInt("MAX_NUM"),
-						rset.getInt("PRICE"),
-						rset.getInt("EXTRA_PRICE")
-						);
+				Room r = new Room();
+				r.setRoomNo(rset.getInt("ROOM_NO"));
+				r.setRoomType(rset.getString("ROOM_TYPE"));
 				list.add(r);
 			}
 		} catch (SQLException e) {
@@ -52,5 +49,45 @@ public class HanokDao {
 		}
 		return list;
 	}
+	
+	public Room getRoomLimit(Connection conn, int roomNo) {
+		Room r = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getRoomLimit");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, roomNo);
+			
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				r = new Room();
+				r.setBaseNum(rset.getInt("BASE_NUM"));
+				r.setMaxNum(rset.getInt("MAX_NUM"));
+				r.setPrice(rset.getInt("PRICE"));
+				r.setExtraPrice(rset.getInt("EXTRA_PRICE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return r;
+	}
+	
+	public void roomInfoList() {
+//		Room r = new Room(
+//				rset.getInt("ROOM_NO"),
+//				rset.getString("ROOM_TYPE"),
+//				rset.getInt("BASE_NUM"),
+//				rset.getInt("MAX_NUM"),
+//				rset.getInt("PRICE"),
+//				rset.getInt("EXTRA_PRICE")
+//				);
+//		list.add(r);
+	}
+	
 	
 }
