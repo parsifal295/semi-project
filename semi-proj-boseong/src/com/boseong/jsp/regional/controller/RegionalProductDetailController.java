@@ -26,10 +26,8 @@ public class RegionalProductDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String food = request.getParameter("food");
-	    request.setAttribute("food", food);
-	    request.getRequestDispatcher("/views/regional/regionalProductDetailView.jsp").forward(request, response);
-	    ;
+		request.getRequestDispatcher("/views/regional/regionalProductFrontView.jsp").forward(request, response);
+	
 	}
 
 	/**
