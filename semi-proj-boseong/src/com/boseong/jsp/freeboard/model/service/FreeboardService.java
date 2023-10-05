@@ -33,7 +33,7 @@ public class FreeboardService {
 
   public int insertBoard(Freeboard fb, Attachment att) {
     int result1 = 0;
-    int result2 = 0;
+    int result2 = 1;
     try (Connection conn = getConnection()) {
       // 1. 자유게시판 등록
       result1 = new FreeboardDao().insertBoard(conn, fb);
@@ -53,5 +53,20 @@ public class FreeboardService {
       e.printStackTrace();
     }
     return result1 * result2;
+  }
+
+  public int increaseCount(int boardNo) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new FreeboardDao().increaseCount(conn, boardNo);
+      if (result > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
   }
 }

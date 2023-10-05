@@ -5,10 +5,12 @@ import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.freeboard.model.service.FreeboardService;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
+import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -76,12 +78,17 @@ public class FreeboardController {
 
       // 1. 자유게시판 내용 => 무조건 업로드 되어야 함.
       Freeboard fb = new Freeboard();
+      String ip = multiRequest.getParameter("ip");
       String writer = multiRequest.getParameter("nickname");
-      String ipAddr = multiRequest.getParameter("response");
-      System.out.println(ipAddr);
       String password = multiRequest.getParameter("password");
       String title = multiRequest.getParameter("title");
       String content = multiRequest.getParameter("content");
+      fb.setWriter(writer);
+      fb.setIpAddress(ip);
+      fb.setPassword(password);
+      fb.setTitle(title);
+      fb.setContent(content);
+      System.out.println(fb.toString());
 
       // 2. 첨부파일 => 선택적임. 업로드 안할수도 있다고 가정.
       Attachment att = null;
@@ -112,5 +119,15 @@ public class FreeboardController {
       }
     }
     return returnMe;
+  }
+
+  public void detailViewFreeboard(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+
+    // 0. 게시글 번호 추출
+    int boardNo = Integer.parseInt(request.getParameter("bno"));
+    FreeboardService fService = new FreeboardService();
+    // 1. 조회수 증가
+    int result = fService.increaseCount(boardNo);
   }
 }
