@@ -94,4 +94,40 @@ public class FreeboardDao {
     int result = 0;
     return result;
   }
+
+  public int increaseCount(Connection conn, int boardNo) {
+    int result = 0;
+    String sql = prop.getProperty("increaseCount");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public Freeboard selectFreeboard(Connection conn, int boardNo) {
+    Freeboard fb = null;
+    String sql = prop.getProperty("selectFreeboard");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          fb = new Freeboard();
+          fb.setBoardNo(rs.getInt("BOARD_NO"));
+          fb.setCategoryNo(rs.getInt("CATEGORY_NO"));
+          fb.setWriter(rs.getString("ART_WRITER"));
+          fb.setIpAddress(rs.getString("IP_ADDRESS"));
+          fb.setTitle(rs.getString("ART_TITLE"));
+          fb.setPassword(rs.getString("ART_PASSWORD"));
+          fb.setCount(rs.getInt("COUNT"));
+          fb.setCreateDate(rs.getDate("CREATE_DATE"));
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return fb;
+  }
 }
