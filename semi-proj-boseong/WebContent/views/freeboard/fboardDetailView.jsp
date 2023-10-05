@@ -106,7 +106,7 @@
               </tr>
               <tr>
                   <td colspan="2">
-                      <button type="submit" class="btn btn-warning btn-block">
+                      <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#myModal">
                           수정
                       </button>
                   </td>
@@ -116,13 +116,38 @@
                     </button>
                 </td>
                 <td colspan="2">
-                  <button type="submit" class="btn btn-primary btn-block">
+                  <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
                       목록으로
-                  </button>
+                  </a>
               </td>
               </tr>
           </tbody>
       </table>
+      <!--fade modal-->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Modal Heading</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              Modal body..
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- end of fade modal -->
     </div>
     <%@ include file = "../common/footer.jsp" %>
 </body>

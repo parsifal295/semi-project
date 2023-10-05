@@ -92,6 +92,15 @@ public class FreeboardDao {
 
   public int insertAttachment(Connection conn, Attachment att) {
     int result = 0;
+    String sql = prop.getProperty("insertAttachment");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, att.getRefNo());
+      ps.setString(2, att.getOriginName());
+      ps.setString(3, att.getModifiedName());
+      ps.setString(4, att.getSavePath());
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return result;
   }
 

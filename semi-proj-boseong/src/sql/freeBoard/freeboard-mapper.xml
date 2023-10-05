@@ -93,4 +93,26 @@
 		AND
 			STATUS = 'Y'
 	</entry>
+	<entry key="insertAttachment">
+		INSERT
+			INTO
+				ATTACHMENT
+				(
+				FILE_NO,
+				CATEGORY_NO,
+				REF_NO,
+				ORIGIN_NAME,
+				MODIFIED_NAME,
+				SAVE_PATH
+				)
+			VALUES
+				(
+				SEQ_AT_NO.NEXTVAL,
+				10,
+				?,
+				?,
+				?,
+				?
+				)
+	</entry>
 </properties>
