@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.boseong.jsp.member.model.service.MemberService;
+import com.boseong.jsp.member.model.vo.Member;
 
 /**
  * Servlet implementation class LoginController
@@ -29,15 +30,17 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("UFT-8");
+		request.setCharacterEncoding("UTF-8");
 		
-		System.out.println(request.getParameter("memId"));
-		System.out.println(request.getParameter("memPwd"));
+		//System.out.println(request.getParameter("memId"));
+		//System.out.println(request.getParameter("memPwd"));
 		
 		String memId = request.getParameter("memId");
 		String memPwd = request.getParameter("memPwd");
 		
-		new MemberService().loginMember(memId, memPwd);
+		Member loginUser = new MemberService().loginMember(memId, memPwd);
+		
+		//System.out.println(loginUser);
 	
 	
 	

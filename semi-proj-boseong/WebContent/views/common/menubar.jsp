@@ -154,7 +154,7 @@ request.getContextPath(); %>
 				<!-- 회원이 아닐때 보여지는 태그 -->
 				
 				<form action="/jsp/login.me" method="post">
-					<div id="login-form"><a href="#" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
+					<div id="login-form"><a href="/login.me" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
 				</form>
 				
 				<!-- 로그인 성공시 보여지는 태그 -->

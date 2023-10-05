@@ -22,7 +22,9 @@
 		   AND
 		       MEM_PWD = ?
 		   AND 
-		       STATUS = 'Y'
+		       STATUS = 'A'
+		    OR 
+		       STATUS = 'U'
 		    
 				
 	
