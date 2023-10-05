@@ -15,7 +15,7 @@ import com.boseong.jsp.itemboard.model.vo.ItemBoard;
 /**
  * Servlet implementation class ItemBoardEnrollFormController
  */
-@WebServlet("/iboard.ib")
+@WebServlet("/enrollform.ib")
 public class ItemBoardEnrollFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

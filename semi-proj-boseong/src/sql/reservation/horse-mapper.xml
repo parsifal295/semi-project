@@ -24,4 +24,24 @@
 	SELECT HORSE_TIME FROM HORSE_RESERVATION WHERE HORSE_DATE = ?
 </entry>
 
+<entry key="selectRides">
+	SELECT
+			RESERVATION_NO,
+			HORSE_PRO_NAME,
+			TO_CHAR(HORSE_DATE) "HORSE_DATE",
+			HORSE_TIME,
+			RIDER_NUM
+		FROM 
+			HORSE_RESERVATION 
+		JOIN 
+			HORSE_PROGRAM USING(HORSE_PRO_NO)
+		WHERE 
+			STATUS = 'Y'
+		AND 
+			MEM_NO = ?
+		ORDER 
+		   BY 
+		    HORSE_DATE
+</entry>
+
 </properties>

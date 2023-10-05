@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title>보성마켓</title>
 <style>
-	.table{
+	#table{
 		text-align : center;
 		margin-bottom : 0;	
 		padding : 0;
 	}
-	#notice-table{
+	.notice-table{
 		background-color : rgb(207, 207, 207);
 	}
 </style>
@@ -24,7 +24,7 @@
 	<div style="height : 300px; text-align: center;"></div>
 		<div class="page">
 			<a type="submit" href="<%= contextPath %>/enrollform.ib">글작성</a>
-			<table class="table" id="notice-table">
+			<table id="table" class="notice-table">
 			<thead class="thead-light">
 		         <tr>
 		        <th width="10%">No.</th>

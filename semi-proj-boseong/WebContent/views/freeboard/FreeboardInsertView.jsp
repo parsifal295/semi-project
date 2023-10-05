@@ -5,16 +5,18 @@
 		<meta charset="UTF-8" />
 		<title>자유게시판 작성하기</title>
 		<style>
-		  td {
-		      padding : 2px;
-		  }
+			td {
+				padding: 2px;
+			}
 		</style>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	</head>
 	<body>
 		<%@ include file = "../common/menubar.jsp" %>
 		<div class="outer" id="content">
 			<div style="height: 250px"></div>
 			<form enctype="multipart/form-data" action="<%=contextPath%>/insert.fb" method="post">
+				<input type="hidden" name="ipAddr" value="" />
 				<table class="table table-borderless table-sm" align="center" style="width: 50%">
 					<thead>
 						<tr>
@@ -23,6 +25,7 @@
 							<th width="100"></th>
 							<th width="100"></th>
 							<th width="100"></th>
+							s
 							<th width="100"></th>
 						</tr>
 					</thead>
@@ -55,16 +58,16 @@
 								</div>
 							</td>
 						</tr>
-						 <tr>
-                            <td colspan ="6">
-                                   <div class="input-group">
-                                        <div class="input-group-prepend">
-                                         <span class="input-group-text">제목</span>
-                                         </div>
-                                        <input type="text" class="form-control" name="title">
-                                    </div>
-                            </td>
-                           </tr>
+						<tr>
+							<td colspan="6">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">제목</span>
+									</div>
+									<input type="text" class="form-control" name="title" />
+								</div>
+							</td>
+						</tr>
 						<tr>
 							<td colspan="6">
 								<div class="form-group">
@@ -76,7 +79,7 @@
 						<tr>
 							<td colspan="6">
 								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="customFile" />
+									<input type="file" class="custom-file-input" id="customFile" name="upfile" />
 									<label class="custom-file-label" for="customFile">파일 첨부</label>
 								</div>
 							</td>
@@ -98,6 +101,9 @@
 					var fileName = $(this).val().split("\\").pop();
 					$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 				});
+			});
+			$.getJSON("http://jsonip.appspot.com/?callback=?", function (data) {
+				alert(data.ip);
 			});
 		</script>
 	</body>

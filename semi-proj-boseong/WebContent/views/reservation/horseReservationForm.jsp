@@ -98,7 +98,7 @@
 				</pre>
 			</div>
 			<div id="confirm" align="center">
-				<input type="checkbox">주의사항을 읽었고 확인하였습니다. <br>
+				<input type="checkbox" required>주의사항을 읽었고 확인하였습니다. <br>
 				<button type="submit">예약하기</button>
 			</div>
 		</form>

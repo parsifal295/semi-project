@@ -77,4 +77,37 @@ public class HorseDao {
 		}		
 		return list;
 	}
+	public ArrayList<HorseReservation> selectRides(Connection conn, int memNo){
+		ArrayList<HorseReservation> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectRides");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				HorseReservation hrsv = new HorseReservation();
+				hrsv.setReservNo(rset.getInt("RESERVATION_NO"));
+				hrsv.setMemNo(memNo);
+				hrsv.setProgramNo(rset.getString("HORSE_PRO_NAME"));
+				hrsv.setHorseDate(rset.getString("HORSE_DATE"));
+				hrsv.setHorseTime(rset.getInt("HORSE_TIME"));
+				hrsv.setRiderNum(rset.getInt("RIDER_NUM"));
+				
+				list.add(hrsv);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return list;
+	}
 }

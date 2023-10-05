@@ -1,28 +1,23 @@
-package com.boseong.jsp.reservation.controller;
+package com.boseong.jsp.itemboard.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.HanokService;
-import com.boseong.jsp.reservation.model.vo.Room;
-
 /**
- * Servlet implementation class HanokReservHomeController
+ * Servlet implementation class ItemBoardListController
  */
-@WebServlet("/hanok.rsv")
-public class HanokReservHomeController extends HttpServlet {
+@WebServlet("/iboard.ib")
+public class ItemBoardListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HanokReservHomeController() {
+    public ItemBoardListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +26,7 @@ public class HanokReservHomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/reservation/hanokFrontView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/itemboard/iboardListView.jsp").forward(request, response);
 	}
 
 	/**

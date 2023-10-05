@@ -35,5 +35,11 @@ public class HorseService {
 		
 		return list;
 	}
+	public ArrayList<HorseReservation> selectRides(int memNo){
+		Connection conn = getConnection();
+		ArrayList<HorseReservation> list = new HorseDao().selectRides(conn, memNo);
+		close(conn);
+		return list;
+	}
 
 }

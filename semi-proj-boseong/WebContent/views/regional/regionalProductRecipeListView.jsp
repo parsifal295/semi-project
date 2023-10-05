@@ -112,9 +112,9 @@
     }
 
     #jam{
-            padding: 400px 60px 5px 50px;
+            padding: 300px 60px 5px 50px;
             text-align: left;
-            height: 500px;
+            height: 400px;
             width: 300px;
             
         }
@@ -122,7 +122,7 @@
     #cookie{
             padding: 300px 60px 5px 50px;
             text-align: left;
-            height: 500px;
+            height: 400px;
             width: 300px;
             
         }
@@ -130,7 +130,7 @@
     #soup{
             padding: 300px 60px 5px 50px;
             text-align: left;
-            height: 500px;
+            height: 400px;
             width: 300px;
             
         }
@@ -140,6 +140,21 @@
     #box {
 	height: 200px;
     
+    }
+    
+    #pic1{
+            padding: 20px 0.1px;
+            text-align: center;
+    }
+
+    #pic2{
+            
+            text-align: center;
+            width: 410px;
+    }
+
+    #pic3{
+            width: 210px;
     }
 
 </style>
@@ -205,12 +220,16 @@
 
             <td rowspan="10" width="100px" align="center"></td>
                 <img src="https://recipe1.ezmember.co.kr/cache/recipe/2016/06/05/dbaea0e7d63620706871aaaef7f18b2c1.jpg" id="jam">
+                <th id="pic1">녹차 스프레드</th>
             <td rowspan="10" width="100px" align="center"></td>        
                 <img src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/01/14075610194c7d61815497474494ff4b1.jpg" id="cookie">
+                <th id="pic2">녹차 쿠키</th>
             <td rowspan="10" width="100px" align="center"></td>    
                 <img src="https://recipe1.ezmember.co.kr/cache/recipe/2020/11/03/a98c68c45690fab5d25fa4366eec52dc1.jpg" id="soup">
-            
+                <th id="pic3">녹차 수제비</th>
+
             </table>
+            
         </div>
     </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
