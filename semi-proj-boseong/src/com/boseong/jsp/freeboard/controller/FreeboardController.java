@@ -120,4 +120,14 @@ public class FreeboardController {
     }
     return returnMe;
   }
+
+  public void detailViewFreeboard(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+
+    // 0. 게시글 번호 추출
+    int boardNo = Integer.parseInt(request.getParameter("bno"));
+    FreeboardService fService = new FreeboardService();
+    // 1. 조회수 증가
+    int result = fService.increaseCount(boardNo);
+  }
 }
