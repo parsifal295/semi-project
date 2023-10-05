@@ -1,5 +1,6 @@
 package com.boseong.jsp.freeboard.model.dao;
 
+import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import java.io.FileInputStream;
@@ -77,14 +78,57 @@ public class FreeboardDao {
     int result = 0;
     String sql = prop.getProperty("insertBoard");
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setString(1, fb.getWriter());
+      ps.setString(2, fb.getIpAddress());
+      ps.setString(3, fb.getTitle());
+      ps.setString(4, fb.getPassword());
+      ps.setString(5, fb.getContent());
+      result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return result;
   }
 
-  public int insertAttachment(Connection conn, Freeboard fb) {
+  public int insertAttachment(Connection conn, Attachment att) {
     int result = 0;
     return result;
+  }
+
+  public int increaseCount(Connection conn, int boardNo) {
+    int result = 0;
+    String sql = prop.getProperty("increaseCount");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public Freeboard selectFreeboard(Connection conn, int boardNo) {
+    Freeboard fb = null;
+    String sql = prop.getProperty("selectFreeboard");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          fb = new Freeboard();
+          fb.setBoardNo(rs.getInt("BOARD_NO"));
+          fb.setCategoryNo(rs.getInt("CATEGORY_NO"));
+          fb.setContent(rs.getString("ART_CONTENT"));
+          fb.setWriter(rs.getString("ART_WRITER"));
+          fb.setIpAddress(rs.getString("IP_ADDRESS"));
+          fb.setTitle(rs.getString("ART_TITLE"));
+          fb.setPassword(rs.getString("ART_PASSWORD"));
+          fb.setCount(rs.getInt("COUNT"));
+          fb.setCreateDate(rs.getDate("CREATE_DATE"));
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return fb;
   }
 }

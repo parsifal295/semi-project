@@ -12,9 +12,9 @@ request.getContextPath(); %>
 			rel="stylesheet"
 		/>
 		<!--Bootstrap 4-->
-
   		<link rel="stylesheet" href="/resources/demos/style.css">
 		
+
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -22,10 +22,6 @@ request.getContextPath(); %>
 		
   		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-		<style>
-		
-
-		
 		<style>
 			.font-family {
 			}
@@ -141,7 +137,7 @@ request.getContextPath(); %>
 				background-size: 100%;
 			}
 			#box{
-			height:200px;
+			height:300px;
 			}
 		</style>
 		
@@ -158,7 +154,7 @@ request.getContextPath(); %>
 				<!-- 회원이 아닐때 보여지는 태그 -->
 				
 				<form action="/jsp/login.me" method="post">
-					<div id="login-form"><a href="#" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
+					<div id="login-form"><a href="/login.me" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
 				</form>
 				
 				<!-- 로그인 성공시 보여지는 태그 -->

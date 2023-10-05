@@ -12,18 +12,17 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<style></style>
 		<title>자유게시판</title>
 		<style>
-		  .outer {
-		      width : 1000px;
-		      margin: auto;
-		      margin-top : 5px
-		      }
-	      #btn {
-	          margin-right: 145px;
-	          margin-bottom: 5px
-	      }
+    .outer {
+      width : 1000px;
+      margin: auto;
+      margin-top : 5px
+    }
+    #btn {
+      margin-right: 145px;
+      margin-bottom: 5px
+    }
 		</style>
 	</head>
 	<body>
@@ -31,9 +30,9 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 		<div class="outer" id="content">
 			<div style="height:200px"></div>
 			<div id="btn" align="right">
-              <a class="btn btn-primary" href="<%= contextPath %>/enrollForm.fb">글쓰기</a>
+            <a class="btn btn-primary" href="<%= contextPath %>/enrollForm.fb">글쓰기</a>
             </div>
-			<table class="table table-sm table-hover" align="center" style="width: 78%">
+			<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default">
 				<thead class="thead-light">
 					<tr>
 						<th width="100">번호</th>
@@ -43,7 +42,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 						<th width="100">작성일</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody style="cursor:default">
 					<% if (list.isEmpty()) { %>
 					<tr>
 						<td colspan="5">조회된 게시글이 없습니다..</td>
@@ -87,5 +86,12 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 
 		</div>
 		<%@ include file = "../common/footer.jsp" %>
+    <script>
+      $(()=>{
+        $("#tb > tbody > tr").click(function(){
+          location.href = "<%=contextPath%>/detailView.fb?bno=" + $(this).children().eq(0).text();
+        })
+      })
+    </script>
 	</body>
 </html>

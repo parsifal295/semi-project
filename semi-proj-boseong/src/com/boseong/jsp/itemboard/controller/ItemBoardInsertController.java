@@ -74,16 +74,22 @@ public class ItemBoardInsertController extends HttpServlet {
 				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
 				at.setSavePath("resources/board_upfiles");
 				at.setModifiedName(multiRequest.getFilesystemName("upfile"));
-				
-				}
+			} else {
+				// request.setAttribute("alertMsg", "해당 거래 상품 이미지를 첨부 해주세요.");
+			}
+			
 			int result = new ItemBoardService().insertBoard(ib, at);
 			
 			if(result > 0) {
-				request.setAttribute("alertMsg", "게시글 등록에 성공하였습니다!");
-				response.sendRedirect(request.getContextPath() + "/iboard.ib?cpage=1");
-			}
+				request.getSession().setAttribute("alertMsg", "게시글 등록을 성공하였습니다!");
+				response.sendRedirect(request.getContextPath() + "/detail.ib?"); // 완성되면 다시 경로 지정
+			}else {
+				request.setAttribute("alertMsg", "게시물 등록에 실패하였습니다.");
+				request.getRequestDispatcher("views/itemboard/iboardListView.jsp").forward(request, response);
+				
 			}
 		}
+	}
 		
 	
 
