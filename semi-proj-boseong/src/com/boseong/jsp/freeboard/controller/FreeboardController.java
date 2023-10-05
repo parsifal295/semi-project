@@ -121,7 +121,7 @@ public class FreeboardController {
     return returnMe;
   }
 
-  public void detailViewFreeboard(HttpServletRequest request, HttpServletResponse response)
+  public String detailViewFreeboard(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
 
     // 0. 게시글 번호 추출
@@ -129,5 +129,13 @@ public class FreeboardController {
     FreeboardService fService = new FreeboardService();
     // 1. 조회수 증가
     int result = fService.increaseCount(boardNo);
+
+    // 2. 조회수 증가 후
+    if (result > 0) {
+      // Freeboard 테이블 조회
+      Freeboard fb = fService.selectFreeboard(boardNo);
+      request.setAttribute("fb", fb);
+      request.getRequestDispatcher("views/freeboard/fboardDetailView.jsp");
+    }
   }
 }

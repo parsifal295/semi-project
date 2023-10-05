@@ -18,4 +18,10 @@ public class HanokService {
 		close(conn);
 		return list;
 	}
+	public Room getRoomLimit(int roomNo) {
+		Connection conn = getConnection();
+		Room r = new HanokDao().getRoomLimit(conn, roomNo);
+		close(conn);
+		return r;
+	}
 }

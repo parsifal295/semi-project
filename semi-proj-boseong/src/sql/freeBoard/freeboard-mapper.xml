@@ -65,4 +65,28 @@
 				?
 				)
 	</entry>
+	<entry key="increaseCount">
+		UPDATE
+			TB_FREEBOARD
+		SET
+			COUNT = COUNT + 1
+		WHERE
+			BOARD_NO = ?
+		AND
+			STATUS = 'Y'
+	</entry>
+	<entry key="selectFreeboard">
+		SELECT
+			CATEGORY_NO,
+			ART_WRITER,
+			IP_ADDRESS,
+			ART_TITLE,
+			ART_PASSWORD,
+			COUNT,
+			CREATE_DATE
+		WHERE
+			BOARD_NO = ?
+		AND
+			STATUS = 'Y'
+	</entry>
 </properties>
