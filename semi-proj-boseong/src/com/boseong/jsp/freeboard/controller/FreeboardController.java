@@ -77,7 +77,7 @@ public class FreeboardController {
       // 1. 자유게시판 내용 => 무조건 업로드 되어야 함.
       Freeboard fb = new Freeboard();
       String writer = multiRequest.getParameter("nickname");
-      String ipAddr = multiRequest.getParameter("ipAddr");
+      String ipAddr = multiRequest.getParameter("response");
       System.out.println(ipAddr);
       String password = multiRequest.getParameter("password");
       String title = multiRequest.getParameter("title");

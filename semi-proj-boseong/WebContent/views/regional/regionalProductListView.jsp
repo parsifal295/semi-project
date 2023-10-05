@@ -143,13 +143,15 @@
     }
     
 	 #notice{
-            padding: 240px 100px 200px 600px;
+			
             font-size: xx-large;
+            height: 100px;
     }
 
-    #riview{
-            padding: 55px 10px 10px 10px;
+    #review{
+            
             font-size: xx-large;
+            height: 100px;
             
     }
 
@@ -220,10 +222,12 @@
                 <img src="https://boseongmall.co.kr/web/product/big/202206/aee1f475b681d59881dbc1546f92b33d.jpg" id="tea2">
             <td rowspan="10" width="100px" align="center"></td>    
                 <img src="https://boseongmall.co.kr/web/product/big/202212/4c77008f9b37dbe43ad6e5fbfe69552c.jpg" id="soap">
-			<th id="notice">공지사항</th> 
-            
-            <th id="riview">구매리뷰</th>  
+			<form>
+            	<input type="button" id="review" value="구매리뷰" style="float:right;">
+            	<input type="button" id="notice" value="공지사항" style="float:right;">
+            </form>  
             </table>
+            
            
         </div>
     </div>
