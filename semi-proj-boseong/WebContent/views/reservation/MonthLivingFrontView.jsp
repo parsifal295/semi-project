@@ -155,6 +155,7 @@
 	
 	<div class="outer">
 		<div class="content1">
+		<!--  
 			<div class="content1_1">
 			<h5>날짜<br></h5>
 			
@@ -171,7 +172,7 @@
 			
 			
 			</div>
-		
+		-->
 		
 		</div>
 		

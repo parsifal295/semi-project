@@ -5,6 +5,26 @@
 <head>
 <meta charset="UTF-8">
 <title>녹차밭 예약페이지</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>한달살기 메인페이지</title>
+  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script>
+	  $( function() {
+	    $("#datepicker").datepicker();
+	  } );
+  </script>
+
+
+
+
+
+
 <style>
 	
 	.outer{
@@ -84,8 +104,11 @@
 		
 		<div class="content2">
 			<h2>내 예약 정보</h2>
-			예약일 : 
+			예약 날짜:
+            
+            </select>
 			<br><br>
+			
 			예약 회차: 
         <select name="select-time"> 
             <option>오전(9시~12시)</option>
@@ -127,7 +150,7 @@
 	<br><br><br>
 	
 	<div class="content4">
-	<h2>체험 이용 규칙 검토</h2>
+	<h2>녹차밭 체험 규칙 검토</h2>
 	<hr>
 		체험시 반려동물 입장은 불가합니다.
 		체험시 체험지도사의 지시에 따라주시기 바랍니다.

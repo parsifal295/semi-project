@@ -9,7 +9,7 @@
 	.allouter{
 	
 	width:1500px;
-	height : 2500px;
+	height : 2000px;
 	align : center;
 	
 	margin : auto;
@@ -93,7 +93,7 @@
 		</div>
 	
 		<div class="calender">
-		<h2>달력</h2>
+		<!-- <h2>달력</h2> -->
 		<hr>
 		
 		</div>
