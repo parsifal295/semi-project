@@ -149,26 +149,27 @@ request.getContextPath(); %>
 	</head>
 	<body> 
 		<div id="menubar">
-		
-			<!-- 회원일때 보여지는 마이페이지 이동 버튼 -->
-			<div id="userBox">
-				<p style="font-size: 13px">회원 정보</p>
-			</div>
-			<div id="header">
-			
-				<!-- 회원이 아닐때 보여지는 태그 -->
 				
-				<form action="/jsp/login.me" method="post">
-					<div id="login-form"><a href="/login.me" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
-				</form>
+			<div id="header">
+				<!-- 회원이 아닐때 보여지는 태그 -->
+				<% if(loginUser == null) { %>
+					<form action="/jsp/login.me" method="post">
+						<div id="login-form"><a href="/login.me" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
+					</form>
+				<% } else { %>
 				
 				<!-- 로그인 성공시 보여지는 태그 -->
 				
-				<div id="user-info">
-					<div>
-						<a href="#">로그아웃</a>
+					<div id="user-info">
+						<div>
+							<a href="#">로그아웃</a>
+						</div>
 					</div>
-				</div>
+					
+					<div id="userBox">
+					<p style="font-size: 13px">회원 정보</p>
+					</div>
+				<% } %>
 
 				<!-- navigator영역 start -->
 				<ul id="navi">
