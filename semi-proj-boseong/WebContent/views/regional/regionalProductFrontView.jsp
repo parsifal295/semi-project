@@ -59,6 +59,19 @@
         line-height: 10px;
 
     }
+  
+#buy{
+			
+            font-size: xx-large;
+            height: 100px;
+    }
+
+#cart{
+            
+            font-size: xx-large;
+            height: 100px;
+            
+    }    
 
 </style>
 </head>
@@ -76,6 +89,10 @@
                 <tr><td id="option4">배송방법</td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td><td><td></td></td></td></td></td><td>배송</td></tr>
                 <tr><td id="option5">배송비</td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td><td><td></td></td></td></td></td><td>무료</td></tr>
 		</table>
+		<form>
+            	<input type="button" id="cart" value="장바구니" style="float:right;">
+            	<input type="button" id="buy" value="바로구매" style="float:right;">
+           </form>
 		
 		</div>
 	</div>
