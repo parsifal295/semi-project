@@ -16,9 +16,10 @@
 <meta charset="UTF-8">
 <title>보성마켓</title>
 <style>
-	#table{
-		width : 100%;
+	#table-style{
+		width : 78%;
 		text-align : center;
+		margin : auto;
 		margin-bottom : 0;	
 		padding : 0;
 	}
@@ -34,7 +35,7 @@
 	<div style="height : 300px; text-align: center;"></div>
 		<div class="page">
 		<a type="submit" href="<%= contextPath %>/enrollform.ib">글작성</a>
-		<table id="table" class="notice-table">
+		<table id="table-style" class="notice-table">
 		<thead class="thead-light">
 	      <tr>
 	        <th width="10%">No.</th>
@@ -52,7 +53,7 @@
 	        <td> - </td>
 	      </tr>
 		</table>
-		<table class="table" id="iboard-area" style="text-align : center;">
+		<table class="table" id="table-style" style="text-align : center;">
 	    <thead class="thead-light">
 	      <tr>
 	        <th width="10%">No.</th>

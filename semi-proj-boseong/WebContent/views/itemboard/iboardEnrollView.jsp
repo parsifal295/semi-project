@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>중고거래</title>
 <style>
-    #pageStyle{
+    .table-style{
         width: 100%;
     }
 </style>
@@ -27,19 +27,19 @@
             <div class="page" id="content">
                 <div style="height : 300px; text-align: center;"></div>
                 <div class="page" style="height : 700px;">
-                    <table align="center" id="pageStyle">
-                        <tr><h1 style="text-align:center;">중고거래 게시글 작성</h1></tr>
+                    <table align="center" class="table-style">
+                        <tr><h1 style="text-align:center; ">중고거래 게시글 작성</h1></tr>
                         <tr>
                             <th style="text-align: center;">제목</th>
-                            <td><input type="text" name="title" style="width:50%;" required></td>
+                            <td><input type="text" name="title" style="width:50%;" placeholder="제목을 입력해주세요" required></td>
                         </tr>
                         <tr>
                             <th style="text-align: center;">희망가격</th>
-                            <td><input type="text" style="width:50%;" name="price"></td>
+                            <td><input type="text" style="width:50%;" name="price" placeholder="희망 가격을 (숫자로만)입력해주세요" required></td>
                         </tr>
                         <tr>
                             <th style="text-align: center;">내용</th>
-                            <td><textarea name="content" style="resize: none; width : 100%; height: 500px;" cols="30" rows="10" required></textarea></td>
+                            <td><textarea name="content" style="resize: none; width : 100%; height: 500px;" cols="30" rows="10" placeholder="거래 내용을 입력해주세요" required></textarea></td>
                         </tr>
                         <tr>
                             <th style="text-align: center;">첨부파일</th>
