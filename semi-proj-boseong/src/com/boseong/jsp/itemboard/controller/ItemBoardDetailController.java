@@ -1,6 +1,7 @@
-package com.boseong.jsp.reservation.controller;
+package com.boseong.jsp.itemboard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.HanokService;
-import com.boseong.jsp.reservation.model.vo.Room;
-import com.google.gson.Gson;
+import com.boseong.jsp.itemboard.model.service.ItemBoardService;
+import com.boseong.jsp.itemboard.model.vo.ItemBoard;
 
 /**
- * Servlet implementation class AjaxHanokPplNum
+ * Servlet implementation class ItemBoardDetailController
  */
-@WebServlet("/detail.hk")
-public class AjaxRoomLimitController extends HttpServlet {
+@WebServlet("/detail.ib")
+public class ItemBoardDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxRoomLimitController() {
+    public ItemBoardDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,11 +31,13 @@ public class AjaxRoomLimitController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
-		Room r  = new HanokService().getRoomLimit(roomNo);
-		response.setContentType("application/json; charset=UTF-8");
-		Gson gsn = new Gson();
-		gsn.toJson(r, response.getWriter());
+		
+		// 해당 게시글 번호 값 뽑기
+		int boardNo = Integer.parseInt(request.getParameter("bno"));
+		
+		
+		// 요청처리후 detailView로 응답화면 지정
+		request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp").forward(request, response);
 	}
 
 	/**

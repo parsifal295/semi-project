@@ -39,7 +39,8 @@
 						<th>객실 타입</th>
 						<th colspan="2">숙박 기간</th>
 						<th>숙박 인원</th>
-						<th>금액</th>
+						<th>기준 금액</th>
+						<th>기준인원 초과 시</th>
 					</tr>
 
 					<tr id="reserv-info">
@@ -62,7 +63,10 @@
 							<span>최대 인원 : </span>
 						</td>
 						<td>
-							오조오억원
+							객실 타입을 선택하세요.
+						</td>
+						<td>
+							객실 타입을 선택하세요.
 						</td>
 					</tr>
 				</table>
@@ -83,10 +87,6 @@
 						</td>
 					</tr>
 				 </table>
-
-
-
-
 			</form>
 		
 		</div>
@@ -103,14 +103,26 @@
 				url : 'detail.hk',
 				data : {roomNo : roomNo},
 				success : function(e){
-					alert('성공');
+				$('#clientNum').attr({min :e.baseNum, placeholder:e.baseNum, max : e.maxNum}).val('');
+				$('#reserv-info').children().eq(4).text(e.price+'원');
+				if(e.extraPrice == 0){
+					e.extraPrice = '해당 없음';
+					$('#reserv-info').children().eq(5).text(e.extraPrice);
+				}
+				else{
+					$('#reserv-info').children().eq(5).text(e.extraPrice+'원');
+				}
+				$('#reserv-info span').text('최대인원 : '+e.maxNum);
+				},
+				error : function(e){
+					alert('실패');
 					console.log(e);
 				}
+				})
 			})
-			})
-			$('#clientNum').attr({min :1, placeholder:1, max : 4}).val('');
+			
 		});
-	})
+
 </script>
 </body>
 </html>

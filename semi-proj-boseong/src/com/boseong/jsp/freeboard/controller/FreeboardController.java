@@ -134,8 +134,9 @@ public class FreeboardController {
     if (result > 0) {
       // Freeboard 테이블 조회
       Freeboard fb = fService.selectFreeboard(boardNo);
+      System.out.println(fb);
       request.setAttribute("fb", fb);
-      request.getRequestDispatcher("views/freeboard/fboardDetailView.jsp");
     }
+    return "views/freeboard/fboardDetailView.jsp";
   }
 }

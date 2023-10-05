@@ -13,6 +13,7 @@ public class ItemBoard {
 	private int count;         // COUNT
 	private String status;     // STATUS
 	private int price;
+	private String memberName;
 	
 	
 	
@@ -25,7 +26,7 @@ public class ItemBoard {
 	
 
 	public ItemBoard(int boardNo, int memberNo, String title, String content, Date postDate, Date modifyDate, int count,
-			String status, int price) {
+			String status, int price, String memberName) {
 		super();
 		this.boardNo = boardNo;
 		this.memberNo = memberNo;
@@ -36,9 +37,15 @@ public class ItemBoard {
 		this.count = count;
 		this.status = status;
 		this.price = price;
+		this.memberName = memberName;
 	}
 
-	
+	public String memberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
 	
 
 	public int getBoardNo() {
@@ -135,7 +142,7 @@ public class ItemBoard {
 	public String toString() {
 		return "ItemBoard [boardNo=" + boardNo + ", memberNo=" + memberNo + ", title=" + title + ", content=" + content
 				+ ", postDate=" + postDate + ", modifyDate=" + modifyDate + ", count=" + count + ", status=" + status
-				+ "price="+ price +"]";
+				+ "price="+ price + "memberName="+memberName+"]";
 	}
 	
 	
