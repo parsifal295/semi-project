@@ -16,7 +16,7 @@
 		<div class="outer" id="content">
 			<div style="height: 250px"></div>
 			<form enctype="multipart/form-data" action="<%=contextPath%>/insert.fb" method="post">
-				<input type="hidden" name="ipAddr" value="" />
+        <input type="hidden" name="ip" id="ipvalue" value=""></input>
 				<table class="table table-borderless table-sm" align="center" style="width: 50%">
 					<thead>
 						<tr>
@@ -111,7 +111,6 @@
 						</tr>
 					</tbody>
 				</table>
-        <button type="hidden" name="ip" id="ipvalue"></button>
 			</form>
 		</div>
 		<%@ include file = "../common/footer.jsp" %>
@@ -131,8 +130,8 @@
         var temp = JSON.parse(obj, null, 2);
 				console.log(obj);
         var ip = temp.ip;
-        $("#ipaddr").val(ip);
         $("#ipvalue").val(ip);
+        $("#ipaddr").val(ip);
 			});
 		</script>
 	</body>

@@ -21,7 +21,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 public class FreeboardController {
-  private static String ip;
 
   public String requestFreeboard(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -60,15 +59,6 @@ public class FreeboardController {
     return "/views/freeboard/FreeboardInsertView.jsp";
   }
 
-  public void getIpAddress(HttpServletRequest request, HttpServletResponse response)
-      throws IOException, ServletException {
-    // 0. IP 주소 얻기
-    String ipAddr = request.getParameter("obj");
-    Gson gson = new Gson();
-    Map<String, String> map = gson.fromJson(ipAddr, Map.class);
-    ip = map.get("ip");
-  }
-
   public String insertFreeboard(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
     String returnMe = "";
@@ -88,6 +78,7 @@ public class FreeboardController {
 
       // 1. 자유게시판 내용 => 무조건 업로드 되어야 함.
       Freeboard fb = new Freeboard();
+      String ip = multiRequest.getParameter("ip");
       String writer = multiRequest.getParameter("nickname");
       String password = multiRequest.getParameter("password");
       String title = multiRequest.getParameter("title");
