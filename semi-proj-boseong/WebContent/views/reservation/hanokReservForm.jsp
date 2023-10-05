@@ -42,23 +42,24 @@
 						<th>금액</th>
 					</tr>
 
-					<tr>
+					<tr id="reserv-info">
 						<td>
-							<select name="roomType" id="">
-								<option value="">룸룸루루룰루룸룸</option>
-								<%for(int i = 0; i<list.size();i++){ %>
-									<option value="<%=(list.get(i)).getRoomNo()%>"><%=(list.get(i)).getRoomType() %></option>
+							<select name="roomType" id="roomType" required>
+									<option value="0">객실 타입 선택</option>
+								<%for(Room r : list){ %>
+									<option value="<%=r.getRoomNo()%>"><%=r.getRoomType() %></option>
 								<%} %>
 							</select>
 						</td>
 						<td>
-							<input type="date" name="fromDate" placeholder="new Date()">
+							<input type="date" name="fromDate">
 						</td>
 						<td>
 							<input type="date" name="toDate">
 						</td>
 						<td>
-							<input type ="number" max=4 min =2 placeholder=2> / 4
+							<input type ="number" max=4 min =2 placeholder=2 name="clientNum" id="clientNum">
+							<span>최대 인원 : </span>
 						</td>
 						<td>
 							오조오억원
@@ -92,8 +93,24 @@
 	</div>
 
 <%@ include file = "../common/footer.jsp" %>
-
-
-
+<script>
+	$(function(){
+		$('#roomType').change(function(){
+			let roomNo = $(this).val();
+//			let index = $(this).children('option:selected').val();
+//			let maxNum = $('#reserv-info').children().eq(3).children().text();
+			$.ajax({
+				url : 'detail.hk',
+				data : {roomNo : roomNo},
+				success : function(e){
+					alert('성공');
+					console.log(e);
+				}
+			})
+			})
+			$('#clientNum').attr({min :1, placeholder:1, max : 4}).val('');
+		});
+	})
+</script>
 </body>
 </html>
