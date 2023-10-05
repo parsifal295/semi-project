@@ -15,6 +15,7 @@ public class Member {
 	private String status;	//STATUS	CHAR(1 BYTE)
 	
 	public Member() {
+		super();
 	}
 
 	public Member(int memNo, String memId, String memPwd, String memName, String email, String phone, String area,
@@ -115,3 +116,5 @@ public class Member {
 	
 	
 }
+
+

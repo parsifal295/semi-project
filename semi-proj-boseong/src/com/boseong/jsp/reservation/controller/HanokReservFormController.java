@@ -13,16 +13,16 @@ import com.boseong.jsp.reservation.model.service.HanokService;
 import com.boseong.jsp.reservation.model.vo.Room;
 
 /**
- * Servlet implementation class HanokReservHomeController
+ * Servlet implementation class HanokReservFormController
  */
-@WebServlet("/hanok.rsv")
-public class HanokReservHomeController extends HttpServlet {
+@WebServlet("/hanokForm.rsv")
+public class HanokReservFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HanokReservHomeController() {
+    public HanokReservFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,10 @@ public class HanokReservHomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/reservation/hanokFrontView.jsp").forward(request, response);
+		ArrayList<Room> list = new HanokService().selectRoomList();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/views/reservation/hanokReservForm.jsp").forward(request, response);
+		
 	}
 
 	/**

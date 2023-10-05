@@ -79,6 +79,11 @@ public class FreeboardDao {
     String sql = prop.getProperty("insertBoard");
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
       ps.setString(1, fb.getWriter());
+      ps.setString(2, fb.getIpAddress());
+      ps.setString(3, fb.getTitle());
+      ps.setString(4, fb.getPassword());
+      ps.setString(5, fb.getContent());
+      result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }

@@ -103,11 +103,52 @@
         }
     }
     $(function(){
-    	$('#main-pic').css('background', 'url="<%=contextPath%>
-		/resources/image/reservation/horsewide.jpg"')
-		})
+    	$('#main-pic')
+    	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"')
+		.click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
+    })
 	</script>
 
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
