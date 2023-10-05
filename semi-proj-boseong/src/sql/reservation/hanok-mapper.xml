@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<comment>승마 예약 관련 sql문</comment>
+
+<entry key="selectRoomList">
+	SELECT 
+			ROOM_NO, 
+			ROOM_TYPE, 
+			BASE_NUM, 
+			MAX_NUM, 
+			PRICE, 
+			EXTRA_PRICE 
+	  FROM 
+	  		ROOM_INFO
+</entry>
+
+</properties>

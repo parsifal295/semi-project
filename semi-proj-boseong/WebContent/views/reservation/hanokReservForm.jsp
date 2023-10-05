@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import = "java.util.ArrayList, com.boseong.jsp.reservation.model.vo.Room"
+%>
+    
+<%
+	ArrayList<Room> list = (ArrayList<Room>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +46,9 @@
 						<td>
 							<select name="roomType" id="">
 								<option value="">룸룸루루룰루룸룸</option>
+								<%for(int i = 0; i<list.size();i++){ %>
+									<option value="<%=(list.get(i)).getRoomNo()%>"><%=(list.get(i)).getRoomType() %></option>
+								<%} %>
 							</select>
 						</td>
 						<td>
@@ -47,6 +56,9 @@
 						</td>
 						<td>
 							<input type="date" name="toDate">
+						</td>
+						<td>
+							<input type ="number" max=4 min =2 placeholder=2> / 4
 						</td>
 						<td>
 							오조오억원

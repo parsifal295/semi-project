@@ -11,6 +11,18 @@
 <meta charset="UTF-8">
 <title>승마장 예약 확인</title>
 <style>
+@font-face {
+	font-family: 'Hangeuljaemin4-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Hangeuljaemin4-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#content *{
+	font-family: 'Hangeuljaemin4-Regular';
+}
 ul, li {
 	list-style: none;
 }

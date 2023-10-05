@@ -112,9 +112,8 @@
 		location.href = "<%=contextPath%>/horseForm.rsv";
 	}
 	function rideList(){
-		location.href = "<%=contextPath%>
-		/list.hs";
-		}
+		location.href = "<%=contextPath%>/list.hs";
+	}
 	</script>
 
 </body>
