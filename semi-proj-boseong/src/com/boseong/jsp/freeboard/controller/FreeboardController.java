@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.rmi.CORBA.StubDelegate;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -142,9 +143,14 @@ public class FreeboardController {
     return "views/freeboard/fboardDetailView.jsp";
   }
 
-  public String updateFreeboard(HttpServletRequest request, HttpServletResponse response)
+  public String updateFreeboardView(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
-    System.out.println("forward successful");
-    return null;
+    FreeboardService fService = new FreeboardService();
+    int boardNo = Integer.parseInt(request.getParameter("bno"));
+    Freeboard fb = fService.selectFreeboard(boardNo);
+    Attachment att = fService.selectAttachment(boardNo);
+    if (att != null) {}
+
+    return "views/freeboard/fboardUpdateView.jsp";
   }
 }

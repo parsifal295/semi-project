@@ -1,20 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.boseong.jsp.freeboard.model.vo.*, com.boseong.jsp.Attachment.model.vo.*" %>
-<%
-   Freeboard fb = (Freeboard)request.getAttribute("fb");
-   Attachment att = (Attachment)request.getAttribute("att");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판 View</title>
-<style>
-    td {
-        padding: 2px;
-    }
-</style>
+<title>Insert title here</title>
 </head>
 <body>
     <%@ include file = "../common/menubar.jsp" %>
@@ -135,81 +125,6 @@
               </tr>
           </tbody>
       </table>
-      <!--update modal-->
-      <div class="modal fade" id="updateModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-          
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">Modal Heading</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            
-            <!-- Modal body -->
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="passwd">게시글을 수정하시려면 암호를 입력해 주세요:</label>
-                <input type="password" class="form-control" id="passwd" required>
-              </div>
-              <form action="" method="post" id="checker">
-                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
-                <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();" >확인</button>
-              </form>
-            </div>
-            
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <!-- end of update modal -->
-      <!--delete modal-->
-      <div class="modal fade" id="deleteModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-          
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">Modal Heading</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            
-            <!-- Modal body -->
-            <div class="modal-body">
-              delete Modal
-            </div>
-            
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <!-- end of delete modal -->
     </div>
-    <%@ include file = "../common/footer.jsp" %>
-    <script>
-      function passwordCheck() {
-        var temp = <%= fb.getPassword() %>;
-        var pw = $("#passwd").val();
-        if (pw == temp) {
-          // 암호 일치시 : 수정 페이지로 가기
-          alert("password correct");
-          $("#checker").submit(function(e) {
-            $(this).attr("action", "<%=contextPath %>/updateForm.fb")
-          })
-
-        } else {
-          // 암호 불일치시 
-          alert("password incorrect");
-        }
-      }
-    </script>
 </body>
 </html>
