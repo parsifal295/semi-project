@@ -47,12 +47,10 @@
         height :100px;
         float: right;
     }
-    #scrap{
-        width: 40px;
-        height: 40px;
+    #scrap-image{
+        width: 35px;
+        height: 35px;
         float : right;
-        margin-top: 10px;
-        margin-right: 10px;
     }
     .subImg{
         display: flex;
@@ -83,7 +81,7 @@
 
             <div id="info">
                 <div id="scrap-area">
-                    <div id="scrap"></div>
+                    <img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
                 </div>
                 <div id="userInfo">
                     <span id="userPf-sub">
@@ -119,18 +117,72 @@
         </div>
     </div>
     <script>
-        $(function(){
+       
           //  $('.iboardImg').css('background-image' 'url('<%= contextPath %>')') background-image에 들어가야 하는 건 사용자가 업로드한 사진
-        });
-
-        $(()=>{
            // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
-        });
-
-        $(function(){
-            $('#scrap').css('background-image','url(<%=contextPath%>/resources/image/scrap.png)')//.click().css('background-color', 'red');
-
-        })
+  
+           
+			const N = '<%=contextPath%>/resources/image/scrap.png';
+			const Y = '<%=contextPath%>/resources/image/scrapted.png';
+			
+            $(function(){
+            	// console.log($('#scrap-image')[0].scr);
+            	
+            	$('#scrap-image').click(function(){
+            	
+            		// console.log('핳하하ㅏ하핳');
+            		// console.log(N);
+            		// console.log($('#scrap-image'));
+            		// console.log($('#scrap-image')[0]);
+            		// console.log($('#scrap-image')[0].src);
+            		// console.log($('#scrap-image')[0].src == N);
+            		// console.log($($('#scrap-image')[0]).attr('src') == '<%= contextPath%>/resources/image/scrap.png');
+            		// console.log($($('#scrap-image')[0]).attr('src') == N);
+            		
+	                if($($('#scrap-image')[0]).attr('src') == N){
+	                	
+	                	console.log('호호홓호ㅗ홓');
+	                    $.ajax({
+	                    	url : 'scrap.ib',
+	                    	data : {
+	                    		status : 'N'	
+	                    	},
+	                    	type : 'post', 
+	                    	success : function(result){
+	                    		console.log(result);
+	                    	}
+	                    })
+	                 }
+	                else{
+	                	$.ajax({
+	                		url : 'scrap.ib',
+	                		data : {
+	                			status : 'Y',
+	                		},
+	                		type : 'post'
+	                	})
+	                }
+            		
+            	})
+            	
+               })
+			
+		// $(function(){
+			
+		// 	$('#scrap-image').click(function(){
+		// 		if($(this).length == 0){
+		// 		// console.log($(this));
+		// 				$(this).attr({
+		// 					'src' : '<%=contextPath%>/resources/image/scrap.png'
+		// 				});
+		// 		}
+		// 		else{
+		// 			$(this).attr({
+        //                 'src' : '<%= contextPath%>/resources/image/scrapted.png' 
+        //             });
+		// 		}
+		// 	})
+		// })
     </script>
 	
 
