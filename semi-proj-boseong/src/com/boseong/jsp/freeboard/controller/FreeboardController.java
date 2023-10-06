@@ -145,12 +145,68 @@ public class FreeboardController {
 
   public String updateFreeboardView(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
+    // post method
+    request.setCharacterEncoding("UTF-8");
     FreeboardService fService = new FreeboardService();
     int boardNo = Integer.parseInt(request.getParameter("bno"));
     Freeboard fb = fService.selectFreeboard(boardNo);
     Attachment att = fService.selectAttachment(boardNo);
-    if (att != null) {}
-
+    request.setAttribute("fb", fb);
+    if (att != null) {
+      request.setAttribute("att", att);
+    }
     return "views/freeboard/fboardUpdateView.jsp";
+  }
+
+  public String updateArticle(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+    request.setCharacterEncoding("UTF-8");
+    int boardNo = 0;
+    if (ServletFileUpload.isMultipartContent(request)) {
+      int maxSize = 1024 * 1024 * 20;
+      String savePath =
+          request.getSession().getServletContext().getRealPath("/resources/board_upfiles");
+
+      // 전달된 파일명 수정후 서버에 업로드
+      MultipartRequest multiRequest =
+          new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
+
+      // 객체 생성으로 파일은 업로드 완료됨.
+
+      // 게시판 업데이트용 값 뽑기
+      // 비밀번호, 제목, 내용
+      FreeboardService fService = new FreeboardService();
+      boardNo = Integer.parseInt(multiRequest.getParameter("bno"));
+      Freeboard fb = fService.selectFreeboard(boardNo);
+      fb.setPassword(multiRequest.getParameter("password"));
+      fb.setTitle(multiRequest.getParameter("title"));
+      fb.setContent(multiRequest.getParameter("content"));
+
+      // Attachment 객체 선언 -> 실제 첨부파일이 있을때만 instantiate 없으면 null
+      Attachment att = null;
+      if (multiRequest.getOriginalFileName("upfile") != null) {
+        // 첨부가 새로 된 경우 : 첨부파일 테이블 추가를 위한 새 Attachment 객체 생성
+        att = new Attachment();
+        att.setOriginName(multiRequest.getOriginalFileName("upfile"));
+        att.setModifiedName(multiRequest.getFilesystemName("upfile"));
+        att.setSavePath("resources/board_upfiles");
+
+        // 첨부파일이 있고 원본파일이 존재할 경우 (첨부파일 교체) => 원본파일번호 필요
+        if (multiRequest.getParameter("originFileNo") != null) {
+          // 기존의 파일번호를 att객체로 지정.
+          att.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
+
+          // 기존 첨부파일 삭제
+          new File(savePath + multiRequest.getParameter("originFileName")).delete();
+
+          // 첨부된 파일은 있고 원본파일은 없는 경우
+        } else {
+          // 참조 게시글 번호 지정
+          att.setRefNo(boardNo);
+        }
+      }
+      int result = fService.updateArticle(fb, att);
+    }
+    return request.getContextPath() + "/detailView.fb?bno=" + boardNo;
   }
 }

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.ArrayList"%>
-<%
-	
+	pageEncoding="UTF-8" import="java.util.ArrayList"
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +12,12 @@
 #ride-info>table th {
 	width: 300px;
 	text-align: center;
+	font-size:20px;
+}
+#ride-info>table td{
+	text-align:center;
+	font-size:20px;
+	padding-left:30px;
 }
 
 #ride-info input {
@@ -22,6 +27,7 @@
 #confirm {
 	margin: auto;
 }
+
 </style>
 
 </head>
@@ -30,7 +36,6 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<div id="box"></div>
 	<div class="page" id="content">
-		<%=contextPath%>
 		<form action="<%=contextPath%>/insertRide.rsv" method="get">
 			<div id="ride-info">
 				<h2>프로그램 선택</h2>
@@ -45,12 +50,15 @@
 						<td><select name="programNo" id="">
 								<option value="1">유소년 승마 프로그램</option>
 								<option value="2">일반 체험</option>
-								<option value="3">장애물 레선</option>
+								<option value="3">장애물 레슨</option>
 						</select></td>
 						<td><input type="date" name="horseDate" id="horseDate">
 						</td>
 						<td><select name="horseTime" id="horseTime">
 								<option>시간</option>
+								<%for(int i=10; i<21;i++){%>
+								<option><%=i %><option>
+								<% } %>
 						</select>시</td>
 						<td><select name="riderNum" id="riderNum">
 								<option value="1">1명</option>
@@ -105,6 +113,20 @@
 	</div>
 	<script>
 		$(function() {
+			let now = new Date();
+			let year = now.getFullYear();
+			let month = now.getMonth()+1;
+			let date = now.getDate();
+			if(month<10){
+				month = '0'+month;
+			}
+			if(date<10){
+				date = '0'+date;
+			}
+			let today = year+'-'+month+'-'+date;
+			$('#horseDate').attr('min', today).val(today);
+			
+			
 			$(':text').click(function() {
 				alert('예약자 성함과 연락처가 다르다면 회원정보를 변경해주세요!');
 			});
@@ -117,26 +139,17 @@
 							},
 							type : 'get',
 							success : function(result) {
-								console.log(result);
-								$('#horseTime').empty();
-								var before = document.createElement('option');
-								var choice = document.createTextNode('시간');
-								before.appendChild(choice);
-								document.getElementById('horseTime')
-										.appendChild(before);
-								for (let i = 10; i < 21; i++) {
-									if (result.indexOf(i) == -1) {
-										var time = document
-												.createElement('option');
-										var value = document.createTextNode(i);
-										time.appendChild(value);
-										//     $('input[type $= box]').attr('checked', 'true');
-										document.getElementById('horseTime')
-												.appendChild(time);
-
-									}
-
+							$('#horseTime').empty();
+							let $choice = $('<option></option>').text('시간');
+							$('#horseTime').append($choice);
+								//자바스크립트, 제이쿼리 혼합문에서 제이쿼리 형식으로 바꿈!
+							for (let i = 10; i < 21; i++) {
+								if (result.indexOf(i) == -1) {
+								let $time = $('<option></option>').text(i);
+								$('#horseTime').append($time);
 								}
+
+							}
 
 							},
 							error : function(result) {

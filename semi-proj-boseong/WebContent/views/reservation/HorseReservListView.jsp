@@ -32,19 +32,23 @@ ul, li {
 }
 
 #horse-reserv-list fieldset {
-	margin: auto;
 	width: 90%;
 	padding-left: 0;
+	margin-bottom:10px;
+	margin-left:50px;
 }
 
 #horse-reserv-list th, #horse-reserv-list td {
-	padding: 10px;
+	padding-left: 50px;
+	padding-top:5px;
+	padding-bottom:5px;
 	width: 300px;
 }
 
 #horse-reserv-list div {
 	border-radius: 20px;
 	margin-right: 15px;
+	margin-bottom : 10px;
 }
 </style>
 </head>

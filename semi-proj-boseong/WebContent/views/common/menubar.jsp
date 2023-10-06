@@ -29,8 +29,6 @@ request.getContextPath(); %>
   		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 		<style>
-			.font-family {
-			}
 			#menubar {
 				margin: 0;
 				padding: 0;

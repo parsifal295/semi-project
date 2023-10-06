@@ -133,12 +133,75 @@
 		}
 		let today = year+'-'+month+'-'+date;
 		$('#fromDate').attr('min', today).val(today);
-			$('#fromDate').change(function(){
-				let dateChosen = Number($(this).val().substr(8, 2));
-				dateChosen += 1;
-				let from = $(this).val().replace().substr(0,8).concat(dateChosen.toString());
-				$('#toDate').attr('min', from);
-			})
+		$('#fromDate').change(function(){
+			//2023-09-22
+			let dateChosen = Number($(this).val().substr(8, 2));
+			let monthChosen = Number($(this).val().substr(5, 2));
+			let yearChosen = Number($(this).val().substr(0,4));
+			
+			let thirtyone = [1, 3, 5, 7, 8, 10, 12];
+			let thirty = [4,6,9,11];
+			
+			if(thirtyone.indexOf(monthChosen)!= -1){
+				if(dateChosen<31){
+					dateChosen += 1;
+					dateChosen = dateChosen.toString();
+				}
+				else{
+					dateChosen = '01';
+					if(monthChosen==12){
+						monthChosen = '01';
+						yearChosen +=1;
+						yearChosen = yearChosen.toString();
+					}
+					else{
+						monthChosen += 1;
+						monthChosen = monthChosen.toString();
+					}
+				}
+			}
+			else if(thirty.indexOf(monthChosen) != -1)
+			{
+				if(dateChosen<30){
+					dateChosen += 1;
+					dateChosen = dateChosen.toString();
+				}
+				else{
+					dateChosen = '01';
+					monthChosen += 1;
+					monthChosen = monthChosen.toString();
+				}
+			}
+			else{
+				if(yearChosen%4 == 0){
+					//윤년
+					if(dateChosen<29){
+						dateChosen += 1;
+						dateChosen = dateChosen.toString();
+					}
+					else{
+						dateChosen = '01';
+						monthChosen += 1;
+						monthChosen = monthChosen.toString();
+					}
+				}
+				else
+				{
+					if(dateChosen<28){
+						dateChosen += 1;
+						dateChosen = dateChosen.toString();
+					}
+					else{
+						dateChosen = '01';
+						monthChosen += 1;
+						monthChosen = monthChosen.toString();
+					}
+				}
+			}
+			let finalDate = yearChosen+'-'+monthChosen+'-'+dateChosen;
+//			let from = $(this).val().replace().substr(0,8).concat(dateChosen);
+			$('#toDate').attr('min', finalDate);
+		})
 	});
 
 	
