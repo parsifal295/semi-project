@@ -12,6 +12,12 @@
 #ride-info>table th {
 	width: 300px;
 	text-align: center;
+	font-size:20px;
+}
+#ride-info>table td{
+	text-align:center;
+	font-size:20px;
+	padding-left:30px;
 }
 
 #ride-info input {
@@ -21,6 +27,7 @@
 #confirm {
 	margin: auto;
 }
+
 </style>
 
 </head>
