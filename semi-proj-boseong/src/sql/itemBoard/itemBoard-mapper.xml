@@ -106,4 +106,46 @@
 	        	IBOARD_POST_DATE DESC) A)
          WHERE  RNUM BETWEEN ? AND ?  
 	</entry>
+	<entry key="ibIncreaseCount">
+		UPDATE 
+				TB_ITEMBOARD
+  	       SET 
+  	       		COUNT = COUNT + 1
+ 		 WHERE 
+ 		 		BOARD_NO = ?
+   		   AND 
+   		   		STATUS = 'Y'
+	</entry>
+	<entry key="iboardSelect">
+		SELECT 
+				MEM_NAME,
+				IBOARD_TITLE,
+				IBOARD_CONTENT,
+				IBOARD_POST_DATE,
+				IBOARD_MODIFY_DATE,
+				PRICE
+  		  FROM 
+  		  		TB_ITEMBOARD IB
+  		  JOIN 
+  		  		TB_MEMBER MEM ON IB.MEM_NO = MEM.MEM_NO
+ 	     WHERE 
+ 	     		BOARD_NO = ?
+   		   AND 
+   		   		IB.STATUS = 'Y'
+   		   AND
+   		   		CATEGORY_NO = 20
+	</entry>
+	<entry key="attchmentSelect">
+		SELECT 
+				FILE_NO,
+				ORIGIN_NAME,
+				MODIFIED_NAME,
+				SAVE_PATH
+ 		  FROM 
+ 		  		ATTACHMENT
+		 WHERE 
+		 		CATEGORY_NO = 20
+  		   AND 
+  		   		REF_NO = ?
+	</entry>
 </properties>
