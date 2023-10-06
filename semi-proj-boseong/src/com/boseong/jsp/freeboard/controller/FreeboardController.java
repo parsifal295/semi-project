@@ -161,6 +161,7 @@ public class FreeboardController {
   public String updateArticle(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
     request.setCharacterEncoding("UTF-8");
+    int boardNo = 0;
     if (ServletFileUpload.isMultipartContent(request)) {
       int maxSize = 1024 * 1024 * 20;
       String savePath =
@@ -175,7 +176,7 @@ public class FreeboardController {
       // 게시판 업데이트용 값 뽑기
       // 비밀번호, 제목, 내용
       FreeboardService fService = new FreeboardService();
-      int boardNo = Integer.parseInt(multiRequest.getParameter("bno"));
+      boardNo = Integer.parseInt(multiRequest.getParameter("bno"));
       Freeboard fb = fService.selectFreeboard(boardNo);
       fb.setPassword(multiRequest.getParameter("password"));
       fb.setTitle(multiRequest.getParameter("title"));
@@ -196,9 +197,16 @@ public class FreeboardController {
           att.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
 
           // 기존 첨부파일 삭제
+          new File(savePath + multiRequest.getParameter("originFileName")).delete();
+
+          // 첨부된 파일은 있고 원본파일은 없는 경우
+        } else {
+          // 참조 게시글 번호 지정
+          att.setRefNo(boardNo);
         }
       }
+      int result = fService.updateArticle(fb, att);
     }
-    return request.getContextPath() + "/fboard.fb?cpage=1";
+    return request.getContextPath() + "/detailView.fb?bno=" + boardNo;
   }
 }
