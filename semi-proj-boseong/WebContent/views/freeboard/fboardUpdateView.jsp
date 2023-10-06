@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "com.boseong.jsp.freeboard.model.vo.*, com.boseong.jsp.Attachment.model.vo.*" %>
+<%
+   Freeboard fb = (Freeboard)request.getAttribute("fb");
+   Attachment att = (Attachment)request.getAttribute("att");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +34,11 @@
                               <span
                                   class="input-group-text"
                                   data-toggle="tooltip"
-                                  title="닉네임을 입력해주세요."
+                                  title="닉네임은 수정이 불가능합니다."
                                   >닉네임</span
                               >
                           </div>
-                          <p class="form-control" name="nickname" style="cursor : default"><%=fb.getWriter() %></p>
+                          <input class="form-control" name="nickname" style="cursor : default" value="<%=fb.getWriter() %>" readonly/>
                       </div>
                   </td>
                   <td colspan="2">
@@ -42,11 +47,11 @@
                               <span
                                   class="input-group-text"
                                   data-toggle="tooltip"
-                                  title="비밀번호를 잊어버리면 글 수정 및 삭제가 불가능합니다."
-                                  >조회수</span
+                                  title="변경할 비밀번호를 입력해주세요."
+                                  >비밀번호</span
                               >
                           </div>
-                          <p class="form-control" name="viewcount" style="cursor : default"><%=fb.getCount() %></p>
+                          <input class="form-control" type="password" name="password" style="cursor : default" value="<%=fb.getPassword() %>" required/>
                       </div>
                   </td>
                   <td colspan="2">
@@ -55,11 +60,11 @@
                               <span
                                   class="input-group-text"
                                   data-toggle="tooltip"
-                                  title="현재 IP 주소"
+                                  title="현재 IP 주소(변경불가)"
                                   >IP주소</span
                               >
                           </div>
-                          <p class="form-control" id="ipaddr" style="cursor : default"><%=fb.getIpAddress() %></p>
+                          <input class="form-control" id="ipaddr" style="cursor : default" value="<%=fb.getIpAddress() %>" readonly/>
                       </div>
                   </td>
               </tr>
@@ -69,7 +74,7 @@
                           <div class="input-group-prepend">
                               <span class="input-group-text">제목</span>
                           </div>
-                          <p class="form-control" name="title" style="cursor : default"><%=fb.getTitle() %></p>
+                          <input class="form-control" name="title" style="cursor : default" value="<%=fb.getTitle() %>" required/>
                       </div>
                   </td>
               </tr>
@@ -77,47 +82,31 @@
                   <td colspan="6">
                       <div class="form-group">
                           <label for="comment">글 내용: </label>
-                          <p
-                              class="form-control"
-                              id="article"
-                              name="content"
-                              style="cursor : default"
-                          ><%=fb.getContent() %></p>
+                          <textarea
+                          class="form-control"
+                          rows="10"
+                          id="article"
+                          name="content"
+                          required
+                        ><%=fb.getContent() %></textarea>
                       </div>
                   </td>
               </tr>
               <tr>
                 <td colspan="6">
-                  <div class="input-group input-group-sm">
-                      <div class="input-group-prepend">
-                          <span
-                              class="input-group-text"
-                              data-toggle="tooltip"
-                              title="비밀번호를 잊어버리면 글 수정 및 삭제가 불가능합니다."
-                              >첨부파일</span
-                          >
-                      </div>
-                      <% if (att == null) { %>
-                        <p class="form-control" name="viewcount" style="cursor : default">첨부파일 없음</p>
-                      <% } else { %>
-                        <a href="<%=contextPath %>/<%=att.getSavePath()%>/<%= att.getModifiedName()%>" download="<%= att.getOriginName()%>"><%= att.getOriginName()%></a>
-                      <% } %>
-                      
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" name="upfile" />
+                    <label class="custom-file-label" for="customFile">파일 첨부</label>
                   </div>
-              </td>
+                </td>
               </tr>
               <tr>
-                  <td colspan="2">
-                      <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#updateModal">
-                          수정
+                  <td colspan="3">
+                      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#updateModal">
+                          수정 완료
                       </button>
                   </td>
-                  <td colspan="2">
-                    <button type="submit" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteModal" >
-                        삭제
-                    </button>
-                </td>
-                <td colspan="2">
+                <td colspan="3">
                   <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
                       목록으로
                   </a>
@@ -126,5 +115,26 @@
           </tbody>
       </table>
     </div>
+    <script>
+     $(()=>{
+      $('[data-toggle="tooltip"]').tooltip();
+
+      // 첨부파일이 있을 경우 => 첨부파일의 이름을 표시
+      var attFile;
+      <% if (att != null) { %>
+        attFile = "<%=att.getOriginName()%>";
+        <% } %> 
+      if (attFile != undefined) {
+        $(".custom-file-label").addClass("selected").html(attFile);
+      } else {
+        
+      }
+      
+      $(".custom-file-input").on("change", function () {
+					var fileName = $(this).val().split("\\").pop();
+					$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+				});
+     })
+    </script>
 </body>
 </html>

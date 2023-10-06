@@ -145,11 +145,17 @@ public class FreeboardController {
 
   public String updateFreeboardView(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
+    // post method
+    request.setCharacterEncoding("UTF-8");
     FreeboardService fService = new FreeboardService();
     int boardNo = Integer.parseInt(request.getParameter("bno"));
     Freeboard fb = fService.selectFreeboard(boardNo);
+    System.out.println(fb);
     Attachment att = fService.selectAttachment(boardNo);
-    if (att != null) {}
+    request.setAttribute("fb", fb);
+    if (att != null) {
+      request.setAttribute("att", att);
+    }
 
     return "views/freeboard/fboardUpdateView.jsp";
   }
