@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MemberEnrollFormController
+ * Servlet implementation class MemberInsertController
  */
-@WebServlet("/join.me")
-public class MemberEnrollFormController extends HttpServlet {
+@WebServlet("/insert.me")
+public class MemberInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberEnrollFormController() {
+    public MemberInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,22 @@ public class MemberEnrollFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		request.setCharacterEncoding("UTF-8");
+		String memId = request.getParameter("memId");
+		String memPwd = request.getParameter("memPwd");
+		String memName = request.getParameter("memName");
+		String email = request.getParameter("email"); // 빈문자열 가능
+		String phone = request.getParameter("phone");
+		String area = request.getParameter("area");
+		
+	
+	
+		
+		
+	
+	
+	
 	}
 
 	/**

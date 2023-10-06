@@ -168,7 +168,7 @@ request.getContextPath(); %>
 				<% if(loginUser == null) { %>
 					<form action="<%= contextPath %>/login.me" method="post">
 						<div id="login-form"><a data-toggle="modal" data-target="#loginForm">로그인</a> | 
-						<a data-toggle="modal" data-target="#joinForm">회원가입</a></div>
+						<a data-toggle="modal" data-target="#memberEnrollForm">회원가입</a></div>
 					</form>
 				<% } else { %>
 				
