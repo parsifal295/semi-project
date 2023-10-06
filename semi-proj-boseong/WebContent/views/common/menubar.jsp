@@ -167,7 +167,8 @@ request.getContextPath(); %>
 				<!-- 회원이 아닐때 보여지는 태그 -->
 				<% if(loginUser == null) { %>
 					<form action="<%= contextPath %>/login.me" method="post">
-						<div id="login-form"><a href="/login.me" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
+						<div id="login-form"><a data-toggle="modal" data-target="#loginForm">로그인</a> | 
+						<a data-toggle="modal" data-target="#joinForm">회원가입</a></div>
 					</form>
 				<% } else { %>
 				
@@ -228,5 +229,6 @@ request.getContextPath(); %>
 			</div>
 		</div>
 		<%@ include file = "../member/memberLoginView.jsp" %>
+		<%@ include file = "../member/memberEnrollForm.jsp" %>
 	</body>
 </html>
