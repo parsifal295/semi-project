@@ -45,7 +45,10 @@ public class LoginController extends HttpServlet {
     
     // 로그인 실패
     if(loginUser == null) {
-    	
+    	HttpSession session = request.getSession();
+    	session.setAttribute("alertMsg", "잘못된 아이디 또는 비밀번호입니다.");
+    	RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+    	view.forward(request, response);
     	//session.setAttribute("alertMsg", "로그인실패");
     	//System.out.println("test");
 		
@@ -55,7 +58,7 @@ public class LoginController extends HttpServlet {
 		
 		session.setAttribute("loginUser", loginUser);
 		
-		session.setAttribute("alertMsg", "로그인성공");
+		//session.setAttribute("alertMsg", "로그인성공");
 		
 		// index.jsp로 응답 -포워딩 방식
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
