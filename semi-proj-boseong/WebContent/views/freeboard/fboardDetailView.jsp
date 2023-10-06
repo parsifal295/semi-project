@@ -174,14 +174,20 @@
           
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">Modal Heading</h4>
+              <h4 class="modal-title">게시글 암호 입력</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             
             <!-- Modal body -->
             <div class="modal-body">
-              delete Modal
+              게시글을 삭제하시려면 암호를 입력해 주세요:
+              <input type="text" class="form-control" id="pass" required>
+              <form action="" method="post" id="chkr" method="post">
+                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
+                <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();">확인</button>
+              </form>
             </div>
+
             
             <!-- Modal footer -->
             <div class="modal-footer">
@@ -197,18 +203,22 @@
     <script>
       function passwordCheck() {
         var temp = <%= fb.getPassword() %>;
-        var pw = $("#passwd").val();
-        if (pw == temp) {
+        var pw1 = $("#passwd").val();
+        var pw2 = $("#pass").val();
+
+        if (pw1 == temp) {
           // 암호 일치시 : 수정 페이지로 가기
           $("#checker").submit(function(e) {
             $(this).attr("action", "<%=contextPath %>/updateForm.fb");
           })
-
-        } else {
-          // 암호 불일치시 
-          $("#updateModal").click();
         }
-      }
+
+        if (pw2 == temp) {
+          $("#chkr").submit(function(f) {
+            $(this).attr("action", "<%=contextPath %>/deleteForm.fb");
+          })
+        }
+      };
     </script>
 </body>
 </html>

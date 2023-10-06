@@ -209,4 +209,11 @@ public class FreeboardController {
     }
     return request.getContextPath() + "/detailView.fb?bno=" + boardNo;
   }
+
+  public String deleteFreeboard(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+    request.setCharacterEncoding("UTF-8");
+    int boardNo = Integer.parseInt(request.getParameter("bno"));
+    return request.getContextPath() + "/fboard.fb?cpage=1";
+  }
 }
