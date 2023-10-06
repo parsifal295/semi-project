@@ -142,7 +142,7 @@
           
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">Modal Heading</h4>
+              <h4 class="modal-title">게시글 암호 입력</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             
@@ -150,11 +150,11 @@
             <div class="modal-body">
               <div class="form-group">
                 <label for="passwd">게시글을 수정하시려면 암호를 입력해 주세요:</label>
-                <input type="password" class="form-control" id="passwd" required>
+                <input type="text" class="form-control" id="passwd" required>
               </div>
-              <form action="" method="post" id="checker">
+              <form action="" method="post" id="checker" method="post">
                 <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
-                <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();" >확인</button>
+                <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();">확인</button>
               </form>
             </div>
             
@@ -200,14 +200,13 @@
         var pw = $("#passwd").val();
         if (pw == temp) {
           // 암호 일치시 : 수정 페이지로 가기
-          alert("password correct");
           $("#checker").submit(function(e) {
-            $(this).attr("action", "<%=contextPath %>/updateForm.fb")
+            $(this).attr("action", "<%=contextPath %>/updateForm.fb");
           })
 
         } else {
           // 암호 불일치시 
-          alert("password incorrect");
+          $("#updateModal").click();
         }
       }
     </script>

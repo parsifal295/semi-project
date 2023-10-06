@@ -48,7 +48,8 @@ public class HorseReservInsertController extends HttpServlet {
 		
 		int result = new HorseService().insertReservation(hrsv);
 		if(result>0) {
-			request.getRequestDispatcher("/views/reservation/HorseReservListView.jsp").forward(request, response);
+			//request.getRequestDispatcher("/views/reservation/HorseReservListView.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/list.hs");
 		}else {
 			request.getRequestDispatcher("views/reservation/horseReservationForm.jsp").forward(request, response);
 		}

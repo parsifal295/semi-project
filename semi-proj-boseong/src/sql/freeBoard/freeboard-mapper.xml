@@ -132,4 +132,14 @@
 		AND 
 			STATUS = 'Y'
 	</entry>
+	<entry key="updateFreeboard">
+		UPDATE
+		TB_FREEBOARD
+	SET
+		COUNT = COUNT + 1
+	WHERE
+		BOARD_NO = ?
+	AND
+		STATUS = 'Y'
+	</entry>
 </properties>
