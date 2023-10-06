@@ -57,9 +57,9 @@
             <td rowspan="10" width="100px" align="center"></td>
                 <img src="https://boseongmall.co.kr/web/product/big/202203/7ff954440e14e7773f1a2b8dc2458c24.jpg" id="tea"  style="cursor:pointer;" onclick="teaPurchase();">
             <td rowspan="10" width="100px" align="center"></td>        
-                <img src="https://boseongmall.co.kr/web/product/big/202206/aee1f475b681d59881dbc1546f92b33d.jpg" id="tea2">
+                <img src="https://boseongmall.co.kr/web/product/big/202206/aee1f475b681d59881dbc1546f92b33d.jpg" id="tea2" style="cursor:pointer;" onclick="Purchase();">
             <td rowspan="10" width="100px" align="center"></td>    
-                <img src="https://boseongmall.co.kr/web/product/big/202212/4c77008f9b37dbe43ad6e5fbfe69552c.jpg" id="soap">
+                <img src="https://boseongmall.co.kr/web/product/big/202212/4c77008f9b37dbe43ad6e5fbfe69552c.jpg" id="soap" style="cursor:pointer;" onclick="soapPurchase();">
 		  
             </table>
             
@@ -74,6 +74,12 @@
     <script>
 	function teaPurchase(){
 		location.href = "<%=contextPath%>/detail.rp";
+	}
+	function Purchase(){
+		location.href = "<%=contextPath%>/tea.rp";
+	}
+	function soapPurchase(){
+		location.href = "<%=contextPath%>/soap.rp";
 	}
 	
 	</script>

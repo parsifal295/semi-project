@@ -92,6 +92,75 @@ public class FreeboardDao {
 
   public int insertAttachment(Connection conn, Attachment att) {
     int result = 0;
+    String sql = prop.getProperty("insertAttachment");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setString(1, att.getOriginName());
+      ps.setString(2, att.getModifiedName());
+      ps.setString(3, att.getSavePath());
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return result;
+  }
+
+  public int increaseCount(Connection conn, int boardNo) {
+    int result = 0;
+    String sql = prop.getProperty("increaseCount");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public Freeboard selectFreeboard(Connection conn, int boardNo) {
+    Freeboard fb = null;
+    String sql = prop.getProperty("selectFreeboard");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          fb = new Freeboard();
+          fb.setBoardNo(rs.getInt("BOARD_NO"));
+          fb.setCategoryNo(rs.getInt("CATEGORY_NO"));
+          fb.setContent(rs.getString("ART_CONTENT"));
+          fb.setWriter(rs.getString("ART_WRITER"));
+          fb.setIpAddress(rs.getString("IP_ADDRESS"));
+          fb.setTitle(rs.getString("ART_TITLE"));
+          fb.setPassword(rs.getString("ART_PASSWORD"));
+          fb.setCount(rs.getInt("COUNT"));
+          fb.setCreateDate(rs.getDate("CREATE_DATE"));
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return fb;
+  }
+
+  public Attachment selectAttachment(Connection conn, int boardNo) {
+    Attachment att = null;
+    String sql = prop.getProperty("selectAttachment");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          att = new Attachment();
+          att.setFileNo(rs.getInt("FILE_NO"));
+          att.setRefNo(rs.getInt("REF_NO"));
+          att.setOriginName(rs.getString("ORIGIN_NAME"));
+          att.setModifiedName(rs.getString("MODIFIED_NAME"));
+          att.setSavePath(rs.getString("SAVE_PATH"));
+          att.setUploadDate(rs.getDate("UPLOAD_DATE"));
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return att;
   }
 }

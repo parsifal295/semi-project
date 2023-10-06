@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>중고거래</title>
 <style>
-    #pageStyle{
+    .table-style{
         width: 100%;
     }
 </style>
@@ -20,53 +20,37 @@
         중고거래 게시판 작성시 : 중고거래 게시글 번호(NUMBER), 작성하는 회원 번호, 게시글 제목,내용,작성일,수정일,조회수,상태값
         중고거래 (구매 임시) 회원 : 스크랩_YN ,회원 번호, 중고거래 게시글 번호, 스크랩 날짜 
         중고거래 구매자 회원 : 후기게시글 번호, 회원번호, 구매한중고거래 게시글 번호, 후기 내용, 별점-->
+        
         <%@ include file="../common/menubar.jsp" %>
        <form action="<%= contextPath %>/insert.ib" method="post" enctype="multipart/form-data">
-           <input type="hidden" name="memberNo" value=""> <!-- 회원이 되면 MemberNo를 value에 hidden으로 받아야함 -->
+           <!-- <input type="hidden" name="memberNo" value="">  회원이 되면 MemberNo를 value에 hidden으로 받아야함 -->
             <div class="page" id="content">
                 <div style="height : 300px; text-align: center;"></div>
                 <div class="page" style="height : 700px;">
-                    <table align="center" id="pageStyle">
-                        <tr><h1 style="text-align:center;">중고거래 게시글 작성</h1></tr>
+                    <table align="center" class="table-style">
+                        <tr><h1 style="text-align:center; ">중고거래 게시글 작성</h1></tr>
                         <tr>
                             <th style="text-align: center;">제목</th>
-                            <td><input type="text" name="title" style="width:50%;" required></td>
+                            <td><input type="text" name="title" style="width:50%;" placeholder="제목을 입력해주세요" required></td>
                         </tr>
                         <tr>
                             <th style="text-align: center;">희망가격</th>
-                            <td><input type="text" style="width:50%;" name="price"></td>
+                            <td><input type="text" style="width:50%;" name="price" placeholder="희망 가격을 (숫자로만)입력해주세요" required></td>
                         </tr>
                         <tr>
                             <th style="text-align: center;">내용</th>
-                            <td><textarea name="content" style="resize: none; width : 100%; height: 500px;" cols="30" rows="10" required></textarea></td>
+                            <td><textarea name="content" style="resize: none; width : 100%; height: 500px;" cols="30" rows="10" placeholder="거래 내용을 입력해주세요" required></textarea></td>
                         </tr>
                         <tr>
                             <th style="text-align: center;">첨부파일</th>
                             <td colspan="3">
-                                <input type="file" name="upfile" id="itemImg" onclick="imageFile(inputFile);">
+                                <input type="file" name="upfile" id="itemImg" required>
                             </td>
                         </tr>
                     </table>
                     <div align="center"><button type="submit">등록</button><button type="reset">초기화</button></div>
                 </div>
             </div>
-            <script>
-            	function imageFile(inputFile){
-            		
-            		if(inputFile.files.length == 1){ // 파일이 첨부 됐을때 == 1 파일이 첨부 안됐을때 == 0
-            			
-            		console.log(inputFile.files);
-            			
-            		let reader = new FileReader();
-            		
-            		reader.readAsDataURL(inputFile.files[0]);
-            		
-            		reader.onload = $('#itemImg').attr('src', e.target.result);
-            		
-            		console.log(reader.onload);
-            		}
-            	}
-            </script>
         </form>
         <%@ include file="../common/footer.jsp" %>
 </body>

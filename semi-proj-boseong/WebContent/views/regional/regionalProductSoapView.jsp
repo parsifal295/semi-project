@@ -21,7 +21,7 @@
 		margin: auto;
 }
 
- #tea{
+ #soap{
       	padding: 400px 100px 50px 50px;
         text-align: center;
         height: 1000px;
@@ -59,20 +59,6 @@
         line-height: 10px;
 
     }
-  
-#buy{
-			
-            font-size: xx-large;
-            height: 100px;
-    }
-
-#cart{
-            
-            font-size: xx-large;
-            height: 100px;
-            
-    }    
-
 </style>
 </head>
 <body>
@@ -82,17 +68,13 @@
 		<table>
 		<tr>
 			<td rowspan="10" width="100px" align="center">
-             <img id="tea" src="https://boseongmall.co.kr/web/product/big/202203/7ff954440e14e7773f1a2b8dc2458c24.jpg"></td></tr>
+             <img id="soap" src="https://boseongmall.co.kr/web/product/big/202212/4c77008f9b37dbe43ad6e5fbfe69552c.jpg"></td></tr>
              	<tr><td id="option1" width="200">원산지</td><td>국내</td></tr>
                 <tr><td id="option2">소비자가</td><td><td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td></td></td></td></td></td><td>7000원</td></tr>
                 <tr><td id="option3">판매가</td><td><td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td></td></td></td></td></td><td>7000원</td></tr>
                 <tr><td id="option4">배송방법</td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td><td><td></td></td></td></td></td><td>배송</td></tr>
                 <tr><td id="option5">배송비</td><td><td><td><td><td><td><td><td><td></td></td></td></td></td></td><td><td></td></td></td></td></td><td>무료</td></tr>
 		</table>
-		<form>
-            	<input type="button" id="cart" value="장바구니" style="float:right;">
-            	<input type="button" id="buy" value="바로구매" style="float:right;">
-           </form>
 		
 		</div>
 	</div>

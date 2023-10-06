@@ -54,4 +54,56 @@
 		  		'Y'
 		  		)
 	</entry>
+	<entry key="selectListCount">
+		SELECT
+				COUNT(*)
+		  FROM
+		  		TB_ITEMBOARD
+		 WHERE
+		 		STATUS = 'Y'
+	</entry>
+	<entry key="selectList">
+	  SELECT 
+				BOARD_NO, 
+				MEM_NAME,
+				IBOARD_TITLE,
+				IBOARD_CONTENT,
+				IBOARD_POST_DATE,
+				IBOARD_MODIFY_DATE,
+				COUNT,
+				PRICE,
+				ROWNUM RNUM
+	      FROM    
+       (SELECT 
+				BOARD_NO, 
+				MEM_NAME,
+				IBOARD_TITLE,
+				IBOARD_CONTENT,
+				IBOARD_POST_DATE,
+				IBOARD_MODIFY_DATE,
+				COUNT,
+				PRICE,
+				ROWNUM RNUM
+	      FROM 
+	   (SELECT  
+				BOARD_NO, 
+				MEM_NAME,
+				IBOARD_TITLE,
+				IBOARD_CONTENT,
+				IBOARD_POST_DATE,
+				IBOARD_MODIFY_DATE,
+				COUNT,
+				PRICE,
+				ROWNUM RNUM
+	      FROM  
+	      		TB_ITEMBOARD IB
+	      JOIN 
+	      		TB_MEMBER USING(MEM_NO)
+	     WHERE 
+	     		IB.STATUS = 'Y'
+         ORDER 
+	        BY 
+	        	IBOARD_POST_DATE DESC) A)
+         WHERE  RNUM BETWEEN ? AND ?  
+	</entry>
 </properties>
