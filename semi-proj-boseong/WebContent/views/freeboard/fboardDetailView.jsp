@@ -149,11 +149,11 @@
             <!-- Modal body -->
             <div class="modal-body">
               <div class="form-group">
-                <label for="pwd">게시글을 수정하시려면 암호를 입력해 주세요:</label>
-                <input type="password" class="form-control" id="pwd" required>
+                <label for="passwd">게시글을 수정하시려면 암호를 입력해 주세요:</label>
+                <input type="password" class="form-control" id="passwd" required>
               </div>
               <form>
-                <button type="submit" style="float:right" class="btn btn-primary" onclick="" >확인</button>
+                <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();" >확인</button>
               </form>
             </div>
             
@@ -194,6 +194,18 @@
     </div>
     <%@ include file = "../common/footer.jsp" %>
     <script>
+      function passwordCheck() {
+        var temp = <%= fb.getPassword() %>;
+        var pw = $("#passwd").val();
+        if (pw == temp) {
+          // 암호 일치시 : 수정 페이지로 가기
+          alert("password correct");
+
+        } else {
+          // 암호 불일치시 
+          alert("password incorrect");
+        }
+      }
     </script>
 </body>
 </html>
