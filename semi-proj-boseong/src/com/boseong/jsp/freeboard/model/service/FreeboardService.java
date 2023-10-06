@@ -89,4 +89,30 @@ public class FreeboardService {
     }
     return att;
   }
+
+  public int updateArticle(Freeboard fb, Attachment att) {
+    int result1 = 0;
+    int result2 = 1;
+    try (Connection conn = getConnection()) {
+      result1 = new FreeboardDao().updateFreeboard(conn, fb);
+      if (att != null) {
+        if (att.getFileNo() != 0) {
+          // 기존 첨부파일이 있다는 소리 => UPDATE 필요
+          result2 = new FreeboardDao().updateAttachment(conn, att);
+        } else {
+          // 없다는소리 => INSERT
+          result2 = new FreeboardDao().insertAttachment(conn, att);
+        }
+      }
+      // transaction
+      if (result1 * result2 > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result1 * result2;
+  }
 }
