@@ -134,12 +134,27 @@
 	</entry>
 	<entry key="updateFreeboard">
 		UPDATE
-		TB_FREEBOARD
-	SET
-		COUNT = COUNT + 1
-	WHERE
-		BOARD_NO = ?
-	AND
-		STATUS = 'Y'
+			TB_FREEBOARD
+		SET
+			ART_TITLE = ?,
+			ART_PASSWORD = ?,
+			ART_CONTENT = ?
+		WHERE
+			BOARD_NO = ?
+		AND
+			STATUS = 'Y'
+	</entry>
+	<entry key="updateAttachment">
+		UPDATE
+			ATTACHMENT
+		SET
+			ORIGIN_NAME = ?,
+			MODIFIED_NAME = ?,
+			SAVE_PATH = ?,
+			UPLOAD_DATE = SYSDATE
+		WHERE
+			FILE_NO = ?
+		AND
+			STATUS = 'Y'
 	</entry>
 </properties>

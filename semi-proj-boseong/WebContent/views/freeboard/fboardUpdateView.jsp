@@ -19,8 +19,8 @@
         <form enctype="multipart/form-data" action="<%=contextPath%>/updateArticle.fb" method="post">
           <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"/>
           <% if (att != null) { %>
-            <input type="hidden" name="originFileNo" val="<%=att.getFileNo()%>"/>
-            <input type="hidden" name="originFileName" val="<%=att.getModifiedName()%>"/>
+            <input type="hidden" name="originFileNo" value="<%=att.getFileNo()%>"/>
+            <input type="hidden" name="originFileName" value="<%=att.getModifiedName()%>"/>
           <% } %>
           <thead>
               <tr>
