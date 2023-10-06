@@ -152,7 +152,7 @@
                 <label for="passwd">게시글을 수정하시려면 암호를 입력해 주세요:</label>
                 <input type="password" class="form-control" id="passwd" required>
               </div>
-              <form>
+              <form action="" method="post" id="checker">
                 <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();" >확인</button>
               </form>
             </div>
@@ -200,6 +200,9 @@
         if (pw == temp) {
           // 암호 일치시 : 수정 페이지로 가기
           alert("password correct");
+          $("#checker").submit(function(e) {
+            $(this).attr("action", "<%=contextPath %>/update.fb")
+          })
 
         } else {
           // 암호 불일치시 

@@ -56,7 +56,7 @@ public class FreeboardController {
   public String insertFreeboardView(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
 
-    return "/views/freeboard/FreeboardInsertView.jsp";
+    return "/views/freeboard/fboardInsertView.jsp";
   }
 
   public String insertFreeboard(HttpServletRequest request, HttpServletResponse response)
@@ -140,5 +140,11 @@ public class FreeboardController {
       request.setAttribute("att", att);
     }
     return "views/freeboard/fboardDetailView.jsp";
+  }
+
+  public String updateFreeboard(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+    System.out.println("forward successful");
+    return null;
   }
 }

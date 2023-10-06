@@ -126,11 +126,11 @@
 			// GET IP ADDRESS
 			$.getJSON("https://jsonip.com/", function (data) {
 				var obj = JSON.stringify(data, null, 2);
-        var temp = JSON.parse(obj, null, 2);
+			    var temp = JSON.parse(obj, null, 2);
 				console.log(obj);
-        var ip = temp.ip;
-        $("#ipvalue").val(ip);
-        $("#ipaddr").val(ip);
+		        var ip = temp.ip;
+		        $("#ipvalue").val(ip);
+		        $("#ipaddr").val(ip);
 			});
 		</script>
 	</body>
