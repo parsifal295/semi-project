@@ -5,6 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>한달살기 예약 페이지</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/index.global.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/index.global.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+
+
+
+
 <style>
 	.outer{
 				width : 1400px;
@@ -16,7 +27,7 @@
 
 	.content12{
 			width : 1400px;
-			height : 520px;
+			height : 650px;
 			
 	}	
 		
@@ -70,6 +81,34 @@
 
 </head>
 <body>
+<!-- 스크립트시작 -->
+	<script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            selectable: true,
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            dateClick: function(info) {
+              alert('clicked ' + info.dateStr);
+            },
+            select: function(info) {
+              alert('selected ' + info.startStr + ' to ' + info.endStr);
+            }
+          });
+        calendar.render();
+      });
+
+    </script>
+	<!-- 스크립트끝 -->
+
+
+
+
 <%@ include file="../common/menubar.jsp" %>
 
 	<div class="outer">
@@ -82,12 +121,14 @@
 	<div class="content12">
 	
 		<div class="content1">
-		<img src="https://7calendar.com/calendar/monthly/png/9-2023-a4-l-0-24-kr.png" width="700", height="500";>
+		<div id='calendar'></div>
+		<!--  <img src="https://7calendar.com/calendar/monthly/png/9-2023-a4-l-0-24-kr.png" width="700", height="500";>-->
 		</div>
 		
 		<div class="content2">
 			<h2>내 예약 정보</h2>
 			예약일:
+			<!--  
 			<select name="select-month"> 
 			<option>2023년</option>
 			<option>2024년</option>
@@ -110,14 +151,10 @@
             <option>12월</option>
             
             </select>
+            -->
 			<br><br>
-			예약 회차: 
-        <select name="select-time"> 
-            <option>오전(9시~12시)</option>
-            <option>오후(12시~6시)</option>
-           
-        </select>
-			<br><br>
+			
+			
 			인원:
 				<input type="number" name="amount" min="0" max="50" value="1" step="1">
 

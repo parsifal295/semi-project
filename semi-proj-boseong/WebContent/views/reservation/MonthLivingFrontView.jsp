@@ -148,7 +148,7 @@
 		<div class="main_image_text"><h2 align=center style="font-size:60px;">한달 살기</h2></div>
 		
 		
-		<div class="box2" style="border:1px solid white;">예약조회</h3></div>
+		<div class="box2" style="border:1px solid white;"><a href="ReservationAll.jsp">예약조회</a></h3></div>
 	</div>
 	
 	

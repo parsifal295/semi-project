@@ -28,7 +28,7 @@ public class GreenTeaReservFormController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("views/reservation/GreenteaFrontView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/reservation/GreenteaReservationView.jsp").forward(request, response);
 	}
 
 	/**

@@ -16,6 +16,8 @@
 	margin-top : 400px;
 	}
 
+	
+
 	.title{
 	width:1340px;
 	height:100px;

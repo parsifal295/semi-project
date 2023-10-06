@@ -7,23 +7,11 @@
 <title>녹차밭 예약페이지</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>한달살기 메인페이지</title>
+
   
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <script>
-	  $( function() {
-	    $("#datepicker").datepicker();
-	  } );
-  </script>
-
-
-
-
-
+  <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/index.global.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/index.global.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 
 <style>
 	
@@ -36,14 +24,14 @@
 		
 	.content12{
 			width : 1400px;
-			height : 520px;
+			height : 650px;
 			
 	}	
 		
 		
 	.content1{
 			width : 700px;
-			height : 500px;
+			height : 600px;
 			margin : auto;
 			margin-top : 30px;
 			float : left;
@@ -68,25 +56,50 @@
 	.content3_1{
 			width:400px;
 			height:70px;
+			margin-top : 30px;
 			
 	}	
 		
 	.content3_2{
 			width:500px;
 			height:50px;
-		float : left;
+			float : left;
 			
 	}		
 		
 	.button{
-	float:right;
+			float:right;
 	}	
 		
 		
 </style>
 
+
 </head>
 <body>
+	<!-- 스크립트시작 -->
+	<script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            selectable: true,
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            dateClick: function(info) {
+              alert('clicked ' + info.dateStr);
+            }
+          });
+        calendar.render();
+      });
+
+    </script>
+	<!-- 스크립트끝 -->
+	
+	
 	<%@ include file="../common/menubar.jsp" %>
 
 	
@@ -99,26 +112,30 @@
 	<div class="content12">
 	
 		<div class="content1">
-		<img src="https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/47uI/image/0Mp4oUq1ZFG7Q9VB61mP4GPBjg0.jpg" width="700", height="500";>
+		
+		<div id='calendar'></div>
 		</div>
 		
 		<div class="content2">
-			<h2>내 예약 정보</h2>
-			예약 날짜:
+			<h3><strong>내 예약 정보</strong></h3>
+			<hr>
+			<h5>예약 일자: onclick달력하면 여기로 와야댐      </h5>
             
-            </select>
-			<br><br>
+            <!--  </select>-->
+             
+			<br>
 			
-			예약 회차: 
-        <select name="select-time"> 
-            <option>오전(9시~12시)</option>
-            <option>오후(12시~6시)</option>
-           
-        </select>
-			<br><br>
-			인원:
+			<h5>예약 회차: 
+        	<select name="select-time"> 
+	            <option>오전(9시~12시)</option>
+	            <option>오후(12시~6시)</option>
+       		</select>
+        	</h5>
+        	
+			<br>
+			<h5>인원:
 				<input type="number" name="amount" min="0" max="50" value="1" step="1">
-
+			</h5>
 			<br>
 			
 		
@@ -127,8 +144,9 @@
 		
 		
 	</div>
-	<br><br><br>
+	<br><br>
 	
+
 	<div class="content3_1">
 	<h2>예약자 세부 정보 입력</h2>
 		<div class="content3_2">
