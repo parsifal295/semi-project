@@ -183,6 +183,21 @@ public class FreeboardController {
 
       // Attachment 객체 선언 -> 실제 첨부파일이 있을때만 instantiate 없으면 null
       Attachment att = null;
+      if (multiRequest.getOriginalFileName("upfile") != null) {
+        // 첨부가 새로 된 경우 : 첨부파일 테이블 추가를 위한 새 Attachment 객체 생성
+        att = new Attachment();
+        att.setOriginName(multiRequest.getOriginalFileName("upfile"));
+        att.setModifiedName(multiRequest.getFilesystemName("upfile"));
+        att.setSavePath("resources/board_upfiles");
+
+        // 첨부파일이 있고 원본파일이 존재할 경우 (첨부파일 교체) => 원본파일번호 필요
+        if (multiRequest.getParameter("originFileNo") != null) {
+          // 기존의 파일번호를 att객체로 지정.
+          att.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
+
+          // 기존 첨부파일 삭제
+        }
+      }
     }
     return request.getContextPath() + "/fboard.fb?cpage=1";
   }
