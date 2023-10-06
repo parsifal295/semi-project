@@ -6,14 +6,14 @@ public class HanokReservation {
 	private int reservNo;
 	private int roomNo;
 	private int memNo;
-	private Date fromDate;
-	private Date toDate;
+	private String fromDate;
+	private String toDate;
 	private int clientNum;
 	private String message;
 	public HanokReservation() {
 		super();
 	}
-	public HanokReservation(int reservNo, int roomNo, int memNo, Date fromDate, Date toDate, int clientNum,
+	public HanokReservation(int reservNo, int roomNo, int memNo, String fromDate, String toDate, int clientNum,
 			String message) {
 		super();
 		this.reservNo = reservNo;
@@ -42,16 +42,16 @@ public class HanokReservation {
 	public void setMemNo(int memNo) {
 		this.memNo = memNo;
 	}
-	public Date getFromDate() {
+	public String getFromDate() {
 		return fromDate;
 	}
-	public void setFromDate(Date fromDate) {
+	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
-	public Date getToDate() {
+	public String getToDate() {
 		return toDate;
 	}
-	public void setToDate(Date toDate) {
+	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
 	public int getClientNum() {
