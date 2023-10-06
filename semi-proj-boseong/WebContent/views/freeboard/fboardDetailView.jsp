@@ -118,12 +118,12 @@
               </tr>
               <tr>
                   <td colspan="2">
-                      <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#myModal">
+                      <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#updateModal">
                           수정
                       </button>
                   </td>
                   <td colspan="2">
-                    <button type="submit" class="btn btn-danger btn-block">
+                    <button type="submit" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteModal" >
                         삭제
                     </button>
                 </td>
@@ -135,8 +135,8 @@
               </tr>
           </tbody>
       </table>
-      <!--fade modal-->
-      <div class="modal fade" id="myModal">
+      <!--update modal-->
+      <div class="modal fade" id="updateModal">
         <div class="modal-dialog">
           <div class="modal-content">
           
@@ -148,7 +148,13 @@
             
             <!-- Modal body -->
             <div class="modal-body">
-              Modal body..
+              <div class="form-group">
+                <label for="pwd">게시글을 수정하시려면 암호를 입력해 주세요:</label>
+                <input type="password" class="form-control" id="pwd" required>
+              </div>
+              <form>
+                <button type="submit" style="float:right" class="btn btn-primary" onclick="" >확인</button>
+              </form>
             </div>
             
             <!-- Modal footer -->
@@ -159,8 +165,35 @@
           </div>
         </div>
       </div>
-      <!-- end of fade modal -->
+      <!-- end of update modal -->
+      <!--delete modal-->
+      <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Modal Heading</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              delete Modal
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- end of delete modal -->
     </div>
     <%@ include file = "../common/footer.jsp" %>
+    <script>
+    </script>
 </body>
 </html>
