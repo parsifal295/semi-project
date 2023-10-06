@@ -56,7 +56,7 @@ public class FreeboardController {
   public String insertFreeboardView(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
 
-    return "/views/freeboard/fboardInsertView.jsp";
+    return "views/freeboard/fboardInsertView.jsp";
   }
 
   public String insertFreeboard(HttpServletRequest request, HttpServletResponse response)
