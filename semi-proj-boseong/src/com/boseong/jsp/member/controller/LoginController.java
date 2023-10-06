@@ -59,11 +59,13 @@ public class LoginController extends HttpServlet {
 		session.setAttribute("loginUser", loginUser);
 		
 		//session.setAttribute("alertMsg", "로그인성공");
-		
+		/*
 		// index.jsp로 응답 -포워딩 방식
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		
 		view.forward(request, response);
+		*/
+		response.sendRedirect(request.getContextPath());
 		
 	}
 

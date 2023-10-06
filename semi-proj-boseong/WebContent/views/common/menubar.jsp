@@ -158,7 +158,6 @@ request.getContextPath(); %>
 				
 				<% session.removeAttribute("alertMsg"); %>
 			}
-			
 		
 		</script>
 		
@@ -167,7 +166,7 @@ request.getContextPath(); %>
 			<div id="header">
 				<!-- 회원이 아닐때 보여지는 태그 -->
 				<% if(loginUser == null) { %>
-					<form action="/jsp/login.me" method="post">
+					<form action="<%= contextPath %>/login.me" method="post">
 						<div id="login-form"><a href="/login.me" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
 					</form>
 				<% } else { %>
@@ -176,7 +175,7 @@ request.getContextPath(); %>
 				
 					<div id="user-info">
 						<div>
-							<a href="#">로그아웃</a>
+							<a href="<%= contextPath %>/logout.me">로그아웃</a>
 						</div>
 					</div>
 					
