@@ -150,13 +150,40 @@ public class FreeboardController {
     FreeboardService fService = new FreeboardService();
     int boardNo = Integer.parseInt(request.getParameter("bno"));
     Freeboard fb = fService.selectFreeboard(boardNo);
-    System.out.println(fb);
     Attachment att = fService.selectAttachment(boardNo);
     request.setAttribute("fb", fb);
     if (att != null) {
       request.setAttribute("att", att);
     }
-
     return "views/freeboard/fboardUpdateView.jsp";
+  }
+
+  public String updateArticle(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+    request.setCharacterEncoding("UTF-8");
+    if (ServletFileUpload.isMultipartContent(request)) {
+      int maxSize = 1024 * 1024 * 20;
+      String savePath =
+          request.getSession().getServletContext().getRealPath("/resources/board_upfiles");
+
+      // 전달된 파일명 수정후 서버에 업로드
+      MultipartRequest multiRequest =
+          new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
+
+      // 객체 생성으로 파일은 업로드 완료됨.
+
+      // 게시판 업데이트용 값 뽑기
+      // 비밀번호, 제목, 내용
+      FreeboardService fService = new FreeboardService();
+      int boardNo = Integer.parseInt(multiRequest.getParameter("bno"));
+      Freeboard fb = fService.selectFreeboard(boardNo);
+      fb.setPassword(multiRequest.getParameter("password"));
+      fb.setTitle(multiRequest.getParameter("title"));
+      fb.setContent(multiRequest.getParameter("content"));
+
+      // Attachment 객체 선언 -> 실제 첨부파일이 있을때만 instantiate 없으면 null
+      Attachment att = null;
+    }
+    return request.getContextPath() + "/fboard.fb?cpage=1";
   }
 }

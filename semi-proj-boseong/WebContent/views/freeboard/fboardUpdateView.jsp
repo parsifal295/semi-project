@@ -9,13 +9,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 수정</title>
 </head>
 <body>
     <%@ include file = "../common/menubar.jsp" %>
     <div class="outer" id="content">
     <div style="height: 250px"></div>
       <table class="table table-borderless table-sm" align="center" style="width: 50%">
+        <form enctype="multipart/form-data" action="<%=contextPath%>/updateArticle.fb" method="post">
+          <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"/>
           <thead>
               <tr>
                   <th width="100"></th>
@@ -102,7 +104,7 @@
               </tr>
               <tr>
                   <td colspan="3">
-                      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#updateModal">
+                      <button type="submit" class="btn btn-success btn-block">
                           수정 완료
                       </button>
                   </td>
@@ -113,6 +115,7 @@
               </td>
               </tr>
           </tbody>
+        </form>
       </table>
     </div>
     <script>
