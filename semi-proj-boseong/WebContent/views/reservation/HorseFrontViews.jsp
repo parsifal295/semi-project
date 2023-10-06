@@ -30,12 +30,10 @@
 .swiper {
 	width: 1041px;
 	height: 500px;
-	padding: 0;
-	margin: 0;
 }
 
 ​ /* 이미지 사이즈 조절 */
-    .swiper-slide>img {
+.swiper-slide>img{
 	width: 100%;
 	height: 100%;
 }
@@ -97,24 +95,24 @@
 				<div class="swiper-wrapper top">
 					<!-- Slides -->
 					<div class="swiper-slide">
-						<img
-							src="<%=contextPath %>/resources/image/reservation/room1.avif">
+						<img src="<%=contextPath %>/resources/image/reservation/ride.jpg"
+						width=100% height=100%>
 					</div>
 					<div class="swiper-slide">
-						<img
-							src="<%=contextPath %>/resources/image/reservation/building2.jpeg">
+						<img src="<%=contextPath %>/resources/image/reservation/huddleride.jpg"
+						width=100% height=100%>
 					</div>
 					<div class="swiper-slide">
-						<img
-							src="<%=contextPath %>/resources/image/reservation/huddleride2.jpeg">
+						<img src="<%=contextPath %>/resources/image/reservation/huddleride2.jpeg"
+						width=100% height=100%>
 					</div>
 					<div class="swiper-slide">
-						<img
-							src="<%=contextPath %>/resources/image/reservation/kidsride.jpg">
+						<img src="<%=contextPath %>/resources/image/reservation/kidsride.jpg"
+						width=100% height=100%>
 					</div>
 					<div class="swiper-slide">
-						<img
-							src="<%=contextPath %>/resources/image/reservation/kidsride2.jpg">
+						<img src="<%=contextPath %>/resources/image/reservation/kidsride2.jpg"
+						width=100% height=100%>
 					</div>
 				</div>
 
