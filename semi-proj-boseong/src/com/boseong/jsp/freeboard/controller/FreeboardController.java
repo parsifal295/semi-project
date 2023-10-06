@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.rmi.CORBA.StubDelegate;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,7 +57,7 @@ public class FreeboardController {
   public String insertFreeboardView(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
 
-    return "/views/freeboard/FreeboardInsertView.jsp";
+    return "views/freeboard/fboardInsertView.jsp";
   }
 
   public String insertFreeboard(HttpServletRequest request, HttpServletResponse response)
@@ -134,9 +135,22 @@ public class FreeboardController {
     if (result > 0) {
       // Freeboard 테이블 조회
       Freeboard fb = fService.selectFreeboard(boardNo);
-      System.out.println(fb);
+      // Attachment 조회
+      Attachment att = fService.selectAttachment(boardNo);
       request.setAttribute("fb", fb);
+      request.setAttribute("att", att);
     }
     return "views/freeboard/fboardDetailView.jsp";
+  }
+
+  public String updateFreeboardView(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
+    FreeboardService fService = new FreeboardService();
+    int boardNo = Integer.parseInt(request.getParameter("bno"));
+    Freeboard fb = fService.selectFreeboard(boardNo);
+    Attachment att = fService.selectAttachment(boardNo);
+    if (att != null) {}
+
+    return "views/freeboard/fboardUpdateView.jsp";
   }
 }

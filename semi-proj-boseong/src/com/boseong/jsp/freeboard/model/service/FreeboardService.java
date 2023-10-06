@@ -79,4 +79,14 @@ public class FreeboardService {
     }
     return fb;
   }
+
+  public Attachment selectAttachment(int boardNo) {
+    Attachment att = null;
+    try (Connection conn = getConnection()) {
+      att = new FreeboardDao().selectAttachment(conn, boardNo);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return att;
+  }
 }

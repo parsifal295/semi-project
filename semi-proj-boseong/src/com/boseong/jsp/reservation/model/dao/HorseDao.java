@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.boseong.jsp.reservation.model.vo.HorseProgram;
 import com.boseong.jsp.reservation.model.vo.HorseReservation;
 
 public class HorseDao {
@@ -108,6 +109,34 @@ public class HorseDao {
 			close(pstmt);
 		}
 	
+		return list;
+	}
+	public ArrayList<HorseProgram> selectPrograms(Connection conn){
+		ArrayList<HorseProgram> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPrograms");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				HorseProgram hpro = new HorseProgram(
+						rset.getInt("HORSE_PRO_NO"),
+						rset.getString("HORSE_PRO_NAME"),
+						rset.getString("DESCRIPTION"),
+						rset.getInt("PRICE")
+						);
+				list.add(hpro);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 		return list;
 	}
 }

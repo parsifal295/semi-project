@@ -46,6 +46,8 @@ public class ItemBoardDao {
 			
 			result = pstmt.executeUpdate();
 			
+			System.out.println(result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -105,7 +107,7 @@ public class ItemBoardDao {
 
 	
 	
-	public ArrayList<ItemBoard> selectList(Connection conn , PageInfo pi){
+	public ArrayList<ItemBoard> selectIboardList(Connection conn , PageInfo pi){
 		
 		ArrayList<ItemBoard> list = new ArrayList();
 		PreparedStatement pstmt = null;
@@ -121,16 +123,14 @@ public class ItemBoardDao {
 			// * currentPage == 3 => 시작값 21, 끝값 30
 			// * 시작값  = (currentPage - 1) * boardLimit + 1;
 			// * 끝값     = 시작값 + boardLimit - 1; 
-			
-			int startRow = (pi.getCurrentPage() -1) * (pi.getBoardLimit() + 1);
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
 			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
-			
 			rset = pstmt.executeQuery();
-			if(rset.next()) {
+			while(rset.next()) {
 				ItemBoard ib = new ItemBoard();
 				ib.setBoardNo(rset.getInt("BOARD_NO"));
 				ib.setMemberName(rset.getString("MEM_NAME"));
@@ -142,7 +142,6 @@ public class ItemBoardDao {
 				ib.setPrice(rset.getInt("PRICE"));
 				list.add(ib);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

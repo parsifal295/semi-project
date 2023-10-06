@@ -33,7 +33,7 @@ public class ItemBoardDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 해당 게시글 번호 값 뽑기
-		int boardNo = Integer.parseInt(request.getParameter("bno"));
+		// int boardNo = Integer.parseInt(request.getParameter("bno"));
 		
 		
 		// 요청처리후 detailView로 응답화면 지정

@@ -53,10 +53,10 @@
 							</select>
 						</td>
 						<td>
-							<input type="date" name="fromDate">
+							<input type="date" name="fromDate" id="fromDate">
 						</td>
 						<td>
-							<input type="date" name="toDate">
+							<input type="date" name="toDate" id="toDate">
 						</td>
 						<td>
 							<input type ="number" max=4 min =2 placeholder=2 name="clientNum" id="clientNum">
@@ -107,11 +107,12 @@
 				$('#reserv-info').children().eq(4).text(e.price+'원');
 				if(e.extraPrice == 0){
 					e.extraPrice = '해당 없음';
-					$('#reserv-info').children().eq(5).text(e.extraPrice);
+					//$('#reserv-info').children().eq(5).text(e.extraPrice);
 				}
 				else{
-					$('#reserv-info').children().eq(5).text(e.extraPrice+'원');
+					e.extraPrice += '원';
 				}
+				$('#reserv-info').children().eq(5).text(e.extraPrice);
 				$('#reserv-info span').text('최대인원 : '+e.maxNum);
 				},
 				error : function(e){
@@ -119,9 +120,28 @@
 					console.log(e);
 				}
 				})
+			});
+		let now = new Date();
+		let year = now.getFullYear();
+		let month = now.getMonth()+1;
+		let date = now.getDate();
+		if(month<10){
+			month = '0'+month;
+		}
+		if(date<10){
+			date = '0'+date;
+		}
+		let today = year+'-'+month+'-'+date;
+		$('#fromDate').attr('min', today).val(today);
+			$('#fromDate').change(function(){
+				let dateChosen = Number($(this).val().substr(8, 2));
+				dateChosen += 1;
+				let from = $(this).val().replace().substr(0,8).concat(dateChosen.toString());
+				$('#toDate').attr('min', from);
 			})
-			
-		});
+	});
+
+	
 
 </script>
 </body>
