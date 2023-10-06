@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+	import = "java.util.ArrayList, com.boseong.jsp.reservation.model.vo.HorseProgram"%>
+<%
+	ArrayList<HorseProgram> list = (ArrayList<HorseProgram>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,6 +76,21 @@
 	width: 100%;
 	height: 55%;
 }
+.program{
+	width:45%;
+	padding : 10px;
+	margin-bottom:10px;
+	margin-left:40px;
+	border-radius:5px;
+	display:inline-block;
+}
+.program>table{
+	width:100%;
+	font-size:15px;
+}
+.program>table>th{
+	width:200px;
+}
 </style>
 </head>
 <body>
@@ -137,9 +156,29 @@
 			</pre>
 			<h2>프로그램 소개</h2>
 			<hr>
-			<pre>
-				프로그램 소개소개
+			<%if(list.isEmpty()){ %>
+				<pre>
+				진행중인 프로그램이 없습니다.
 				</pre>
+			<%}else{ %>
+				<%for(HorseProgram hpro : list){ %>
+					<div class="program">
+						<h3><%=hpro.getHorseProName() %></h2>
+						<table bordr="1">
+							<tr>
+							<th>설명</th>
+							<td><%=hpro.getDescription() %></td>
+							</tr>
+							<tr></tr>
+							<tr>
+							<th>가격</th>
+							<td><%=hpro.getPrice() %></td>
+							</tr>
+						</table>
+					</div>
+				<%} %>
+			<%} %>
+			<br>
 			<h3>이용 안내</h3>
 			<hr>
 			<pre>

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.boseong.jsp.reservation.model.dao.HorseDao;
+import com.boseong.jsp.reservation.model.vo.HorseProgram;
 import com.boseong.jsp.reservation.model.vo.HorseReservation;
 
 public class HorseService {
@@ -39,6 +40,13 @@ public class HorseService {
 		Connection conn = getConnection();
 		ArrayList<HorseReservation> list = new HorseDao().selectRides(conn, memNo);
 		close(conn);
+		return list;
+	}
+	public ArrayList<HorseProgram> selectPrograms() {
+		Connection conn = getConnection();
+		ArrayList<HorseProgram> list = new HorseDao().selectPrograms(conn);
+		close(conn);
+	
 		return list;
 	}
 
