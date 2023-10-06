@@ -141,7 +141,7 @@ request.getContextPath(); %>
 				background-size: 100%;
 			}
 			#box{
-			height:300px;
+			height:210px;
 			}
 		</style>
 		

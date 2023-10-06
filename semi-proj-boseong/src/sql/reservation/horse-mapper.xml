@@ -43,5 +43,11 @@
 		   BY 
 		    HORSE_DATE
 </entry>
+<entry key="selectPrograms">
+	SELECT 
+			HORSE_PRO_NO, HORSE_PRO_NAME, DESCRIPTION, PRICE 
+		FROM 
+			HORSE_PROGRAM
+</entry>
 
 </properties>
