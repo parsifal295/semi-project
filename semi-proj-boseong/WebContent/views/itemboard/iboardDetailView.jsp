@@ -78,7 +78,7 @@
         <div class="outer">
 
             <div class="iboardImg"></div>
-
+			
             <div id="info">
                 <div id="scrap-area">
                     <img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
@@ -140,49 +140,32 @@
             		// console.log($($('#scrap-image')[0]).attr('src') == N);
             		
 	                if($($('#scrap-image')[0]).attr('src') == N){
-	                	
-	                	console.log('호호홓호ㅗ홓');
 	                    $.ajax({
 	                    	url : 'scrap.ib',
 	                    	data : {
-	                    		status : 'N'	
+	                    		status : 'N',
+	                    		boardNo : 20
+	                    	//	memberNo : 나중에 회원 완성되면 가지고 오기
 	                    	},
-	                    	type : 'post', 
-	                    	success : function(result){
-	                    		console.log(result);
-	                    	}
-	                    })
+	                    	type : 'post'
+	                    });
+	                    $(this).attr({'src' : Y});
 	                 }
 	                else{
 	                	$.ajax({
 	                		url : 'scrap.ib',
 	                		data : {
 	                			status : 'Y',
+	                			boardNo : 20
+		                    	//	memberNo : 나중에 회원 완성되면 가지고 오기
 	                		},
 	                		type : 'post'
 	                	})
+	                	$(this).attr({'src' : N});
 	                }
-            		
             	})
             	
                })
-			
-		// $(function(){
-			
-		// 	$('#scrap-image').click(function(){
-		// 		if($(this).length == 0){
-		// 		// console.log($(this));
-		// 				$(this).attr({
-		// 					'src' : '<%=contextPath%>/resources/image/scrap.png'
-		// 				});
-		// 		}
-		// 		else{
-		// 			$(this).attr({
-        //                 'src' : '<%= contextPath%>/resources/image/scrapted.png' 
-        //             });
-		// 		}
-		// 	})
-		// })
     </script>
 	
 
