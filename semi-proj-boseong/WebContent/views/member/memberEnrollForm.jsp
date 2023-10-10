@@ -21,7 +21,7 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	      <form action="/jsp/insert.me" method="post">
+	      <form action="<%= request.getContextPath() %>/insert.me" method="post">
 	      	<table>
 	      		<tr>
 	      			<td>* 아이디</td>
