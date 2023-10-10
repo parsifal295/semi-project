@@ -79,16 +79,7 @@ public class ItemBoardService {
 		return ib;
 	}
 	
-	public Attachment attchmentSelect(int boardNo) {
-		
-		Connection conn = getConnection();
-		
-		Attachment at = new ItemBoardDao().attchmentSelect(conn, boardNo);
-		
-		close(conn);
-		
-		return at;
-	}
+
 	
 
 }
