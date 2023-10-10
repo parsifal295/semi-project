@@ -104,7 +104,7 @@
 			예약하기
 			</button>
 
-			<button onclick="rideList('Y');" class="btn-outline-secondary rsv">
+			<button onclick="rideList(<%=loginUser.getMemNo() %>);" class="btn-outline-secondary rsv">
 			예약조회
 			</button>
 			</div>
@@ -114,7 +114,7 @@
 			예약하기
 			</button>
 
-			<button onclick="rideList('N');" class="btn-outline-secondary rsv">
+			<button onclick="reserveAride('N');" class="btn-outline-secondary rsv">
 			예약조회
 			</button>
 			</div>
@@ -221,14 +221,9 @@
 			alert('로그인 후 사용가능한 서비스입니다.');
 		}	
 	};
-	function rideList(login){
-		if(login=='N'){
-			alert('로그인 후 사용가능한 서비스입니다.');
+	function rideList(memNo){
+			location.href = "<%=contextPath%>/list.hs?memNo="+memNo;
 		}
-		else{
-			location.href = "<%=contextPath%>/list.hs?memNo="+<%=loginUser.getMemNo()%>;
-		}
-	}
 		// 슬라이더 동작 정의
 		const swiper = new Swiper('.swiper', {
 			autoplay : {

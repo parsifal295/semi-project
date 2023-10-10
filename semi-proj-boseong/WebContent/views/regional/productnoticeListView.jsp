@@ -42,10 +42,12 @@
 					</tr>
 				</thead>
 				<tbody>
+					<% if(list.isEmpty()) { %>
 					<tr>
 						<td colspan="5">공지사항이 존재하지 않습니다.</td>
 					</tr>
-					
+					<%} else { %>
+					<!-- 
 					<tr>
 						<td>1</td>
 						<td>공지사항입니다.</td>
@@ -53,8 +55,18 @@
 						<td>10</td>
 						<td>2023-10-10</td>
 					</tr>
-					  
-				
+					 -->
+					 <% for(ProductNotice p : list) { %>  
+					 
+					 	<tr>
+					 		<td><%= p.getNoticeNo() %></td>
+					 		<td><%= p.getNoticeTitle() %></td>
+					 		<td>관리자</td>
+					 		<td><%= p.getCount() %></td>
+					 		<td><%= p.getCreateDate() %></td>
+						</tr>
+					  <% } %>
+					 <% } %>	 					
 				
 				</tbody>
 			</table>	
