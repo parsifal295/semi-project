@@ -119,7 +119,7 @@
 		<div class="content2">
 			<h3><strong>내 예약 정보</strong></h3>
 			<hr>
-			<h5>예약 일자: onclick달력하면 여기로 와야댐      </h5>
+			<h5>예약 일자: onclick달력하면 여기로 와야댐  콘솔에 찍은 변수명바로넣기.    </h5>
             
             <!--  </select>-->
              
@@ -152,6 +152,7 @@
 		<div class="content3_2">
 		<input type="checkbox" id="same" name="same" value="same"><label for="same"></label>
 		예약자와 투숙객이 일치하다면 체크해주세요
+		<!-- 이거 쉽다고 나중에 해도된다고 하심 -->
 	
 		</div>
 	
