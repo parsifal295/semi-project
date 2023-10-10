@@ -131,4 +131,14 @@ public class FreeboardService {
     }
     return result;
   }
+
+  public ArrayList<Freeboard> getSearchCount(String condition, String keyword) {
+    ArrayList<Freeboard> list = null;
+    try (Connection conn = getConnection()) {
+      list = new FreeboardDao().getSearchCount(conn, condition, keyword);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return list;
+  }
 }

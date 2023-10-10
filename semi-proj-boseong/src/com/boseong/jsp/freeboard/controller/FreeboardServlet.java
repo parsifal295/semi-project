@@ -55,7 +55,7 @@ public class FreeboardServlet extends HttpServlet {
         view = new FreeboardController().deleteFreeboard(request, response);
         break;
       case "search.fb":
-        view = new 
+        view = new FreeboardController().searchFreeboard(request, response);
         break;
     }
 

@@ -64,8 +64,16 @@ public class FreeboardController {
 
   public String searchFreeboard(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     int listCount; // 현재 일반게시글의 게시글 총 개수 => DB에서 총 게시글 개수 질의 count(*) / status='Y'
+
+    // 필요한 변수 뽑기
+    // ** 검색조건 (제목+내용 or 작성자 or ip 주소) / 검색어 **
+    String condition = request.getParameter("condition");
+    String keyword = request.getParameter("conditionText");
+
+    if (listCount < 10) { // 검색 결과가 10개 미만인 경우 (페이징 처리 필요 없음. 단순 결과 조회 회신)
+      listCount = new FreeboardService().getSearchCount(condition, keyword);
+    }
     int currentPage; // 현재 페이지 => request.getParameter("cpage")
     int pageLimit; // 한 페이지에 보여질 게시글 최대 갯수 => 10개로 고정
     int boardLimit; // 한 페이지에 보여질 게시글의 최대 개수 => 10개로 고정
