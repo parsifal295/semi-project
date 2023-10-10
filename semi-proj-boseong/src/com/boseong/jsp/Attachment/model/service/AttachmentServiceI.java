@@ -10,5 +10,5 @@ public interface AttachmentServiceI {
 
   public int updateAttachment(Attachment att);
 
-  public int deleteAttachment(int boardNo);
+  public int deleteAttachment(int boardNo, int categoryNo);
 }
