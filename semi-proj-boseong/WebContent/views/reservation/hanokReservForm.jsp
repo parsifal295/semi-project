@@ -68,11 +68,11 @@ box-sizing : border-box;
 						</td>
 						<td>
 							<input type="date" name="fromDate" id="fromDate">
-							<button type = "button" id="date-check">예약 가능일 확인</button>
 						</td>
 
 						<td>
 							<input type="date" name="toDate" id="toDate">
+							<button type = "button" id="date-check">예약 가능 확인</button>
 						</td>
 						<td>
 							<input type ="number" max=4 min =2 placeholder=2 name="clientNum" id="clientNum">
@@ -140,7 +140,9 @@ box-sizing : border-box;
 			else{
 				$.ajax({
 					url : 'datecheck.hk',
-					data : {roomNo : $('#roomType').val(), fromDate : $('#fromDate').val()},
+					data : {roomNo : $('#roomType').val(), 
+						fromDate : $('#fromDate').val(),
+						toDate : $('#toDate').val()},
 					success : function(e){
 						//선택한 방에 이미 예약되어있는 날짜들 가져오기
 						alert('ajax성공!');
