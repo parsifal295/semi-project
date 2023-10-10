@@ -15,24 +15,20 @@ import com.boseong.jsp.itemboard.model.vo.ItemBoard;
   
 public class ItemBoardService {
 	
-	public int insertBoard(ItemBoard ib, Attachment at) {
+	public int insertBoard(ItemBoard ib) {
 		
 		Connection conn = getConnection();
 		// IBOARD INSERT
 		int board = new ItemBoardDao().insertBoard(conn, ib);
 		// ATTACHMENT INSERT
-		int file = 1;
-		if(at != null) {
-			file = new ItemBoardDao().insertAttachment(conn, at);
-		}
-		if((board*file) > 0) {
+		if(board > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
 		
-		return (board*file);
+		return board;
 	}
 	
 	// 게시물의 총 개수
@@ -79,16 +75,7 @@ public class ItemBoardService {
 		return ib;
 	}
 	
-	public Attachment attchmentSelect(int boardNo) {
-		
-		Connection conn = getConnection();
-		
-		Attachment at = new ItemBoardDao().attchmentSelect(conn, boardNo);
-		
-		close(conn);
-		
-		return at;
-	}
+
 	
 
 }

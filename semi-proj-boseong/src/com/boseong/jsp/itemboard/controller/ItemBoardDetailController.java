@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.boseong.jsp.Attachment.model.service.AttachmentService;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.itemboard.model.service.ItemBoardService;
 import com.boseong.jsp.itemboard.model.vo.ItemBoard;
@@ -44,7 +45,8 @@ public class ItemBoardDetailController extends HttpServlet {
 		// ib조회
 		ItemBoard ib = ibService.iboardSelect(boardNo);
 		// at조회
-		Attachment at = ibService.attchmentSelect(boardNo);
+		int categoryNo = 20;
+		Attachment at = new AttachmentService().selectAttachment(boardNo, categoryNo);
 		
 		request.setAttribute("ib", ib);
 		request.setAttribute("at", at);

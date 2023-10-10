@@ -28,32 +28,6 @@
 		 		?
 		 		)
 	</entry>
-	<entry key="insertAttachment">
-		INSERT 
-		  INTO 
-		  		ATTACHMENT
-		  		(
-		  		FILE_NO,
-		  		CATEGORY_NO,
-		  		REF_NO,
-		  		ORIGIN_NAME,
-		  		MODIFIED_NAME,
-		  		SAVE_PATH,
-		  		UPLOAD_DATE,
-		  		STATUS
-		  		)
-		  		VALUES
-		  		(
-		  		SEQ_AT_NO.NEXTVAL,
-		  		20,
-		  		SEQ_IB_NO.CURRVAL,
-		  		?,
-		  		?,
-		  		?,
-		  		SYSDATE,
-		  		'Y'
-		  		)
-	</entry>
 	<entry key="selectListCount">
 		SELECT
 				COUNT(*)
@@ -134,18 +108,5 @@
    		   		IB.STATUS = 'Y'
    		   AND
    		   		CATEGORY_NO = 20
-	</entry>
-	<entry key="attchmentSelect">
-		SELECT 
-				FILE_NO,
-				ORIGIN_NAME,
-				MODIFIED_NAME,
-				SAVE_PATH
- 		  FROM 
- 		  		ATTACHMENT
-		 WHERE 
-		 		CATEGORY_NO = 20
-  		   AND 
-  		   		REF_NO = ?
 	</entry>
 </properties>

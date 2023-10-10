@@ -4,15 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>특산품 구매 페이지</title>
+<style>
+
+</style>
 </head>
 <body>
 
-	<%@ include file="../common/menubar.jsp" %>
+	<%@ include file="../common/menubar.jsp"%>
 	<div class="page" id="content">
         <div class="page">
 	
-	
-
 </body>
 </html>

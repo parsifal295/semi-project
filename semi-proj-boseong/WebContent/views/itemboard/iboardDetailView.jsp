@@ -112,21 +112,21 @@
         </div>
     </div>
     <script>
+   		 // iboardImg에 사진 삽입
     	$(function(){
           $('.iboardImg').css({
         	  'background-image'  : 'url("<%=at.getSavePath() %>/<%= at.getModifiedName() %>")',
-        	  'background-size' : 'cover'
+        	  'background-size' : 'contain'
         	  });
+          
+          // 변수로 스타일을 빼 true값을 만든 후 클릭 기능을 만듬(확대, 취소)
+         // console.log($('.iboardImg').css({'background-size' : 'cover'})[0].style.('background-size','cover')); 
+          const background = $('.iboardImg').css({'background-size' : 'cover'})[0].style[1];
         	  $('.iboardImg').click(function(){
-        		  $(this).css({'background-size' : 'contain'});
-        		  // if(){
-	           //         $(this).css({'background-size' : 'auto'});
-	            //     }
-        		//else{
-        		//	   $(this).css({'background-size' : 'cover'});
-        		 //  }
+        		$(this).css()
         	  }) ;
     	});
+    	
     	
            // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
   
@@ -171,8 +171,8 @@
 	                		type : 'post'
 	                	})
 	                	$(this).attr({'src' : N});
-	                }
-            	})
+	                };
+            	});
             	
                })
     </script>
