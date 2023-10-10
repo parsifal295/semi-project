@@ -132,10 +132,20 @@ public class FreeboardService {
     return result;
   }
 
-  public ArrayList<Freeboard> getSearchCount(String condition, String keyword) {
-    ArrayList<Freeboard> list = null;
+  public int getSearchCount(String condition, String keyword) {
+    int result = 0;
     try (Connection conn = getConnection()) {
-      list = new FreeboardDao().getSearchCount(conn, condition, keyword);
+      result = new FreeboardDao().getSearchCount(conn, condition, keyword);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public ArrayList<Freeboard> getSearchResult(String condition, String keyword, PageInfo pi) {
+    ArrayList<Freeboard> list = new ArrayList<>();
+    try (Connection conn = getConnection()) {
+      list = new FreeboardDao().getSearchResult(conn, condition, keyword, pi);
     } catch (SQLException e) {
       e.printStackTrace();
     }

@@ -211,4 +211,83 @@ public class FreeboardDao {
     }
     return result;
   }
+
+  public int getSearchCount(Connection conn, String condition, String keyword) {
+    int result = 0;
+    String sql = prop.getProperty("getSearchCount");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      if (condition.equals("titleContent")) {
+        ps.setString(1, "%" + keyword + "%");
+        ps.setString(2, "%" + keyword + "%");
+        ps.setString(3, "");
+        ps.setString(4, "");
+      } else if (condition.equals("writer")) {
+        ps.setString(1, "");
+        ps.setString(2, "");
+        ps.setString(3, "%" + keyword + "%");
+        ps.setString(4, "");
+      } else if (condition.equals("ip")) {
+        ps.setString(1, "");
+        ps.setString(2, "");
+        ps.setString(3, "");
+        ps.setString(4, "%" + keyword + "%");
+      }
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public ArrayList<Freeboard> getSearchResult(
+      Connection conn, String condition, String keyword, PageInfo pi) {
+    ArrayList<Freeboard> list = new ArrayList<>();
+    String sql = prop.getProperty("getSearchResult");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      /*
+       * boardLimit이 10이라는 가정하에
+       * currentPage == 1 => 시작값 1, 끝값 10
+       * currentPage == 2 => 시작값 11, 끝값 20
+       * currentPage == 3 => 시작값 21, 끝값 30
+       *
+       *  시작값 = (currentPage - 1) * boardLimit + 1
+       *  끝값 = 시작값 + boardLimit - 1;
+       */
+      if (condition.equals("titleContent")) {
+        ps.setString(1, "%" + keyword + "%");
+        ps.setString(2, "%" + keyword + "%");
+        ps.setString(3, "");
+        ps.setString(4, "");
+      } else if (condition.equals("writer")) {
+        ps.setString(1, "");
+        ps.setString(2, "");
+        ps.setString(3, "%" + keyword + "%");
+        ps.setString(4, "");
+      } else if (condition.equals("ip")) {
+        ps.setString(1, "");
+        ps.setString(2, "");
+        ps.setString(3, "");
+        ps.setString(4, "%" + keyword + "%");
+      }
+      int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+      int endRow = startRow + pi.getBoardLimit() - 1;
+      ps.setInt(5, startRow);
+      ps.setInt(6, endRow);
+      try (ResultSet rs = ps.executeQuery()) {
+        while (rs.next()) {
+          Freeboard fboard = new Freeboard();
+          fboard.setBoardNo(rs.getInt("BOARD_NO"));
+          fboard.setWriter(rs.getString("ART_WRITER") + "(" + rs.getString("IP_ADDRESS") + ")");
+          fboard.setTitle(rs.getString("ART_TITLE"));
+          fboard.setCount(rs.getInt("COUNT"));
+          fboard.setCreateDate(rs.getDate("CREATE_DATE"));
+          list.add(fboard);
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    System.out.println(list.toString());
+    return list;
+  }
 }
