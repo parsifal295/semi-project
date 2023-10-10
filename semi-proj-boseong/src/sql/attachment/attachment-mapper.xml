@@ -1,98 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<comment> 자유게시판 SQL문 </comment>
-	<entry key="getListCount">
-		SELECT
-			COUNT(*)
-		FROM
-			TB_FREEBOARD
-	</entry>
-	<entry key="selectFboardList"> 
-        SELECT 
-			BOARD_NO,
-			ART_WRITER,
-			IP_ADDRESS,
-			ART_TITLE,
-			COUNT,
-            CREATE_DATE,
-            ROWNUM RNUM
-        FROM    
-        (SELECT
-            BOARD_NO,
-			ART_WRITER,
-			IP_ADDRESS,
-			ART_TITLE,
-			COUNT,
-            CREATE_DATE,
-            ROWNUM RNUM
-        FROM
-		(SELECT
-			BOARD_NO,
-			ART_WRITER,
-			IP_ADDRESS,
-			ART_TITLE,
-			COUNT,
-            CREATE_DATE,
-            ROWNUM
-		FROM
-			TB_FREEBOARD
-		WHERE 
-			STATUS = 'Y'
-        ORDER BY
-            BOARD_NO DESC) A)
-        WHERE RNUM BETWEEN ? AND ?    
-	</entry>
-	<entry key="insertBoard">
-		INSERT
-			INTO
-				TB_FREEBOARD
-				(
-				BOARD_NO,
-				ART_WRITER,
-				IP_ADDRESS,
-				ART_TITLE,
-				ART_PASSWORD,
-				ART_CONTENT
-				)
-			VALUES
-				(
-				SEQ_FB_BN.NEXTVAL,
-				?,
-				?,
-				?,
-				?,
-				?
-				)
-	</entry>
-	<entry key="increaseCount">
-		UPDATE
-			TB_FREEBOARD
-		SET
-			COUNT = COUNT + 1
-		WHERE
-			BOARD_NO = ?
-		AND
-			STATUS = 'Y'
-	</entry>
-	<entry key="selectFreeboard">
-		SELECT
-			BOARD_NO,
-			CATEGORY_NO,
-			ART_WRITER,
-			IP_ADDRESS,
-			ART_TITLE,
-			ART_CONTENT,
-			ART_PASSWORD,
-			COUNT,
-			CREATE_DATE
-		FROM
-			TB_FREEBOARD
-		WHERE
-			BOARD_NO = ?
-		AND
-			STATUS = 'Y'
-	</entry>
+	<comment> 첨부파일 테이블용 SQL문 </comment>
 	<entry key="insertAttachment">
 		INSERT
 			INTO
@@ -108,7 +17,7 @@
 			VALUES
 				(
 				SEQ_AT_NO.NEXTVAL,
-				10,
+				?,
 				SEQ_FB_BN.CURRVAL,
 				?,
 				?,
@@ -126,22 +35,10 @@
 		FROM
 			ATTACHMENT
 		WHERE
-			CATEGORY_NO = 10
+			CATEGORY_NO = ?
 		AND	
 			REF_NO = ?
 		AND 
-			STATUS = 'Y'
-	</entry>
-	<entry key="updateFreeboard">
-		UPDATE
-			TB_FREEBOARD
-		SET
-			ART_TITLE = ?,
-			ART_PASSWORD = ?,
-			ART_CONTENT = ?
-		WHERE
-			BOARD_NO = ?
-		AND
 			STATUS = 'Y'
 	</entry>
 	<entry key="updateAttachment">
@@ -157,14 +54,14 @@
 		AND
 			STATUS = 'Y'
 	</entry>
-	<entry key="deleteFreeboard">
+	<entry key="deleteAttachment">
 		UPDATE
-			TB_FREEBOARD
+			ATTACHMENT
 		SET
 			STATUS = 'N'
 		WHERE
-			BOARD_NO = ?
+			REF_NO = ?
 		AND
-			STATUS = 'Y'
+			CATEGORY
 	</entry>
 </properties>
