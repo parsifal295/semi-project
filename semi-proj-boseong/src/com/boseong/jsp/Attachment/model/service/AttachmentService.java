@@ -35,7 +35,6 @@ public class AttachmentService implements AttachmentServiceI {
 	close(conn);
 	
 	return at;
-    
   }
 
   @Override
@@ -48,7 +47,6 @@ public class AttachmentService implements AttachmentServiceI {
 		close(conn);
 		
 		return at;
-	  
   }
 
   @Override
@@ -62,4 +60,5 @@ public class AttachmentService implements AttachmentServiceI {
 		
 		return at;
   }
+  
 }

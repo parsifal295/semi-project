@@ -8,6 +8,7 @@ import static com.boseong.jsp.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.boseong.jsp.Attachment.model.dao.AttachmentDao;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.itemboard.model.dao.ItemBoardDao;
@@ -15,20 +16,20 @@ import com.boseong.jsp.itemboard.model.vo.ItemBoard;
   
 public class ItemBoardService {
 	
-	public int insertBoard(ItemBoard ib) {
+	public int insertBoard(ItemBoard ib, Attachment att, int categoryNo) {
 		
 		Connection conn = getConnection();
 		// IBOARD INSERT
 		int board = new ItemBoardDao().insertBoard(conn, ib);
-		// ATTACHMENT INSERT
-		if(board > 0) {
+		int at = new AttachmentDao().insertAttachment(conn, att, categoryNo);
+		if((board * at) > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
 		
-		return board;
+		return (board*at);
 	}
 	
 	// 게시물의 총 개수

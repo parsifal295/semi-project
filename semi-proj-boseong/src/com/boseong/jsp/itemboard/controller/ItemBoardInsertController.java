@@ -81,10 +81,9 @@ public class ItemBoardInsertController extends HttpServlet {
 			}
 			int categoryNo = 20;
 			
-			int iboard = new ItemBoardService().insertBoard(ib);
-			int at = new AttachmentService().insertAttachment(att, categoryNo);
+			int iboard = new ItemBoardService().insertBoard(ib, att, categoryNo);
 			
-			if((iboard * at) > 0) {
+			if(iboard > 0) {
 				request.getSession().setAttribute("alertMsg", "게시글 등록을 성공하였습니다!");
 				response.sendRedirect(request.getContextPath() + "/detail.ib?"); // 완성되면 다시 경로 지정
 			}else {
