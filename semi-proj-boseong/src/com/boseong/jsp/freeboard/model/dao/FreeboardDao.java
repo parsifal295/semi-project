@@ -193,11 +193,19 @@ public class FreeboardDao {
     return result;
   }
 
+  /**
+   * deleteFreeboard method -- deletes a freeboard article from the database
+   *
+   * @param conn the Connection object to connect to the database
+   * @param boardNo
+   * @return int
+   */
   public int deleteFreeboard(Connection conn, int boardNo) {
     int result = 0;
     String sql = prop.getProperty("deleteFreeboard");
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
       ps.setInt(1, boardNo);
+      result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
