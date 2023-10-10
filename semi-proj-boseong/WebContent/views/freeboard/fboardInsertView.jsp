@@ -89,6 +89,7 @@
 										id="article"
 										name="content"
 										required
+										style="resize:none"
 									></textarea>
 								</div>
 							</td>

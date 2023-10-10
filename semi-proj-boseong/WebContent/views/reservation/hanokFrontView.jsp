@@ -7,19 +7,6 @@
 <title>보성 한옥스테이</title>
 
 <style>
-@font-face {
-	font-family: 'Hangeuljaemin4-Regular';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Hangeuljaemin4-Regular.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
-
-#content *{
-	font-family: 'Hangeuljaemin4-Regular';
-}
-
 #main-pic {
 	width: 100%;
 	height: 70%;
@@ -29,19 +16,11 @@
 	background-size: cover;
 }
 
-#main-pic>button {
-	margin-top: 500px;
-	border: lightblue;
-}
-
 #main-pic>div{
 	padding : 100px;
 	color:white;
 }
 #main-pic>a{text-decoration:none;}
-#main-pic h1{
-text-shadow: 1px 2px 2px gray;
-}
 
 #rooms {
 	width: 100%;
@@ -79,9 +58,10 @@ text-shadow: 1px 2px 2px gray;
 		<div class="page">
 			<div id="main-pic">
 			<%if(loginUser != null){ %>
-				<button class="btn btn-info btn-lg btn-block" id="reserv-hanok">
+				<button class="btn btn-outline-secondary" id="reserv-hanok">
 					<h1>예약 하기</h1>
 				</button>
+				<button class="btn btn-outline-secondary" id="hk-reserv-list"><h1>예약 조회</h1></button>
 			<%}else{ %>
 				<div><h1>예약하려면 로그인하세요!</h1></div>
 			<%} %>
@@ -120,6 +100,7 @@ text-shadow: 1px 2px 2px gray;
     	$('#main-pic')
     	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"');
     	$('#reserv-hanok').click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
+    	$('#hk-rserv-list').click(function(){location.href="<%=contextPath%>/list.hk"});
     })
 	</script>
 
