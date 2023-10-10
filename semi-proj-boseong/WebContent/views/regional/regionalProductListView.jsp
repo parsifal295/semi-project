@@ -65,7 +65,7 @@
             
            <form>
             	<input type="button" id="review" value="구매리뷰" style="float:right;">
-            	<input type="button" onclick="location.href='views/regional/productnoticeView.jsp'" id="notice" value="공지사항" style="float:right;">
+            	<input type="button" onclick="location.href='views/regional/productnoticeListView.jsp'" id="notice" value="공지사항" style="float:right;">
            </form>
             
            
