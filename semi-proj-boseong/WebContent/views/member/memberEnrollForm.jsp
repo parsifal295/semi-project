@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String contextPath =request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +7,7 @@
 <title>회원가입</title>
 </head>
 <body>
-
+	
 	<!-- 회원가입 모달창 -->
 	<div class="modal" id="memberEnrollForm">
 	  <div class="modal-dialog">
@@ -22,7 +21,7 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	      <form action="<%= contextPath %>/insert.me" method="post">
+	      <form action="/jsp/insert.me" method="post">
 	      	<table>
 	      		<tr>
 	      			<td>* 아이디</td>
