@@ -30,8 +30,13 @@
 }
 
 #main-pic>button {
-	margin-top: 600px;
-	border: none;
+	margin-top: 500px;
+	border: lightblue;
+}
+
+#main-pic>div{
+	padding : 100px;
+	color:white;
 }
 
 #rooms {
@@ -69,9 +74,13 @@
 		<div id="box"></div>
 		<div class="page">
 			<div id="main-pic">
-				<button class="btn btn-info btn-lg btn-block">
+			<%if(loginUser != null){ %>
+				<button class="btn btn-info btn-lg btn-block" id="reserv-hanok">
 					<h1>예약 하기</h1>
 				</button>
+			<%}else{ %>
+				<div><h1>예약하려면 로그인하세요!</h1></div>
+			<%} %>
 			</div>
 			<div id="rooms">
 				<div class="room">
@@ -104,8 +113,8 @@
     }
     $(function(){
     	$('#main-pic')
-    	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"')
-		.click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
+    	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"');
+    	$('#reserv-hanok').click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
     })
 	</script>
 

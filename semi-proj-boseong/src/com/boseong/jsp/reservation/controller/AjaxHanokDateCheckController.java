@@ -41,7 +41,7 @@ public class AjaxHanokDateCheckController extends HttpServlet {
 		hanokRsv.setFromDate(fromDate);
 		hanokRsv.setToDate(toDate);
 		
-		ArrayList list = new HanokService().checkDate(hanokRsv);
+		ArrayList<HanokReservation> list = new HanokService().checkDate(hanokRsv);
 		response.setContentType("application/json; charset=UTF-8");
 		Gson gsn = new Gson();
 		gsn.toJson(list, response.getWriter());

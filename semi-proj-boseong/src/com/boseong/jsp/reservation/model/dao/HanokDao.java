@@ -99,6 +99,9 @@ public class HanokDao {
 			
 			pstmt.setInt(1, hanokRsv.getRoomNo());
 			pstmt.setString(2, hanokRsv.getFromDate());
+			pstmt.setString(3, hanokRsv.getToDate());
+			pstmt.setString(4, hanokRsv.getFromDate());
+			pstmt.setString(5, hanokRsv.getToDate());
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {

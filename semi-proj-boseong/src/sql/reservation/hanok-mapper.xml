@@ -34,11 +34,11 @@
 <entry key="checkDate">
 SELECT 
         RESERVATION_NO, 
-        FROM_DATE, 
-        TO_DATE
+        TO_CHAR(FROM_DATE) "FROM_DATE", 
+        TO_CHAR(TO_DATE) "TO_DATE"
     FROM HANOK_RESERVATION 
     WHERE ROOM_NO = ? 
-    AND FROM_DATE > ?
+    AND FROM_DATE BETWEEN ? AND ? OR TO_DATE BETWEEN ? AND ?
 </entry>
 
 </properties>
