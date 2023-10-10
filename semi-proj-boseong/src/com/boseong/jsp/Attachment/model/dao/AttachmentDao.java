@@ -1,6 +1,11 @@
 package com.boseong.jsp.Attachment.model.dao;
 
 import com.boseong.jsp.Attachment.model.vo.Attachment;
+import com.boseong.jsp.itemboard.model.dao.ItemBoardDao;
+
+import static com.boseong.jsp.common.JDBCTemplate.close;
+import static com.boseong.jsp.common.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 
 public class AttachmentDao implements AttachmentDaoI {
@@ -13,8 +18,8 @@ public class AttachmentDao implements AttachmentDaoI {
 
   @Override
   public Attachment selectAttachment(Connection conn, int boardNo, int categoryNo) {
-    // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'selectAttachment'");
+	
   }
 
   @Override
