@@ -123,7 +123,7 @@
          // console.log($('.iboardImg').css({'background-size' : 'cover'})[0].style.('background-size','cover')); 
           const background = $('.iboardImg').css({'background-size' : 'cover'})[0].style[1];
         	  $('.iboardImg').click(function(){
-        		$(this).css()
+        		$(this).css({'background-size' : 'cover'});
         	  }) ;
     	});
     	

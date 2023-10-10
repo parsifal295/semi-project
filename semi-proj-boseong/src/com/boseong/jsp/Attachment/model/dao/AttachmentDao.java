@@ -26,12 +26,19 @@ public class AttachmentDao implements AttachmentDaoI {
   @Override
   public int insertAttachment(Connection conn, Attachment att, int categoryNo) {
     int result = 0;
+    String seq="";
+    if(categoryNo == 20) {
+    	seq = "SEQ_IB_NO.CURRVAL";
+    } else if(categoryNo == 10) {
+    	seq = "SEQ_FB_BN.CURRVAL";
+    }
     String sql = prop.getProperty("insertAttachment");
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
       ps.setInt(1, categoryNo);
-      ps.setString(2, att.getOriginName());
-      ps.setString(3, att.getModifiedName());
-      ps.setString(4, att.getSavePath());
+      ps.setString(2, seq);
+      ps.setString(3, att.getOriginName());
+      ps.setString(4, att.getModifiedName());
+      ps.setString(5, att.getSavePath());
       result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

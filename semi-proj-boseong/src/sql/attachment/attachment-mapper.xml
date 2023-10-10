@@ -18,7 +18,7 @@
 				(
 				SEQ_AT_NO.NEXTVAL,
 				?,
-				SEQ_FB_BN.CURRVAL,
+				?,
 				?,
 				?,
 				?

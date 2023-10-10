@@ -53,6 +53,7 @@ public class ItemBoardDao {
 		} finally {
 			close(pstmt);
 		}
+		System.out.println(result);
 		return result;
 	}
 	
