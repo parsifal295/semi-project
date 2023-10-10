@@ -4,24 +4,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>녹차밭 예약페이지</title>
+<title>한달살기 예약 페이지</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
   
   <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/index.global.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/index.global.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 
+
+
+
 <style>
-	
 	.outer{
-			width : 1400px;
-			height : 2370px;
-			margin : auto;
-			margin-top : 250px;
-		}
-		
+				width : 1400px;
+				height : 2370px;
+				margin : auto;
+				margin-top : 300px;
+			}
+			
+
 	.content12{
 			width : 1400px;
 			height : 650px;
@@ -31,7 +34,7 @@
 		
 	.content1{
 			width : 700px;
-			height : 600px;
+			height : 500px;
 			margin : auto;
 			margin-top : 30px;
 			float : left;
@@ -56,28 +59,29 @@
 	.content3_1{
 			width:400px;
 			height:70px;
-			margin-top : 30px;
 			
 	}	
 		
 	.content3_2{
 			width:500px;
 			height:50px;
-			float : left;
+		float : left;
 			
 	}		
 		
 	.button{
-			float:right;
+	float:right;
 	}	
-		
-		
-</style>
 
+
+
+
+
+</style>
 
 </head>
 <body>
-	<!-- 스크립트시작 -->
+<!-- 스크립트시작 -->
 	<script>
 
       document.addEventListener('DOMContentLoaded', function() {
@@ -91,6 +95,9 @@
             },
             dateClick: function(info) {
               alert('clicked ' + info.dateStr);
+            },
+            select: function(info) {
+              alert('selected ' + info.startStr + ' to ' + info.endStr);
             }
           });
         calendar.render();
@@ -98,44 +105,59 @@
 
     </script>
 	<!-- 스크립트끝 -->
-	
-	
-	<%@ include file="../common/menubar.jsp" %>
 
-	
+
+
+
+<%@ include file="../common/menubar.jsp" %>
+
 	<div class="outer">
 	<hr style="border:solid 0.5px grey;">
-	<h2 align="center">녹차밭 예약하기</h2>
+	<h2 align="center">한달살기 예약하기</h2>
 	<hr style="border:solid 0.5px grey;">
 	
 	<br><br>
+	
 	<div class="content12">
 	
 		<div class="content1">
-		
 		<div id='calendar'></div>
+		<!--  <img src="https://7calendar.com/calendar/monthly/png/9-2023-a4-l-0-24-kr.png" width="700", height="500";>-->
 		</div>
 		
 		<div class="content2">
-			<h3><strong>내 예약 정보</strong></h3>
-			<hr>
-			<h5>예약 일자: onclick달력하면 여기로 와야댐  콘솔에 찍은 변수명바로넣기.    </h5>
-            
-            <!--  </select>-->
-             
-			<br>
+			<h2>내 예약 정보</h2>
+			예약일:
+			<!--  
+			<select name="select-month"> 
+			<option>2023년</option>
+			<option>2024년</option>
+			</select>
 			
-			<h5>예약 회차: 
-        	<select name="select-time"> 
-	            <option>오전(9시~12시)</option>
-	            <option>오후(12시~6시)</option>
-       		</select>
-        	</h5>
-        	
-			<br>
-			<h5>인원:
+			
+			
+			<select name="select-month"> 
+            <option>1월</option>
+            <option>2월</option>
+            <option>3월</option>
+            <option>4월</option>
+            <option>5월</option>
+            <option>6월</option>
+            <option>7월</option>
+            <option>8월</option>
+            <option>9월</option>
+            <option>10월</option>
+            <option>11월</option>
+            <option>12월</option>
+            
+            </select>
+            -->
+			<br><br>
+			
+			
+			인원:
 				<input type="number" name="amount" min="0" max="50" value="1" step="1">
-			</h5>
+
 			<br>
 			
 		
@@ -144,15 +166,13 @@
 		
 		
 	</div>
-	<br><br>
+	<br><br><br>
 	
-
 	<div class="content3_1">
 	<h2>예약자 세부 정보 입력</h2>
 		<div class="content3_2">
 		<input type="checkbox" id="same" name="same" value="same"><label for="same"></label>
 		예약자와 투숙객이 일치하다면 체크해주세요
-		<!-- 이거 쉽다고 나중에 해도된다고 하심 -->
 	
 		</div>
 	
@@ -169,21 +189,28 @@
 	<br><br><br>
 	
 	<div class="content4">
-	<h2>녹차밭 체험 규칙 검토</h2>
+	<h2>한달 살기 규칙 검토</h2><br>
+		체크인<br>
+		15:00~21:00<br>
+		
+		체크아웃<br>
+		08:00~11:00<br>
+
+		숙소 유형에 따라 취소 및 선결제 정책이 달라집니다. 옵션을 선택할 때는 반드시 예약조건을 확인해주시기 바랍니다.<br>
+		
+		아동 투숙이 불가합니다.<br>
+		
+		이 숙소에서는 엑스트라 베드를 이용하실 수 없습니다.<br>
+		
+		만 18세 이상만 체크인 가능합니다.<br>
+
+		숙소에서 흡연이 불가능합니다.<br>
+
+		파티/행사를 허용하지 않습니다.<br>
+
+		반려동물 동반이 불가능합니다.<br>
 	<hr>
-		체험시 반려동물 입장은 불가합니다.
-		체험시 체험지도사의 지시에 따라주시기 바랍니다.
-		연락처 오기재로 미확인시 책임지지 않습니다.
-		안전한 체험을 위하여 마스크를 착용해 주시기 바랍니다.
-		신종 코로나 바이러스 감영증예방을 위해 발물관 출입시 발열체크 후 37.5도 이상일 경우 박물관 이용이 제한될 수 있으니 이용자분들의 양해 부탁드립니다.
-		<br><br>
-		[이용 안내]<br>
-		최소 체험시간 10분전까지 도착하시기 바랍니다.
-		편안한 복장 및 트래킹화 착용 권장합니다.
-		<br><br>
-		[추천 인원]<br>
-		본 상품은 체험일 회당 최소인원(20명) 미만시 체험이 취소 될 수 있습니다.(모객 미달로 인한 체험 불가시 출발 2일전 별도 안내 드리오니, 구매시 연락처 확인 부탁드립니다.)
-		<br><br>
+		
 	</div>
 	<br>
 		<div class="button">
@@ -193,6 +220,20 @@
 	
 	</div>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</div>
 
 
 
@@ -202,6 +243,14 @@
 
 
 
-	<%@ include file="../common/footer.jsp" %>
+
+
+
+
+
+
+
+
+<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

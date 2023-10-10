@@ -23,6 +23,13 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 public class FreeboardController {
 
+  /**
+   * @param request
+   * @param response
+   * @return String
+   * @throws ServletException
+   * @throws IOException
+   */
   public String requestFreeboard(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
@@ -214,6 +221,14 @@ public class FreeboardController {
       throws IOException, ServletException {
     request.setCharacterEncoding("UTF-8");
     int boardNo = Integer.parseInt(request.getParameter("bno"));
+    // 첨부파일이 없는 경우 : 게시글만 지워주면 됨. => status = 'N'
+    new FreeboardService().deleteFreeboard(boardNo);
+
+    // 첨부파일이 있는 경우 : attachment 테이블에 refno 조회 후 결과값 확인되면 이 테이블의 데이터도 같이 지울것.
+    if (new FreeboardService().selectAttachment(boardNo) != null) {
+      new FreeboardService().deleteAttachment(boardNo);
+    }
+
     return request.getContextPath() + "/fboard.fb?cpage=1";
   }
 }

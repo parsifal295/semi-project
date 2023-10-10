@@ -49,20 +49,6 @@
 	
 
 
-	.box1{
-		background-color : white;
-		font-size:30px;
-		width : 200px;
-		height : 200px;
-		text-align:center;
-		position:absolute;
-		top:30%;
-		left:90%;
-		line-height: 200px;
-		transform:translate(-50%, -50%);
-		
-	}
-	
 	.box2{
 		background-color : white;
 		font-size:30px;
@@ -73,7 +59,7 @@
 		line-height: 200px;
 		top:60%;
 		left:90%;
-		transform:translate(-50%, -50%);
+		transform:translate(-50%, -90%);
 		
 	}
 	
@@ -161,14 +147,15 @@
 		</div>
 		<div class="main_image_text"><h2 align=center style="font-size:60px;">한달 살기</h2></div>
 		
-		<div class="box1" style="border:1px solid white;" >예약하기</h3></div>
-		<div class="box2" style="border:1px solid white;">예약조회</h3></div>
+		
+		<div class="box2" style="border:1px solid white;"><a href="<%=contextPath%>/resv.all">예약조회</a></h3></div>
 	</div>
 	
 	
 	
 	<div class="outer">
 		<div class="content1">
+		<!--  
 			<div class="content1_1">
 			<h5>날짜<br></h5>
 			
@@ -185,7 +172,7 @@
 			
 			
 			</div>
-		
+		-->
 		
 		</div>
 		

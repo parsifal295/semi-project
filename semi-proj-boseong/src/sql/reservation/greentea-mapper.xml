@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<comment>Greentea관련 sql문</comment>
+
+	<entry key="insertGreentea">
+	INSERT
+	INTO
+		TEA_RESERVATION
+		(
+		RESERVATION_NO
+		, START_DATE
+		, COURSE_NUM
+		, MEM_NO
+		, BOOK_NUM
+		, STATUS
+		)
+	VALUES
+		(
+		SEQ_RESERV_NO.NEXTVAL
+		,?
+		,?
+		,?
+		,?
+		,'Y'
+		)
+	
+	
+	</entry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</properties>

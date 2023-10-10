@@ -1,4 +1,4 @@
-package com.boseong.jsp.info.controller;
+package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class TourDetailController
+ * Servlet implementation class ReservationAllController
  */
-@WebServlet("/tour.de")
-public class TourDetailController extends HttpServlet {
+@WebServlet("/resv.all")
+public class ReservationAllController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TourDetailController() {
+    public ReservationAllController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,16 +26,10 @@ public class TourDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		String tour = request.getParameter("tour");
-	    request.setAttribute("tour", tour);
-	    request.getRequestDispatcher("views/info/TourDetailView.jsp").forward(request, response);
-	    
-		
-		
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/views/reservation/ReservationAll.jsp").forward(request, response);
+		
 	}
 
 	/**

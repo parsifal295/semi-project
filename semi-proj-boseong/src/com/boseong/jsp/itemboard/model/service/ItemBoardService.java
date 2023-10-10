@@ -59,6 +59,36 @@ public class ItemBoardService {
 		return list;
 	}
 	
+	public int ibIncreaseCount(int boardNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ItemBoardDao().ibIncreaseCount(conn, boardNo);
+		
+		return result;
+	}
+	
+	public ItemBoard iboardSelect(int boardNo) {
+		
+		Connection conn = getConnection();
+		
+		ItemBoard ib = new ItemBoardDao().iboardSelect(conn,boardNo);
+		
+		close(conn);
+		
+		return ib;
+	}
+	
+	public Attachment attchmentSelect(int boardNo) {
+		
+		Connection conn = getConnection();
+		
+		Attachment at = new ItemBoardDao().attchmentSelect(conn, boardNo);
+		
+		close(conn);
+		
+		return at;
+	}
 	
 
 }

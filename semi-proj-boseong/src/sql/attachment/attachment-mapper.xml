@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment> 첨부파일 테이블용 SQL문 </comment>
+	<entry key="insertAttachment">
+		INSERT
+			INTO
+				ATTACHMENT
+				(
+				FILE_NO,
+				CATEGORY_NO,
+				REF_NO,
+				ORIGIN_NAME,
+				MODIFIED_NAME,
+				SAVE_PATH
+				)
+			VALUES
+				(
+				SEQ_AT_NO.NEXTVAL,
+				?,
+				SEQ_FB_BN.CURRVAL,
+				?,
+				?,
+				?
+				)
+	</entry>
+	<entry key="selectAttachment">
+		SELECT
+			FILE_NO,
+			REF_NO,
+			ORIGIN_NAME,
+			MODIFIED_NAME,
+			SAVE_PATH,
+			UPLOAD_DATE
+		FROM
+			ATTACHMENT
+		WHERE
+			CATEGORY_NO = ?
+		AND	
+			REF_NO = ?
+		AND 
+			STATUS = 'Y'
+	</entry>
+	<entry key="updateAttachment">
+		UPDATE
+			ATTACHMENT
+		SET
+			ORIGIN_NAME = ?,
+			MODIFIED_NAME = ?,
+			SAVE_PATH = ?,
+			UPLOAD_DATE = SYSDATE
+		WHERE
+			FILE_NO = ?
+		AND
+			STATUS = 'Y'
+	</entry>
+	<entry key="deleteAttachment">
+		UPDATE
+			ATTACHMENT
+		SET
+			STATUS = 'N'
+		WHERE
+			REF_NO = ?
+		AND
+			CATEGORY
+	</entry>
+</properties>

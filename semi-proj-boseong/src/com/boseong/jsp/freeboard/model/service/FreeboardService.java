@@ -115,4 +115,19 @@ public class FreeboardService {
     }
     return result1 * result2;
   }
+
+  public int deleteFreeboard(int boardNo) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new FreeboardDao().deleteFreeboard(conn, boardNo);
+      if (result > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
 }
