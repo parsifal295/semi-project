@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.boseong.jsp.Attachment.model.service.AttachmentService;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.itemboard.model.service.ItemBoardService;
@@ -67,21 +68,23 @@ public class ItemBoardInsertController extends HttpServlet {
 			ib.setContent(content);
 			ib.setMemberNo(memberNo);
 			
-			Attachment at = null;
+			Attachment att = null;
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				
-				at = new Attachment();
+				att = new Attachment();
 				
-				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
-				at.setSavePath("resources/board_upfiles");
-				at.setModifiedName(multiRequest.getFilesystemName("upfile"));
+				att.setOriginName(multiRequest.getOriginalFileName("upfile"));
+				att.setSavePath("resources/board_upfiles");
+				att.setModifiedName(multiRequest.getFilesystemName("upfile"));
 			} else {
 				// request.setAttribute("alertMsg", "해당 거래 상품 이미지를 첨부 해주세요.");
 			}
+			int categoryNo = 20;
 			
-			int result = new ItemBoardService().insertBoard(ib, at);
+			int iboard = new ItemBoardService().insertBoard(ib);
+			int at = new AttachmentService().insertAttachment(att, categoryNo);
 			
-			if(result > 0) {
+			if((iboard * at) > 0) {
 				request.getSession().setAttribute("alertMsg", "게시글 등록을 성공하였습니다!");
 				response.sendRedirect(request.getContextPath() + "/detail.ib?"); // 완성되면 다시 경로 지정
 			}else {

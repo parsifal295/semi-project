@@ -56,27 +56,6 @@ public class ItemBoardDao {
 		return result;
 	}
 	
-	public int insertAttachment(Connection conn, Attachment at) {
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAttachment");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, at.getOriginName());
-			pstmt.setString(2, at.getModifiedName());
-			pstmt.setString(3, at.getSavePath());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return result;
-	}
 	
 	
 	// 게시글의 총 개수
@@ -192,26 +171,7 @@ public class ItemBoardDao {
 		return ib;
 	}
 	
-	
-	public Attachment attchmentSelect(Connection conn, int boardNo) {
-		
-		Attachment at = new Attachment();
-		String sql = prop.getProperty("attchmentSelect");
-		ResultSet rset = null;
-		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setInt(1, boardNo);
-			rset = pstmt.executeQuery();
-			if(rset.next()) {
-				at.setFileNo(rset.getInt("FILE_NO"));
-				at.setOriginName(rset.getString("ORIGIN_NAME"));
-				at.setModifiedName(rset.getString("MODIFIED_NAME"));
-				at.setSavePath(rset.getString("SAVE_PATH"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return at;
-	}
+
 	
 	
 
