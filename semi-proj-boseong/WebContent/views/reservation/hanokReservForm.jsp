@@ -46,7 +46,7 @@ box-sizing : border-box;
 	
 	<div id="content" class="page">
 		<div class="page">
-			<form action="">
+			<form action="insertHanok.rsv">
 				<input type="hidden" name="userNo" value="<%=loginUser.getMemNo()%>">
 				<h2>객실 선택</h2>
 				<table class="table">
@@ -76,7 +76,7 @@ box-sizing : border-box;
 							<button type = "button" id="date-check">예약 가능 확인</button>
 						</td>
 						<td>
-							<input type ="number" max=4 min =2 placeholder=2 name="clientNum" id="clientNum">
+							<input type ="number" max=4 min =2 placeholder=2 name="clientNum" id="clientNum" value="2" required>
 							<span>최대 인원 : </span>
 						</td>
 						<td>
@@ -91,7 +91,7 @@ box-sizing : border-box;
 				 <table class="table">
 					<tr>
 						<th>투숙객 성함</th>
-						<td><input type="text" readonly value="<%=loginUser.getMemName()%>"></td>
+						<td><input type="text" readonly value="<%=loginUser.getMemName() %>"></td>
 					</tr>
 					<tr>
 						<th>연락처</th>
@@ -150,6 +150,7 @@ box-sizing : border-box;
 							let dateConfirm = confirm('예약 가능한 날짜입니다! 이 날짜에 예약하시겠습니까?');
 							if(dateConfirm){
 								$('#date-check').attr('disabled', true);
+								$('#confirm-button>button').attr('disabled', false);
 							}
 						}
 						else{
@@ -174,7 +175,7 @@ box-sizing : border-box;
 				url : 'detail.hk',
 				data : {roomNo : roomNo},
 				success : function(e){
-				$('#clientNum').attr({min :e.baseNum, placeholder:e.baseNum, max : e.maxNum}).val('');
+				$('#clientNum').attr({min :e.baseNum, placeholder:e.baseNum, max : e.maxNum}).val(e.baseNum);
 				$('#reserv-info').children().eq(4).text(e.price+'원');
 				if(e.extraPrice == 0){
 					e.extraPrice = '해당 없음';

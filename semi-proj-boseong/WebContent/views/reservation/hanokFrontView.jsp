@@ -38,6 +38,10 @@
 	padding : 100px;
 	color:white;
 }
+#main-pic>a{text-decoration:none;}
+#main-pic h1{
+text-shadow: 1px 2px 2px gray;
+}
 
 #rooms {
 	width: 100%;
@@ -106,8 +110,9 @@
 	<script>
     let rooms = document.getElementsByClassName("room");
     for(i=0; i<rooms.length;i++){
+    	let roomNo = i+1;
         rooms[i].onclick= function(){
-            location.href="<%=contextPath%>/roomdetail.rsv?roomNo="+i;
+            location.href="<%=contextPath%>/roomdetail.rsv?roomNo="+roomNo;
             return;
         }
     }
