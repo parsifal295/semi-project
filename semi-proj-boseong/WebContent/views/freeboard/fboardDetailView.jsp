@@ -97,33 +97,128 @@
                   </td>
               </tr>
               <tr>
-                  <td colspan="6">
-                      <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="customFile" name="upfile" />
-                          <label class="custom-file-label" for="customFile">파일 첨부</label>
+                <td colspan="6">
+                  <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                          <span
+                              class="input-group-text"
+                              data-toggle="tooltip"
+                              title="비밀번호를 잊어버리면 글 수정 및 삭제가 불가능합니다."
+                              >첨부파일</span
+                          >
                       </div>
-                  </td>
+                      <% if (att == null) { %>
+                        <p class="form-control" name="viewcount" style="cursor : default">첨부파일 없음</p>
+                      <% } else { %>
+                        <a href="<%=contextPath %>/<%=att.getSavePath()%>/<%= att.getModifiedName()%>" download="<%= att.getOriginName()%>"><%= att.getOriginName()%></a>
+                      <% } %>
+                      
+                  </div>
+              </td>
               </tr>
               <tr>
                   <td colspan="2">
-                      <button type="submit" class="btn btn-warning btn-block">
+                      <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#updateModal">
                           수정
                       </button>
                   </td>
                   <td colspan="2">
-                    <button type="submit" class="btn btn-danger btn-block">
+                    <button type="submit" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteModal" >
                         삭제
                     </button>
                 </td>
                 <td colspan="2">
-                  <button type="submit" class="btn btn-primary btn-block">
+                  <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
                       목록으로
-                  </button>
+                  </a>
               </td>
               </tr>
           </tbody>
       </table>
+      <!--update modal-->
+      <div class="modal fade" id="updateModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">게시글 암호 입력</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="passwd">게시글을 수정하시려면 암호를 입력해 주세요:</label>
+                <input type="text" class="form-control" id="passwd" required>
+              </div>
+              <form action="" method="post" id="checker" method="post">
+                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
+                <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();">확인</button>
+              </form>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- end of update modal -->
+      <!--delete modal-->
+      <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">게시글 암호 입력</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              게시글을 삭제하시려면 암호를 입력해 주세요:
+              <input type="text" class="form-control" id="pass" required>
+              <form action="" method="post" id="chkr" method="post">
+                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
+                <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();">확인</button>
+              </form>
+            </div>
+
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- end of delete modal -->
     </div>
     <%@ include file = "../common/footer.jsp" %>
+    <script>
+      function passwordCheck() {
+        var temp = <%= fb.getPassword() %>;
+        var pw1 = $("#passwd").val();
+        var pw2 = $("#pass").val();
+
+        if (pw1 == temp) {
+          // 암호 일치시 : 수정 페이지로 가기
+          $("#checker").submit(function(e) {
+            $(this).attr("action", "<%=contextPath %>/updateForm.fb");
+          })
+        }
+
+        if (pw2 == temp) {
+          $("#chkr").submit(function(f) {
+            $(this).attr("action", "<%=contextPath %>/deleteForm.fb");
+          })
+        }
+      };
+    </script>
 </body>
 </html>

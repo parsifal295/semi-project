@@ -17,13 +17,18 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		
 		return m;
+	}
+	
+	public void insertMember(Member m) {
 		
-		
-		
-		
+		Connection conn = JDBCTemplate.getConnection();
+		new MemberDao().insertMember(conn, m);
 	}
 
+
+	
 }
+
 
 
 

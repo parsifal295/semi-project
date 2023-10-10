@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% String contextPath =
 request.getContextPath(); %>
+<%@ page import="com.boseong.jsp.member.model.vo.Member" %>
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,8 +29,6 @@ request.getContextPath(); %>
   		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 		<style>
-			.font-family {
-			}
 			#menubar {
 				margin: 0;
 				padding: 0;
@@ -137,33 +141,47 @@ request.getContextPath(); %>
 				background-size: 100%;
 			}
 			#box{
-			height:300px;
+			height:210px;
 			}
 		</style>
 		
 	</head>
 	<body> 
-		<div id="menubar">
-		
-			<!-- 회원일때 보여지는 마이페이지 이동 버튼 -->
-			<div id="userBox">
-				<p style="font-size: 13px">회원 정보</p>
-			</div>
-			<div id="header">
+	
+		<script>
+			var msg  = '<%= alertMsg %>';
 			
-				<!-- 회원이 아닐때 보여지는 태그 -->
+			if(msg != 'null'){
+				alert(msg);
 				
-				<form action="/jsp/login.me" method="post">
-					<div id="login-form"><a href="/login.me" data-toggle="modal" data-target="#loginForm">로그인</a> | <a href="#">회원가입</a></div>
-				</form>
+				<% session.removeAttribute("alertMsg"); %>
+			}
+		
+		</script>
+		
+		<div id="menubar">
+				
+			<div id="header">
+				<!-- 회원이 아닐때 보여지는 태그 -->
+				<% if(loginUser == null) { %>
+					<form action="<%= contextPath %>/login.me" method="post">
+						<div id="login-form"><a data-toggle="modal" data-target="#loginForm">로그인</a> | 
+						<a data-toggle="modal" data-target="#memberEnrollForm">회원가입</a></div>
+					</form>
+				<% } else { %>
 				
 				<!-- 로그인 성공시 보여지는 태그 -->
 				
-				<div id="user-info">
-					<div>
-						<a href="#">로그아웃</a>
+					<div id="user-info">
+						<div>
+							<a href="<%= contextPath %>/logout.me">로그아웃</a>
+						</div>
 					</div>
-				</div>
+					
+					<div id="userBox">
+					<p style="font-size: 13px">회원 정보</p>
+					</div>
+				<% } %>
 
 				<!-- navigator영역 start -->
 				<ul id="navi">
@@ -209,5 +227,6 @@ request.getContextPath(); %>
 			</div>
 		</div>
 		<%@ include file = "../member/memberLoginView.jsp" %>
+		<%@ include file = "../member/memberEnrollForm.jsp" %>
 	</body>
 </html>

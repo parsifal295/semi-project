@@ -46,6 +46,8 @@ public class ItemBoardDao {
 			
 			result = pstmt.executeUpdate();
 			
+			System.out.println(result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -105,7 +107,7 @@ public class ItemBoardDao {
 
 	
 	
-	public ArrayList<ItemBoard> selectList(Connection conn , PageInfo pi){
+	public ArrayList<ItemBoard> selectIboardList(Connection conn , PageInfo pi){
 		
 		ArrayList<ItemBoard> list = new ArrayList();
 		PreparedStatement pstmt = null;
@@ -121,16 +123,14 @@ public class ItemBoardDao {
 			// * currentPage == 3 => 시작값 21, 끝값 30
 			// * 시작값  = (currentPage - 1) * boardLimit + 1;
 			// * 끝값     = 시작값 + boardLimit - 1; 
-			
-			int startRow = (pi.getCurrentPage() -1) * (pi.getBoardLimit() + 1);
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
 			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
-			
 			rset = pstmt.executeQuery();
-			if(rset.next()) {
+			while(rset.next()) {
 				ItemBoard ib = new ItemBoard();
 				ib.setBoardNo(rset.getInt("BOARD_NO"));
 				ib.setMemberName(rset.getString("MEM_NAME"));
@@ -142,7 +142,6 @@ public class ItemBoardDao {
 				ib.setPrice(rset.getInt("PRICE"));
 				list.add(ib);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -150,6 +149,68 @@ public class ItemBoardDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	
+	public int ibIncreaseCount(Connection conn, int boardNo) {
+		
+		int result = 0;
+		String sql = prop.getProperty("ibIncreaseCount");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public ItemBoard iboardSelect(Connection conn, int boardNo) {
+		
+		ItemBoard ib = new ItemBoard();
+		String sql = prop.getProperty("iboardSelect");
+		ResultSet rset = null;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				ib.setMemberName(rset.getString("MEM_NAME"));
+				ib.setTitle(rset.getString("IBOARD_TITLE"));
+				ib.setContent(rset.getString("IBOARD_CONTENT"));
+				ib.setPostDate(rset.getDate("IBOARD_POST_DATE"));
+				ib.setModifyDate(rset.getDate("IBOARD_MODIFY_DATE"));
+				ib.setPrice(rset.getInt("PRICE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+		}
+		return ib;
+	}
+	
+	
+	public Attachment attchmentSelect(Connection conn, int boardNo) {
+		
+		Attachment at = new Attachment();
+		String sql = prop.getProperty("attchmentSelect");
+		ResultSet rset = null;
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				at.setFileNo(rset.getInt("FILE_NO"));
+				at.setOriginName(rset.getString("ORIGIN_NAME"));
+				at.setModifiedName(rset.getString("MODIFIED_NAME"));
+				at.setSavePath(rset.getString("SAVE_PATH"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return at;
 	}
 	
 	

@@ -3,11 +3,14 @@ package com.boseong.jsp.member.controller;
 import com.boseong.jsp.member.model.service.MemberService;
 import com.boseong.jsp.member.model.vo.Member;
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /** Servlet implementation class LoginController */
 @WebServlet("/login.me")
@@ -42,11 +45,28 @@ public class LoginController extends HttpServlet {
     
     // 로그인 실패
     if(loginUser == null) {
-		alert("잘못된 아이디 또는 비밀번호입니다.");
+    	HttpSession session = request.getSession();
+    	session.setAttribute("alertMsg", "잘못된 아이디 또는 비밀번호입니다.");
+    	RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+    	view.forward(request, response);
+    	//session.setAttribute("alertMsg", "로그인실패");
+    	//System.out.println("test");
 		
 	} else { // 로그인 성공
 		
 		HttpSession session = request.getSession();
+		
+		session.setAttribute("loginUser", loginUser);
+		
+		//session.setAttribute("alertMsg", "로그인성공");
+		/*
+		// index.jsp로 응답 -포워딩 방식
+		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+		
+		view.forward(request, response);
+		*/
+		response.sendRedirect(request.getContextPath());
+		
 	}
 
     

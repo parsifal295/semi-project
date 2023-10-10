@@ -88,6 +88,36 @@ public class HanokDao {
 //				);
 //		list.add(r);
 	}
+	public ArrayList checkDate(Connection conn, HanokReservation hanokRsv) {
+		ArrayList list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("checkDate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, hanokRsv.getRoomNo());
+			pstmt.setString(2, hanokRsv.getFromDate());
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				HanokReservation hanok = new HanokReservation();
+				hanok.setReservNo(rset.getInt("RESERVATION_NO"));
+				hanok.setFromDate(rset.getString("FROM_DATE"));
+				hanok.setToDate(rset.getString("TO_DATE"));
+				
+				list.add(hanok);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	
 }
