@@ -82,8 +82,29 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 				<li class="page-item"><a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%= currentPage + 1 %>">Next</a></li>
 				<% } %>
 			</ul>
-			</div>                   
-
+			</div>    
+				<div class="search-area">
+					<form action="<%=contextPath%>/search.fb" method="post">
+						<table class="table table-sm" align="center" style="width: 32%" style="cursor:default">
+						<tr>
+							<th width="100">
+									<select name="condition" class="custom-select-sm">
+										<option value="titleContent">제목+내용</option>
+										<option value="writer">작성자</option>
+										<option value="ip">IP주소</option>
+									</select>
+							</th>
+							<th width="250">
+								<input type="text" name="conditionText" class="form-control form-control-sm">
+							</th>
+							<th>
+								<input type="hidden" name="cpage" value="1">
+								<button type="submit" class="btn btn-primary btn-sm">검색</button>
+							</th>
+						</tr>
+						</table>
+					</form>		
+				</div>
 		</div>
 		<%@ include file = "../common/footer.jsp" %>
     <script>

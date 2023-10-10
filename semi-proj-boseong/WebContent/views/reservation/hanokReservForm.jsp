@@ -46,7 +46,8 @@ box-sizing : border-box;
 	
 	<div id="content" class="page">
 		<div class="page">
-			<form action="">
+			<form action="insertHanok.rsv">
+				<input type="hidden" name="userNo" value="<%=loginUser.getMemNo()%>">
 				<h2>객실 선택</h2>
 				<table class="table">
 					<tr>
@@ -75,7 +76,7 @@ box-sizing : border-box;
 							<button type = "button" id="date-check">예약 가능 확인</button>
 						</td>
 						<td>
-							<input type ="number" max=4 min =2 placeholder=2 name="clientNum" id="clientNum">
+							<input type ="number" max=4 min =2 placeholder=2 name="clientNum" id="clientNum" value="2" required>
 							<span>최대 인원 : </span>
 						</td>
 						<td>
@@ -90,11 +91,11 @@ box-sizing : border-box;
 				 <table class="table">
 					<tr>
 						<th>투숙객 성함</th>
-						<td><input type="text" readonly value="회원 이름"></td>
+						<td><input type="text" readonly value="<%=loginUser.getMemName() %>"></td>
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td><input type="text" readonly value="회원 전화번호"></td>
+						<td><input type="text" readonly value="<%=loginUser.getPhone()%>"></td>
 					</tr>
 					<tr>
 						<th>요청사항</th>
@@ -122,7 +123,7 @@ box-sizing : border-box;
 			</div>
 			<div id="confirm-button" align="center">
 				<input type="checkbox" required> 주의사항을 읽었고 확인하였습니다. <br>
-				<button type="submit" class="btn btn-outline-danger">예약하기</button>
+				<button type="submit" class="btn btn-outline-danger" disabled>예약하기</button>
 			</div>
 
 			</form>		
@@ -141,12 +142,24 @@ box-sizing : border-box;
 				$.ajax({
 					url : 'datecheck.hk',
 					data : {roomNo : $('#roomType').val(), 
-						fromDate : $('#fromDate').val(),
-						toDate : $('#toDate').val()},
+							fromDate : $('#fromDate').val(),
+							toDate : $('#toDate').val()},
 					success : function(e){
 						//선택한 방에 이미 예약되어있는 날짜들 가져오기
-						alert('ajax성공!');
-						console.log(e);
+						if(e.length == 0){
+							let dateConfirm = confirm('예약 가능한 날짜입니다! 이 날짜에 예약하시겠습니까?');
+							if(dateConfirm){
+								$('#date-check').attr('disabled', true);
+								$('#confirm-button>button').attr('disabled', false);
+							}
+						}
+						else{
+							let str=$('#roomType :selected').text()+'에는 다음 기간에 이미 예약이 존재합니다ㅜㅜ';
+							for (let i in e){
+								str += '\n체크인 : ' + e[i].fromDate + ' 체크아웃 : ' + e[i].toDate;
+							}
+							alert(str);
+						}
 					},
 					error: function(){alert('ajax 왤케어려움... 난리남');}
 				})
@@ -162,7 +175,7 @@ box-sizing : border-box;
 				url : 'detail.hk',
 				data : {roomNo : roomNo},
 				success : function(e){
-				$('#clientNum').attr({min :e.baseNum, placeholder:e.baseNum, max : e.maxNum}).val('');
+				$('#clientNum').attr({min :e.baseNum, placeholder:e.baseNum, max : e.maxNum}).val(e.baseNum);
 				$('#reserv-info').children().eq(4).text(e.price+'원');
 				if(e.extraPrice == 0){
 					e.extraPrice = '해당 없음';

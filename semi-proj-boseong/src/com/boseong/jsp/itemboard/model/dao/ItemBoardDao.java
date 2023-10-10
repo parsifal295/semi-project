@@ -46,7 +46,6 @@ public class ItemBoardDao {
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println(result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

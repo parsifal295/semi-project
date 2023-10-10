@@ -2,6 +2,7 @@ package com.boseong.jsp.freeboard.model.service;
 
 import static com.boseong.jsp.common.JDBCTemplate.*;
 
+import com.boseong.jsp.Attachment.model.dao.AttachmentDao;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.freeboard.model.dao.FreeboardDao;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
@@ -83,7 +84,7 @@ public class FreeboardService {
   public Attachment selectAttachment(int boardNo) {
     Attachment att = null;
     try (Connection conn = getConnection()) {
-      att = new FreeboardDao().selectAttachment(conn, boardNo);
+      att = new AttachmentDao().selectAttachment(conn, boardNo, 10);
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -98,10 +99,10 @@ public class FreeboardService {
       if (att != null) {
         if (att.getFileNo() != 0) {
           // 기존 첨부파일이 있다는 소리 => UPDATE 필요
-          result2 = new FreeboardDao().updateAttachment(conn, att);
+          result2 = new AttachmentDao().updateAttachment(conn, att);
         } else {
           // 없다는소리 => INSERT
-          result2 = new FreeboardDao().insertAttachment(conn, att);
+          result2 = new AttachmentDao().insertAttachment(conn, att, 10);
         }
       }
       // transaction
@@ -129,5 +130,25 @@ public class FreeboardService {
       e.printStackTrace();
     }
     return result;
+  }
+
+  public int getSearchCount(String condition, String keyword) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new FreeboardDao().getSearchCount(conn, condition, keyword);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public ArrayList<Freeboard> getSearchResult(String condition, String keyword, PageInfo pi) {
+    ArrayList<Freeboard> list = new ArrayList<>();
+    try (Connection conn = getConnection()) {
+      list = new FreeboardDao().getSearchResult(conn, condition, keyword, pi);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return list;
   }
 }

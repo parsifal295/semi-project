@@ -1,29 +1,29 @@
-package com.boseong.jsp.reservation.controller;
+package com.boseong.jsp.regional.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.HanokService;
-import com.boseong.jsp.reservation.model.vo.HanokReservation;
-import com.google.gson.Gson;
+import com.boseong.jsp.regional.model.service.ProductNoticeService;
+import com.boseong.jsp.regional.model.vo.ProductNotice;
 
 /**
- * Servlet implementation class AjaxHanokDateCheckController
+ * Servlet implementation class ProductNoticeListController
  */
-@WebServlet("/datecheck.hk")
-public class AjaxHanokDateCheckController extends HttpServlet {
+@WebServlet("/list.pn")
+public class ProductNoticeListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxHanokDateCheckController() {
+    public ProductNoticeListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +32,19 @@ public class AjaxHanokDateCheckController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
-		String fromDate = request.getParameter("fromDate");
-		String toDate = request.getParameter("toDate");
+		// 1)인코딩
 		
-		HanokReservation hanokRsv = new HanokReservation();
-		hanokRsv.setRoomNo(roomNo);
-		hanokRsv.setFromDate(fromDate);
-		hanokRsv.setToDate(toDate);
+		// 2) 값 뽑기
 		
-		ArrayList<HanokReservation> list = new HanokService().checkDate(hanokRsv);
+		// 3) 가공
+		// 4) Service단으로 SELECT요청
+		// 공지사항 목록 => 가져올 행의 개수 : 최소 0개 => List
+		ArrayList<ProductNotice> list = new ProductNoticeService().selectProductNoticeList();
+		request.setAttribute("list", list);
 		
-		System.out.println(list);
-		response.setContentType("application/json; charset=UTF-8");
-		Gson gsn = new Gson();
-		gsn.toJson(list, response.getWriter());
+		// 5) 응답화면 띄우기
+		RequestDispatcher view = request.getRequestDispatcher("/views/regional/productnoticeListView.jsp");
+		view.forward(request, response);
 	}
 
 	/**
