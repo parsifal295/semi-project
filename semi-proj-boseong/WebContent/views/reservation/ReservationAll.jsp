@@ -73,7 +73,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><button type="button" class="btn btn-danger" >Danger</button></td>
+					<td><button type="button" class="btn btn-danger" >예약취소(이거 회원탈퇴 모달형식으로 진행)</button></td>
 				</tr>
 			</table><!-- table -->
 			
@@ -102,7 +102,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><button type="button" class="btn btn-danger" >Danger</button></td>
+				<td><button type="button" class="btn btn-danger" >예약취소</button></td>
 			</tr>
 		
 		
@@ -130,7 +130,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><button type="button" class="btn btn-danger" >Danger</button></td>
+				<td><button type="button" class="btn btn-danger" >예약취소</button></td>
 			</tr>
 		
 		
@@ -157,7 +157,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><button type="button" class="btn btn-danger" >Danger</button></td>
+				<td><button type="button" class="btn btn-danger" >예약취소</button></td>
 			</tr>
 		
 		

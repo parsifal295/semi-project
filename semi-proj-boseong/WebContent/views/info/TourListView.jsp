@@ -8,11 +8,31 @@
 <meta charset="UTF-8">
 <title>관광코스 메인페이지</title>
 	<style>
+	
+	.page{
+	padding:0;
+	margin:0;
+	width:100%;
+	height : 100vh;
+	color : black;
+
+}
+
+	#content{
+		width : 1302px;
+		height : 100%;
+		margin : auto;
+}
+	
+	
+	
+	
 	.outer{
 		width : 1200px;
-		height : 2300px;
+		height : 2000px;
 		margin : auto;
-		margin-top : 250px;
+		margin-bottom : 1000px;
+		
 	}
 	
 	#img{
@@ -28,8 +48,12 @@
 <body>
 	<%@ include file="../common/menubar.jsp" %>
 
-
-	<div class="outer">
+	
+	<div class="page" style="height:2200px;"><!-- div class="outer"엿던것 -->
+	
+	<div style="height:200px;"></div>
+	
+	<div class="outer" >
 		<br><br><br><br>
 		<h4 align="center">관광코스</h4>
 		<h2 align="center">#보성</h2>
@@ -48,7 +72,7 @@
 			
 				<div class="listbox-area">
 				<br>
-					<table >
+					<table>
 					
 					<tr>
 						<th colspan="2" width="500" height="5"></th>
@@ -92,6 +116,8 @@
 					</tr>
 					
 					<tr>
+					
+				
 						<td rowspan="3" width="500" height="300" id="img"><img src="https://t1.daumcdn.net/cfile/tistory/26764E4A5708F0B81C" alt="" id="img"></td>
 						<td width="700" height="100"><h4>보성 녹차밭에 깃든 짙은 녹차 향기를 따라 가는 길</h4></td>
 						
@@ -147,9 +173,10 @@
 					
 				</div>
 				
-	
+				</div>
+				
 	</div><!-- outer -->
-
+	
 
 
 

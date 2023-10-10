@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.boseong.jsp.reservation.model.service.GreenteaService;
-import com.boseong.jsp.reservation.model.vo.greenteaInfo;
+import com.boseong.jsp.reservation.model.vo.GreenteaReservation;
 
 /**
- * Servlet implementation class GreenTeaHomeController
+ * Servlet implementation class greenteareservlistcontroller
  */
-@WebServlet("/green.ho")
-public class GreenTeaHomeController extends HttpServlet {
+@WebServlet("/green.li")
+public class GreenTeaReservlistcontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GreenTeaHomeController() {
+    public GreenTeaReservlistcontroller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +31,15 @@ public class GreenTeaHomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		ArrayList<greenteaInfo>list = new GreenteaService().selectService();
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		//여기 list관련 내용작성
+		int memNo = 1; 
+		ArrayList<GreenteaReservation> list = new GreenteaService().selectCourseNum(memNo);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/reservation/GreenteaFrontView.jsp").forward(request, response);
-		
-	
+		request.getRequestDispatcher("views/reservation/GreenTeaReservListView.jsp").forward(request, response);
 	}
 
-	
-	
-	
-	
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
