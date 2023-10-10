@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment> 첨부파일 테이블용 SQL문 </comment>
-	<entry key="insertAttachment">
+	<entry key="fbInsertAttachment">
 		INSERT
 			INTO
 				ATTACHMENT
@@ -18,7 +18,7 @@
 				(
 				SEQ_AT_NO.NEXTVAL,
 				?,
-				?,
+				SEQ_FB.BN.CURRVAL,
 				?,
 				?,
 				?
