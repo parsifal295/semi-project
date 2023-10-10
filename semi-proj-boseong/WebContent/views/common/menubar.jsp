@@ -179,7 +179,9 @@
 					</div>
 					
 					<div id="userBox">
-					<p style="font-size: 13px">회원 정보</p>
+						
+							<a style="font-size: 12px" href="<%= contextPath %>/myPage.me">마이페이지</a>
+						
 					</div>
 				<% } %>
 
