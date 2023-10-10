@@ -4,9 +4,9 @@ import com.boseong.jsp.Attachment.model.vo.Attachment;
 
 public interface AttachmentServiceI {
 
-  public int insertAttachment(Attachment att);
+  public int insertAttachment(Attachment att, int categoryNo);
 
-  public Attachment selectAttachment(int boardNo);
+  public Attachment selectAttachment(int boardNo, int categoryNo);
 
   public int updateAttachment(Attachment att);
 

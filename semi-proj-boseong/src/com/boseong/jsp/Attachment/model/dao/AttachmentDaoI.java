@@ -5,9 +5,9 @@ import java.sql.Connection;
 
 public interface AttachmentDaoI {
 
-  public int insertAttachment(Connection conn, Attachment att);
+  public int insertAttachment(Connection conn, Attachment att, int categoryNo);
 
-  public Attachment selectAttachment(Connection conn, int boardNo);
+  public Attachment selectAttachment(Connection conn, int boardNo, int categoryNo);
 
   public int updateAttachment(Connection conn, Attachment att);
 
