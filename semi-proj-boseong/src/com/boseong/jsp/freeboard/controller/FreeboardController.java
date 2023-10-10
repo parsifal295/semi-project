@@ -214,6 +214,11 @@ public class FreeboardController {
       throws IOException, ServletException {
     request.setCharacterEncoding("UTF-8");
     int boardNo = Integer.parseInt(request.getParameter("bno"));
+    // 첨부파일이 없는 경우 : 게시글만 지워주면 됨. => status = 'N'
+    boardNo = new FreeboardService().deleteFreeboard(boardNo);
+
+    // 첨부파일이 있는 경우
+
     return request.getContextPath() + "/fboard.fb?cpage=1";
   }
 }
