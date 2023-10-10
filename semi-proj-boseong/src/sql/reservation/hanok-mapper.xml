@@ -31,4 +31,14 @@
 	SELECT ROOM_NO, ROOM_TYPE FROM ROOM_INFO
 </entry>
 
+<entry key="checkDate">
+SELECT 
+        RESERVATION_NO, 
+        FROM_DATE, 
+        TO_DATE
+    FROM HANOK_RESERVATION 
+    WHERE ROOM_NO = ? 
+    AND FROM_DATE > ?
+</entry>
+
 </properties>

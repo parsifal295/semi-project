@@ -51,6 +51,9 @@ public class FreeboardServlet extends HttpServlet {
       case "updateArticle.fb":
         view = new FreeboardController().updateArticle(request, response);
         break;
+      case "deleteForm.fb":
+        view = new FreeboardController().deleteFreeboard(request, response);
+        break;
     }
 
     if (flag) {

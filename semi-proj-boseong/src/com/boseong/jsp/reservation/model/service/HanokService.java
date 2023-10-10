@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.boseong.jsp.reservation.model.dao.HanokDao;
+import com.boseong.jsp.reservation.model.vo.HanokReservation;
 import com.boseong.jsp.reservation.model.vo.Room;
 
 public class HanokService {
@@ -23,5 +24,11 @@ public class HanokService {
 		Room r = new HanokDao().getRoomLimit(conn, roomNo);
 		close(conn);
 		return r;
+	}
+	public ArrayList checkDate(HanokReservation hanokRsv) {
+		Connection conn = getConnection();
+		ArrayList list = new HanokDao().checkDate(conn, hanokRsv);
+		close(conn);
+		return list;
 	}
 }

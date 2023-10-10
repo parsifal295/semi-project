@@ -157,4 +157,14 @@
 		AND
 			STATUS = 'Y'
 	</entry>
+	<entry key="deleteFreeboard">
+		UPDATE
+			TB_FREEBOARD
+		SET
+			STATUS = 'N'
+		WHERE
+			BOARD_NO = ?
+		AND
+			STATUS = 'Y'
+	</entry>
 </properties>

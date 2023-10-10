@@ -16,7 +16,7 @@
 <meta charset="UTF-8">
 <title>보성마켓</title>
 <style>
-	#table-style{
+	#iboard-area{
 		width : 78%;
 		text-align : center;
 		margin : auto;
@@ -35,7 +35,7 @@
 	<div style="height : 300px; text-align: center;"></div>
 		<div class="page">
 		<a type="submit" href="<%= contextPath %>/enrollform.ib">글작성</a>
-		<table id="table-style" class="notice-table">
+		<table id="iboard-area" class="notice-table">
 		<thead class="thead-light">
 	      <tr>
 	        <th width="10%">No.</th>
@@ -53,7 +53,7 @@
 	        <td> - </td>
 	      </tr>
 		</table>
-		<table class="table" id="table-style" style="text-align : center;">
+		<table class="table" id="iboard-area" style="text-align : center;">
 	    <thead class="thead-light">
 	      <tr>
 	        <th width="10%">No.</th>
@@ -109,6 +109,7 @@
 	<script>
 	$(function(){
 		$('#iboard-area > tbody > tr').click(function(){
+			console.log('하허아ㅓ리암널;');
 			location.href = '<%= contextPath %>/detail.ib?bno=' + $(this).children().eq(0).text();
 		});
 	});
