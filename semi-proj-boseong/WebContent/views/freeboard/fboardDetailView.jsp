@@ -135,6 +135,26 @@
               </tr>
           </tbody>
       </table>
+      <div id="reply-area">
+        <table align="center" style="width: 50%">
+          <thead>
+            <tr>
+            <td>
+              <div class="form-group">
+                <label for="reply">Comment:</label>
+                <textarea class="form-control" rows="3" id="reply" required style="resize:none"></textarea>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="btn btn-primary btn-block">댓글등록</button>
+            </td>
+          </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
       <!--update modal-->
       <div class="modal fade" id="updateModal">
         <div class="modal-dialog">
@@ -219,6 +239,23 @@
           })
         }
       };
+    </script>
+    <script>
+      function selectReplyList() {
+        $.ajax({
+          url : 'replylist.fb',
+          data : {bno : <%= b.getBoardNo() %>},
+          success : function(result) {
+            // 댓글 개수만큼 루프반복 (댓글전체출력을 위해서..)
+            let resultStr = '';
+            for (let i in result) {
+              resultStr += '<tr>'
+                        + '<td>' + result[i].replyWriter + '</td>'
+            }
+            $('#reply-area tbody').html(resultStr);
+          }
+        })
+      }
     </script>
 </body>
 </html>
