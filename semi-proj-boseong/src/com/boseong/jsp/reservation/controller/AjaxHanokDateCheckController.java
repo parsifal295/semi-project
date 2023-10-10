@@ -34,10 +34,12 @@ public class AjaxHanokDateCheckController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
 		String fromDate = request.getParameter("fromDate");
+		String toDate = request.getParameter("toDate");
 		
 		HanokReservation hanokRsv = new HanokReservation();
 		hanokRsv.setRoomNo(roomNo);
 		hanokRsv.setFromDate(fromDate);
+		hanokRsv.setToDate(toDate);
 		
 		ArrayList list = new HanokService().checkDate(hanokRsv);
 		response.setContentType("application/json; charset=UTF-8");
