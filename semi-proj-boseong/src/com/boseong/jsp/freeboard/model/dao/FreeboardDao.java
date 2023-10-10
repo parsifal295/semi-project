@@ -192,4 +192,15 @@ public class FreeboardDao {
     }
     return result;
   }
+
+  public int deleteFreeboard(Connection conn, int boardNo) {
+    int result = 0;
+    String sql = prop.getProperty("deleteFreeboard");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
 }
