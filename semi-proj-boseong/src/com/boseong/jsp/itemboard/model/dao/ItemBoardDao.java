@@ -155,6 +155,7 @@ public class ItemBoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
+				ib.setBoardNo(rset.getInt("BOARD_NO"));
 				ib.setMemberName(rset.getString("MEM_NAME"));
 				ib.setTitle(rset.getString("IBOARD_TITLE"));
 				ib.setContent(rset.getString("IBOARD_CONTENT"));
@@ -168,6 +169,33 @@ public class ItemBoardDao {
 			close(rset);
 		}
 		return ib;
+	}
+	
+
+	public int selectCurrval(Connection conn, int categoryNo) {
+		int result = 0;
+		
+		String sql = "SELECT \r\n" + 
+				"				SEQ_IB_NO.CURRVAL NUM \r\n" + 
+				"  		  FROM \r\n" + 
+				"  		  		TB_ITEMBOARD\r\n" + 
+				" 		 WHERE \r\n" + 
+				" 		 		CATEGORY_NO = ?";
+		ResultSet rset = null;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, categoryNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("NUM");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+		}
+		return result;
 	}
 	
 

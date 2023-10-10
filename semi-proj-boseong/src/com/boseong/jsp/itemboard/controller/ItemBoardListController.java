@@ -63,6 +63,7 @@ public class ItemBoardListController extends HttpServlet {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
+		System.out.println(currentPage);
 		// 값을 담기
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 	    ArrayList<ItemBoard> list = new ItemBoardService().selectIboardList(pi);	
@@ -70,7 +71,7 @@ public class ItemBoardListController extends HttpServlet {
 	    request.setAttribute("list", list);
 	    request.setAttribute("pi", pi);
 	    // 응답 화면 지정
-		request.getRequestDispatcher("views/itemboard/iboardListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/itemboard/iboardListView.jsp?cpage=1").forward(request, response);
 	
 	}
 

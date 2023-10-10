@@ -92,6 +92,7 @@
 	</entry>
 	<entry key="iboardSelect">
 		SELECT 
+				BOARD_NO,
 				MEM_NAME,
 				IBOARD_TITLE,
 				IBOARD_CONTENT,
@@ -108,5 +109,13 @@
    		   		IB.STATUS = 'Y'
    		   AND
    		   		CATEGORY_NO = 20
+	</entry>
+	<entry key="selectCurrval">
+		SELECT 
+				SEQ_IB_NO.CURRVAL NUM 
+  		  FROM 
+  		  		TB_ITEMBOARD
+ 		 WHERE 
+ 		 		CATEGORY_NO = ?
 	</entry>
 </properties>
