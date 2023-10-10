@@ -24,6 +24,15 @@ public class HanokReservation {
 		this.clientNum = clientNum;
 		this.message = message;
 	}
+	public HanokReservation(int roomNo, int memNo, String fromDate, String toDate, int clientNum, String message) {
+		super();
+		this.roomNo = roomNo;
+		this.memNo = memNo;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
+		this.clientNum = clientNum;
+		this.message = message;
+	}
 	public int getReservNo() {
 		return reservNo;
 	}

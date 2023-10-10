@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+	import = "com.boseong.jsp.reservation.model.vo.Room"%>
 <%
 	int roomNo = (int)request.getAttribute("roomNo");
+	Room r = (Room)request.getAttribute("room");
+	String imgName = "";
+	switch(roomNo){
+	case 1 : imgName="room1.avif"; break;
+	case 2 : imgName = "room2.avif"; break;
+	case 3 : imgName = "room4.jpeg"; break;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -50,39 +58,38 @@ h4 {
 	<div class="page" id="content">
 		<div class="page">
 			<div class="outer left">
-				<h3 align="center">방 세부 정보</h3>
+				<h3 align="center">방 정보</h3>
 				<ul>
-					<li>room1</li>
-					<li>room2</li>
-					<li>room3</li>
+					<li><a href="<%=contextPath %>/roomdetail.rsv?roomNo=1">room1</a></li>
+					<li><a href="<%=contextPath %>/roomdetail.rsv?roomNo=2">room2</a></li>
+					<li><a href="<%=contextPath %>/roomdetail.rsv?roomNo=3">room3</a></li>
 				</ul>
 			</div>
 			<div class="outer right">
 				<div id="room-pictures">
-					<img src="<%=contextPath %>/resources/image/reservation/room3.bmp" alt="room1">
+					<img src="<%=contextPath %>/resources/image/reservation/<%=imgName %>" alt="room<%=roomNo%>">
 				</div>
 				<hr>
 				<div id="room-detail">
-					<h4>객실 특징</h4>
-					<p>동양과 서양의 조화가 어쩌고 저쩌고 고급스럽게 하려고 노력하였으며 공간이 어쩌고 저쩌고 룰루랄라.</p>
+					<h4><%=r.getRoomType() %></h4>
+					<p><%=r.getRoomIntro() %></p>
 					<table>
 						<tr>
 							<th colspan="2">객실 정보</th>
-							<th>각 공간 설명</th>
+							<th width="70%">각 공간 설명</th>
 						</tr>
 						<tr>
 							<th>인원</th>
-							<td>2/4</td>
-							<td rowspan="3">어쩌고저쩌고 저쩌고 공간이 어쩌고 생일축하합니다 해피벌쓰데이 투유
-								루릴루러ㅏㅇ로어ㅏㄴ</td>
+							<td><%=r.getBaseNum() %>/<%=r.getMaxNum() %></td>
+							<td rowspan="3"><%=r.getRoomDetail() %></td>
 						</tr>
 						<tr>
 							<th>규모</th>
-							<td>10평</td>
+							<td><%=r.getSize() %></td>
 						</tr>
 						<tr>
 							<th>어메니티</th>
-							<td>샴푸, 헤어드라이기, 칫솔, 슬리퍼, 가운, ....</td>
+							<td><%=r.getAmenity() %></td>
 						</tr>
 
 					</table>

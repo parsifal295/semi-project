@@ -93,45 +93,6 @@
 		AND
 			STATUS = 'Y'
 	</entry>
-	<entry key="insertAttachment">
-		INSERT
-			INTO
-				ATTACHMENT
-				(
-				FILE_NO,
-				CATEGORY_NO,
-				REF_NO,
-				ORIGIN_NAME,
-				MODIFIED_NAME,
-				SAVE_PATH
-				)
-			VALUES
-				(
-				SEQ_AT_NO.NEXTVAL,
-				10,
-				SEQ_FB_BN.CURRVAL,
-				?,
-				?,
-				?
-				)
-	</entry>
-	<entry key="selectAttachment">
-		SELECT
-			FILE_NO,
-			REF_NO,
-			ORIGIN_NAME,
-			MODIFIED_NAME,
-			SAVE_PATH,
-			UPLOAD_DATE
-		FROM
-			ATTACHMENT
-		WHERE
-			CATEGORY_NO = 10
-		AND	
-			REF_NO = ?
-		AND 
-			STATUS = 'Y'
-	</entry>
 	<entry key="updateFreeboard">
 		UPDATE
 			TB_FREEBOARD
@@ -141,19 +102,6 @@
 			ART_CONTENT = ?
 		WHERE
 			BOARD_NO = ?
-		AND
-			STATUS = 'Y'
-	</entry>
-	<entry key="updateAttachment">
-		UPDATE
-			ATTACHMENT
-		SET
-			ORIGIN_NAME = ?,
-			MODIFIED_NAME = ?,
-			SAVE_PATH = ?,
-			UPLOAD_DATE = SYSDATE
-		WHERE
-			FILE_NO = ?
 		AND
 			STATUS = 'Y'
 	</entry>

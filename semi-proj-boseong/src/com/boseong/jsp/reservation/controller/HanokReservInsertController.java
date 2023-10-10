@@ -1,7 +1,6 @@
 package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.boseong.jsp.reservation.model.service.HanokService;
 import com.boseong.jsp.reservation.model.vo.HanokReservation;
-import com.google.gson.Gson;
 
 /**
- * Servlet implementation class AjaxHanokDateCheckController
+ * Servlet implementation class HanokReservInsertController
  */
-@WebServlet("/datecheck.hk")
-public class AjaxHanokDateCheckController extends HttpServlet {
+@WebServlet("/insertHanok.rsv")
+public class HanokReservInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxHanokDateCheckController() {
+    public HanokReservInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +30,30 @@ public class AjaxHanokDateCheckController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int roomNo = Integer.parseInt(request.getParameter("roomType"));
 		String fromDate = request.getParameter("fromDate");
 		String toDate = request.getParameter("toDate");
+		int clientNum = Integer.parseInt(request.getParameter("clientNum"));
+		String message = request.getParameter("message");
 		
-		HanokReservation hanokRsv = new HanokReservation();
-		hanokRsv.setRoomNo(roomNo);
-		hanokRsv.setFromDate(fromDate);
-		hanokRsv.setToDate(toDate);
+		HanokReservation hanokRsv = new HanokReservation(
+				roomNo, userNo, fromDate, toDate, clientNum, message);
 		
-		ArrayList<HanokReservation> list = new HanokService().checkDate(hanokRsv);
+		int result = new HanokService().insertReservation(hanokRsv);
+		if(result>0) {//새로운 예약 추가 성공
+			request.getSession().setAttribute("alertMsg", "한옥 스테이 예약 성공!");
+			response.sendRedirect(request.getContextPath()+"/hanok.rsv");
+		}else {//예약 실패
+			request.getSession().setAttribute("alertMsg", "한옥 스테이 예약 실패");
+			request.getRequestDispatcher("views/reservation/hanokReservForm");
+		}
 		
-		System.out.println(list);
-		response.setContentType("application/json; charset=UTF-8");
-		Gson gsn = new Gson();
-		gsn.toJson(list, response.getWriter());
+		
+		
+		
+		
+		
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package com.boseong.jsp.freeboard.controller;
 
+import com.boseong.jsp.Attachment.model.service.AttachmentService;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.freeboard.model.service.FreeboardService;
@@ -42,7 +43,7 @@ public class FreeboardController {
     int endPage; // 끝 페이지
 
     // listcount는 DB에서 전체 자유게시판 글의 개수를 조회해야함. count로 DB 질의
-    listCount = new FreeboardService().getListCount();
+    listCount = new FreeboardService().getListCount(); // 전체 게시글 개수
     currentPage = Integer.parseInt(request.getParameter("cpage"));
     pageLimit = 10;
     boardLimit = 10;
@@ -55,7 +56,46 @@ public class FreeboardController {
     PageInfo pi =
         new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 
-    ArrayList<Freeboard> list = new FreeboardService().selectFboardList(pi);
+    ArrayList<Freeboard> list = new FreeboardService().selectFboardList(pi); // 전체 게시글 객체
+    request.setAttribute("list", list);
+    request.setAttribute("pi", pi);
+    return "/views/freeboard/fboardListView.jsp";
+  }
+
+  public String searchFreeboard(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    int listCount; // 현재 일반게시글의 게시글 총 개수 => DB에서 총 게시글 개수 질의 count(*) / status='Y'
+
+    // 필요한 변수 뽑기
+    // ** 검색조건 (제목+내용 or 작성자 or ip 주소) / 검색어 **
+    String condition = request.getParameter("condition");
+    String keyword = request.getParameter("conditionText");
+
+    if (listCount < 10) { // 검색 결과가 10개 미만인 경우 (페이징 처리 필요 없음. 단순 결과 조회 회신)
+      listCount = new FreeboardService().getSearchCount(condition, keyword);
+    }
+    int currentPage; // 현재 페이지 => request.getParameter("cpage")
+    int pageLimit; // 한 페이지에 보여질 게시글 최대 갯수 => 10개로 고정
+    int boardLimit; // 한 페이지에 보여질 게시글의 최대 개수 => 10개로 고정
+    int maxPage; // 총 페이지수
+    int startPage; // 시작 페이지
+    int endPage; // 끝 페이지
+
+    // listcount는 DB에서 전체 자유게시판 글의 개수를 조회해야함. count로 DB 질의
+    listCount = new FreeboardService().getListCount(); // 전체 게시글 개수
+    currentPage = Integer.parseInt(request.getParameter("cpage"));
+    pageLimit = 10;
+    boardLimit = 10;
+    maxPage = (int) Math.ceil((double) listCount / boardLimit);
+    startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+    endPage = startPage + pageLimit - 1;
+    if (endPage > maxPage) {
+      endPage = maxPage;
+    }
+    PageInfo pi =
+        new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+
+    ArrayList<Freeboard> list = new FreeboardService().selectFboardList(pi); // 전체 게시글 객체
     request.setAttribute("list", list);
     request.setAttribute("pi", pi);
     return "/views/freeboard/fboardListView.jsp";
@@ -226,7 +266,7 @@ public class FreeboardController {
 
     // 첨부파일이 있는 경우 : attachment 테이블에 refno 조회 후 결과값 확인되면 이 테이블의 데이터도 같이 지울것.
     if (new FreeboardService().selectAttachment(boardNo) != null) {
-      new FreeboardService().deleteAttachment(boardNo);
+      new AttachmentService().deleteAttachment(boardNo, 10);
     }
 
     return request.getContextPath() + "/fboard.fb?cpage=1";

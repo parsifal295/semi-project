@@ -28,7 +28,7 @@ public class ItemBoardService {
 			rollback(conn);
 		}
 		close(conn);
-		
+		System.out.println(at);
 		return (board*at);
 	}
 	

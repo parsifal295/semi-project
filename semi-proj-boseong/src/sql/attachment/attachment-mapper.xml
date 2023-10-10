@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment> 첨부파일 테이블용 SQL문 </comment>
-	<entry key="insertAttachment">
+	<entry key="insertAttachmentFB">
 		INSERT
 			INTO
 				ATTACHMENT
@@ -19,6 +19,28 @@
 				SEQ_AT_NO.NEXTVAL,
 				?,
 				SEQ_FB_BN.CURRVAL,
+				?,
+				?,
+				?
+				)
+	</entry>
+	<entry key="insertAttachmentIB">
+		INSERT
+			INTO
+				ATTACHMENT
+				(
+				FILE_NO,
+				CATEGORY_NO,
+				REF_NO,
+				ORIGIN_NAME,
+				MODIFIED_NAME,
+				SAVE_PATH
+				)
+			VALUES
+				(
+				SEQ_AT_NO.NEXTVAL,
+				?,
+				SEQ_IB_NO.CURRVAL,
 				?,
 				?,
 				?
@@ -62,6 +84,6 @@
 		WHERE
 			REF_NO = ?
 		AND
-			CATEGORY
+			CATEGORY = ?
 	</entry>
 </properties>
