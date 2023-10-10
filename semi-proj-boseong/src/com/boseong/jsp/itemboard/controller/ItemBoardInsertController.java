@@ -86,7 +86,7 @@ public class ItemBoardInsertController extends HttpServlet {
 			if(boardNo > 0) {
 				// System.out.println(boardNo);
 				request.getSession().setAttribute("alertMsg", "게시글 등록을 성공하였습니다!");
-				response.sendRedirect(request.getContextPath() + "/detail.ib");
+				response.sendRedirect(request.getContextPath() + "/detail.ib?bno="+ boardNo);
 			}else {
 				request.setAttribute("alertMsg", "게시물 등록에 실패하였습니다.");
 				request.getRequestDispatcher("views/itemboard/iboardListView.jsp").forward(request, response);

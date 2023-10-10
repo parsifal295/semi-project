@@ -14,6 +14,7 @@
 	    width: 100px;
 	    height: 100px;
 	    margin: auto;
+
 	}
 	#tag{
 	    text-decoration: none;

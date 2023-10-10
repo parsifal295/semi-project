@@ -1,8 +1,8 @@
 package com.boseong.jsp.scrap.model.service;
 
 import static com.boseong.jsp.common.JDBCTemplate.close;
-import static com.boseong.jsp.common.JDBCTemplate.getConnection;
 import static com.boseong.jsp.common.JDBCTemplate.commit;
+import static com.boseong.jsp.common.JDBCTemplate.getConnection;
 import static com.boseong.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
@@ -27,6 +27,15 @@ public class ScrapService {
 		}
 		
 		close(conn);
+		
+		return result;
+	}
+	
+	public int iboardScrapSelect(JSONObject jObj) {
+		
+		Connection conn = getConnection();
+	
+		int result = new ScrapDao().iboardScrapSelect(conn, jObj);
 		
 		return result;
 	}

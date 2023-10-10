@@ -112,7 +112,6 @@
 	<script>
 	$(function(){
 		$('#iboard-area > tbody > tr').click(function(){
-			console.log('하허아ㅓ리암널;');
 			location.href = '<%= contextPath %>/detail.ib?bno=' + $(this).children().eq(0).text();
 		});
 	});

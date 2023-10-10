@@ -38,7 +38,7 @@ public class ItemBoardDetailController extends HttpServlet {
 		
 		// 해당 게시글 번호 값 뽑기
 		int boardNo = Integer.parseInt(request.getParameter("bno"));
-		// System.out.println("List에서 클릭했을때 보여지는 상세 뷰 boardNo값 : " + boardNo);
+		//System.out.println("List에서 클릭했을때 보여지는 상세 뷰 boardNo값 : " + boardNo);
 		
 		ItemBoardService ibService = new ItemBoardService(); 
 		// 조회수 올리기
@@ -52,12 +52,12 @@ public class ItemBoardDetailController extends HttpServlet {
 		// at조회
 		int categoryNo = 20;
 		Attachment at = new AttachmentService().selectAttachment(boardNo, categoryNo);
-		int currentPage = Integer.parseInt(request.getParameter("cpage"));
+		// int currentPage = Integer.parseInt(request.getParameter("cpage"));
 		
 		request.setAttribute("ib", ib);
 		request.setAttribute("at", at);
-		request.setAttribute("currentPage", currentPage);
-		// System.out.println(currentPage);
+		// request.setAttribute("currentPage", currentPage);
+		// System.out.println();
 		// 요청처리후 detailView로 응답화면 지정
 		request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp").forward(request, response);
 		// response.sendRedirect(request.getContextPath() + "/detail.ib?bno="+ ib.getBoardNo());
