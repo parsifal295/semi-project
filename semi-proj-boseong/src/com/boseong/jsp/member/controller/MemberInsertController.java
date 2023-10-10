@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.boseong.jsp.member.model.service.MemberService;
 import com.boseong.jsp.member.model.vo.Member;
@@ -47,7 +48,17 @@ public class MemberInsertController extends HttpServlet {
 		m.setPhone(phone);
 		m.setArea(area);
 		
-		new MemberService().insertMember(m);
+		int result = new MemberService().insertMember(m);
+		
+		if(result > 0) { // 성공 => 메인으로 돌려보내기 sendRedirect
+			HttpSession session = request.getSession();
+			//session.setAttribute("alertMsg", "회원가입성공");
+			response.sendRedirect(request.getContextPath());
+		} else { // 실패 => 실패 알림창
+			HttpSession session = request.getSession();
+			session.setAttribute("alertMsg", "회원가입에 실패했습니다. 다시 입력해주세요.");
+			response.sendRedirect(request.getContextPath());
+		}
 		
 		
 		
