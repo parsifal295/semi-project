@@ -85,11 +85,12 @@ public class AttachmentDao implements AttachmentDaoI {
   }
 
   @Override
-  public int deleteAttachment(Connection conn, int boardNo) {
+  public int deleteAttachment(Connection conn, int boardNo, int categoryNo) {
     int result = 0;
     String sql = prop.getProperty("deleteAttachment");
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
       ps.setInt(1, boardNo);
+      ps.setInt(2, categoryNo);
       result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

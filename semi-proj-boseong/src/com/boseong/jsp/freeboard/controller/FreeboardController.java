@@ -1,5 +1,6 @@
 package com.boseong.jsp.freeboard.controller;
 
+import com.boseong.jsp.Attachment.model.service.AttachmentService;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.freeboard.model.service.FreeboardService;
@@ -226,7 +227,7 @@ public class FreeboardController {
 
     // 첨부파일이 있는 경우 : attachment 테이블에 refno 조회 후 결과값 확인되면 이 테이블의 데이터도 같이 지울것.
     if (new FreeboardService().selectAttachment(boardNo) != null) {
-      new FreeboardService().deleteAttachment(boardNo);
+      new AttachmentService().deleteAttachment(boardNo, 10);
     }
 
     return request.getContextPath() + "/fboard.fb?cpage=1";

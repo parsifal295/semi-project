@@ -84,6 +84,6 @@
 		WHERE
 			REF_NO = ?
 		AND
-			CATEGORY
+			CATEGORY = ?
 	</entry>
 </properties>
