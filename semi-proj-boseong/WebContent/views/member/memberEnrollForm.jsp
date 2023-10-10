@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String contextPath =request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	      <form action="/jsp/insert.me" method="post">
+	      <form action="<%= contextPath %>/insert.me" method="post">
 	      	<table>
 	      		<tr>
 	      			<td>* 아이디</td>
