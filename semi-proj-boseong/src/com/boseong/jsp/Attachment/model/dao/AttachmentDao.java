@@ -1,6 +1,9 @@
 package com.boseong.jsp.Attachment.model.dao;
 
 import com.boseong.jsp.Attachment.model.vo.Attachment;
+import com.boseong.jsp.freeboard.model.vo.Freeboard;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,8 +41,26 @@ public class AttachmentDao implements AttachmentDaoI {
 
   @Override
   public Attachment selectAttachment(Connection conn, int boardNo, int categoryNo) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'selectAttachment'");
+    Attachment att = null;
+    String sql = prop.getProperty("selectAttachment");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, categoryNo);
+      ps.setInt(2, boardNo);
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          att = new Attachment();
+          att.setFileNo(rs.getInt("FILE_NO"));
+          att.setRefNo(rs.getInt("REF_NO"));
+          att.setOriginName(rs.getString("ORIGIN_NAME"));
+          att.setModifiedName(rs.getString("MODIFIED_NAME"));
+          att.setSavePath(rs.getString("SAVE_PATH"));
+          att.setUploadDate(rs.getDate("UPLOAD_DATE"));
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return att;
   }
 
   @Override
