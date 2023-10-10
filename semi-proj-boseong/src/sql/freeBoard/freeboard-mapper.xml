@@ -115,4 +115,53 @@
 		AND
 			STATUS = 'Y'
 	</entry>
+	<entry key="getSearchCount">
+		SELECT 
+			COUNT(*)
+		FROM 
+			TB_FREEBOARD
+		WHERE 
+			((ART_TITLE LIKE ? OR ART_CONTENT LIKE ?) 
+			OR (ART_WRITER = ?) 
+			OR (IP_ADDRESS LIKE ?) 
+			AND STATUS = 'Y')
+	</entry>
+	<entry key="getSearchResult">
+		SELECT 
+		BOARD_NO,
+		ART_WRITER,
+		IP_ADDRESS,
+		ART_TITLE,
+		COUNT,
+					CREATE_DATE,
+					ROWNUM RNUM
+			FROM    
+			(SELECT
+					BOARD_NO,
+		ART_WRITER,
+		IP_ADDRESS,
+		ART_TITLE,
+		COUNT,
+					CREATE_DATE,
+					ROWNUM RNUM
+			FROM
+	(SELECT
+		BOARD_NO,
+		ART_WRITER,
+		IP_ADDRESS,
+		ART_TITLE,
+		COUNT,
+					CREATE_DATE,
+					ROWNUM
+	FROM
+		TB_FREEBOARD
+	WHERE 
+		((ART_TITLE LIKE ? OR ART_CONTENT LIKE ?) 
+		OR (ART_WRITER LIKE ?) 
+		OR (IP_ADDRESS LIKE ?) 
+		AND STATUS = 'Y')
+			ORDER BY
+					BOARD_NO DESC) A)
+			WHERE RNUM BETWEEN ? AND ?  
+	</entry>
 </properties>
