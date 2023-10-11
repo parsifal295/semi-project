@@ -17,4 +17,33 @@
 	        BY
 	        	CREATE_DATE DESC 		      		
 	</entry>
+	
+	<entry key="insertProductNotice">
+		INSERT
+		  INTO
+		        PRODUCT_NOTICE
+		        (
+		        NOTICE_NO
+		        ,NOTICE_TITLE 
+				,NOTICE_CONTENT 
+				)
+		VALUES
+				(
+				SEQ_NNO.NEXTVAL
+				,?
+				,?
+				)
+						
+	</entry>
+	
+	<entry key="increaseCount">
+		UPDATE
+				PRODUCT_NOTICE 
+		   SET
+		   		COUNT = COUNT + 1 
+		 WHERE
+		 		NOTICE_NO = ? 
+		   AND
+		   		STATUS = 'Y' 
+	</entry>
 </properties>

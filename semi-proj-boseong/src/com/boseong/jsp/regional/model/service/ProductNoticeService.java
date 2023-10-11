@@ -1,7 +1,6 @@
 package com.boseong.jsp.regional.model.service;
 
-import static com.boseong.jsp.common.JDBCTemplate.getConnection;
-import static com.boseong.jsp.common.JDBCTemplate.close;
+import static com.boseong.jsp.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -23,11 +22,31 @@ public class ProductNoticeService implements ProductNoticeServiceI{
 		return list;
 	}
 	
-//	@Override
-//	public ProductNotice selectProductNotice(int noticeNo) {
-//		return null;
-//	}
+	public int increaseCount(int noticeNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ProductNoticeDao().increaseCount(conn, noticeNo);
+		
+		if(result >0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		
+		return result;
+	}
 	
+	public int insertProductNotice(ProductNotice p) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ProductNoticeDao().insertProductNotice(conn, p);
+		
+		if(result >0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		
+		return result;
+	}
 	
 	
 }
