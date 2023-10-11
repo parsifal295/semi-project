@@ -119,6 +119,19 @@ VALUES(
 
 </entry>
 
+<entry key = "updateReservation">
+	UPDATE HANOK_RESERVATION 
+		SET 
+			ROOM_NO = ?, 
+			FROM_DATE = ?,
+			TO_DATE = ?,
+			CLIENT_NUM = ?,
+			MESSAGE = ? 
+	WHERE RESERVATION_NO = ? AND MEM_NO = ?
+		
+			
+</entry>
+
 
 
 

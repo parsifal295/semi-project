@@ -75,4 +75,15 @@ public class HanokService {
 		close(conn);
 		return selectedRsv;
 	}
+	public int updateReservation(HanokReservation hanokRsv) {
+		Connection conn = getConnection();
+		int result = new HanokDao().updateReservation(conn, hanokRsv);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
