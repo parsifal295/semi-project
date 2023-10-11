@@ -69,4 +69,10 @@ public class HanokService {
 		close(conn);
 		return result;		
 	}
+	public HanokReservation selectReservation(HanokReservation hanokRsv) {
+		Connection conn= getConnection();
+		HanokReservation selectedRsv = new HanokDao().selectReservation(conn, hanokRsv);
+		close(conn);
+		return selectedRsv;
+	}
 }
