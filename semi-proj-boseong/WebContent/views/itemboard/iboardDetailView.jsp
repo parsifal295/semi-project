@@ -6,7 +6,6 @@
 <%
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
-	Scrap sc = (Scrap)request.getAttribute("sc");
 %>
 <!DOCTYPE html>
 <html>
@@ -86,12 +85,13 @@
     <div class="outer" id="content">
         <div style="height: 200px;"></div>
         <div class="outer">
-
             <div class="iboardImg"></div>
             <div id="info">
+            <% if(loginUser != null) { %>
                 <div id="scrap-area">
                     <img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
                 </div>
+                <% } %>
                 <div id="userInfo">
                     <span id="userPf-sub">
                         <p><%= ib.getMemberName() %></p> 
@@ -118,6 +118,7 @@
         </div>
     </div>
     <script>
+    
    		 // iboardImg에 사진 삽입
     	$(function(){
           $('.iboardImg').css({
@@ -142,27 +143,19 @@
    	        		'height' : '500px'
    	        	})
         	  }
-        	  
-        	  
           })
     	});
     	
     	
            // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
   
+    	
            
 			const N = '<%=contextPath%>/resources/image/scrap.png';
 			const Y = '<%=contextPath%>/resources/image/scrapted.png';
 			
             $(function(){
             	// loginUser가 스크랩을 누른 상태이면 scrapted.png를 띄워주고 아니면 scrap.png
-            	if(<%= loginUser.getMemNo() %> == <%= sc.getMemberNo() %> && <%= sc.getStatus() %> == Y){
-            		$('#scrap-image').attr({'src' : Y});
-            	}	
-            	else{
-            		$('#scrap-image').attr({'src' : N});
-            	}
-            	// loginUser가 
             	$('#scrap-image').click(function(){
            		 	// console.log($('#scrap-image')[0].scr);
             		// console.log('핳하하ㅏ하핳');
@@ -181,9 +174,12 @@
 	                    		boardNo : <%= ib.getBoardNo() %>,
 	                    		memberNo : <%= loginUser.getMemNo() %>
 	                    	},
-	                    	type : 'post'
+	                    	type : 'post',
+	                    	success : function(result){
+	                    			//console.log($('#scrap-image').attr({'src' : Y}));
+	                    			$('#scrap-image').attr({'src' : Y})
+	                    	}
 	                    });
-	                    $(this).attr({'src' : Y});
 	                 }
 	                else{
 	                	$.ajax({
@@ -191,14 +187,16 @@
 	                		data : {
 	                			status : 'N',
 	                			boardNo : <%= ib.getBoardNo() %>,
-                				memberNo : <%= loginUser.getMemNo() %>
+		                		memberNo : <%= loginUser.getMemNo() %>
+		                		
 	                		},
-	                		type : 'post'
+	                		type : 'post',
+	                		success : function(result){
+	                    			$('#scrap-image').attr({'src' : N})
+	                		}
 	                	})
-	                	$(this).attr({'src' : N});
 	                };
-            	});
-            	
+            	})
                })
     </script>
 	

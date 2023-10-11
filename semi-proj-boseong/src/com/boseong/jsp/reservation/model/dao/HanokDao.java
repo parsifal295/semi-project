@@ -204,6 +204,56 @@ public class HanokDao {
 		
 		return list;
 	}
+	public int deleteReservation(Connection conn, HanokReservation hanokRsv) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, hanokRsv.getReservNo());
+			pstmt.setInt(2, hanokRsv.getMemNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public HanokReservation selectReservation(Connection conn, HanokReservation hanokRsv) {
+		HanokReservation selectedRsv = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, hanokRsv.getReservNo());
+			pstmt.setInt(2, hanokRsv.getMemNo());
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				selectedRsv = new HanokReservation();
+				selectedRsv.setReservNo(rset.getInt("RESERVATION_NO"));
+				selectedRsv.setRoomNo(rset.getInt("ROOM_NO"));
+				selectedRsv.setMemNo(rset.getInt("MEM_NO"));
+				selectedRsv.setFromDate(rset.getString("FROM_DATE"));
+				selectedRsv.setToDate(rset.getString("TO_DATE"));
+				selectedRsv.setClientNum(rset.getInt("CLIENT_NUM"));
+				selectedRsv.setMessage(rset.getString("MESSAGE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return selectedRsv;
+	}
 	
 	
 }
