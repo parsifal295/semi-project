@@ -276,7 +276,7 @@ public class FreeboardController {
     // AJAX 처리
     int boardNo = Integer.parseInt(request.getParameter("bno"));
     ArrayList<FreeboardReply> list = new FreeboardService().selectReplyList(boardNo);
-    response.setContentType("UTF-8");
+    response.setContentType("application/json; charset=UTF-8");
     new Gson().toJson(list, response.getWriter());
   }
 }

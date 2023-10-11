@@ -170,12 +170,14 @@
 			WRITER,
 			IP_ADDRESS,
 			REPLY_CONTENT,
-			CREATE_DATE,
+			CREATE_DATE
 		FROM
 			FB_REPLY
 		WHERE
 			REF_BNO = ?	
 		AND
 			STATUS = 'Y'
+		ORDER BY
+			REPLY_NO 
 	</entry>
 </properties>
