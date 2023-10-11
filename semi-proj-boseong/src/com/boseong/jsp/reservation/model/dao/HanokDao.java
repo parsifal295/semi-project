@@ -205,8 +205,23 @@ public class HanokDao {
 		return list;
 	}
 	public int deleteReservation(Connection conn, HanokReservation hanokRsv) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteReservation");
 		
-		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, hanokRsv.getReservNo());
+			pstmt.setInt(2, hanokRsv.getMemNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 	
 	

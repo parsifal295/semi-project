@@ -1,27 +1,23 @@
 package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.HanokService;
-import com.boseong.jsp.reservation.model.vo.HanokReservation;
-
 /**
- * Servlet implementation class HanokReservDeleteController
+ * Servlet implementation class HanokReservUpdateFormController
  */
-@WebServlet("/delete.hk")
-public class HanokReservDeleteController extends HttpServlet {
+@WebServlet("/updateForm.hk")
+public class HanokReservUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HanokReservDeleteController() {
+    public HanokReservUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +29,8 @@ public class HanokReservDeleteController extends HttpServlet {
 		int reservNo = Integer.parseInt(request.getParameter("reservNo"));
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		
-		HanokReservation hanokRsv = new HanokReservation();
-		hanokRsv.setReservNo(reservNo);
-		hanokRsv.setMemNo(memNo);
 		
-		int result = new HanokService().deleteReservation(hanokRsv);
-		if(result>0) {
-			request.getSession().setAttribute("alertMsg", "예약 취소가 정상적으로 신청되었습니다.");
-			response.sendRedirect(request.getContextPath()+"/list.hk?memNo="+memNo);
-		}else {
-			
-		}
+		request.getRequestDispatcher("views/reservation/hanokReservUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

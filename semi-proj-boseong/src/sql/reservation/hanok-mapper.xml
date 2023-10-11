@@ -40,8 +40,8 @@
 SELECT 
     RESERVATION_NO, 
     ROOM_NO,
-    FROM_DATE, 
-    TO_DATE 
+    TO_CHAR(FROM_DATE) "FROM_DATE", 
+    TO_CHAR(TO_DATE) "TO_DATE" 
 FROM(
     SELECT 
             RESERVATION_NO, 
@@ -90,6 +90,15 @@ VALUES(
 
 </entry>
 
+<entry key = "deleteReservation">
+	UPDATE 
+			HANOK_RESERVATION 
+	  SET 
+	  		STATUS='N' 
+	  WHERE RESERVATION_NO = ? 
+	  AND MEM_NO = ?
+
+</entry>
 
 
 

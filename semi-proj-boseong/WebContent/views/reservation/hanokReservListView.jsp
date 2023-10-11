@@ -80,7 +80,7 @@
 				<form action="delete.hk">
 					<label for = "reservNo">예약 번호 :</label>
 					<input type = "text" name="reservNo" id="reservNo" required>
-					<input type="hidden" name="memNo" value="memNo">
+					<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>">
 					<button type="submit">취소</button>
 				</form>
 			</div>
@@ -119,5 +119,29 @@
 		
 		})
 	</script>
+		<div class = "modal" id="hanok-update">
+		<div class="modal-dialog">
+			<div class = "modal-content">
+			<!-- Modal Header -->
+			<div class = "modal-header">
+				<h4 class="modal-title">한옥예약 수정</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!-- Modal body -->
+			<div class= "modal-body">
+				<form action="updateForm.hk">
+					<label for = "reservNo">예약 번호 :</label>
+					<input type = "text" name="reservNo" id="reservNo" required>
+					<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>">
+					<button type="submit">수정</button>
+				</form>
+			</div>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+			</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
