@@ -10,6 +10,7 @@ public class FreeboardReply {
   private String content;
   private Date createDate;
   private String status;
+  private String password;
 
   public FreeboardReply() {}
 
@@ -20,7 +21,8 @@ public class FreeboardReply {
       String ipAddress,
       String content,
       Date createDate,
-      String status) {
+      String status,
+      String password) {
     this.replyNo = replyNo;
     this.refNo = refNo;
     this.writer = writer;
@@ -28,6 +30,7 @@ public class FreeboardReply {
     this.content = content;
     this.createDate = createDate;
     this.status = status;
+    this.password = password;
   }
 
   public int getReplyNo() {
@@ -86,6 +89,14 @@ public class FreeboardReply {
     this.status = status;
   }
 
+  public String getPassword() {
+    return this.password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
   @Override
   public String toString() {
     return "{"
@@ -109,6 +120,9 @@ public class FreeboardReply {
         + "'"
         + ", status='"
         + getStatus()
+        + "'"
+        + ", password='"
+        + getPassword()
         + "'"
         + "}";
   }

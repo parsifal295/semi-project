@@ -162,4 +162,19 @@ public class FreeboardService {
     }
     return list;
   }
+
+  public int insertReply(FreeboardReply fr) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new FreeboardDao().insertReply(conn, fr);
+      if (result > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
 }
