@@ -241,21 +241,24 @@
       };
     </script>
     <script>
-      // function selectReplyList() {
-      //   $.ajax({
-      //     url : 'replylist.fb',
-      //     data : {bno : <%= b.getBoardNo() %>},
-      //     success : function(result) {
-      //       // 댓글 개수만큼 루프반복 (댓글전체출력을 위해서..)
-      //       let resultStr = '';
-      //       for (let i in result) {
-      //         resultStr += '<tr>'
-      //                   + '<td>' + result[i].replyWriter + '</td>'
-      //       }
-      //       $('#reply-area tbody').html(resultStr);
-      //     }
-      //   })
-      // }
+      function selectReplyList() {
+        $.ajax({
+          url : 'replylist.fb',
+          data : {bno : <%= fb.getBoardNo() %>},
+          success : function(result) {
+            // 댓글 개수만큼 루프반복 (댓글전체출력을 위해서..)
+            let resultStr = '';
+            for (let i in result) {
+              resultStr += '<tr>'
+                        + '<td>' + result[i].replyWriter + '</td>'
+                        + '<td>' + result[i].replyContent + '</td>'
+                        + '<td>' + result[i].createDate + '</td>'
+                        + '</tr>'
+            }
+            $('#reply-area tbody').html(resultStr);
+          }
+        })
+      }
     </script>
 </body>
 </html>
