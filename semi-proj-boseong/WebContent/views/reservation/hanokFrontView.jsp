@@ -53,8 +53,8 @@
 </head>
 <body>
 	<%@include file="../common/menubar.jsp"%>
+	<div id="box">
 	<div class="page" id="content">
-		<div id="box"></div>
 		<div class="page">
 			<div id="main-pic">
 			<%if(loginUser != null){ %>
@@ -100,7 +100,7 @@
     	$('#main-pic')
     	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"');
     	$('#reserv-hanok').click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
-    	$('#hk-rserv-list').click(function(){location.href="<%=contextPath%>/list.hk"});
+    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk"});
     })
 	</script>
 

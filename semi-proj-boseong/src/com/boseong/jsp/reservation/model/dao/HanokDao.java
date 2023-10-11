@@ -169,6 +169,30 @@ public class HanokDao {
 		}		
 		return result;
 	}
+	public ArrayList<HanokReservation> selectReservList(Connection conn, int memNo){
+		ArrayList<HanokReservation> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReservList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				HanokReservation hanokRsv = new HanokReservation();
+ 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
 	
 	
 }
