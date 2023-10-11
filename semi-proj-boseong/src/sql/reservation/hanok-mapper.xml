@@ -74,15 +74,18 @@ VALUES(
 <entry key="selectReservList">
 	SELECT 
 			RESERVATION_NO,
-			MEM_NO,
 			ROOM_NO, 
-			FROM_DATE,
-			TO_DATE,
+			MEM_NO,
+			TO_CHAR(FROM_DATE) FROM_DATE,
+			TO_CHAR(TO_DATE) TO_DATE,
 			CLIENT_NUM,
 			MESSAGE
 	FROM 
 		HANOK_RESERVATION 
-	WHERE MEM_NO = ? AND STATUS='Y'
+	WHERE 
+		MEM_NO = ? 
+	AND 
+		STATUS='Y'
 
 </entry>
 

@@ -6,6 +6,7 @@ import com.boseong.jsp.Attachment.model.dao.AttachmentDao;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.freeboard.model.dao.FreeboardDao;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
+import com.boseong.jsp.freeboard.model.vo.FreeboardReply;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -146,6 +147,16 @@ public class FreeboardService {
     ArrayList<Freeboard> list = new ArrayList<>();
     try (Connection conn = getConnection()) {
       list = new FreeboardDao().getSearchResult(conn, condition, keyword, pi);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return list;
+  }
+
+  public ArrayList<FreeboardReply> selectReplyList(int boardNo) {
+    ArrayList<FreeboardReply> list = new ArrayList<>();
+    try (Connection conn = getConnection()) {
+      list = new FreeboardDao().selectReplyList(conn, boardNo);
     } catch (SQLException e) {
       e.printStackTrace();
     }

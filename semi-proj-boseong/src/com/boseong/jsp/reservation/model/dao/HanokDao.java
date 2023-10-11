@@ -183,11 +183,22 @@ public class HanokDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				HanokReservation hanokRsv = new HanokReservation();
- 
+				HanokReservation hanokRsv = new HanokReservation(
+						rset.getInt("RESERVATION_NO"),
+						rset.getInt("ROOM_NO"),
+						rset.getInt("MEM_NO"),
+						rset.getString("FROM_DATE"),
+						rset.getString("TO_DATE"),
+						rset.getInt("CLIENT_NUM"),
+						rset.getString("MESSAGE")
+						);
+				list.add(hanokRsv);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		

@@ -164,4 +164,18 @@
 					BOARD_NO DESC) A)
 			WHERE RNUM BETWEEN ? AND ?  
 	</entry>
+	<entry key="selectReplyList">
+		SELECT
+			REPLY_NO,
+			WRITER,
+			IP_ADDRESS,
+			REPLY_CONTENT,
+			CREATE_DATE,
+		FROM
+			FB_REPLY
+		WHERE
+			REF_BNO = ?	
+		AND
+			STATUS = 'Y'
+	</entry>
 </properties>
