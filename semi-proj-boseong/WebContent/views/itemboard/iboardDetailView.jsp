@@ -85,8 +85,6 @@
 <body>
 	<%@ include file="../common/menubar.jsp" %>
 	
-	<% if(loginUser == null) {%>
-	
     <div class="outer" id="content">
         <div style="height: 200px;"></div>
         <div class="outer">
@@ -152,13 +150,12 @@
     	
            // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
   
-    <% } else{ %>
+    	
            
 			const N = '<%=contextPath%>/resources/image/scrap.png';
 			const Y = '<%=contextPath%>/resources/image/scrapted.png';
 			
             $(function(){
-            	if(<%= loginUser %> != null) {
             	// loginUser가 스크랩을 누른 상태이면 scrapted.png를 띄워주고 아니면 scrap.png
             	$('#scrap-image').click(function(){
            		 	// console.log($('#scrap-image')[0].scr);
@@ -190,10 +187,9 @@
 	                		url : 'scrap.ib',
 	                		data : {
 	                			status : 'N',
-	                			boardNo : <%= ib.getBoardNo() %>
-			                	<% if(loginUser != null){%>
-		                		,memberNo : <%= loginUser.getMemNo() %>
-		                		<%}%>
+	                			boardNo : <%= ib.getBoardNo() %>,
+		                		memberNo : <%= loginUser.getMemNo() %>
+		                		
 	                		},
 	                		type : 'post',
 	                		success : function(result){
@@ -201,14 +197,9 @@
 	                		}
 	                	})
 	                };
-            	});
-            	}
-            	else{
-            		alert('로그인 후 이용할 수 있는 서비스 입니다');
-            	}
+            	})
                })
     </script>
-    <%} %>
 	
 <%@ include file="../common/footer.jsp" %>
 	

@@ -94,6 +94,9 @@ public class ScrapDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("Dao update memberNo : " + sc.getMemberNo());
+		System.out.println("Dao update boardNo : " + sc.getBoardNo());
+		System.out.println("Dao update status : " + sc.getStatus());
 		System.out.println("Dao update  :" + update);
 		return update;
 	}
