@@ -7,7 +7,7 @@
 <title>회원가입</title>
 </head>
 <body>
-
+	
 	<!-- 회원가입 모달창 -->
 	<div class="modal" id="memberEnrollForm">
 	  <div class="modal-dialog">
@@ -21,7 +21,7 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	      <form action="/jsp/insert.me" method="post">
+	      <form action="<%= request.getContextPath() %>/insert.me" method="post">
 	      	<table>
 	      		<tr>
 	      			<td>* 아이디</td>

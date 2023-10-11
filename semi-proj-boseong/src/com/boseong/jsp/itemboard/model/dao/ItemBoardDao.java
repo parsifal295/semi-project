@@ -46,7 +46,6 @@ public class ItemBoardDao {
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println(result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,27 +55,6 @@ public class ItemBoardDao {
 		return result;
 	}
 	
-	public int insertAttachment(Connection conn, Attachment at) {
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAttachment");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, at.getOriginName());
-			pstmt.setString(2, at.getModifiedName());
-			pstmt.setString(3, at.getSavePath());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return result;
-	}
 	
 	
 	// 게시글의 총 개수
@@ -177,6 +155,7 @@ public class ItemBoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
+				ib.setBoardNo(rset.getInt("BOARD_NO"));
 				ib.setMemberName(rset.getString("MEM_NAME"));
 				ib.setTitle(rset.getString("IBOARD_TITLE"));
 				ib.setContent(rset.getString("IBOARD_CONTENT"));
@@ -192,26 +171,34 @@ public class ItemBoardDao {
 		return ib;
 	}
 	
-	
-	public Attachment attchmentSelect(Connection conn, int boardNo) {
+
+	public int selectCurrval(Connection conn, int categoryNo) {
+		int result = 0;
 		
-		Attachment at = new Attachment();
-		String sql = prop.getProperty("attchmentSelect");
+		String sql = "SELECT \r\n" + 
+				"				SEQ_IB_NO.CURRVAL NUM \r\n" + 
+				"  		  FROM \r\n" + 
+				"  		  		TB_ITEMBOARD\r\n" + 
+				" 		 WHERE \r\n" + 
+				" 		 		CATEGORY_NO = ?";
 		ResultSet rset = null;
+		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setInt(1, boardNo);
+			pstmt.setInt(1, categoryNo);
 			rset = pstmt.executeQuery();
+			
 			if(rset.next()) {
-				at.setFileNo(rset.getInt("FILE_NO"));
-				at.setOriginName(rset.getString("ORIGIN_NAME"));
-				at.setModifiedName(rset.getString("MODIFIED_NAME"));
-				at.setSavePath(rset.getString("SAVE_PATH"));
+				result = rset.getInt("NUM");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
 		}
-		return at;
+		return result;
 	}
+	
+
 	
 	
 

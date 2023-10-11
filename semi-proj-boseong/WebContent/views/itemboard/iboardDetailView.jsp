@@ -16,6 +16,11 @@
         width: 100%;
         height : 500px;
         border-radius: 10%;
+        margin : auto;
+    }
+    .sizeUp{
+    	width : 100%;
+    	height : 100%;
     }
     #iboardContent{
         width : 90%;
@@ -81,7 +86,6 @@
         <div class="outer">
 
             <div class="iboardImg"></div>
-			
             <div id="info">
                 <div id="scrap-area">
                     <img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
@@ -112,21 +116,35 @@
         </div>
     </div>
     <script>
+   		 // iboardImg에 사진 삽입
     	$(function(){
           $('.iboardImg').css({
         	  'background-image'  : 'url("<%=at.getSavePath() %>/<%= at.getModifiedName() %>")',
-        	  'background-size' : 'cover'
+        	  'background-repeat' : 'no-repeat',
+        	  'background-position' : 'center',
+        	  'background-size' : 'contain'
         	  });
-        	  $('.iboardImg').click(function(){
-        		  $(this).css({'background-size' : 'contain'});
-        		  // if(){
-	           //         $(this).css({'background-size' : 'auto'});
-	            //     }
-        		//else{
-        		//	   $(this).css({'background-size' : 'cover'});
-        		 //  }
-        	  }) ;
+       
+          $('.iboardImg').click(function(){
+        	 // console.log($('.iboardImg')[0].style.height == "730px");
+        	 // console.log($('.iboardImg')[0].style[7] == $('.iboardImg')[0].style[7]);
+        	  if($('.iboardImg')[0].style.height == "500px"){
+	        	$('.iboardImg').css({
+	        		'width' : '100%',
+	        		'height' : '730px'
+	        	})
+        	  }
+        	  else{
+       			$('.iboardImg').css({
+   	        		'width' : '100%',
+   	        		'height' : '500px'
+   	        	})
+        	  }
+        	  
+        	  
+          })
     	});
+    	
     	
            // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
   
@@ -152,8 +170,8 @@
 	                    $.ajax({
 	                    	url : 'scrap.ib',
 	                    	data : {
-	                    		status : 'N',
-	                    		boardNo : 20
+	                    		status : 'Y',
+	                    		boardNo : <%= ib.getBoardNo() %>
 	                    	//	memberNo : 나중에 회원 완성되면 가지고 오기
 	                    	},
 	                    	type : 'post'
@@ -164,20 +182,20 @@
 	                	$.ajax({
 	                		url : 'scrap.ib',
 	                		data : {
-	                			status : 'Y',
-	                			boardNo : 20
+	                			status : 'N',
+	                			boardNo : <%= ib.getBoardNo() %>
 		                    	//	memberNo : 나중에 회원 완성되면 가지고 오기
 	                		},
 	                		type : 'post'
 	                	})
 	                	$(this).attr({'src' : N});
-	                }
-            	})
+	                };
+            	});
             	
                })
     </script>
 	
-
-	<%@ include file="../common/footer.jsp" %>
+<%@ include file="../common/footer.jsp" %>
+	
 </body>
 </html>

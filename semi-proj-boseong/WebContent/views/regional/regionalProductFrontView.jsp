@@ -112,7 +112,7 @@
 		</table>
 		<form>
             	<input type="button" id="cart" value="장바구니" style="float:right;">
-            	<input type="button" id="buy" value="바로구매" style="float:right;">
+            	<input type="button" onclick="location.href='views/regional/regionalProductOrderView.jsp'" id="buy" value="바로구매" style="float:right;">
            </form>
 		
 		</div>

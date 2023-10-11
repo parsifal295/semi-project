@@ -45,15 +45,16 @@ public class IboardScrapController extends HttpServlet {
 		jObj.put("memberNo", memberNo);
 		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(jObj);
-		//System.out.println(jObj);
+		System.out.println(jObj);
 		
-		int result = new ScrapService().iboardInsertScrap(jObj);
+		int select = new ScrapService().iboardScrapSelect(jObj);
 		
-		if(result > 0) {
-			request.setAttribute("alertMsg", "스크랩 되었습니다");
-		} else {
-			request.setAttribute("alertMsg", "스크랩이 취소되었습니다");
-		}
+			int insert = new ScrapService().iboardInsertScrap(jObj);
+			
+			if(insert > 0) {
+				request.setAttribute("alertMsg", "스크랩 되었습니다");
+				request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp?bno=" + boardNo).forward(request, response);
+			}
 		
 		
 	}

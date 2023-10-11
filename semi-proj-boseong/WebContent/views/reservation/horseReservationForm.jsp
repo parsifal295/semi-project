@@ -47,7 +47,7 @@
 						<th>인원</th>
 					</tr>
 					<tr>
-						<td><select name="programNo" id="">
+						<td><select name="programNo" id="" value="1">
 								<option value="1">유소년 승마 프로그램</option>
 								<option value="2">일반 체험</option>
 								<option value="3">장애물 레슨</option>
@@ -76,13 +76,13 @@
 				<table>
 					<tr>
 						<th>예약자 성함</th>
-						<td><input type="text" name="userName" placeholder="회원 이름"
+						<td><input type="text" name="userName" placeholder="<%=loginUser.getMemName() %>"
 							readonly></td>
-						<input type="hidden" name="userNo" value="">
+						<input type="hidden" name="userNo" value="<%=loginUser.getMemNo()%>">
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td><input type="text" name="phone" placeholder="회원 전화번호"
+						<td><input type="text" name="phone" placeholder="<%=loginUser.getPhone() %>"
 							readonly></td>
 					</tr>
 					<tr>
@@ -115,8 +115,13 @@
 		$(function() {
 			let now = new Date();
 			let year = now.getFullYear();
-			let month = now.getMonth()+1;
+			let month = now.getMonth();
 			let date = now.getDate();
+			let tomorrow = new Date(year, month, date+1);
+			year = tomorrow.getFullYear();
+			month = tomorrow.getMonth()+1;
+			date = tomorrow.getDate();
+			
 			if(month<10){
 				month = '0'+month;
 			}

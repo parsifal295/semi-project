@@ -64,8 +64,8 @@
             </table>
             
            <form>
-            	<input type="button" id="review" value="구매리뷰" style="float:right;">
-            	<input type="button" id="notice" value="공지사항" style="float:right;">
+            	<input type="button" onclick="location.href='#'" id="review" value="구매리뷰" style="float:right;">
+            	<input type="button" onclick="location.href='list.pn'" id="notice" value="공지사항" style="float:right;">
            </form>
             
            

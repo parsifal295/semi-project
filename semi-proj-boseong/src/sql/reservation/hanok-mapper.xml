@@ -4,16 +4,21 @@
 
 <comment>승마 예약 관련 sql문</comment>
 
-<entry key="roomInfoList">
+<entry key="getRoomInfo">
 	SELECT 
 			ROOM_NO, 
 			ROOM_TYPE, 
 			BASE_NUM, 
 			MAX_NUM, 
 			PRICE, 
-			EXTRA_PRICE 
+			EXTRA_PRICE, 
+			ROOM_SIZE, 
+			AMENITY, 
+			ROOM_INTRO, 
+			ROOM_DETAIL  
 	  FROM 
-	  		ROOM_INFO
+	  		ROOM_INFO 
+	  WHERE ROOM_NO = ?
 </entry>
 <entry key="getRoomLimit">
 	SELECT 
@@ -33,12 +38,66 @@
 
 <entry key="checkDate">
 SELECT 
-        RESERVATION_NO, 
-        FROM_DATE, 
-        TO_DATE
-    FROM HANOK_RESERVATION 
-    WHERE ROOM_NO = ? 
-    AND FROM_DATE > ?
+    RESERVATION_NO, 
+    ROOM_NO,
+    FROM_DATE, 
+    TO_DATE 
+FROM(
+    SELECT 
+            RESERVATION_NO, 
+            ROOM_NO, 
+            FROM_DATE, 
+            TO_DATE 
+        FROM 
+            HANOK_RESERVATION 
+        WHERE 
+            (FROM_DATE BETWEEN ? AND ?) OR (TO_DATE BETWEEN ? AND ?)
+    )
+    WHERE ROOM_NO =?
 </entry>
+<entry key="insertReservation">
+INSERT 
+	INTO 
+		HANOK_RESERVATION 
+VALUES(
+	SEQ_RESERV_NO.NEXTVAL,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	DEFAULT
+)
+</entry>
+
+<entry key="selectReservList">
+	SELECT 
+			RESERVATION_NO,
+			ROOM_NO, 
+			MEM_NO,
+			TO_CHAR(FROM_DATE) FROM_DATE,
+			TO_CHAR(TO_DATE) TO_DATE,
+			CLIENT_NUM,
+			MESSAGE
+	FROM 
+		HANOK_RESERVATION 
+	WHERE 
+		MEM_NO = ? 
+	AND 
+		STATUS='Y'
+
+</entry>
+
+
+
+
+
+
+
+
+
+
+
 
 </properties>

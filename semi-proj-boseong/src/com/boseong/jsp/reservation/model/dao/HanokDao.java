@@ -77,16 +77,40 @@ public class HanokDao {
 		return r;
 	}
 	
-	public void roomInfoList() {
-//		Room r = new Room(
-//				rset.getInt("ROOM_NO"),
-//				rset.getString("ROOM_TYPE"),
-//				rset.getInt("BASE_NUM"),
-//				rset.getInt("MAX_NUM"),
-//				rset.getInt("PRICE"),
-//				rset.getInt("EXTRA_PRICE")
-//				);
-//		list.add(r);
+	public Room getRoomInfo(Connection conn, int roomNo) {
+		Room r = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("getRoomInfo");
+		ResultSet rset = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, roomNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = new Room(
+						rset.getInt("ROOM_NO"),
+						rset.getString("ROOM_TYPE"),
+						rset.getInt("BASE_NUM"),
+						rset.getInt("MAX_NUM"),
+						rset.getInt("PRICE"),
+						rset.getInt("EXTRA_PRICE"),
+						rset.getString("ROOM_SIZE"),
+						rset.getString("AMENITY"),
+						rset.getString("ROOM_INTRO"),
+						rset.getString("ROOM_DETAIL")
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return r;
 	}
 	public ArrayList checkDate(Connection conn, HanokReservation hanokRsv) {
 		ArrayList list = new ArrayList();
@@ -97,13 +121,17 @@ public class HanokDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, hanokRsv.getRoomNo());
-			pstmt.setString(2, hanokRsv.getFromDate());
+			pstmt.setInt(5, hanokRsv.getRoomNo());
+			pstmt.setString(1, hanokRsv.getFromDate());
+			pstmt.setString(2, hanokRsv.getToDate());
+			pstmt.setString(3, hanokRsv.getFromDate());
+			pstmt.setString(4, hanokRsv.getToDate());
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				HanokReservation hanok = new HanokReservation();
 				hanok.setReservNo(rset.getInt("RESERVATION_NO"));
+				hanok.setRoomNo(rset.getInt("ROOM_NO"));
 				hanok.setFromDate(rset.getString("FROM_DATE"));
 				hanok.setToDate(rset.getString("TO_DATE"));
 				
@@ -116,6 +144,64 @@ public class HanokDao {
 			close(rset);
 			close(pstmt);
 		}
+		return list;
+	}
+	public int insertReservation(Connection conn, HanokReservation hanokRsv) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, hanokRsv.getRoomNo());
+			pstmt.setInt(2, hanokRsv.getMemNo());
+			pstmt.setString(3, hanokRsv.getFromDate());
+			pstmt.setString(4, hanokRsv.getToDate());
+			pstmt.setInt(5, hanokRsv.getClientNum());
+			pstmt.setString(6, hanokRsv.getMessage());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}		
+		return result;
+	}
+	public ArrayList<HanokReservation> selectReservList(Connection conn, int memNo){
+		ArrayList<HanokReservation> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReservList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				HanokReservation hanokRsv = new HanokReservation(
+						rset.getInt("RESERVATION_NO"),
+						rset.getInt("ROOM_NO"),
+						rset.getInt("MEM_NO"),
+						rset.getString("FROM_DATE"),
+						rset.getString("TO_DATE"),
+						rset.getInt("CLIENT_NUM"),
+						rset.getString("MESSAGE")
+						);
+				list.add(hanokRsv);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
 		return list;
 	}
 	

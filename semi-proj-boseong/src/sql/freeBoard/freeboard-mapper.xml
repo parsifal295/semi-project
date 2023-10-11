@@ -93,45 +93,6 @@
 		AND
 			STATUS = 'Y'
 	</entry>
-	<entry key="insertAttachment">
-		INSERT
-			INTO
-				ATTACHMENT
-				(
-				FILE_NO,
-				CATEGORY_NO,
-				REF_NO,
-				ORIGIN_NAME,
-				MODIFIED_NAME,
-				SAVE_PATH
-				)
-			VALUES
-				(
-				SEQ_AT_NO.NEXTVAL,
-				10,
-				SEQ_FB_BN.CURRVAL,
-				?,
-				?,
-				?
-				)
-	</entry>
-	<entry key="selectAttachment">
-		SELECT
-			FILE_NO,
-			REF_NO,
-			ORIGIN_NAME,
-			MODIFIED_NAME,
-			SAVE_PATH,
-			UPLOAD_DATE
-		FROM
-			ATTACHMENT
-		WHERE
-			CATEGORY_NO = 10
-		AND	
-			REF_NO = ?
-		AND 
-			STATUS = 'Y'
-	</entry>
 	<entry key="updateFreeboard">
 		UPDATE
 			TB_FREEBOARD
@@ -144,19 +105,6 @@
 		AND
 			STATUS = 'Y'
 	</entry>
-	<entry key="updateAttachment">
-		UPDATE
-			ATTACHMENT
-		SET
-			ORIGIN_NAME = ?,
-			MODIFIED_NAME = ?,
-			SAVE_PATH = ?,
-			UPLOAD_DATE = SYSDATE
-		WHERE
-			FILE_NO = ?
-		AND
-			STATUS = 'Y'
-	</entry>
 	<entry key="deleteFreeboard">
 		UPDATE
 			TB_FREEBOARD
@@ -166,5 +114,70 @@
 			BOARD_NO = ?
 		AND
 			STATUS = 'Y'
+	</entry>
+	<entry key="getSearchCount">
+		SELECT 
+			COUNT(*)
+		FROM 
+			TB_FREEBOARD
+		WHERE 
+			((ART_TITLE LIKE ? OR ART_CONTENT LIKE ?) 
+			OR (ART_WRITER LIKE ?) 
+			OR (IP_ADDRESS LIKE ?) 
+			AND STATUS = 'Y')
+	</entry>
+	<entry key="getSearchResult">
+		SELECT 
+		BOARD_NO,
+		ART_WRITER,
+		IP_ADDRESS,
+		ART_TITLE,
+		COUNT,
+					CREATE_DATE,
+					ROWNUM RNUM
+			FROM    
+			(SELECT
+					BOARD_NO,
+		ART_WRITER,
+		IP_ADDRESS,
+		ART_TITLE,
+		COUNT,
+					CREATE_DATE,
+					ROWNUM RNUM
+			FROM
+	(SELECT
+		BOARD_NO,
+		ART_WRITER,
+		IP_ADDRESS,
+		ART_TITLE,
+		COUNT,
+					CREATE_DATE,
+					ROWNUM
+	FROM
+		TB_FREEBOARD
+	WHERE 
+		((ART_TITLE LIKE ? OR ART_CONTENT LIKE ?) 
+		OR (ART_WRITER LIKE ?) 
+		OR (IP_ADDRESS LIKE ?) 
+		AND STATUS = 'Y')
+			ORDER BY
+					BOARD_NO DESC) A)
+			WHERE RNUM BETWEEN ? AND ?  
+	</entry>
+	<entry key="selectReplyList">
+		SELECT
+			REPLY_NO,
+			WRITER,
+			IP_ADDRESS,
+			REPLY_CONTENT,
+			CREATE_DATE
+		FROM
+			FB_REPLY
+		WHERE
+			REF_BNO = ?	
+		AND
+			STATUS = 'Y'
+		ORDER BY
+			REPLY_NO 
 	</entry>
 </properties>

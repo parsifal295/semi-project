@@ -7,19 +7,6 @@
 <title>보성 한옥스테이</title>
 
 <style>
-@font-face {
-	font-family: 'Hangeuljaemin4-Regular';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Hangeuljaemin4-Regular.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
-
-#content *{
-	font-family: 'Hangeuljaemin4-Regular';
-}
-
 #main-pic {
 	width: 100%;
 	height: 70%;
@@ -29,10 +16,11 @@
 	background-size: cover;
 }
 
-#main-pic>button {
-	margin-top: 600px;
-	border: none;
+#main-pic>div{
+	padding : 100px;
+	color:white;
 }
+#main-pic>a{text-decoration:none;}
 
 #rooms {
 	width: 100%;
@@ -65,13 +53,18 @@
 </head>
 <body>
 	<%@include file="../common/menubar.jsp"%>
+	<div id="box"></div>
 	<div class="page" id="content">
-		<div id="box"></div>
 		<div class="page">
 			<div id="main-pic">
-				<button class="btn btn-info btn-lg btn-block">
+			<%if(loginUser != null){ %>
+				<button class="btn btn-outline-secondary" id="reserv-hanok">
 					<h1>예약 하기</h1>
 				</button>
+				<button class="btn btn-outline-secondary" id="hk-reserv-list"><h1>예약 조회</h1></button>
+			<%}else{ %>
+				<div><h1>예약하려면 로그인하세요!</h1></div>
+			<%} %>
 			</div>
 			<div id="rooms">
 				<div class="room">
@@ -97,15 +90,17 @@
 	<script>
     let rooms = document.getElementsByClassName("room");
     for(i=0; i<rooms.length;i++){
+    	let roomNo = i+1;
         rooms[i].onclick= function(){
-            location.href="<%=contextPath%>/roomdetail.rsv?roomNo="+i;
+            location.href="<%=contextPath%>/roomdetail.rsv?roomNo="+roomNo;
             return;
         }
     }
     $(function(){
     	$('#main-pic')
-    	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"')
-		.click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
+    	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"');
+    	$('#reserv-hanok').click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
+    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk?memNo=<%=loginUser.getMemNo()%>"});
     })
 	</script>
 

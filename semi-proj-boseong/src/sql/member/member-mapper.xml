@@ -36,11 +36,11 @@
 		       MEM_NAME,
 		       EMAIL,
 		       PHONE,
-		       ADDRESS
+		       AREA
 		       )
 		VALUES
 		       (
-		       SEQ_UNO.NEXTVAL,
+		       SEQ_TB_MEMBER_MEMNO.NEXTVAL,
 		       ?,
 		       ?,
 		       ?,

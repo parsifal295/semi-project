@@ -41,6 +41,7 @@
 	        <th width="10%">No.</th>
 	        <th width="40%">제목</th>
 	        <th width="17.5%">작성자</th>
+	        <th width="10%">조회수</th>
 	        <th width="17.5%">작성일시</th>
 	        <th width="15%"> - </th>
 	      </tr>
@@ -59,6 +60,7 @@
 	        <th width="10%">No.</th>
 	        <th width="40%">제목</th>
 	        <th width="17.5%">작성자</th>
+	        <th width="10%">조회수</th>
 	        <th width="17.5%">작성일시</th>
 	        <th width="15%">가격</th>
 	      </tr>
@@ -74,6 +76,7 @@
 	      <td><%= ib.getBoardNo()  %></td>
 	      <td><%= ib.getTitle() %></td>
 	      <td><%= ib.getMemberName() %></td>
+	      <td><%= ib.getCount() %></td>
 	      <td><%= ib.getPostDate() %></td>
 	      <td><%= ib.getPrice() %></td>
 	    </tr>
@@ -109,7 +112,6 @@
 	<script>
 	$(function(){
 		$('#iboard-area > tbody > tr').click(function(){
-			console.log('하허아ㅓ리암널;');
 			location.href = '<%= contextPath %>/detail.ib?bno=' + $(this).children().eq(0).text();
 		});
 	});

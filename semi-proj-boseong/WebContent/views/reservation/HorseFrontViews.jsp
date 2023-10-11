@@ -98,15 +98,27 @@
 	<div id="box"></div>
 	<div class="page" id="content">
 		<div id="horse-top">
+		<%if(loginUser != null){ %>
 			<div id="rsv-buttons">
-			<button onclick="reserveAride();"class="btn-outline-secondary rsv top">
+			<button onclick="reserveAride('Y');"class="btn-outline-secondary rsv top">
 			예약하기
 			</button>
 
-			<button onclick="rideList();" class="btn-outline-secondary rsv">
+			<button onclick="rideList(<%=loginUser.getMemNo() %>);" class="btn-outline-secondary rsv">
 			예약조회
 			</button>
 			</div>
+		<%}else{ %>
+			<div id="rsv-buttons">
+			<button onclick="reserveAride('N');"class="btn-outline-secondary rsv top">
+			예약하기
+			</button>
+
+			<button onclick="reserveAride('N');" class="btn-outline-secondary rsv">
+			예약조회
+			</button>
+			</div>
+		<%} %>
 			
 			<!-- Slider main container -->
 			<div class="swiper">
@@ -201,13 +213,17 @@
 
 	<script>
 //원래는 여기서 둘 다 회원번호를 가져가야 해
-	function reserveAride(){
-		location.href = "<%=contextPath%>/horseForm.rsv";
-	}
-	function rideList(){
-		location.href = "<%=contextPath%>/list.hs";
+	function reserveAride(login){
+		if(login=='Y'){
+			location.href = "<%=contextPath%>/horseForm.rsv";
 		}
-
+		else{
+			alert('로그인 후 사용가능한 서비스입니다.');
+		}	
+	};
+	function rideList(memNo){
+			location.href = "<%=contextPath%>/list.hs?memNo="+memNo;
+		}
 		// 슬라이더 동작 정의
 		const swiper = new Swiper('.swiper', {
 			autoplay : {

@@ -1,7 +1,9 @@
 package com.boseong.jsp.reservation.model.service;
 
 import static com.boseong.jsp.common.JDBCTemplate.close;
+import static com.boseong.jsp.common.JDBCTemplate.commit;
 import static com.boseong.jsp.common.JDBCTemplate.getConnection;
+import static com.boseong.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -19,6 +21,13 @@ public class HanokService {
 		close(conn);
 		return list;
 	}
+	public Room getRoomInfo(int roomNo) {
+		Connection conn = getConnection();
+		Room r = new HanokDao().getRoomInfo(conn, roomNo);
+		close(conn);
+		
+		return r;
+	}
 	public Room getRoomLimit(int roomNo) {
 		Connection conn = getConnection();
 		Room r = new HanokDao().getRoomLimit(conn, roomNo);
@@ -28,6 +37,24 @@ public class HanokService {
 	public ArrayList checkDate(HanokReservation hanokRsv) {
 		Connection conn = getConnection();
 		ArrayList list = new HanokDao().checkDate(conn, hanokRsv);
+		close(conn);
+		return list;
+	}
+	
+	public int insertReservation(HanokReservation hanokRsv) {
+		Connection conn= getConnection();
+		int result = new HanokDao().insertReservation(conn, hanokRsv);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public ArrayList<HanokReservation> selectReservList(int memNo){
+		Connection conn = getConnection();
+		ArrayList<HanokReservation> list = new HanokDao().selectReservList(conn, memNo);
 		close(conn);
 		return list;
 	}

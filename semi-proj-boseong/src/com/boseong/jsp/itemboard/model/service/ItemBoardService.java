@@ -8,6 +8,7 @@ import static com.boseong.jsp.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.boseong.jsp.Attachment.model.dao.AttachmentDao;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.itemboard.model.dao.ItemBoardDao;
@@ -15,24 +16,22 @@ import com.boseong.jsp.itemboard.model.vo.ItemBoard;
   
 public class ItemBoardService {
 	
-	public int insertBoard(ItemBoard ib, Attachment at) {
+	public int insertBoard(ItemBoard ib, Attachment att, int categoryNo) {
 		
 		Connection conn = getConnection();
 		// IBOARD INSERT
 		int board = new ItemBoardDao().insertBoard(conn, ib);
-		// ATTACHMENT INSERT
-		int file = 1;
-		if(at != null) {
-			file = new ItemBoardDao().insertAttachment(conn, at);
-		}
-		if((board*file) > 0) {
+		int at = new AttachmentDao().insertAttachment(conn, att, categoryNo);
+		int boardNo = 0;
+		if((board * at) > 0) {
 			commit(conn);
+			// DAO감 ->
+			boardNo = new ItemBoardDao().selectCurrval(conn, categoryNo);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
-		
-		return (board*file);
+		return boardNo;
 	}
 	
 	// 게시물의 총 개수
@@ -65,6 +64,12 @@ public class ItemBoardService {
 		
 		int result = new ItemBoardDao().ibIncreaseCount(conn, boardNo);
 		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
 		return result;
 	}
 	
@@ -79,16 +84,7 @@ public class ItemBoardService {
 		return ib;
 	}
 	
-	public Attachment attchmentSelect(int boardNo) {
-		
-		Connection conn = getConnection();
-		
-		Attachment at = new ItemBoardDao().attchmentSelect(conn, boardNo);
-		
-		close(conn);
-		
-		return at;
-	}
+
 	
 
 }

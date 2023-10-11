@@ -23,7 +23,7 @@
 	      <!-- Modal body -->
 	      
 	      <div class="modal-body">
-	      <form action="/jsp/login.me" method="post">
+	      <form action="<%= request.getContextPath() %>/login.me" method="post">
 		     <div class="form-group">
 		     	<input type="text" name="memId" placeholder="아이디" required >
 		     </div>

@@ -135,6 +135,48 @@
               </tr>
           </tbody>
       </table>
+      <div id="reply-area">
+        <table align="center" style="width: 50%">
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <form action="#">
+                  <input type="hidden" name="ip" id="ipvalue" value=""></input>
+                  <div class="input-group mb-3 input-group-sm">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text">닉네임</span>
+                    </div>
+                    <input type="text" class="form-control" name="replyId">
+                  </div>
+              </td>
+              <td>
+                <div class="input-group mb-3 input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">비밀번호</span>
+                 </div>
+                 <input type="password" class="form-control" name="replyPw">
+               </div>
+              </form>
+              </td>
+            </tr>
+            <tr >
+            <td colspan ="2">
+              <div class="form-group">
+                <label for="reply">Comment:</label>
+                <textarea class="form-control" rows="3" id="reply" required style="resize:none"></textarea>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan ="2">
+              <button class="btn btn-primary btn-block">댓글등록</button>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
       <!--update modal-->
       <div class="modal fade" id="updateModal">
         <div class="modal-dialog">
@@ -219,6 +261,44 @@
           })
         }
       };
+    </script>
+    <script>
+      function selectReplyList() {
+        $.ajax({
+          url : 'replylist.fb',
+          data : {bno : <%= fb.getBoardNo() %>},
+          success : function(result) {
+            console.log(result);
+            // 댓글 개수만큼 루프반복 (댓글전체출력을 위해서..)
+            let resultStr = '';
+            for (let i in result) {
+              resultStr += '<tr>'
+                        + '<td>' + result[i].writer + '</td>'
+                        + '<td>' + result[i].content + '</td>'
+                        + '<td>' + result[i].createDate + '</td>'
+                        + '</tr>'
+            }
+            $('#reply-area thead').html(resultStr);
+          },
+          error : function(){
+            console.log('댓글 읽어오기 실패~');
+          }
+        })
+      };
+      $(() => {
+        selectReplyList();
+        setInterval(selectReplyList, 1000);
+      });
+    </script>
+    <script>
+      // GET IP ADDRESS
+      $.getJSON("https://jsonip.com/", function (data) {
+        var obj = JSON.stringify(data, null, 2);
+        var temp = JSON.parse(obj, null, 2);
+        console.log(obj);
+        var ip = temp.ip;
+        $("#ipvalue").val(ip);
+      });
     </script>
 </body>
 </html>

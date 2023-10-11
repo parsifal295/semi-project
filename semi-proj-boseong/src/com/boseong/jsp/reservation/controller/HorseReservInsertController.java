@@ -35,7 +35,7 @@ public class HorseReservInsertController extends HttpServlet {
 		int horseTime = Integer.parseInt(request.getParameter("horseTime"));
 		int riderNum = Integer.parseInt(request.getParameter("riderNum"));
 		//회원이름, 전화번호는 아직 넣을 수 없음
-		int memNo = 1;//임시
+		int memNo = Integer.parseInt(request.getParameter("userNo"));
 		String message = request.getParameter("message");
 		
 		HorseReservation hrsv = new HorseReservation();
@@ -49,7 +49,7 @@ public class HorseReservInsertController extends HttpServlet {
 		int result = new HorseService().insertReservation(hrsv);
 		if(result>0) {
 			//request.getRequestDispatcher("/views/reservation/HorseReservListView.jsp").forward(request, response);
-			response.sendRedirect(request.getContextPath()+"/list.hs");
+			response.sendRedirect(request.getContextPath()+"/list.hs?memNo="+memNo);
 		}else {
 			request.getRequestDispatcher("views/reservation/horseReservationForm.jsp").forward(request, response);
 		}
