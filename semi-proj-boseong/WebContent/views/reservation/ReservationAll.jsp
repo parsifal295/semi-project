@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    
+    import="java.util.ArrayList, 
+    		com.boseong.jsp.reservation.model.vo.GreenteaReservation,
+    		com.boseong.jsp.reservation.model.vo.HanokReservation,
+    		com.boseong.jsp.reservation.model.vo.MonthlivingReservation,
+    		com.boseong.jsp.reservation.model.vo.HorseReservation"
+    
+    %>
+    
+    <%
+	
+    ArrayList<GreenteaReservation> list = (ArrayList<GreenteaReservation>) request.getAttribute("list");
+
+%>
+    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>

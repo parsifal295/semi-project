@@ -31,16 +31,15 @@ public class GreenTeaReservInsertController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		//하다맘
-		
-		
+			
 		String startDate = request.getParameter("startDate");
 		String courseNum = request.getParameter("courseNum");
-		int bookNum = Integer.parseInt(request.getParameter("bookNum"));
 		
-		//나중에 수정필요 <%=contextpath%>이걸로
+		//나중에 수정필요
 		int memNo = 1;
+		
+		int bookNum = Integer.parseInt(request.getParameter("bookNum")); // 이게틀렷대 안틀렷어 억울해 !!
+		
 		
 		GreenteaReservation g = new GreenteaReservation();
 		//g.setReservationNo(reservationNo);
@@ -51,11 +50,13 @@ public class GreenTeaReservInsertController extends HttpServlet {
 		
 		int result = new GreenteaService().insertReserv(g);
 		if(result > 0) {
-			request.getRequestDispatcher("/views/reservation/GreenTeaReservListView.jsp").forward(request, response);
-			response.sendRedirect(request.getContextPath()+"/list.no");
+			System.out.println(result);
+			//request.getRequestDispatcher("/views/reservation/GreenTeaReservListView.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/green.li");
 			
 		}else {
-			request.getRequestDispatcher("/views/reservation/GreenTeaReservListView.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/reservation/GreenteaReservationView.jsp").forward(request, response);
+			System.out.println(result);
 		}
 		
 		

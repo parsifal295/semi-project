@@ -21,7 +21,7 @@ public class GreenteaDao {
 		private Properties prop = new Properties();
 		
 		public GreenteaDao() {
-			String fileName = GreenteaDao.class.getResource("/sql/notice/notice-mapper.xml").getPath();
+			String fileName = GreenteaDao.class.getResource("/sql/reservation/greentea-mapper.xml").getPath();
 			
 			try {
 				prop.loadFromXML(new FileInputStream(fileName));
@@ -34,7 +34,7 @@ public class GreenteaDao {
 	
 	
 	
-	
+	//select
 		public ArrayList<greenteaInfo> selectcourseNum(Connection conn) {
 				
 				ArrayList<greenteaInfo> list = new ArrayList();
@@ -68,7 +68,7 @@ public class GreenteaDao {
 		}
 	
 		
-
+		//insertReserv 예약넣기 
 	public int insertReserv(Connection conn, GreenteaReservation g) {
 		
 		int result = 0;
@@ -78,13 +78,14 @@ public class GreenteaDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			// memNo startDate courseNum 
+			// memNo startDate courseNum  bookNum
 			pstmt.setInt(1,  g.getMemNo());
 			pstmt.setString(2,  g.getStartDate());
 			pstmt.setString(3, g.getCourseNum());
+			pstmt.setInt(4,  g.getBookNum());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("예약되었습니다 확인용메세지");
+			//System.out.println("예약되었습니다 확인용메세지");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -98,12 +99,12 @@ public class GreenteaDao {
 
 
 
-	public ArrayList<GreenteaReservation> selectCourseNum(Connection conn, int memNo) {
+	public ArrayList<GreenteaReservation> selectReservation(Connection conn, int memNo) {
 		ArrayList<GreenteaReservation> list = new ArrayList();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectCourseNum");
-		
+		String sql = prop.getProperty("selectReservation");
+		//selectReservation으로 고치기 (selectCourseNum이엇던 것)
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -123,9 +124,9 @@ public class GreenteaDao {
 				gr.setMemNo(memNo);
 				gr.setStartDate(rset.getString("START_DATE"));
 				gr.setCourseNum(rset.getString("COURSE_NUM"));
+				gr.setBookNum(rset.getInt("BOOK_NUM"));
 				
 				list.add(gr);
-				
 			}
 			
 		} catch (SQLException e) {

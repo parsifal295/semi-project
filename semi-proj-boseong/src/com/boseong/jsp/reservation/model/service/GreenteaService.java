@@ -55,11 +55,12 @@ public class GreenteaService {
 
 
 	//예약. 녹차밭코스번호 받기.
-	public ArrayList<GreenteaReservation> selectCourseNum(int memNo) {
+	public ArrayList<GreenteaReservation> selectReservation(int memNo) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<GreenteaReservation> list = new GreenteaDao().selectCourseNum(conn, memNo);
+		ArrayList<GreenteaReservation> list = new GreenteaDao().selectReservation(conn, memNo);
+		
 		close(conn);
 		
 		return list;

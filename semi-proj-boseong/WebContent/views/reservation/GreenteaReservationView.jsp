@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +30,6 @@
 	height : 100%;
 	margin : auto;
 }
-	
-	
-	
 	
 	
 		
@@ -92,7 +90,6 @@
 <body>
 	<!-- 스크립트시작 -->
 	<script>
-
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -103,12 +100,17 @@
               right: 'dayGridMonth'
             },
             dateClick: function(info) {
-              alert('clicked ' + info.dateStr);
+            	
+            	$(".startDate").text(info.dateStr);
+            	document.getElementById('startDate').innerHTML = info.dateStr;
             }
           });
         calendar.render();
       });
 
+      
+      
+      
     </script>
 	<!-- 스크립트끝 -->
 	
@@ -117,7 +119,7 @@
 
 	
 	<div class="page" id="content">
-	
+	<form action="<%=contextPath %>/green.in" method="get">
 	<div style="height:200px;"></div>
 	<div class="page">
 	<hr style="border:solid 0.5px grey;">
@@ -135,23 +137,26 @@
 		<div class="content2">
 			<h3><strong>내 예약 정보</strong></h3>
 			<hr>
-			<h5>예약 일자: onclick달력하면 여기로 와야댐  콘솔에 찍은 변수명바로넣기.    </h5>
+			예약 일자:  <a id='startDate' >  </a>
             
             <!--  </select>-->
              
-			<br>
+			<br><br>
 			
-			<h5>예약 회차: 
-        	<select name="select-time"> 
-	            <option>오전(9시~12시)</option>
-	            <option>오후(12시~6시)</option>
-       		</select>
-        	</h5>
+			<a>예약 회차: 
+        	<select name="courseNum"> 
         	
-			<br>
-			<h5>인원:
-				<input type="number" name="amount" min="0" max="10" value="1" step="1">
-			</h5>
+        	
+	            <option value="AM">오전(9시~12시)</option>
+	            <option value="PM">오후(12시~6시)</option>
+	  
+       		</select>
+        	</a>
+        	
+			<br><br>
+			<a>인원:
+				<input type="number" name="bookNum" min="0" max="10" value="1" step="1">
+			명(최대인원:10명)</a>
 			<br>
 			
 		
@@ -168,8 +173,9 @@
 	
 		<div class="content3_2">
 		<br>
+		<!-- 
 		<input type="checkbox" id="same" name="same" value="same"><label for="same">예약자와 투숙객이 일치하다면 체크해주세요</label>
-		
+		 -->
 		<!-- 이거 쉽다고 나중에 해도된다고 하심 -->
 	
 		</div>
@@ -205,15 +211,16 @@
 		
 		
 		<div class="button">
-		<button type="button" class="btn btn-primary">예약하기</button>
+		<button type="submit" class="btn btn-primary" >예약하기</button>
 		</div>
 	</div>
-	
+	</div>
+	</form>
 	
 	
 	</div>
+	
 
-</div>
 
 
 

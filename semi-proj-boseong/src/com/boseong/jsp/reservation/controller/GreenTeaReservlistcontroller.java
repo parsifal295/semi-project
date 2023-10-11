@@ -35,7 +35,7 @@ public class GreenTeaReservlistcontroller extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		//여기 list관련 내용작성
 		int memNo = 1; 
-		ArrayList<GreenteaReservation> list = new GreenteaService().selectCourseNum(memNo);
+		ArrayList<GreenteaReservation> list = new GreenteaService().selectReservation(memNo);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/reservation/GreenTeaReservListView.jsp").forward(request, response);
 	}
