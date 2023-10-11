@@ -204,6 +204,10 @@ public class HanokDao {
 		
 		return list;
 	}
+	public int deleteReservation(Connection conn, HanokReservation hanokRsv) {
+		
+		
+	}
 	
 	
 }

@@ -35,6 +35,12 @@
 					<tr>
 				</thead>
 				<tbody>
+					<tr>
+					<td colspan="5"></td>
+					<td><button class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#hanok-update">예약 변경</button>
+					<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#hanok-delete">예약 취소</button></td>
+							
+					</tr>
 
 					<%if(list.isEmpty()){ %>
 					<tr>
@@ -50,13 +56,6 @@
 							<td><%=h.getMessage() %></td>
 							<td></td>
 						</tr>
-						<tr>
-							<td colspan="5"></td>
-							<td>
-								<button class="btn btn-outline-warning btn-sm hanok-update">예약 변경</button>
-								<button class="btn btn-outline-danger btn-sm hanok-delete">예약 취소</button>
-							</td>
-						</tr>
 						<%} %>
 					<%} %>
 				</tbody>	
@@ -65,6 +64,34 @@
 		</div>
 	</div>
 	<%@include file = "../common/footer.jsp" %>
+	
+	
+	<!-- 모달해보기 -->
+	<div class = "modal" id="hanok-delete">
+		<div class="modal-dialog">
+			<div class = "modal-content">
+			<!-- Modal Header -->
+			<div class = "modal-header">
+				<h4 class="modal-title">한옥예약 취소</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!-- Modal body -->
+			<div class= "modal-body">
+				<form action="delete.hk">
+					<label for = "reservNo">예약 번호 :</label>
+					<input type = "text" name="reservNo" id="reservNo" required>
+					<input type="hidden" name="memNo" value="memNo">
+					<button type="submit">취소</button>
+				</form>
+			</div>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+			</div>
+			</div>
+		</div>
+	</div>
+	
 	<script>
 		$(function(){
 //			let reservations = $('.hanok-rserv-info');
@@ -88,11 +115,6 @@
 						console.log('ajax실패');
 					}
 				})
-			})
-			$('.hanok-delete').click(function(){
-				let reservation = $(this).parent().parent().siblings().children();
-				console.log(reservation);
-				let reservNo = $(this).parent().parent().siblings().children().eq(0).text();
 			})
 		
 		})
