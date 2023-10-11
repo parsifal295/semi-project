@@ -85,7 +85,8 @@ VALUES(
 	WHERE 
 		MEM_NO = ? 
 	AND 
-		STATUS='Y'
+		STATUS='Y' 
+	ORDER BY FROM_DATE
 
 </entry>
 
