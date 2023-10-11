@@ -143,6 +143,7 @@
             <tr>
               <td>
                 <form action="#">
+                  <input type="hidden" name="ip" id="ipvalue" value=""></input>
                   <div class="input-group mb-3 input-group-sm">
                      <div class="input-group-prepend">
                        <span class="input-group-text">닉네임</span>
@@ -284,6 +285,16 @@
 					selectReplyList();
 					setInterval(selectReplyList, 1000);
 				});
+    </script>
+    <script>
+      // GET IP ADDRESS
+      $.getJSON("https://jsonip.com/", function (data) {
+        var obj = JSON.stringify(data, null, 2);
+        var temp = JSON.parse(obj, null, 2);
+        console.log(obj);
+        var ip = temp.ip;
+        $("#ipvalue").val(ip);
+      });
     </script>
 </body>
 </html>
