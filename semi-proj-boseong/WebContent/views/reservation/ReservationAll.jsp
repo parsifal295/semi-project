@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    
+    import="java.util.ArrayList, 
+    		com.boseong.jsp.reservation.model.vo.GreenteaReservation,
+    		com.boseong.jsp.reservation.model.vo.HanokReservation,
+    		com.boseong.jsp.reservation.model.vo.MonthlivingReservation,
+    		com.boseong.jsp.reservation.model.vo.HorseReservation"
+    
+    %>
+    
+    <%
+	
+    ArrayList<GreenteaReservation> list = (ArrayList<GreenteaReservation>) request.getAttribute("list");
+
+%>
+    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +90,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><button type="button" class="btn btn-danger" >Danger</button></td>
+					<td><button type="button" class="btn btn-danger" >예약취소(이거 회원탈퇴 모달형식으로 진행)</button></td>
 				</tr>
 			</table><!-- table -->
 			
@@ -102,7 +119,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><button type="button" class="btn btn-danger" >Danger</button></td>
+				<td><button type="button" class="btn btn-danger" >예약취소</button></td>
 			</tr>
 		
 		
@@ -130,7 +147,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><button type="button" class="btn btn-danger" >Danger</button></td>
+				<td><button type="button" class="btn btn-danger" >예약취소</button></td>
 			</tr>
 		
 		
@@ -157,7 +174,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><button type="button" class="btn btn-danger" >Danger</button></td>
+				<td><button type="button" class="btn btn-danger" >예약취소</button></td>
 			</tr>
 		
 		

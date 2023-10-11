@@ -4,33 +4,44 @@
 
 	<comment>Greentea관련 sql문</comment>
 
-	<entry key="insertGreentea">
+	<entry key="insertReserv">
 	INSERT
 	INTO
-		TEA_RESERVATION
-		(
-		RESERVATION_NO
-		, START_DATE
-		, COURSE_NUM
-		, MEM_NO
-		, BOOK_NUM
-		, STATUS
-		)
-	VALUES
-		(
+		 TEA_RESERVATION
+	VALUES(
 		SEQ_RESERV_NO.NEXTVAL
 		,?
 		,?
 		,?
+		,DEFAULT
 		,?
-		,'Y'
-		)
-	
+	)
 	
 	</entry>
+	
+	
+	<entry key="selectCourseNum">
+	SELECT
+		COURSE_NUM, INFO_DESC, PRICE
+	FROM
+		TEA_INFO
+	</entry>
+	
+	
+	
+	<entry key="selectReservation">
+	SELECT
+		RESERVATION_NO,
+		MEM_NO,
+		START_DATE,
+		COURSE_NUM
+	FROM
+		TEA_RESERVATION
+	</entry>
 
+	
 
-
+	
 
 
 

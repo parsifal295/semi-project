@@ -1,7 +1,6 @@
 package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.GreenteaService;
-import com.boseong.jsp.reservation.model.vo.greenteaInfo;
+import com.boseong.jsp.reservation.model.service.HanokService;
+import com.boseong.jsp.reservation.model.vo.Room;
+import com.google.gson.Gson;
 
 /**
- * Servlet implementation class GreenTeaHomeController
+ * Servlet implementation class AjaxRoomInfoController
  */
-@WebServlet("/green.ho")
-public class GreenTeaHomeController extends HttpServlet {
+@WebServlet("/roominfo.rsv")
+public class AjaxRoomInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GreenTeaHomeController() {
+    public AjaxRoomInfoController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +31,12 @@ public class GreenTeaHomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		ArrayList<greenteaInfo>list = new GreenteaService().selectService();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/reservation/GreenteaFrontView.jsp").forward(request, response);
-		
-	
+			int roomNo = Integer.parseInt(request.getParameter("roomNo"));
+			Room r = new HanokService().getRoomInfo(roomNo);
+			response.setContentType("application/json' charset=UTF-8");
+			new Gson().toJson(r, response.getWriter());
 	}
 
-	
-	
-	
-	
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

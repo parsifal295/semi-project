@@ -7,7 +7,7 @@ public class GreenteaReservation {
 	public String courseNum;
 	public int memNo;
 	public int bookNum;
-	public String status;
+	//public String status;
 	
 	
 	public GreenteaReservation() {
@@ -23,7 +23,7 @@ public class GreenteaReservation {
 		this.courseNum = courseNum;
 		this.memNo = memNo;
 		this.bookNum = bookNum;
-		this.status = status;
+		//this.status = status;
 	}
 
 
@@ -76,7 +76,7 @@ public class GreenteaReservation {
 		this.bookNum = bookNum;
 	}
 
-
+	/*
 	public String getStatus() {
 		return status;
 	}
@@ -85,12 +85,12 @@ public class GreenteaReservation {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	*/
 
 	@Override
 	public String toString() {
 		return "GreenteaReservation [reservationNo=" + reservationNo + ", startDate=" + startDate + ", courseNum="
-				+ courseNum + ", memNo=" + memNo + ", bookNum=" + bookNum + ", status=" + status + "]";
+				+ courseNum + ", memNo=" + memNo + ", bookNum=" + bookNum +  "]";
 	}
 	
 	
