@@ -266,7 +266,7 @@
       function selectReplyList() {
         $.ajax({
           url : 'replylist.fb',
-          data : {bno : <%= fb.getBoardNo() %>},
+          data : {bnoo : <%= fb.getBoardNo() %>},
           success : function(result) {
             console.log(result);
             // 댓글 개수만큼 루프반복 (댓글전체출력을 위해서..)
@@ -276,18 +276,21 @@
                         + '<td>' + result[i].writer + '</td>'
                         + '<td>' + result[i].content + '</td>'
                         + '<td>' + result[i].createDate + '</td>'
-                        + '</tr>'
+                        + '</tr>';
             }
             $('#reply-area thead').html(resultStr);
           },
-          error : function(){
+          error : function(e, msg){
             console.log('댓글 읽어오기 실패~');
+            console.log(msg);
+              
+
           }
         })
       };
       $(() => {
         selectReplyList();
-        setInterval(selectReplyList, 1000);
+        //setInterval(selectReplyList, 1000);
       });
     </script>
     <script>
