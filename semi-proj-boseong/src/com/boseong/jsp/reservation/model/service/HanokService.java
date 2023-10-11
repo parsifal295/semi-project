@@ -58,4 +58,15 @@ public class HanokService {
 		close(conn);
 		return list;
 	}
+	public int deleteReservation(HanokReservation hanokRsv) {
+		Connection conn= getConnection();
+		int result = new HanokDao().deleteReservation(conn, hanokRsv);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;		
+	}
 }
