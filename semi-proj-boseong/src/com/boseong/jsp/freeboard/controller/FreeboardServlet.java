@@ -58,6 +58,9 @@ public class FreeboardServlet extends HttpServlet {
         flag = false;
         view = new FreeboardController().searchFreeboard(request, response);
         break;
+      case "replylist.fb":
+        new FreeboardController().selectReplyList(request, response);
+        break;
     }
 
     if (flag) {

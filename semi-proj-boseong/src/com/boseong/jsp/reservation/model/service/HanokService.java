@@ -52,4 +52,10 @@ public class HanokService {
 		close(conn);
 		return result;
 	}
+	public ArrayList<HanokReservation> selectReservList(int memNo){
+		Connection conn = getConnection();
+		ArrayList<HanokReservation> list = new HanokDao().selectReservList(conn, memNo);
+		close(conn);
+		return list;
+	}
 }
