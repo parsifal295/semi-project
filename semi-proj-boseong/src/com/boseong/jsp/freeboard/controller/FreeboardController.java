@@ -269,4 +269,8 @@ public class FreeboardController {
 
     return request.getContextPath() + "/fboard.fb?cpage=1";
   }
+
+  public ArrayList<FreeboardReply> selectReplyList(
+      HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {}
 }
