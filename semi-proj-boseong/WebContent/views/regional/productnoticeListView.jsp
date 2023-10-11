@@ -70,8 +70,23 @@
 				
 				</tbody>
 			</table>	
-				
+		</div>
 	
+		<script>
+			$(function(){
+			
+				$('.table>tbody>tr').click(function(){
+				
+					const nno = $(this).children().eq(0).text();
+					location.href="<%=contextPath%>/detail.pn?nno=" + nno;
+					
+				})
+			
+			});
+			
+			
+		
+		</script>
 	
 
 </body>
