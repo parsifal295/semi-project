@@ -58,8 +58,50 @@ public class ProductNoticeDao {
 			close(pstmt);
 		}
 		return list;
+	}
 	
+	public int increaseCount(Connection conn, int noticeNo) {
 		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, noticeNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int insertProductNotice(Connection conn, ProductNotice p) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertProductNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, p.getNoticeTitle());
+			pstmt.setString(2, p.getNoticeContent());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

@@ -140,7 +140,6 @@
           <thead>
           </thead>
           <tbody>
-           <form action="<%=contextPath%>/replyinsert.fb" method="post">
             <tr>
               <td>
                   <input type="hidden" name="ip" id="ipvalue" value=""></input>
@@ -184,7 +183,6 @@
           </tr>
         </tbody>
         <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
-        </form>
         </table>
       </div>
       <!--update modal-->
@@ -294,7 +292,6 @@
             console.log('댓글 읽어오기 실패~');
             console.log(msg);
               
-
           }
         })
       };
@@ -310,17 +307,21 @@
             bno : <%= fb.getBoardNo() %>,
             id : $('#replyId').val(),
             pw : $('#replyPw').val(),
-            content : $('#replyContent').val() ,
+            content : $('#replyContent').val(),
             ip : $('#displayIp').val()
         },
           success : function (result) {
             if (result > 0) {
+              $('#replyId').val('');
+              $('#replyPw').val('');
               $('#replyContent').val('');
               selectReplyList();
             }
           }
         });
+        location.reload();
       }
+      
       
     </script>
     <script>

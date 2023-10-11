@@ -55,7 +55,8 @@ public class IboardScrapController extends HttpServlet {
 			int update = new ScrapService().iboardScrapUpdate(sc);
 			System.out.println("Controller update : "  + update);
 		}
-
+		
+		request.setAttribute("sc", sc);
 		
 		
 		

@@ -50,7 +50,7 @@ public class ScrapService {
 		
 		int update = new ScrapDao().iboardScrapUpdate(conn, sc);
 		
-		if(update > 1) {
+		if(update > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
