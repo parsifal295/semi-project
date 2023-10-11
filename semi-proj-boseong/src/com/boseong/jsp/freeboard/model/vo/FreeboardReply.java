@@ -8,7 +8,7 @@ public class FreeboardReply {
   private String writer;
   private String ipAddress;
   private String content;
-  private Date createDate;
+  private String createDate;
   private String status;
   private String password;
 
@@ -20,7 +20,7 @@ public class FreeboardReply {
       String writer,
       String ipAddress,
       String content,
-      Date createDate,
+      String createDate,
       String status,
       String password) {
     this.replyNo = replyNo;
@@ -73,11 +73,11 @@ public class FreeboardReply {
     this.content = content;
   }
 
-  public Date getCreateDate() {
+  public String getCreateDate() {
     return this.createDate;
   }
 
-  public void setCreateDate(Date createDate) {
+  public void setCreateDate(String createDate) {
     this.createDate = createDate;
   }
 

@@ -307,7 +307,7 @@ public class FreeboardDao {
           fr.setWriter(rs.getString("WRITER"));
           fr.setIpAddress(rs.getString("IP_ADDRESS"));
           fr.setContent(rs.getString("REPLY_CONTENT"));
-          fr.setCreateDate(rs.getDate("CREATE_DATE"));
+          fr.setCreateDate(rs.getString("A"));
           list.add(fr);
         }
       }
