@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.boseong.jsp.scrap.model.service.ScrapService;
+import com.boseong.jsp.scrap.model.vo.Scrap;
 
 /**
  * Servlet implementation class IboardScrapController
@@ -37,7 +38,7 @@ public class IboardScrapController extends HttpServlet {
 		
 		String scrap = request.getParameter("status");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		int memberNo = 1; //나중에 회원완성되면 가지고 오기
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		
 		JSONObject jObj = new JSONObject();
 		jObj.put("scrap", scrap);
@@ -45,16 +46,35 @@ public class IboardScrapController extends HttpServlet {
 		jObj.put("memberNo", memberNo);
 		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(jObj);
-		System.out.println(jObj);
+		// System.out.println("조건문 밖  : " + jObj);
 		
-		int select = new ScrapService().iboardScrapSelect(jObj);
+		try {
+		Scrap sc = new ScrapService().iboardScrapSelect(jObj);
+		request.setAttribute("sc", sc);
+		System.out.println("Controller sc값 : "+sc);
 		
-			int insert = new ScrapService().iboardInsertScrap(jObj);
-			
-			if(insert > 0) {
-				request.setAttribute("alertMsg", "스크랩 되었습니다");
-				request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp?bno=" + boardNo).forward(request, response);
-			}
+		 if(sc == null) {
+			 
+			 int insert = new ScrapService().iboardInsertScrap(jObj);
+				System.out.println("조건문 안  : " + jObj);
+				System.out.println("insert값 : " +insert);
+
+			 if(insert > 0) {
+				 request.setAttribute("alertMsg", "스크랩 되었습니다");
+				 request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp?bno=" + boardNo).forward(request, response);
+			 }
+			 
+		 } else {
+			 int update = new ScrapService().iboardScrapUpdate(jObj);
+			 System.out.println("sc값이 널이 아닐 때 ┐");
+			 System.out.println("update : " + update);
+			 if(update > 0) {
+				 request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp?bno=" + boardNo).forward(request, response);
+			 }
+		 }
+		 } catch(NullPointerException e){
+			e.printStackTrace();
+	}
 		
 		
 	}

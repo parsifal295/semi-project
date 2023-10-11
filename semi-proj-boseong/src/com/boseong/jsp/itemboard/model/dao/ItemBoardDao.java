@@ -157,6 +157,7 @@ public class ItemBoardDao {
 			if(rset.next()) {
 				ib.setBoardNo(rset.getInt("BOARD_NO"));
 				ib.setMemberName(rset.getString("MEM_NAME"));
+				ib.setMemberNo(rset.getInt("MEM_NO"));
 				ib.setTitle(rset.getString("IBOARD_TITLE"));
 				ib.setContent(rset.getString("IBOARD_CONTENT"));
 				ib.setPostDate(rset.getDate("IBOARD_POST_DATE"));
@@ -168,7 +169,8 @@ public class ItemBoardDao {
 		} finally {
 			close(rset);
 		}
-		return ib;
+		System.out.println("iboardDetailListDao : " + ib);
+		return ib; 
 	}
 	
 

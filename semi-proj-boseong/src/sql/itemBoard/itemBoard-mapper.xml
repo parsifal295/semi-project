@@ -94,6 +94,7 @@
 		SELECT 
 				BOARD_NO,
 				MEM_NAME,
+				MEM.MEM_NO,
 				IBOARD_TITLE,
 				IBOARD_CONTENT,
 				IBOARD_POST_DATE,
@@ -109,6 +110,8 @@
    		   		IB.STATUS = 'Y'
    		   AND
    		   		CATEGORY_NO = 20
+   		   AND
+   		   		MEM.STATUS != 'N'
 	</entry>
 	<entry key="selectCurrval">
 		SELECT 

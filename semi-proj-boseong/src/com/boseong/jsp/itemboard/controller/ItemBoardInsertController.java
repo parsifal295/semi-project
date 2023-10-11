@@ -60,8 +60,8 @@ public class ItemBoardInsertController extends HttpServlet {
 			// type = text로 했기 에  pardseInt해주기
 			int price = Integer.parseInt(multiRequest.getParameter("price"));
 			String content = multiRequest.getParameter("content");
-			int memberNo = 1;  // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
-			
+			int memberNo = Integer.parseInt(multiRequest.getParameter("memberNo"));
+			// System.out.println("insertController memberNo : "+memberNo);
 			ItemBoard ib = new ItemBoard();
 			ib.setTitle(title);
 			ib.setPrice(price);

@@ -10,6 +10,7 @@ import java.sql.Connection;
 import org.json.simple.JSONObject;
 
 import com.boseong.jsp.scrap.model.dao.ScrapDao;
+import com.boseong.jsp.scrap.model.vo.Scrap;
 
 public class ScrapService {
 	
@@ -31,13 +32,29 @@ public class ScrapService {
 		return result;
 	}
 	
-	public int iboardScrapSelect(JSONObject jObj) {
+	public Scrap iboardScrapSelect(JSONObject jObj) {
 		
 		Connection conn = getConnection();
 	
-		int result = new ScrapDao().iboardScrapSelect(conn, jObj);
+		Scrap sc = new ScrapDao().iboardScrapSelect(conn, jObj);
 		
-		return result;
+		close(conn);
+		
+		return sc;
+	}
+	
+	public int iboardScrapUpdate(JSONObject jObj) {
+		
+		Connection conn = getConnection();
+		
+		int update = new ScrapDao().iboardScrapUpdate(conn, jObj);
+		
+		if(update > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return update;
 	}
 
 }

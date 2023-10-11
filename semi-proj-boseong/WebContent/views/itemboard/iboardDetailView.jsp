@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.boseong.jsp.itemboard.model.vo.ItemBoard, 
-			     com.boseong.jsp.Attachment.model.vo.Attachment" %>
+			     com.boseong.jsp.Attachment.model.vo.Attachment,
+			     com.boseong.jsp.scrap.model.vo.Scrap" %>
 <%
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
+	Scrap sc = (Scrap)request.getAttribute("sc");
 %>
 <!DOCTYPE html>
 <html>
@@ -92,7 +94,7 @@
                 </div>
                 <div id="userInfo">
                     <span id="userPf-sub">
-                        <p>나중에 회원완료되면 name가지고 오기</p> 
+                        <p><%= ib.getMemberName() %></p> 
                         <button type="button">쪽지보내기</button>
                     </span>
                     <div class="userPf"></div>
@@ -153,10 +155,16 @@
 			const Y = '<%=contextPath%>/resources/image/scrapted.png';
 			
             $(function(){
-            	// console.log($('#scrap-image')[0].scr);
-            	
+            	// loginUser가 스크랩을 누른 상태이면 scrapted.png를 띄워주고 아니면 scrap.png
+            	if(<%= loginUser.getMemNo() %> == <%= sc.getMemberNo() %> && <%= sc.getStatus() %> == Y){
+            		$('#scrap-image').attr({'src' : Y});
+            	}	
+            	else{
+            		$('#scrap-image').attr({'src' : N});
+            	}
+            	// loginUser가 
             	$('#scrap-image').click(function(){
-            	
+           		 	// console.log($('#scrap-image')[0].scr);
             		// console.log('핳하하ㅏ하핳');
             		// console.log(N);
             		// console.log($('#scrap-image'));
@@ -165,14 +173,13 @@
             		// console.log($('#scrap-image')[0].src == N);
             		// console.log($($('#scrap-image')[0]).attr('src') == '<%= contextPath%>/resources/image/scrap.png');
             		// console.log($($('#scrap-image')[0]).attr('src') == N);
-            		
 	                if($($('#scrap-image')[0]).attr('src') == N){
 	                    $.ajax({
 	                    	url : 'scrap.ib',
 	                    	data : {
 	                    		status : 'Y',
-	                    		boardNo : <%= ib.getBoardNo() %>
-	                    	//	memberNo : 나중에 회원 완성되면 가지고 오기
+	                    		boardNo : <%= ib.getBoardNo() %>,
+	                    		memberNo : <%= loginUser.getMemNo() %>
 	                    	},
 	                    	type : 'post'
 	                    });
@@ -183,8 +190,8 @@
 	                		url : 'scrap.ib',
 	                		data : {
 	                			status : 'N',
-	                			boardNo : <%= ib.getBoardNo() %>
-		                    	//	memberNo : 나중에 회원 완성되면 가지고 오기
+	                			boardNo : <%= ib.getBoardNo() %>,
+                				memberNo : <%= loginUser.getMemNo() %>
 	                		},
 	                		type : 'post'
 	                	})

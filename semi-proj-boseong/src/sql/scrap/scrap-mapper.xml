@@ -22,4 +22,34 @@
 				?
 				)
 	</entry>
+	<entry key="iboardScrapSelect">
+		SELECT 
+				SC.MEM_NO, 
+				IBOARD_NO, 
+				SC.STATUS
+  		  FROM 
+  		  		TB_SCRAP SC
+ 		  JOIN 
+ 		  		TB_ITEMBOARD IB ON SC.IBOARD_NO = IB.BOARD_NO
+ 		  JOIN 
+ 		  		TB_MEMBER MEM ON SC.MEM_NO = MEM.MEM_NO
+ 		 WHERE
+				MEM.STATUS != 'N'
+  		   AND 
+  		   		IB.STATUS = 'Y'
+   		   AND 
+   		   		SC.MEM_NO = ?
+  		   AND 
+  		   		IBOARD_NO = ?
+	</entry>
+	<entry key="iboardScrapUpdate">
+		UPDATE 
+				TB_SCRAP 
+		   SET 
+		   		STATUS = ? 
+		 WHERE 
+		 		MEM_NO = ? 
+		   AND 
+		   		IBOARD_NO = ?
+	</entry>
 </properties>
