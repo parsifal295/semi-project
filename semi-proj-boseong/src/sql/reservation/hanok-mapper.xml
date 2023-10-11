@@ -70,6 +70,25 @@ VALUES(
 	DEFAULT
 )
 </entry>
+<entry key = "selectReservation">
+	SELECT 
+		RESERVATION_NO,
+		ROOM_NO, 
+		MEM_NO,
+		TO_CHAR(FROM_DATE) FROM_DATE,
+		TO_CHAR(TO_DATE) TO_DATE,
+		CLIENT_NUM,
+		MESSAGE
+	FROM 
+		HANOK_RESERVATION 
+	WHERE 
+		RESERVATION_NO = ? 
+	AND 
+		MEM_NO = ? 
+	AND 
+		STATUS='Y' 
+	ORDER BY FROM_DATE
+</entry>
 
 <entry key="selectReservList">
 	SELECT 

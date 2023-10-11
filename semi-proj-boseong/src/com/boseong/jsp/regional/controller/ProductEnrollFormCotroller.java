@@ -1,4 +1,4 @@
-package com.boseong.jsp.reservation.controller;
+package com.boseong.jsp.regional.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.HanokService;
-import com.boseong.jsp.reservation.model.vo.HanokReservation;
-import com.boseong.jsp.reservation.model.vo.Room;
+import com.boseong.jsp.regional.model.service.ProductNoticeService;
+import com.boseong.jsp.regional.model.vo.ProductNotice;
 
 /**
- * Servlet implementation class HanokReservUpdateFormController
+ * Servlet implementation class ProductEnrollFormCotroller
  */
-@WebServlet("/updateForm.hk")
-public class HanokReservUpdateFormController extends HttpServlet {
+@WebServlet("/enroll.pn")
+public class ProductEnrollFormCotroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HanokReservUpdateFormController() {
+    public ProductEnrollFormCotroller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +31,14 @@ public class HanokReservUpdateFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reservNo = Integer.parseInt(request.getParameter("reservNo"));
-		int memNo = Integer.parseInt(request.getParameter("memNo"));
-		HanokReservation hanokRsv = new HanokReservation();
-		hanokRsv.setReservNo(reservNo);
-		hanokRsv.setMemNo(memNo);
-		HanokReservation selectedRsv = new HanokService().selectReservation(hanokRsv);
-		request.setAttribute("selectedRsv", selectedRsv);
-		ArrayList<Room> list = new HanokService().selectRoomList();
+
+		ArrayList<ProductNotice> list = new ProductNoticeService().selectProductNoticeList();
+		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/reservation/hkUpdateForm.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("views/regional/productnoticeEnrollForm.jsp").forward(request, response);
+	
+	
 	}
 
 	/**
