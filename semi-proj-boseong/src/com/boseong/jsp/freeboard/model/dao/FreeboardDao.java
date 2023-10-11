@@ -232,7 +232,11 @@ public class FreeboardDao {
         ps.setString(3, "");
         ps.setString(4, "%" + keyword + "%");
       }
-      result = ps.executeUpdate();
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          result = rs.getInt(1);
+        }
+      }
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -287,7 +291,6 @@ public class FreeboardDao {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    System.out.println(list.toString());
     return list;
   }
 }
