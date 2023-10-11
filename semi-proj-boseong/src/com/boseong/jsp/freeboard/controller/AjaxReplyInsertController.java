@@ -2,24 +2,22 @@ package com.boseong.jsp.freeboard.controller;
 
 import com.boseong.jsp.freeboard.model.service.FreeboardService;
 import com.boseong.jsp.freeboard.model.vo.FreeboardReply;
-import com.google.gson.Gson;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet implementation class AjaxReplyListController */
-@WebServlet("/replylist.fb")
-public class AjaxReplyListController extends HttpServlet {
+/** Servlet implementation class AjaxReplyInsertController */
+@WebServlet("/replyinsert.fb")
+public class AjaxReplyInsertController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   /**
    * @see HttpServlet#HttpServlet()
    */
-  public AjaxReplyListController() {
+  public AjaxReplyInsertController() {
     super();
     // TODO Auto-generated constructor stub
   }
@@ -29,13 +27,20 @@ public class AjaxReplyListController extends HttpServlet {
    */
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    // AJAX 처리
+    request.setCharacterEncoding("UTF-8");
     int boardNo = Integer.parseInt(request.getParameter("bno"));
-    ArrayList<FreeboardReply> list = new FreeboardService().selectReplyList(boardNo);
-    response.setContentType("application/json; charset=UTF-8");
-    new Gson().toJson(list, response.getWriter());
-    //	    response.setContentType("text/html; charset=UTF-8");
-    //	    response.getWriter().print(123);
+    String content = request.getParameter("content");
+    String writer = request.getParameter("id");
+    String ipAddr = request.getParameter("ip");
+    String password = request.getParameter("pw");
+    FreeboardReply fr = new FreeboardReply();
+    fr.setRefNo(boardNo);
+    fr.setPassword(password);
+    fr.setWriter(writer);
+    fr.setContent(content);
+    fr.setIpAddress(ipAddr);
+    System.out.println(fr);
+    int result = new FreeboardService().insertReply(fr);
   }
 
   /**

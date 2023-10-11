@@ -180,4 +180,27 @@
 		ORDER BY
 			REPLY_NO 
 	</entry>
+	<entry key="insertReply">
+		INSERT
+			INTO
+				FB_REPLY
+				(
+				REPLY_NO,
+				REF_BNO,
+				WRITER,
+				IP_ADDRESS,
+				REPLY_CONTENT,
+				PASSWORD
+				)
+		VALUES
+			(
+			SEQ_FB_REPLY_NO.NEXTVAL,
+			?,
+			?,
+			?,
+			?,
+			?
+			)
+		
+	</entry>
 </properties>

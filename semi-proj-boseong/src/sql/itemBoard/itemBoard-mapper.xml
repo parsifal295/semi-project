@@ -24,7 +24,7 @@
 		 		?,
 		 		SYSDATE,
 		 		SYSDATE,
-		 		'Y',
+		 		DEFAULT,
 		 		?
 		 		)
 	</entry>
@@ -99,6 +99,7 @@
 				IBOARD_CONTENT,
 				IBOARD_POST_DATE,
 				IBOARD_MODIFY_DATE,
+				IB.STATUS,
 				PRICE
   		  FROM 
   		  		TB_ITEMBOARD IB
