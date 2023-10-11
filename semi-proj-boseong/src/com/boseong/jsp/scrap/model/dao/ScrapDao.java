@@ -80,14 +80,14 @@ public class ScrapDao {
 	
 	public int iboardScrapUpdate(Connection conn, Scrap sc) {
 		
-		int update = 1;
+		int update = 0;
 		String sql = prop.getProperty("iboardScrapUpdate");
 
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
-			pstmt.setObject(1, sc.getMemberNo());
-			pstmt.setObject(2, sc.getBoardNo());
-			pstmt.setObject(3, sc.getStatus());
+			pstmt.setString(1, sc.getStatus());
+			pstmt.setInt(2, sc.getMemberNo());
+			pstmt.setInt(3, sc.getBoardNo());
 			
 			update = pstmt.executeUpdate();
 			

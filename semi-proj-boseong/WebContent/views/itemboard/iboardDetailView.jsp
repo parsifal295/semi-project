@@ -6,6 +6,7 @@
 <%
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
+	Scrap sc = (Scrap)request.getAttribute("sc");
 %>
 <!DOCTYPE html>
 <html>
@@ -95,7 +96,9 @@
                 <div id="userInfo">
                     <span id="userPf-sub">
                         <p><%= ib.getMemberName() %></p> 
+                        <% if(loginUser != null) {%>
                         <button type="button">쪽지보내기</button>
+                        <% } %>
                     </span>
                     <div class="userPf"></div>
                 </div>
@@ -155,8 +158,9 @@
 			const Y = '<%=contextPath%>/resources/image/scrapted.png';
 			
             $(function(){
+            	<% if(loginUser != null) {%>
             	// loginUser가 스크랩을 누른 상태이면 scrapted.png를 띄워주고 아니면 scrap.png
-            	$('#scrap-image').click(function(){
+         
            		 	// console.log($('#scrap-image')[0].scr);
             		// console.log('핳하하ㅏ하핳');
             		// console.log(N);
@@ -166,6 +170,7 @@
             		// console.log($('#scrap-image')[0].src == N);
             		// console.log($($('#scrap-image')[0]).attr('src') == '<%= contextPath%>/resources/image/scrap.png');
             		// console.log($($('#scrap-image')[0]).attr('src') == N);
+            		$('#scrap-image').click(function(){
 	                if($($('#scrap-image')[0]).attr('src') == N){
 	                    $.ajax({
 	                    	url : 'scrap.ib',
@@ -196,7 +201,8 @@
 	                		}
 	                	})
 	                };
-            	})
+            		});
+            	<% } %>
                })
     </script>
 	
