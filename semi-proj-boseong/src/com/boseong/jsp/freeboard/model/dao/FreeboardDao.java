@@ -2,6 +2,7 @@ package com.boseong.jsp.freeboard.model.dao;
 
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
+import com.boseong.jsp.freeboard.model.vo.FreeboardReply;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -286,6 +287,28 @@ public class FreeboardDao {
           fboard.setCount(rs.getInt("COUNT"));
           fboard.setCreateDate(rs.getDate("CREATE_DATE"));
           list.add(fboard);
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return list;
+  }
+
+  public ArrayList<FreeboardReply> selectReplyList(Connection conn, int boardNo) {
+    ArrayList<FreeboardReply> list = new ArrayList<>();
+    String sql = prop.getProperty("selectReplyList");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      try (ResultSet rs = ps.executeQuery()) {
+        while (rs.next()) {
+          FreeboardReply fr = new FreeboardReply();
+          fr.setReplyNo(rs.getInt("REPLY_NO"));
+          fr.setWriter(rs.getString("WRITER"));
+          fr.setIpAddress(rs.getString("IP_ADDRESS"));
+          fr.setContent(rs.getString("REPLY_CONTENT"));
+          fr.setCreateDate(rs.getDate("CREATE_DATE"));
+          list.add(fr);
         }
       }
     } catch (SQLException e) {
