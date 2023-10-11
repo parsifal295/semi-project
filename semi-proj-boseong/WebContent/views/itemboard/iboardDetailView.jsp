@@ -6,9 +6,6 @@
 <%
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
-	
-	System.out.println("ib Null을 찾아라 : " + ib);
-	System.out.println("at Null을 찾아라 : " +  at);
 %>
 <!DOCTYPE html>
 <html>
@@ -90,9 +87,11 @@
         <div class="outer">
             <div class="iboardImg"></div>
             <div id="info">
+            <% if(loginUser != null) { %>
                 <div id="scrap-area">
                     <img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
                 </div>
+                <% } %>
                 <div id="userInfo">
                     <span id="userPf-sub">
                         <p><%= ib.getMemberName() %></p> 
