@@ -53,7 +53,7 @@
 </head>
 <body>
 	<%@include file="../common/menubar.jsp"%>
-	<div id="box">
+	<div id="box"></div>
 	<div class="page" id="content">
 		<div class="page">
 			<div id="main-pic">
@@ -100,7 +100,7 @@
     	$('#main-pic')
     	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"');
     	$('#reserv-hanok').click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
-    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk"});
+    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk?memNo=<%=loginUser.getMemNo()%>"});
     })
 	</script>
 
