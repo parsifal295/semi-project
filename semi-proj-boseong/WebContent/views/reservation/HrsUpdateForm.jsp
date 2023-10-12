@@ -3,7 +3,8 @@
 %>
 
 <% 
-	HorseReservation selectedRsv = (HorseReservation)(request.getAttribute("selectedRsv")); 
+	HorseReservation selectedRsv = (HorseReservation)(request.getAttribute("selectedRsv"));
+	int reservNo = (selectedRsv.getReservNo()==0)? 0 : selectedRsv.getReservNo();
 	String programNo = (selectedRsv.getProgramNo()==null)? "2" : selectedRsv.getProgramNo();
 	String horseDate = (selectedRsv.getHorseDate()==null)? "" : selectedRsv.getHorseDate();
 	int horseTime = (selectedRsv.getHorseTime() == 0)? 10 : selectedRsv.getHorseTime();
@@ -45,7 +46,8 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<div id="box"></div>
 	<div class="page" id="content">
-		<form action="<%=contextPath%>/insertRide.rsv" method="get">
+		<form action="<%=contextPath%>/update.hs" method="get">
+			<input type = "hidden" name="reservNo" value="<%=reservNo%>">
 			<div id="ride-info">
 				<h2>승마예약 변경</h2>
 				<table>
@@ -157,19 +159,7 @@
 			</div>
 			<div id="confirm" align="center">
 				<input type="checkbox" required>주의사항을 읽었고 확인하였습니다. <br>
-				<button type="submit" disabled>예약하기</button>
-				<script>
-					$(function(){
-						$('#horseTime').click(function(){
-							if($('#horseTime').val() == 0){
-								alert('예약 시간을 선택하세요.');
-								$(this).focus();
-							}else{
-								$('#confirm>button').attr('disabled', false);
-							}
-						})
-					})
-				</script>
+				<button type="submit" >예약하기</button>
 			</div>
 		</form>
 	</div>

@@ -69,11 +69,11 @@ public class GreenteaService {
 	
 	
 	//그린티예약 죽이는 거
-	public int deleteGreentea(int bookNum) {
+	public int deleteGreentea(int reservationNo) {
 		
 		Connection conn = getConnection();
 		
-		int result = new GreenteaDao().deleteGreentea(conn, bookNum);
+		int result = new GreenteaDao().deleteGreentea(conn, reservationNo);
 		
 		if(result > 0) {
 			commit(conn);

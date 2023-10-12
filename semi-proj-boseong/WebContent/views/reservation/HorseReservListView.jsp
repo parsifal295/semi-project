@@ -90,7 +90,7 @@ ul, li {
 		$(function(){
 			$('.update-hs').click(function(){
 				let reservNo = $(this).parent().parent().children().eq(0).text();
-				location.href = "<%=contextPath%>/update.hs?reservNo="+reservNo;
+				location.href = "<%=contextPath%>/updateForm.hs?reservNo="+reservNo;
 			});
 		})
 	</script>

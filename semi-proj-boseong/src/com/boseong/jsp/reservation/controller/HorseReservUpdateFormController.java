@@ -1,7 +1,6 @@
 package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.GreenteaService;
-import com.boseong.jsp.reservation.model.vo.greenteaInfo;
+import com.boseong.jsp.reservation.model.service.HorseService;
+import com.boseong.jsp.reservation.model.vo.HorseReservation;
 
 /**
- * Servlet implementation class GreenTeaHomeController
+ * Servlet implementation class HorseReservUpdateController
  */
-@WebServlet("/green.ho")
-public class GreenTeaHomeController extends HttpServlet {
+@WebServlet("/updateForm.hs")
+public class HorseReservUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GreenTeaHomeController() {
+    public HorseReservUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +30,14 @@ public class GreenTeaHomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int reservNo = Integer.parseInt(request.getParameter("reservNo"));
+		HorseReservation selectedRsv = new HorseService().selectRide(reservNo);
+		System.out.println(selectedRsv);
+		request.setAttribute("selectedRsv", selectedRsv);
 		
-		
-		ArrayList<greenteaInfo>list = new GreenteaService().selectService();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/reservation/GreenteaFrontView.jsp").forward(request, response);
-		
-	
+		request.getRequestDispatcher("views/reservation/HrsUpdateForm.jsp").forward(request, response);
 	}
 
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

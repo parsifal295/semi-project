@@ -41,7 +41,12 @@
 		TEA_RESERVATION
 	WHERE
 		MEM_NO = ?
+	ORDER
+	BY
+		RESERVATION_NO
 	</entry>
+
+
 
 	<entry key="deleteReserv">
 	UPDATE
@@ -49,7 +54,7 @@
 	SET
 		STATUS='N'
 	WHERE
-		BOOK_NUM = ?
+		RESERVATION_NO = ?
 	AND
 		STATUS= 'Y'
 	</entry>

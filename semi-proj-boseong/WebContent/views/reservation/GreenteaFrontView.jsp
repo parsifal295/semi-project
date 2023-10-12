@@ -136,7 +136,9 @@
 			<div class="box1" style="border:1px solid white;"><a href="<%= contextPath%>/green.re" alert="로그인해주세요.">예약하기</a></div>
 			<div class="box2" style="border:1px solid white;"><a href="<%= contextPath %>/green.li" alert="로그인해주세요.">예약조회</a></div>
 			<% } %>
-			
+				<form action="<%=contextPath%>/green.li" method="post" >
+					<input type="hidden" name="memNo" value=<%= loginUser.getMemNo() %>>
+				</form>
 		</div>
 		
 		

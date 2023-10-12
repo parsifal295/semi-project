@@ -33,17 +33,19 @@ public class GreenTeaReservDeleteController extends HttpServlet {
 	
 		//현재 로그인한 회원의 정보
 		//회원정보 = 회원아이디(memNo, MEM_NO), number가져오기
-		int bookNum = Integer.parseInt(request.getParameter("nno"));
+		int reservationNo = Integer.parseInt(request.getParameter("nno"));
 	
-		int result = new GreenteaService().deleteGreentea(bookNum);
-		//System.out.println("bookNum");
+		int result = new GreenteaService().deleteGreentea(reservationNo);
+		System.out.println(reservationNo);
 		
 		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "예약 취소되었습니다.");
-														//수정필요 이 /list.no
+			System.out.println(result);
+			request.getSession().setAttribute("alertMsg", "예약 취소되었습니다.");					
 			response.sendRedirect(request.getContextPath() + "/green.li");
+			
 		}else {
-			request.getSession().setAttribute("errorMsg", "예약 취소 실패하였습니다.");
+			System.out.println(result);
+			request.getSession().setAttribute("alertMsg", "예약 취소 실패하였습니다.");
 			request.getRequestDispatcher("views/reservation/GreenTeaReservListView.jsp").forward(request, response);
 		}
 		

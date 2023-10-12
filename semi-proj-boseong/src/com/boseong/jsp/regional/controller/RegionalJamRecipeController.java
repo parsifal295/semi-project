@@ -1,27 +1,23 @@
-package com.boseong.jsp.reservation.controller;
+package com.boseong.jsp.regional.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.HorseService;
-import com.boseong.jsp.reservation.model.vo.HorseReservation;
-
 /**
- * Servlet implementation class HorseReservUpdateControler
+ * Servlet implementation class RegionalJamRecipeController
  */
-@WebServlet("/update.hs")
-public class HorseReservUpdateControler extends HttpServlet {
+@WebServlet("/jam.re")
+public class RegionalJamRecipeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HorseReservUpdateControler() {
+    public RegionalJamRecipeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,12 +26,8 @@ public class HorseReservUpdateControler extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reservNo = Integer.parseInt(request.getParameter("reservNo"));
-		HorseReservation selectedRsv = new HorseService().selectRide(reservNo);
-		System.out.println(selectedRsv);
-		request.setAttribute("selectedRsv", selectedRsv);
-		
-		request.getRequestDispatcher("views/reservation/HrsUpdateForm.jsp").forward(request, response);
+
+		request.getRequestDispatcher("/views/regional/regionalProductJamRecipeView.jsp").forward(request, response);
 	}
 
 	/**

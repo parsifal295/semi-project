@@ -5,8 +5,8 @@
     %>
     
     <%
-    ArrayList<GreenteaReservation> list = (ArrayList<GreenteaReservation>) request.getAttribute("list");
-%>
+    ArrayList<GreenteaReservation> list = (ArrayList<GreenteaReservation>)request.getAttribute("list");
+	%>
     
     
 <!DOCTYPE html>
@@ -36,6 +36,9 @@
 <body>
 <%@ include file="../common/menubar.jsp" %>
 
+	<form action="<%=contextPath%>/green.li" method="post" >
+		<input type="hidden" name="memNo" value=<%= loginUser.getMemNo() %>>
+	</form>
 	
 	<div class="page" id="content">
 	<div style="height:200px;"></div>
@@ -54,9 +57,10 @@
 			
 			<% } else { %>
 			
-			
-			
 			<% for(int i = 0; i < list.size(); i++) {%>
+			<% System.out.println(loginUser); %>
+			
+			
 			<table border="1" id="table2">
 			<tr bgcolor="#DCDCDC">
 				<th width="300" height="60">예약 회차</th>
@@ -75,16 +79,17 @@
 				<td><%=list.get(i).getReservationNo() %></td>
 				
 				<!-- 예약 취소하기 -->
-				<% if(loginUser != null) && loginUser.getMemNo().equals(list.get(i).get%>
-				<td><button type="button" class="btn btn-danger" >예약취소</button></td>
+				<!-- 로그인이 되어있고 + 이미 리스트로 위에 들어왓고.  -->
+				<td><a href="<%= contextPath %>/green.de?nno=<%= list.get(i).getReservationNo()%>" class="btn btn-danger btn-sm" >삭제하기</a></td>
 			</tr>
-			
+			<%} %>
+		<%} %>
 			</table>
+			
 	</div>
-	<%} %>
-	<%} %>
+	
 	</div>
-
+	
 
 
 

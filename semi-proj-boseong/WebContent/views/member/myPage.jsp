@@ -40,9 +40,11 @@
 	<div style="height : 200px"></div>
 	
 		<div class="page">
-			<br>
 			<h3 align="center">마이페이지</h3>
-			<form action="<%= request.getContextPath() %>/update.me" method="post">
+			<br>
+			
+			<form id="mypage-form" action="<%= request.getContextPath() %>/update.me" method="post">
+	      	
 	      	<br>
 	      	<table align="center">
 	      		<tr>
@@ -68,6 +70,7 @@
 				      <option selected>주소를 선택해주세요</option>
 				      <option value="서울">서울</option>
 				      <option value="경기도">경기도</option>
+				      <option value="강원도">강원도</option>
 				      <option value="전라도">전라도</option>
 				      <option value="충청도">충청도</option>
 				      <option value="경상도">경상도</option>
@@ -80,9 +83,6 @@
 	      	<script>
 	      		let area = '<%= area %>';
 	      		
-	      		$('select.class="custom-select custom-select-sm mb-3"').each(function(){
-	      			if(area.search($(this).val()) != -1){
-	      				$(this).attr('selected', true);
 	      		$('option').each(function(){
 	      			if(area.search($(this).val()) != -1){
 	      				$(this).attr('selected', 'true');

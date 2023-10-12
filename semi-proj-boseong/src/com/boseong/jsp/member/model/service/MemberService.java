@@ -33,6 +33,38 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		
 		return result;
+		
+	}
+	
+	public int updateMember(Member m) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new MemberDao().updateMember(conn, m);
+		
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+	
+	public Member selectMember(String memId) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		Member updateMem = new MemberDao().selectMember(conn, memId);
+		
+		JDBCTemplate.close(conn);
+		
+		return updateMem;
+		
+		
 	}
 
 
