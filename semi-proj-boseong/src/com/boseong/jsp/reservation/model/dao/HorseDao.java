@@ -177,6 +177,25 @@ public class HorseDao {
 			PreparedStatement pstmt = null;
 			String sql = prop.getProperty("updateRide");
 			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, Integer.parseInt(horseRsv.getProgramNo()));
+				pstmt.setString(2, horseRsv.getHorseDate());
+				pstmt.setInt(3, horseRsv.getHorseTime());
+				pstmt.setInt(4, horseRsv.getRiderNum());
+				pstmt.setString(5, horseRsv.getMessage());
+				
+				pstmt.setInt(6, horseRsv.getReservNo());
+				pstmt.setInt(7, horseRsv.getMemNo());
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
 			return result;
 		}
 }
