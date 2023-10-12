@@ -2,6 +2,7 @@ package com.boseong.jsp.freeboard.model.dao;
 
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
+import com.boseong.jsp.freeboard.model.vo.FreeboardReply;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -232,7 +233,11 @@ public class FreeboardDao {
         ps.setString(3, "");
         ps.setString(4, "%" + keyword + "%");
       }
-      result = ps.executeUpdate();
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          result = rs.getInt(1);
+        }
+      }
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -287,7 +292,44 @@ public class FreeboardDao {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    System.out.println(list.toString());
     return list;
+  }
+
+  public ArrayList<FreeboardReply> selectReplyList(Connection conn, int boardNo) {
+    ArrayList<FreeboardReply> list = new ArrayList<>();
+    String sql = prop.getProperty("selectReplyList");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      try (ResultSet rs = ps.executeQuery()) {
+        while (rs.next()) {
+          FreeboardReply fr = new FreeboardReply();
+          fr.setReplyNo(rs.getInt("REPLY_NO"));
+          fr.setWriter(rs.getString("WRITER"));
+          fr.setIpAddress(rs.getString("IP_ADDRESS"));
+          fr.setContent(rs.getString("REPLY_CONTENT"));
+          fr.setCreateDate(rs.getString("A"));
+          list.add(fr);
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return list;
+  }
+
+  public int insertReply(Connection conn, FreeboardReply fr) {
+    int result = 0;
+    String sql = prop.getProperty("insertReply");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, fr.getRefNo());
+      ps.setString(2, fr.getWriter());
+      ps.setString(3, fr.getIpAddress());
+      ps.setString(4, fr.getContent());
+      ps.setString(5, fr.getPassword());
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
   }
 }

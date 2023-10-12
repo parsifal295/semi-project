@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,12 +16,22 @@
 
 <style>
 	
-	.outer{
-			width : 1400px;
-			height : 2370px;
-			margin : auto;
-			margin-top : 250px;
-		}
+	.page{
+	padding:0;
+	margin:0;
+	width:100%;
+	height : 100vh;
+	color : black;
+
+}
+
+	#content{
+	width : 1302px;
+	height : 100%;
+	margin : auto;
+}
+	
+	
 		
 	.content12{
 			width : 1400px;
@@ -79,7 +90,6 @@
 <body>
 	<!-- 스크립트시작 -->
 	<script>
-
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -87,15 +97,20 @@
             headerToolbar: {
               left: 'prev,next today',
               center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+              right: 'dayGridMonth'
             },
             dateClick: function(info) {
-              alert('clicked ' + info.dateStr);
+            	
+            	
+            	$("#startDate").val(info.dateStr);
             }
           });
         calendar.render();
       });
 
+      
+      
+      
     </script>
 	<!-- 스크립트끝 -->
 	
@@ -103,7 +118,10 @@
 	<%@ include file="../common/menubar.jsp" %>
 
 	
-	<div class="outer">
+	<div class="page" id="content">
+	<form action="<%=contextPath %>/green.in" method="get">
+	<div style="height:200px;"></div>
+	<div class="page">
 	<hr style="border:solid 0.5px grey;">
 	<h2 align="center">녹차밭 예약하기</h2>
 	<hr style="border:solid 0.5px grey;">
@@ -119,49 +137,58 @@
 		<div class="content2">
 			<h3><strong>내 예약 정보</strong></h3>
 			<hr>
-			<h5>예약 일자: onclick달력하면 여기로 와야댐  콘솔에 찍은 변수명바로넣기.    </h5>
-            
+				
+				예약 일자: 
+				
+				<!--  <input id="startDate" name="startDate">-->
+				<input id="startDate" name="startDate"><a id="startDate"> </a>
+            	
             <!--  </select>-->
              
-			<br>
+			<br><br>
 			
-			<h5>예약 회차: 
-        	<select name="select-time"> 
-	            <option>오전(9시~12시)</option>
-	            <option>오후(12시~6시)</option>
-       		</select>
-        	</h5>
+			<a>예약 회차: 
+        	<select name="courseNum"> 
         	
-			<br>
-			<h5>인원:
-				<input type="number" name="amount" min="0" max="50" value="1" step="1">
-			</h5>
+	            <option value="AM">오전(9시~12시)</option>
+	            <option value="PM">오후(12시~6시)</option>
+	  
+       		</select>
+        	</a>
+        	
+			<br><br>
+			<a>인원:
+				<input type="number" name="bookNum" min="0" max="10" value="1" step="1">
+			명(최대인원:10명)</a>
 			<br>
 			
 		
 		
 		</div>
-		
+		</div>
 		
 	</div>
 	<br><br>
 	
 
-	<div class="content3_1">
+	<div class="page"><!-- div class="content3_1"엿던것 -->
 	<h2>예약자 세부 정보 입력</h2>
+	
 		<div class="content3_2">
-		<input type="checkbox" id="same" name="same" value="same"><label for="same"></label>
-		예약자와 투숙객이 일치하다면 체크해주세요
+		<br>
+		<!-- 
+		<input type="checkbox" id="same" name="same" value="same"><label for="same">예약자와 투숙객이 일치하다면 체크해주세요</label>
+		 -->
 		<!-- 이거 쉽다고 나중에 해도된다고 하심 -->
 	
 		</div>
 	
-	</div>
+	
 	<hr style="border:solid 1px grey;">
 	
 	
 	<div class="content3">
-	<br>
+	<br><br>
 	 이름 : <input type="text" name="memName" placeholder="이름을 입력해주세요." required>
 	 <br><br>
 	 전화번호 : <input type="text" name="phone" placeholder="전화번호를 입력해주세요." required>
@@ -170,6 +197,9 @@
 	
 	<div class="content4">
 	<h2>녹차밭 체험 규칙 검토</h2>
+	<div class="content4_1" align="right">
+	규칙을 확인하였습니다.<input type="checkbox" value="체험확인" name="mustCheck" required>
+	</div>
 	<hr>
 		체험시 반려동물 입장은 불가합니다.
 		체험시 체험지도사의 지시에 따라주시기 바랍니다.
@@ -184,15 +214,18 @@
 		[추천 인원]<br>
 		본 상품은 체험일 회당 최소인원(20명) 미만시 체험이 취소 될 수 있습니다.(모객 미달로 인한 체험 불가시 출발 2일전 별도 안내 드리오니, 구매시 연락처 확인 부탁드립니다.)
 		<br><br>
-	</div>
-	<br>
+		
+		
 		<div class="button">
-		<button type="button" class="btn btn-primary">예약하기</button>
+		<button type="submit" class="btn btn-primary" >예약하기</button>
 		</div>
+	</div>
+	</div>
+	</form>
 	
 	
 	</div>
-	</div>
+	
 
 
 

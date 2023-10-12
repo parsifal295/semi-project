@@ -52,4 +52,38 @@ public class HanokService {
 		close(conn);
 		return result;
 	}
+	public ArrayList<HanokReservation> selectReservList(int memNo){
+		Connection conn = getConnection();
+		ArrayList<HanokReservation> list = new HanokDao().selectReservList(conn, memNo);
+		close(conn);
+		return list;
+	}
+	public int deleteReservation(HanokReservation hanokRsv) {
+		Connection conn= getConnection();
+		int result = new HanokDao().deleteReservation(conn, hanokRsv);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;		
+	}
+	public HanokReservation selectReservation(HanokReservation hanokRsv) {
+		Connection conn= getConnection();
+		HanokReservation selectedRsv = new HanokDao().selectReservation(conn, hanokRsv);
+		close(conn);
+		return selectedRsv;
+	}
+	public int updateReservation(HanokReservation hanokRsv) {
+		Connection conn = getConnection();
+		int result = new HanokDao().updateReservation(conn, hanokRsv);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

@@ -5,6 +5,7 @@ import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.freeboard.model.service.FreeboardService;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
+import com.boseong.jsp.freeboard.model.vo.FreeboardReply;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
@@ -72,16 +73,14 @@ public class FreeboardController {
     int maxPage; // 총 페이지수
     int startPage; // 시작 페이지
     int endPage; // 끝 페이지
-    String returnMe = "/views/freeboard/fboardListView.jsp";
+    String returnMe = "/views/freeboard/fboardSearchResultView.jsp";
     // 필요한 변수 뽑기
     // ** 검색조건 (제목+내용 or 작성자 or ip 주소) / 검색어 **
     String condition = request.getParameter("condition");
     String keyword = request.getParameter("conditionText");
 
-    System.out.println("condition:" + condition);
-    System.out.println("keyword:" + keyword);
-
     listCount = new FreeboardService().getSearchCount(condition, keyword);
+    System.out.println(listCount);
     currentPage = Integer.parseInt(request.getParameter("cpage"));
     pageLimit = 10;
     boardLimit = 10;
@@ -96,6 +95,8 @@ public class FreeboardController {
     ArrayList<Freeboard> list = new FreeboardService().getSearchResult(condition, keyword, pi);
     request.setAttribute("list", list);
     request.setAttribute("pi", pi);
+    request.setAttribute("condition", condition);
+    request.setAttribute("keyword", keyword);
     return returnMe;
   }
 

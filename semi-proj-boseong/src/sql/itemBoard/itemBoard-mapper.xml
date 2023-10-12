@@ -24,7 +24,7 @@
 		 		?,
 		 		SYSDATE,
 		 		SYSDATE,
-		 		'Y',
+		 		DEFAULT,
 		 		?
 		 		)
 	</entry>
@@ -92,11 +92,14 @@
 	</entry>
 	<entry key="iboardSelect">
 		SELECT 
+				BOARD_NO,
 				MEM_NAME,
+				MEM.MEM_NO,
 				IBOARD_TITLE,
 				IBOARD_CONTENT,
 				IBOARD_POST_DATE,
 				IBOARD_MODIFY_DATE,
+				IB.STATUS,
 				PRICE
   		  FROM 
   		  		TB_ITEMBOARD IB
@@ -108,5 +111,15 @@
    		   		IB.STATUS = 'Y'
    		   AND
    		   		CATEGORY_NO = 20
+   		   AND
+   		   		MEM.STATUS != 'N'
+	</entry>
+	<entry key="selectCurrval">
+		SELECT 
+				SEQ_IB_NO.CURRVAL NUM 
+  		  FROM 
+  		  		TB_ITEMBOARD
+ 		 WHERE 
+ 		 		CATEGORY_NO = ?
 	</entry>
 </properties>

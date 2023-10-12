@@ -20,6 +20,7 @@
       margin-right: 145px;
       margin-bottom: 5px
     }
+
 </style>
 </head>
 <body>
@@ -66,13 +67,31 @@
 					 		<td><%= p.getCreateDate() %></td>
 						</tr>
 					  <% } %>
-					 <% } %>	 					
-				
+					 <% } %>
+					 <div align="right">	 					
+					<a href="<%= contextPath %>/enroll.pn" class="btn btn-sm btn-info">글작성</a>
+					</div>
 				</tbody>
 			</table>	
+		</div>
+	
+		<script>
+			$(function(){
+			
+				$('.table>tbody>tr').click(function(){
 				
-	
-	
+					const nno = $(this).children().eq(0).text();
+					
+					location.href="<%=contextPath%>/detail.pn?nno=" + nno;
+					
+				})
+			
+			});
+			
+			
+		
+		</script>
+
 
 </body>
 </html>

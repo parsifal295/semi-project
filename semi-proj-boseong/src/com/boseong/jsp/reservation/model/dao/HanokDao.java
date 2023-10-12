@@ -169,6 +169,115 @@ public class HanokDao {
 		}		
 		return result;
 	}
+	public ArrayList<HanokReservation> selectReservList(Connection conn, int memNo){
+		ArrayList<HanokReservation> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReservList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				HanokReservation hanokRsv = new HanokReservation(
+						rset.getInt("RESERVATION_NO"),
+						rset.getInt("ROOM_NO"),
+						rset.getInt("MEM_NO"),
+						rset.getString("FROM_DATE"),
+						rset.getString("TO_DATE"),
+						rset.getInt("CLIENT_NUM"),
+						rset.getString("MESSAGE")
+						);
+				list.add(hanokRsv);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+	public int deleteReservation(Connection conn, HanokReservation hanokRsv) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, hanokRsv.getReservNo());
+			pstmt.setInt(2, hanokRsv.getMemNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public HanokReservation selectReservation(Connection conn, HanokReservation hanokRsv) {
+		HanokReservation selectedRsv = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, hanokRsv.getReservNo());
+			pstmt.setInt(2, hanokRsv.getMemNo());
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				selectedRsv = new HanokReservation();
+				selectedRsv.setReservNo(rset.getInt("RESERVATION_NO"));
+				selectedRsv.setRoomNo(rset.getInt("ROOM_NO"));
+				selectedRsv.setMemNo(rset.getInt("MEM_NO"));
+				selectedRsv.setFromDate(rset.getString("FROM_DATE"));
+				selectedRsv.setToDate(rset.getString("TO_DATE"));
+				selectedRsv.setClientNum(rset.getInt("CLIENT_NUM"));
+				selectedRsv.setMessage(rset.getString("MESSAGE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return selectedRsv;
+	}
+	public int updateReservation(Connection conn, HanokReservation hanokRsv) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, hanokRsv.getRoomNo());
+			pstmt.setString(2, hanokRsv.getFromDate());
+			pstmt.setString(3, hanokRsv.getToDate());
+			pstmt.setInt(4,hanokRsv.getClientNum());
+			pstmt.setString(5, hanokRsv.getMessage());
+			pstmt.setInt(6, hanokRsv.getReservNo());
+			pstmt.setInt(7, hanokRsv.getMemNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {close(conn);}
+		
+		return result;
+	}
 	
 	
 }

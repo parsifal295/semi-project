@@ -22,14 +22,16 @@ public class ItemBoardService {
 		// IBOARD INSERT
 		int board = new ItemBoardDao().insertBoard(conn, ib);
 		int at = new AttachmentDao().insertAttachment(conn, att, categoryNo);
+		int boardNo = 0;
 		if((board * at) > 0) {
 			commit(conn);
+			// DAO감 ->
+			boardNo = new ItemBoardDao().selectCurrval(conn, categoryNo);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
-		System.out.println(at);
-		return (board*at);
+		return boardNo;
 	}
 	
 	// 게시물의 총 개수
@@ -61,6 +63,12 @@ public class ItemBoardService {
 		Connection conn = getConnection();
 		
 		int result = new ItemBoardDao().ibIncreaseCount(conn, boardNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		
 		return result;
 	}

@@ -47,18 +47,26 @@
 						<th>인원</th>
 					</tr>
 					<tr>
-						<td><select name="programNo" id="" value="1">
+						<td><select name="programNo" value="1">
 								<option value="1">유소년 승마 프로그램</option>
 								<option value="2">일반 체험</option>
 								<option value="3">장애물 레슨</option>
 						</select></td>
-						<td><input type="date" name="horseDate" id="horseDate">
+						<td><input type="date" name="horseDate" id="horseDate" required>
 						</td>
 						<td><select name="horseTime" id="horseTime">
 								<option>시간</option>
-								<%for(int i=10; i<21;i++){%>
-								<option><%=i %><option>
-								<% } %>
+								<option>10</option>
+								<option>11</option>
+								<option>12</option>
+								<option>13</option>
+								<option>14</option>
+								<option>15</option>
+								<option>16</option>
+								<option>17</option>
+								<option>18</option>
+								<option>19</option>
+								<option>20</option>
 						</select>시</td>
 						<td><select name="riderNum" id="riderNum">
 								<option value="1">1명</option>
@@ -69,14 +77,22 @@
 						</select></td>
 
 					</tr>
+					<tr>
+						<td></td>
+						<td><h6>※당일 예약 신청 및 변경 주의</h6></td>
+						<td><h6>※예약 가능시간 : 10AM ~ 8PM</h6></td>
+						<td><h6>※최대인원 : 5명</h6></td>
+					<tr>
 				</table>
 			</div>
 			<div id="clientInfo">
 				<h2>예약자 정보 입력</h2>
 				<table>
+					<%if(loginUser != null){ %>
 					<tr>
 						<th>예약자 성함</th>
-						<td><input type="text" name="userName" placeholder="<%=loginUser.getMemName() %>"
+						<td><input type="text" name="userName"
+									placeholder="<%=loginUser.getMemName() %>"
 							readonly></td>
 						<input type="hidden" name="userNo" value="<%=loginUser.getMemNo()%>">
 					</tr>
@@ -85,9 +101,13 @@
 						<td><input type="text" name="phone" placeholder="<%=loginUser.getPhone() %>"
 							readonly></td>
 					</tr>
+					<%}else{ %>
 					<tr>
+						<td colspan = "2">로그인 후 이용가능한 서비스입니다.</td>
+					</tr>
+					<%} %>
 						<th>요청사항</th>
-						<td><textarea name="message" id="" cols="100" rows="5">내용을 입력해주세요.</textarea>
+						<td><textarea name="message" cols="100" rows="5">내용을 입력해주세요.</textarea>
 						</td>
 					</tr>
 				</table>
@@ -115,12 +135,12 @@
 		$(function() {
 			let now = new Date();
 			let year = now.getFullYear();
-			let month = now.getMonth();
+			let month = now.getMonth()+1;
 			let date = now.getDate();
-			let tomorrow = new Date(year, month, date+1);
-			year = tomorrow.getFullYear();
-			month = tomorrow.getMonth()+1;
-			date = tomorrow.getDate();
+	//		let tomorrow = new Date(year, month, date+1);
+	//		year = tomorrow.getFullYear();
+	//		month = tomorrow.getMonth()+1;
+	//		date = tomorrow.getDate();
 			
 			if(month<10){
 				month = '0'+month;

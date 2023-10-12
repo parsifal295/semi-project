@@ -155,11 +155,14 @@ public class ItemBoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
+				ib.setBoardNo(rset.getInt("BOARD_NO"));
 				ib.setMemberName(rset.getString("MEM_NAME"));
+				ib.setMemberNo(rset.getInt("MEM_NO"));
 				ib.setTitle(rset.getString("IBOARD_TITLE"));
 				ib.setContent(rset.getString("IBOARD_CONTENT"));
 				ib.setPostDate(rset.getDate("IBOARD_POST_DATE"));
 				ib.setModifyDate(rset.getDate("IBOARD_MODIFY_DATE"));
+				ib.setStatus(rset.getString("STATUS"));
 				ib.setPrice(rset.getInt("PRICE"));
 			}
 		} catch (SQLException e) {
@@ -167,7 +170,35 @@ public class ItemBoardDao {
 		} finally {
 			close(rset);
 		}
-		return ib;
+		// System.out.println("status DAO insert : " + ib.getStatus());
+		return ib; 
+	}
+	
+
+	public int selectCurrval(Connection conn, int categoryNo) {
+		int result = 0;
+		
+		String sql = "SELECT \r\n" + 
+				"				SEQ_IB_NO.CURRVAL NUM \r\n" + 
+				"  		  FROM \r\n" + 
+				"  		  		TB_ITEMBOARD\r\n" + 
+				" 		 WHERE \r\n" + 
+				" 		 		CATEGORY_NO = ?";
+		ResultSet rset = null;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, categoryNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("NUM");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+		}
+		return result;
 	}
 	
 

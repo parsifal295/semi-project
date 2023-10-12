@@ -1,6 +1,7 @@
 package com.boseong.jsp.itemboard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.boseong.jsp.Attachment.model.service.AttachmentService;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
 import com.boseong.jsp.common.MyFileRenamePolicy;
 import com.boseong.jsp.itemboard.model.service.ItemBoardService;
@@ -40,7 +40,7 @@ public class ItemBoardInsertController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 한글 + 사진이 첨부되어있기 때문에 인코딩을 해준다
 		request.setCharacterEncoding("UTF-8");
-		
+
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
 			// 첨부파일 용량 제한
@@ -60,13 +60,14 @@ public class ItemBoardInsertController extends HttpServlet {
 			// type = text로 했기 에  pardseInt해주기
 			int price = Integer.parseInt(multiRequest.getParameter("price"));
 			String content = multiRequest.getParameter("content");
-			int memberNo = 1;  // 회원정보 끝날때 회원번호 같이 담아서 넘겨주기
-			
+			int memberNo = Integer.parseInt(multiRequest.getParameter("memberNo"));
+			// System.out.println("insertController memberNo : "+memberNo);
 			ItemBoard ib = new ItemBoard();
 			ib.setTitle(title);
 			ib.setPrice(price);
 			ib.setContent(content);
 			ib.setMemberNo(memberNo);
+			
 			
 			Attachment att = null;
 			if(multiRequest.getOriginalFileName("upfile") != null) {
@@ -76,16 +77,16 @@ public class ItemBoardInsertController extends HttpServlet {
 				att.setOriginName(multiRequest.getOriginalFileName("upfile"));
 				att.setSavePath("resources/board_upfiles");
 				att.setModifiedName(multiRequest.getFilesystemName("upfile"));
-			} else {
-				// request.setAttribute("alertMsg", "해당 거래 상품 이미지를 첨부 해주세요.");
-			}
+			} 
 			int categoryNo = 20;
 			
-			int iboard = new ItemBoardService().insertBoard(ib, att, categoryNo);
-			
-			if(iboard > 0) {
+			int boardNo = new ItemBoardService().insertBoard(ib, att, categoryNo);
+			// System.out.println("(intsert.ib)ib.get으로 꺼낸 boardNo값 : "+ib.getBoardNo());
+			// System.out.println("(insert.in)insert하고 바로 detail상세뷰로 보여지기 위한 boardNo값 : "+ boardNo);
+			if(boardNo > 0) {
+				// System.out.println(boardNo);
 				request.getSession().setAttribute("alertMsg", "게시글 등록을 성공하였습니다!");
-				response.sendRedirect(request.getContextPath() + "/detail.ib?"); // 완성되면 다시 경로 지정
+				response.sendRedirect(request.getContextPath() + "/detail.ib?bno="+ boardNo);
 			}else {
 				request.setAttribute("alertMsg", "게시물 등록에 실패하였습니다.");
 				request.getRequestDispatcher("views/itemboard/iboardListView.jsp").forward(request, response);

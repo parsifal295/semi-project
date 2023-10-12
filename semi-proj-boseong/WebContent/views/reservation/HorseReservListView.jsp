@@ -11,18 +11,7 @@
 <meta charset="UTF-8">
 <title>승마장 예약 확인</title>
 <style>
-@font-face {
-	font-family: 'Hangeuljaemin4-Regular';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Hangeuljaemin4-Regular.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
 
-#content *{
-	font-family: 'Hangeuljaemin4-Regular';
-}
 ul, li {
 	list-style: none;
 }
@@ -74,16 +63,16 @@ ul, li {
 						</legend>
 						<div>
 							<table>
-								<tr>
-									<th>예약일</th>
-									<th>예약시간</th>
-									<th>인원</th>
-								</tr>
 
 								<tr>
-									<td><%=list.get(i).getHorseDate() %></td>
-									<td><%=list.get(i).getHorseTime() %></td>
-									<td><%=list.get(i).getRiderNum() %></td>
+									<td><%=list.get(i).getReservNo() %></td>
+									<td><h5>예약일</h5><%=list.get(i).getHorseDate() %></td>
+									<td><h5>예약 시간</h5><%=list.get(i).getHorseTime() %></td>
+									<td><h5>예약 인원</h5><%=list.get(i).getRiderNum() %></td>
+									<td>
+									<button class="btn btn-warning update-hs">예약 변경</button>
+									<button class="btn btn-danger">예약 취소</button>
+									</td>
 								</tr>
 
 							</table>
@@ -97,6 +86,14 @@ ul, li {
 		</div>
 
 	</div>
+	<script>
+		$(function(){
+			$('.update-hs').click(function(){
+				let reservNo = $(this).parent().parent().children().eq(0).text();
+				location.href = "<%=contextPath%>/updateForm.hs?reservNo="+reservNo;
+			});
+		})
+	</script>
 
 
 	<%@include file="../common/footer.jsp"%>

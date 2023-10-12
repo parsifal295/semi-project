@@ -122,7 +122,7 @@
 			TB_FREEBOARD
 		WHERE 
 			((ART_TITLE LIKE ? OR ART_CONTENT LIKE ?) 
-			OR (ART_WRITER = ?) 
+			OR (ART_WRITER LIKE ?) 
 			OR (IP_ADDRESS LIKE ?) 
 			AND STATUS = 'Y')
 	</entry>
@@ -163,5 +163,44 @@
 			ORDER BY
 					BOARD_NO DESC) A)
 			WHERE RNUM BETWEEN ? AND ?  
+	</entry>
+	<entry key="selectReplyList">
+		SELECT
+			REPLY_NO,
+			WRITER,
+			IP_ADDRESS,
+			REPLY_CONTENT,
+			(TO_CHAR(CREATE_DATE, 'YYYY/MM/DD HH24:MI:SS')) A
+		FROM
+			FB_REPLY
+		WHERE
+			REF_BNO = ?	
+		AND
+			STATUS = 'Y'
+		ORDER BY
+			REPLY_NO 
+	</entry>
+	<entry key="insertReply">
+		INSERT
+			INTO
+				FB_REPLY
+				(
+				REPLY_NO,
+				REF_BNO,
+				WRITER,
+				IP_ADDRESS,
+				REPLY_CONTENT,
+				PASSWORD
+				)
+		VALUES
+			(
+			SEQ_FB_REPLY_NO.NEXTVAL,
+			?,
+			?,
+			?,
+			?,
+			?
+			)
+		
 	</entry>
 </properties>

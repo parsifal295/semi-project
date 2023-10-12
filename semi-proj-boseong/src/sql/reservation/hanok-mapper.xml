@@ -40,8 +40,8 @@
 SELECT 
     RESERVATION_NO, 
     ROOM_NO,
-    FROM_DATE, 
-    TO_DATE 
+    TO_CHAR(FROM_DATE) "FROM_DATE", 
+    TO_CHAR(TO_DATE) "TO_DATE" 
 FROM(
     SELECT 
             RESERVATION_NO, 
@@ -70,7 +70,67 @@ VALUES(
 	DEFAULT
 )
 </entry>
+<entry key = "selectReservation">
+	SELECT 
+		RESERVATION_NO,
+		ROOM_NO, 
+		MEM_NO,
+		TO_CHAR(FROM_DATE) FROM_DATE,
+		TO_CHAR(TO_DATE) TO_DATE,
+		CLIENT_NUM,
+		MESSAGE
+	FROM 
+		HANOK_RESERVATION 
+	WHERE 
+		RESERVATION_NO = ? 
+	AND 
+		MEM_NO = ? 
+	AND 
+		STATUS='Y' 
+	ORDER BY FROM_DATE
+</entry>
 
+<entry key="selectReservList">
+	SELECT 
+			RESERVATION_NO,
+			ROOM_NO, 
+			MEM_NO,
+			TO_CHAR(FROM_DATE) FROM_DATE,
+			TO_CHAR(TO_DATE) TO_DATE,
+			CLIENT_NUM,
+			MESSAGE
+	FROM 
+		HANOK_RESERVATION 
+	WHERE 
+		MEM_NO = ? 
+	AND 
+		STATUS='Y' 
+	ORDER BY FROM_DATE
+
+</entry>
+
+<entry key = "deleteReservation">
+	UPDATE 
+			HANOK_RESERVATION 
+	  SET 
+	  		STATUS='N' 
+	  WHERE RESERVATION_NO = ? 
+	  AND MEM_NO = ?
+
+</entry>
+
+<entry key = "updateReservation">
+	UPDATE HANOK_RESERVATION 
+		SET 
+			ROOM_NO = ?, 
+			FROM_DATE = ?,
+			TO_DATE = ?,
+			CLIENT_NUM = ?,
+			MESSAGE = ? 
+	WHERE RESERVATION_NO = ? AND MEM_NO = ?
+		
+			
+</entry>
 
 
 

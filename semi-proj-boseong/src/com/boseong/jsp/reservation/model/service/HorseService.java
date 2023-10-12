@@ -49,5 +49,21 @@ public class HorseService {
 	
 		return list;
 	}
+	public HorseReservation selectRide(int reservNo) {
+		Connection conn = getConnection();
+		HorseReservation selectedRsv = new HorseDao().selectRide(conn, reservNo);
+		close(conn);
+		return selectedRsv;
+	}
+	public int updateRide(HorseReservation horseRsv) {
+		Connection conn= getConnection();
+		int result = new HorseDao().updateRide(conn, horseRsv);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 
 }

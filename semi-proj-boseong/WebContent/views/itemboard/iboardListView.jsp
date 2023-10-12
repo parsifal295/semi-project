@@ -16,15 +16,9 @@
 <meta charset="UTF-8">
 <title>보성마켓</title>
 <style>
-	#iboard-area{
-		width : 78%;
-		text-align : center;
-		margin : auto;
-		margin-bottom : 0;	
-		padding : 0;
-	}
-	.notice-table{
-		background-color : rgb(207, 207, 207);
+	#btn{
+		margin-left: 84.5%;
+		margin-bottom: 10px;
 	}
 </style>
 </head>
@@ -34,8 +28,10 @@
 	<div class="page" id="content">
 	<div style="height : 300px; text-align: center;"></div>
 		<div class="page">
-		<a type="submit" href="<%= contextPath %>/enrollform.ib">글작성</a>
-		<table id="iboard-area" class="notice-table">
+		<%if(loginUser != null){ %>
+		<a type="submit" href="<%= contextPath %>/enrollform.ib" class="btn btn-primary btn-sm" id="btn">글작성</a>
+		<%} %>
+		<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default;">
 		<thead class="thead-light">
 	      <tr>
 	        <th width="10%">No.</th>
@@ -54,7 +50,7 @@
 	        <td> - </td>
 	      </tr>
 		</table>
-		<table class="table" id="iboard-area" style="text-align : center;">
+		<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default">
 	    <thead class="thead-light">
 	      <tr>
 	        <th width="10%">No.</th>
@@ -65,7 +61,7 @@
 	        <th width="15%">가격</th>
 	      </tr>
 	    </thead>
-	    <tbody>
+	    <tbody style="cursor:default">
 	    <% if(list.isEmpty()){ %>
 	    <tr>
 	    	<td colspan="5">조회된 게시글이 없습니다</td>
@@ -111,8 +107,7 @@
 	</div>
 	<script>
 	$(function(){
-		$('#iboard-area > tbody > tr').click(function(){
-			console.log('하허아ㅓ리암널;');
+		$('#tb > tbody > tr').click(function(){
 			location.href = '<%= contextPath %>/detail.ib?bno=' + $(this).children().eq(0).text();
 		});
 	});

@@ -82,6 +82,10 @@
 	      	
 	      	<script>
 	      		let area = '<%= area %>';
+	      		
+	      		$('select.class="custom-select custom-select-sm mb-3"').each(function(){
+	      			if(area.search($(this).val()) != -1){
+	      				$(this).attr('selected', true);
 	      		$('option').each(function(){
 	      			if(area.search($(this).val()) != -1){
 	      				$(this).attr('selected', 'true');

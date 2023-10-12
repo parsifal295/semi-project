@@ -10,13 +10,25 @@
 
 
 <style>
-	.outer{
-		width : 1200px;
-		height : 1700px;
-		margin : auto;
-		margin-top : 250px;
-		font-size:25px;
+
+	.page{
+		padding:0;
+		margin:0;
+		width:100%;
+		height : 100vh;
+		color : black;
+
 	}
+
+	#content{
+		width : 1302px;
+		height : 100%;
+		margin : auto;
+	}
+
+
+
+	
 	
 	.table {
 		width:100%;
@@ -31,8 +43,9 @@
 <%@ include file="../common/menubar.jsp" %>
 
 
-		<div class="outer">
-				
+		<div class="page" id="content"><!-- div class="outer"엿던것 -->
+				<div style="height:200px;"></div>
+				<div class="page" style="height:1600px;">
 					<!-- ---------------------1시작----------------------------------------- -->
 				<table>
 				<%if(tour.equals("보성으로 떠나는 힐링여행")) { %>
@@ -56,8 +69,8 @@
 						</p></td>
 					</tr>
 				
-					<tr>
-					<td colspan="3" height=150><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1679109.252335724!2d124.77562059374998!3d34.717530499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35721322dfb7fb45%3A0xde1b220a30bc536d!2z64yA7ZWc64uk7JuQ!5e0!3m2!1sko!2skr!4v1696402092716!5m2!1sko!2skr" width="1200" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></td>
+					<tr >
+					<td colspan="3" height=150><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1679109.252335724!2d124.77562059374998!3d34.717530499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35721322dfb7fb45%3A0xde1b220a30bc536d!2z64yA7ZWc64uk7JuQ!5e0!3m2!1sko!2skr!4v1696402092716!5m2!1sko!2skr" width="1200" height="700"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></td>
 					</tr>
 				
 					<tr>
@@ -354,7 +367,7 @@
 					 <% } %>
 				</table>
 		</div>
-		
+		</div>
 		
 <%@ include file="../common/footer.jsp" %>
 </body>

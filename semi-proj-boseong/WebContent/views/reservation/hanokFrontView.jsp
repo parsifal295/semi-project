@@ -53,17 +53,23 @@
 </head>
 <body>
 	<%@include file="../common/menubar.jsp"%>
+	<div id="box"></div>
 	<div class="page" id="content">
-		<div id="box"></div>
 		<div class="page">
 			<div id="main-pic">
-			<%if(loginUser != null){ %>
+			<%if(loginUser == null){ %>
+			<div><h1>예약하려면 로그인하세요!</h1></div>
+			<%}else{ %>
 				<button class="btn btn-outline-secondary" id="reserv-hanok">
 					<h1>예약 하기</h1>
 				</button>
 				<button class="btn btn-outline-secondary" id="hk-reserv-list"><h1>예약 조회</h1></button>
-			<%}else{ %>
-				<div><h1>예약하려면 로그인하세요!</h1></div>
+				<script>
+				$(function(){
+			    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk?memNo=<%=loginUser.getMemNo()%>"});
+				})
+				</script>
+				
 			<%} %>
 			</div>
 			<div id="rooms">
@@ -96,11 +102,12 @@
             return;
         }
     }
+
     $(function(){
+    	
     	$('#main-pic')
     	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"');
     	$('#reserv-hanok').click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
-    	$('#hk-rserv-list').click(function(){location.href="<%=contextPath%>/list.hk"});
     })
 	</script>
 
