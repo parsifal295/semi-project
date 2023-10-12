@@ -36,7 +36,7 @@
 		    
 		         <input type="submit" class="btn btn-secondary" id="btn-login" value="로그인">
 		    
-		         <input type="button" class="btn btn-secondary" value="회원가입" onclick="location.href='#'">
+		         <input type="button" class="btn btn-secondary" value="회원가입" data-toggle="modal" data-target="#memberEnrollForm">
 		    
 		     </div>
 	      

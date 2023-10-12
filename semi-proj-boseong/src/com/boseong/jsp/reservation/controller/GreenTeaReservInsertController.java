@@ -35,8 +35,8 @@ public class GreenTeaReservInsertController extends HttpServlet {
 		String startDate = request.getParameter("startDate");
 		String courseNum = request.getParameter("courseNum");
 		
-		//나중에 수정필요
-		int memNo = 1;
+		//나중에 수정필요->수정완료(10/12)
+		int memNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		int bookNum = Integer.parseInt(request.getParameter("bookNum")); // 이게틀렷대 안틀렷어 억울해 !!
 		

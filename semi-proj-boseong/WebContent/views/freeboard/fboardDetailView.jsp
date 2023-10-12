@@ -316,44 +316,6 @@
       };
     </script>
     <script>
-      function selectReplyList() {
-        $.ajax({
-          url : 'replylist.fb',
-          data : {bno : <%= fb.getBoardNo() %>},
-          success : function(result) {
-            console.log(result);
-            // 댓글 개수만큼 루프반복 (댓글전체출력을 위해서..)
-            let resultStr = '';
-            for (let i in result) {
-              resultStr += '<tr>'
-                        + '<td width="200">' + result[i].writer + "(" + result[i].ipAddress + ")" + '</td>'
-                        + '<td width="300" align="center">' + result[i].createDate + '</td>'
-                        + '<td width="100" align="right">'
-                        + '<a href = "#" onclick="editReply();" data-toggle="modal" data-target="#editCommentModal" value="' + result[i].replyNo + '">수정</a>' + ' | ' + '<a href=#>삭제</a>' + '</td>'
-                        + '</tr>'
-                        + '<tr>'
-                        + '<td colspan="3" id="comment-text'+result[i].replyNo+'">' + result[i].content + '</td>'
-                        + '</tr>'+ '</hr>';
-            }
-            $('#reply-area thead').html(resultStr);
-          },
-          error : function(e, msg){
-            console.log('댓글 읽어오기 실패~');
-            console.log(msg);
-              
-          }
-        })
-      };
-      $(() => {
-        selectReplyList();
-        //setInterval(selectReplyList, 1000);
-      });
-      function editReply() {
-        $.ajax({
-          url : ,
-          type : 'post',
-        })
-      }
       function insertReply() {
         $.ajax({
           url : 'replyinsert.fb',
@@ -375,8 +337,54 @@
           }
         });
         location.reload();
-      }
-      
+      };
+    </script>
+    <script>
+      function selectReplyList() {
+        $.ajax({
+          url : 'replylist.fb',
+          data : {bno : <%= fb.getBoardNo() %>},
+          success : function(result) {
+            console.log(result);
+            // 댓글 개수만큼 루프반복 (댓글전체출력을 위해서..)
+            let resultStr = '';
+            for (let i in result) {
+              resultStr += '<tr>'
+                        + '<td width="200">' + result[i].writer + "(" + result[i].ipAddress + ")" + '</td>'
+                        + '<td width="300" align="center">' + result[i].createDate + '</td>'
+                        + '<td width="100" align="right">'
+                        + '<a href = "#" onclick="editReply(this);" data-toggle="modal" data-target="#editCommentModal" value="' + result[i].replyNo + '">수정</a>' + ' | ' + '<a href=#>삭제</a>' + '</td>'
+                        + '</tr>'
+                        + '<tr>'
+                        + '<td colspan="3" id="comment-text'+result[i].replyNo+'">' + result[i].content + '</td>'
+                        + '</tr>'+ '</hr>';
+            }
+            $('#reply-area thead').html(resultStr);
+          },
+          error : function(e, msg){
+            console.log('댓글 읽어오기 실패~');
+            console.log(msg);
+              
+          }
+        })
+      };
+      $(() => {
+        selectReplyList();
+        //setInterval(selectReplyList, 1000);
+      });
+
+      function editReply(f) {
+        $.ajax({
+          url : 'replyupdate.fb',
+          data : {
+            replyNo : $(f).attr("value"),
+            bno : <%= fb.getBoardNo() %>
+          },
+          success : $(() => {
+            console.log($(f).attr("value"))
+          })
+        })
+      };
       
     </script>
     <script>

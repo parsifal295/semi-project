@@ -1,28 +1,27 @@
-package com.boseong.jsp.reservation.controller;
+package com.boseong.jsp.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.boseong.jsp.reservation.model.service.GreenteaService;
-import com.boseong.jsp.reservation.model.vo.greenteaInfo;
+import com.boseong.jsp.member.model.service.MemberService;
+import com.boseong.jsp.member.model.vo.Member;
 
 /**
- * Servlet implementation class GreenTeaHomeController
+ * Servlet implementation class MemberUpdatePwdController
  */
-@WebServlet("/green.ho")
-public class GreenTeaHomeController extends HttpServlet {
+@WebServlet("/updatePwd.me")
+public class MemberUpdatePwdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GreenTeaHomeController() {
+    public MemberUpdatePwdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +30,23 @@ public class GreenTeaHomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		int num = Integer.parseInt(request.getParameter("memNo"));
+		
+		String memPwd = request.getParameter("memPwd");
+		String updatePwd = request.getParameter("updatePwd");
+		
+		new MemberService().updatePwdMember(memNo, memPwd, updatePwd);
 		
 		
-		ArrayList<greenteaInfo>list = new GreenteaService().selectService();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/reservation/GreenteaFrontView.jsp").forward(request, response);
-		
+	
 	
 	}
 
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

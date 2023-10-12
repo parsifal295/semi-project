@@ -191,10 +191,12 @@
 				<li>
 					<a href="">예약</a>
 					<ul>
+						<li><a href="<%=contextPath%>/resv.all">예약 전체조회</a></li>
 						<li><a href="<%=contextPath%>/horse.rsv">승마장</a></li>
 						<li><a href="<%=contextPath%>/green.ho">녹차밭체험</a></li>
 						<li><a href="<%=contextPath%>/hanok.rsv">한옥</a></li>
 						<li><a href="<%=contextPath%>/month.main">한달살기</a></li>
+						
 					</ul>
 				</li>
 				<li>

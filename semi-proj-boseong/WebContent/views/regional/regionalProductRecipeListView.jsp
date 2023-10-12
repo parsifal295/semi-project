@@ -40,6 +40,8 @@
             font-style: italic;
             color: white;
             border-color: black;
+            display: inline-block;
+            margin-right: 300px;
     }
 
     #b2{
@@ -50,6 +52,8 @@
             font-style: italic;
             color: white;
             border-color: black;
+            display: inline-block;
+            margin-right: 300px;
             
     }
     #b3{
@@ -60,6 +64,8 @@
             font-style: italic;
             color: white;
             border-color: black;
+            display: inline-block;
+            margin-right: 100px;
             
     }
 
@@ -80,10 +86,10 @@
                 <img src="https://recipe1.ezmember.co.kr/cache/recipe/2020/11/03/a98c68c45690fab5d25fa4366eec52dc1.jpg" id="soup" style="cursor:pointer;" onclick="soupRecipe();">
 		  
             </table>
-            <form>
-            	<input type="button" onclick="location.href='jam.re'" id="b1" value="녹차 스프레드" style="float:left;">
-            	<input type="button" onclick="location.href='cookie.re'" id="b2" value="녹차 쿠키" style="float:center;">
-            	<input type="button" onclick="location.href='soup.re'" id="b3" value="녹차 수제비" style="float:right;">
+            <form align="center">
+            	<input type="button" onclick="location.href='jam.re'" id="b1" value="녹차 스프레드">
+            	<input type="button" onclick="location.href='cookie.re'" id="b2" value="녹차 쿠키">
+            	<input type="button" onclick="location.href='soup.re'" id="b3" value="녹차 수제비">
            </form>
            
         </div>

@@ -1,7 +1,6 @@
-package com.boseong.jsp.reservation.controller;
+package com.boseong.jsp.itemboard.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.GreenteaService;
-import com.boseong.jsp.reservation.model.vo.greenteaInfo;
+import com.boseong.jsp.Attachment.model.service.AttachmentService;
+import com.boseong.jsp.Attachment.model.vo.Attachment;
+import com.boseong.jsp.itemboard.model.service.ItemBoardService;
+import com.boseong.jsp.itemboard.model.vo.ItemBoard;
 
 /**
- * Servlet implementation class GreenTeaHomeController
+ * Servlet implementation class ItemBoardUpdateController
  */
-@WebServlet("/green.ho")
-public class GreenTeaHomeController extends HttpServlet {
+@WebServlet("/update.ib")
+public class ItemBoardUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GreenTeaHomeController() {
+    public ItemBoardUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +33,17 @@ public class GreenTeaHomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		ArrayList<greenteaInfo>list = new GreenteaService().selectService();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/reservation/GreenteaFrontView.jsp").forward(request, response);
-		
-	
+		int boardNo = Integer.parseInt(request.getParameter("bno"));
+		int categoryNo = 20;
+		ItemBoard ib = new ItemBoardService().iboardSelect(boardNo);
+		Attachment at = new AttachmentService().selectAttachment(boardNo, categoryNo);
+		if(ib != null && at != null) {
+			request.setAttribute("ib", ib);
+			request.setAttribute("at", at);
+			request.getRequestDispatcher("views/itemboard/iboardUpdateForm.jsp").forward(request, response);
+		}
 	}
 
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

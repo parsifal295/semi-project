@@ -27,14 +27,12 @@ public class ScrapService {
 			String st = new ScrapDao().iboardInsertNo(conn, sc);
 			if(st.equals("Y")) {
 				scrap = 1;
-			}else {
-				scrap = 0;
 			}
 		}else {
 			rollback(conn);
 		}
 		close(conn);
-		System.out.println("Service insert Scrap : " + scrap);
+		// System.out.println("Service insert Scrap : " + scrap);
 
 		return scrap;
 	}
@@ -42,13 +40,28 @@ public class ScrapService {
 	public ArrayList<Scrap> iboardScrapSelect(Scrap sc) {
 		
 		Connection conn = getConnection();
-	
-		ArrayList<Scrap> list = new ScrapDao().iboardScrapSelect(conn, sc);
+		
+		ArrayList<Scrap> list = new ArrayList();
+		
+		list = new ScrapDao().iboardScrapSelect(conn, sc);
 		
 		close(conn);
 		
 		return list;
 	}
+	
+//	public int iboardListReturn(Scrap sc) {
+//		
+//		int status = 0;
+//		
+//		iboardScrapSelect(sc);
+//		
+//		if(sc.getStatus() == null && iboardScrapSelect(sc).isEmpty()) {
+//			status = 3;
+//			System.out.println("service status : " + status);
+//		}
+//		return status;
+//	}
 	
 	public int iboardScrapUpdate(Scrap sc) {
 		
@@ -67,7 +80,7 @@ public class ScrapService {
 		}else {
 			rollback(conn);
 		}
-		System.out.println("Service update Scrap : " + scrap);
+		// System.out.println("Service update Scrap : " + scrap);
 		return scrap;
 	}
 	

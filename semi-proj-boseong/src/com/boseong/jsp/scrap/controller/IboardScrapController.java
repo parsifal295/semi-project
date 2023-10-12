@@ -49,31 +49,28 @@ public class IboardScrapController extends HttpServlet {
 		
 		
 		ArrayList<Scrap> list = new ScrapService().iboardScrapSelect(sc);
-		
 		int scrapNo = 0;
 		String status = "";
-		HttpSession session = request.getSession();
-		
-		if(list != null && list.isEmpty()) {
+		System.out.println("조건문 밖 list : " + list);
+		if(list != null || list.isEmpty()) {
+			System.out.println("조건문 안 list : "+list);
+			
 			scrapNo = new ScrapService().iboardInsertScrap(sc);
-			if(scrapNo == 0) {
-				status = "D";
-				System.out.println("insert 안한 status : "+status);
-			}else {
+			if(scrapNo == 1) {
 				status = "Y";
-			}
-			System.out.println("insert status : " + status);
-		}else {
+			} 
+			// System.out.println("insert status : " + status);
+		}else{
 			scrapNo = new ScrapService().iboardScrapUpdate(sc);
 			if(scrapNo == 1) {
 				status = "Y";
 			} else {
 				status = "N";
 			}
-			System.out.println("update status : " + status);
+			System.out.println("status : " + status);
+			// System.out.println("update status : " + status);
 		}
-		System.out.println("session status : " + status);
-		session.setAttribute("status", status);
+		// System.out.println("session status : " + status);
 		
 		JSONObject jObj = new JSONObject();
 		jObj.put("scrap", scrap);
