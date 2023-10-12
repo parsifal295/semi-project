@@ -37,7 +37,7 @@ public class AdminDao {
 		HanokReservation hanokRsv = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("countUpcomingRide");
+		String sql = prop.getProperty("countUpcomingStay");
 		
 		
 		

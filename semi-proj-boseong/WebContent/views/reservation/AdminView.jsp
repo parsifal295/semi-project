@@ -74,7 +74,6 @@
 						$('.reserv-type>div').click(function(){
 								let title = $(this).children().text();
 								$('#reserv-type').text(title);
-
 								})
 							})	
 						</script>
