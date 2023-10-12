@@ -353,7 +353,7 @@
                         + '<td width="200">' + result[i].writer + "(" + result[i].ipAddress + ")" + '</td>'
                         + '<td width="300" align="center">' + result[i].createDate + '</td>'
                         + '<td width="100" align="right">'
-                        + '<a href = "#" onclick="editReply();" data-toggle="modal" data-target="#editCommentModal" value="' + result[i].replyNo + '">수정</a>' + ' | ' + '<a href=#>삭제</a>' + '</td>'
+                        + '<a href = "#" onclick="editReply(this);" data-toggle="modal" data-target="#editCommentModal" value="' + result[i].replyNo + '">수정</a>' + ' | ' + '<a href=#>삭제</a>' + '</td>'
                         + '</tr>'
                         + '<tr>'
                         + '<td colspan="3" id="comment-text'+result[i].replyNo+'">' + result[i].content + '</td>'
@@ -373,11 +373,17 @@
         //setInterval(selectReplyList, 1000);
       });
 
-      function editReply() {
-        // $.ajax({
-        //   url : ,
-        //   type : 'post',
-        // })
+      function editReply(f) {
+        $.ajax({
+          url : 'replyupdate.fb',
+          data : {
+            replyNo : $(f).attr("value"),
+            bno : <%= fb.getBoardNo() %>
+          },
+          success : $(() => {
+            console.log($(f).attr("value"))
+          })
+        })
       };
       
     </script>
