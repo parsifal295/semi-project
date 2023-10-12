@@ -254,6 +254,30 @@ public class HanokDao {
 		
 		return selectedRsv;
 	}
+	public int updateReservation(Connection conn, HanokReservation hanokRsv) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, hanokRsv.getRoomNo());
+			pstmt.setString(2, hanokRsv.getFromDate());
+			pstmt.setString(3, hanokRsv.getToDate());
+			pstmt.setInt(4,hanokRsv.getClientNum());
+			pstmt.setString(5, hanokRsv.getMessage());
+			pstmt.setInt(6, hanokRsv.getReservNo());
+			pstmt.setInt(7, hanokRsv.getMemNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {close(conn);}
+		
+		return result;
+	}
 	
 	
 }

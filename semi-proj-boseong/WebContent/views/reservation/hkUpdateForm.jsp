@@ -48,8 +48,13 @@
 
 	<div id="content" class="page">
 		<div class="page">
-			<form action="insertHanok.rsv">
+			<form action="updateHanok.rsv">
+				<%if(loginUser!=null){ %>
 				<input type="hidden" name="userNo" value="<%=loginUser.getMemNo()%>">
+				<%} %>
+				<%if(selectedRsv!=null){ %>
+				<input type="hidden" name="reservNo" value="<%=selectedRsv.getReservNo()%>">
+				<%} %>
 				<h2>예약 변경</h2>
 				<table class="table">
 					<tr>
@@ -139,49 +144,47 @@
 									alert('객실 타입을 선택해주세요.');
 									$('#roomType').focus();
 								} else {
-									$
-											.ajax({
-												url : 'datecheck.hk',
-												data : {
-													roomNo : $('#roomType')
-															.val(),
-													fromDate : $('#fromDate')
-															.val(),
-													toDate : $('#toDate').val()
-												},
-												success : function(e) {
-													//선택한 방에 이미 예약되어있는 날짜들 가져오기
-													if (e.length == 0) {
-														let dateConfirm = confirm('예약 가능한 날짜입니다! 이 날짜에 예약하시겠습니까?');
-														if (dateConfirm) {
-															$('#date-check')
-																	.attr(
-																			'disabled',
-																			true);
-															$(
-																	'#confirm-button>button')
-																	.attr(
-																			'disabled',
-																			false);
-														}
-													} else {
-														let str = $(
-																'#roomType :selected')
-																.text()
-																+ '에는 다음 기간에 이미 예약이 존재합니다ㅜㅜ';
-														for ( let i in e) {
-															str += '\n체크인 : '
-																	+ e[i].fromDate
-																	+ ' 체크아웃 : '
-																	+ e[i].toDate;
-														}
-														alert(str);
-													}
-												},
-												error : function() {
-													alert('ajax 왤케어려움... 난리남');
-												}
-											})
+									$.ajax({
+									url : 'datecheck.hk',
+									data : {
+										roomNo : $('#roomType').val(),
+										fromDate : $('#fromDate').val(),
+										toDate : $('#toDate').val(),
+									},
+									success : function(e) {
+										//선택한 방에 이미 예약되어있는 날짜들 가져오기
+										for(let i in e){
+											console.log(e[i].fromDate);
+											console.log('selectedRsv: '+"<%=selectedRsv.getFromDate()%>");
+											console.log(e[i].toDate);
+											if((e[i].fromDate=="<%=selectedRsv.getFromDate()%>")&&(e[i].toDate=="<%=selectedRsv.getToDate()%>")){
+												e.splice(i, 1);
+											}
+										}
+										if (e.length == 0) {
+											let dateConfirm = confirm('예약 가능한 날짜입니다! 이 날짜에 예약하시겠습니까?');
+											if (dateConfirm) {
+												$('#date-check').attr('disabled',true);
+												$('#confirm-button>button').attr('disabled',false);
+											}
+										} else {
+											let str = $(
+													'#roomType :selected')
+													.text()
+													+ '에는 다음 기간에 이미 예약이 존재합니다ㅜㅜ';
+											for ( let i in e) {
+												str += '\n체크인 : '
+														+ e[i].fromDate
+														+ ' 체크아웃 : '
+														+ e[i].toDate;
+											}
+											alert(str);
+										}
+									},
+									error : function() {
+										alert('ajax 왤케어려움... 난리남');
+									}
+								})
 								}
 
 							});
