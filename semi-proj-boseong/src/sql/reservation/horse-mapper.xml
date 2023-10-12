@@ -49,5 +49,20 @@
 		FROM 
 			HORSE_PROGRAM
 </entry>
-
+<entry key = "selectRide">
+	SELECT 
+			RESERVATION_NO,
+			MEM_NO,
+			HORSE_PRO_NO,
+			TO_CHAR(HORSE_DATE, 'YYYY-MM-DD') "HORSE_DATE", 
+			HORSE_TIME,
+			RIDER_NUM,
+			MESSAGE 
+	  FROM 
+	  		HORSE_RESERVATION 
+	  WHERE 
+	  		RESERVATION_NO = ? 
+	  	AND 
+	  		STATUS = 'Y'
+</entry>
 </properties>
