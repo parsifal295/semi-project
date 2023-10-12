@@ -54,6 +54,7 @@
 				      <option selected>주소를 선택해주세요</option>
 				      <option value="서울">서울</option>
 				      <option value="경기도">경기도</option>
+				      <option value="강원도">강원도</option>
 				      <option value="전라도">전라도</option>
 				      <option value="충청도">충청도</option>
 				      <option value="경상도">경상도</option>
