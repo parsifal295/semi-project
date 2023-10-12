@@ -144,7 +144,7 @@ public class GreenteaDao {
 
 
 
-	public int deleteGreentea(Connection conn, int bookNum) {
+	public int deleteGreentea(Connection conn, int reservationNo) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -152,7 +152,7 @@ public class GreenteaDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,  bookNum);
+			pstmt.setInt(1,  reservationNo);
 			
 			result = pstmt.executeUpdate();
 			
