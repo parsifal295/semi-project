@@ -1,18 +1,20 @@
 package com.boseong.jsp.itemboard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.boseong.jsp.Attachment.model.service.AttachmentService;
 import com.boseong.jsp.Attachment.model.vo.Attachment;
-import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.itemboard.model.service.ItemBoardService;
 import com.boseong.jsp.itemboard.model.vo.ItemBoard;
+import com.boseong.jsp.scrap.model.vo.Scrap;
 
 /**
  * Servlet implementation class ItemBoardDetailController

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
@@ -46,22 +47,32 @@ public class IboardScrapController extends HttpServlet {
 		sc.setBoardNo(boardNo);
 		sc.setMemberNo(memberNo);
 		
+		
 		ArrayList<Scrap> list = new ScrapService().iboardScrapSelect(sc);
-		System.out.println("Controller list : " + list);
+		
+		int scrapNo = 0;
+		String status = "";
+		HttpSession session = request.getSession();
+		
 		if(list != null && list.isEmpty()) {
-			int insert = new ScrapService().iboardInsertScrap(sc);
-			System.out.println("Controller insert : " + insert);
+			scrapNo = new ScrapService().iboardInsertScrap(sc);
+			if(scrapNo == 1) {
+				status = "Y";
+			}else {
+				status = "D";
+			}
+			System.out.println("insert status : " + status);
 		}else {
-			int update = new ScrapService().iboardScrapUpdate(sc);
-			System.out.println("Controller update : "  + update);
+			scrapNo = new ScrapService().iboardScrapUpdate(sc);
+			if(scrapNo == 1) {
+				status = "Y";
+			} else {
+				status = "N";
+			}
+			System.out.println("update status : " + status);
 		}
-		
-		request.setAttribute("sc", sc);
-		
-		
-		
-		
-		
+		System.out.println("session status : " + status);
+		session.setAttribute("status", status);
 		
 		JSONObject jObj = new JSONObject();
 		jObj.put("scrap", scrap);
@@ -69,33 +80,6 @@ public class IboardScrapController extends HttpServlet {
 		jObj.put("memberNo", memberNo);
 		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(jObj);
-		// System.out.println("조건문 밖  : " + jObj);
-		
-		
-		
-//		try {
-//		ArrayList<Scrap> sc = new ScrapService().iboardScrapSelect(jObj);
-//		
-//		System.out.println("Controller sc값 : "+sc);
-//		
-//		 if(sc.isEmpty()) {
-//			 
-//			 int insert = new ScrapService().iboardInsertScrap(jObj);
-//				System.out.println("조건문 안  : " + jObj);
-//				System.out.println("insert값 : " +insert);
-//			 
-//		 } else {
-//			 
-//			 int update = new ScrapService().iboardScrapUpdate(jObj);
-//			 System.out.println("sc값이 널이 아닐 때 ┐");
-//			 System.out.println("update : " + update);
-//		 }
-//		 
-//		 } catch(NullPointerException e){
-//			e.printStackTrace();
-//		 }
-		
-		
 	}
 
 	/**
