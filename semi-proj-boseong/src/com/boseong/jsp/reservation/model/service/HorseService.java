@@ -49,5 +49,11 @@ public class HorseService {
 	
 		return list;
 	}
+	public HorseReservation selectRide(int reservNo) {
+		Connection conn = getConnection();
+		HorseReservation selectedRsv = new HorseDao().selectRide(conn, reservNo);
+		close(conn);
+		return selectedRsv;
+	}
 
 }
