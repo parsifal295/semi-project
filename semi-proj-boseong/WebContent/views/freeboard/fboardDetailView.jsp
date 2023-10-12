@@ -316,6 +316,30 @@
       };
     </script>
     <script>
+      function insertReply() {
+        $.ajax({
+          url : 'replyinsert.fb',
+          type : 'POST',
+          data : { 
+            bno : <%= fb.getBoardNo() %>,
+            id : $('#replyId').val(),
+            pw : $('#replyPw').val(),
+            content : $('#replyContent').val(),
+            ip : $('#displayIp').val()
+        },
+          success : function (result) {
+            if (result > 0) {
+              $('#replyId').val('');
+              $('#replyPw').val('');
+              $('#replyContent').val('');
+              selectReplyList();
+            }
+          }
+        });
+        location.reload();
+      };
+    </script>
+    <script>
       function selectReplyList() {
         $.ajax({
           url : 'replylist.fb',
@@ -348,35 +372,13 @@
         selectReplyList();
         //setInterval(selectReplyList, 1000);
       });
+
       function editReply() {
-        $.ajax({
-          url : ,
-          type : 'post',
-        })
-      }
-      function insertReply() {
-        $.ajax({
-          url : 'replyinsert.fb',
-          type : 'POST',
-          data : { 
-            bno : <%= fb.getBoardNo() %>,
-            id : $('#replyId').val(),
-            pw : $('#replyPw').val(),
-            content : $('#replyContent').val(),
-            ip : $('#displayIp').val()
-        },
-          success : function (result) {
-            if (result > 0) {
-              $('#replyId').val('');
-              $('#replyPw').val('');
-              $('#replyContent').val('');
-              selectReplyList();
-            }
-          }
-        });
-        location.reload();
-      }
-      
+        // $.ajax({
+        //   url : ,
+        //   type : 'post',
+        // })
+      };
       
     </script>
     <script>
