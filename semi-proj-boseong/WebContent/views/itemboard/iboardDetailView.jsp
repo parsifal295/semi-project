@@ -3,10 +3,16 @@
 <%@ page import="com.boseong.jsp.itemboard.model.vo.ItemBoard, 
 			     com.boseong.jsp.Attachment.model.vo.Attachment,
 			     com.boseong.jsp.scrap.model.vo.Scrap" %>
+<%@ page import="java.util.ArrayList" %>
 <%
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
-	Scrap sc = (Scrap)request.getAttribute("sc");
+	String scrap = "";
+	scrap = (String)session.getAttribute("status");
+	if(scrap == null){
+		scrap = "D";
+	}
+	System.out.println("DetailView Scrap : " + scrap);
 %>
 <!DOCTYPE html>
 <html>
@@ -76,13 +82,13 @@
     .outer{
         margin: auto;
         width: 100%;
-        height: 1500px;
+        height: 100%;
     }
 </style>
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
-	
+
     <div class="outer" id="content">
         <div style="height: 200px;"></div>
         <div class="outer">
@@ -90,15 +96,21 @@
             <div id="info">
             <% if(loginUser != null) { %>
                 <div id="scrap-area">
-                    <img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
+	            <% if(scrap.equals("D")){ %>
+	            	<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
+	            <%} else if(scrap.equals("Y")){%>
+	                <img src="<%= contextPath%>/resources/image/scrapted.png" id="scrap-image">
+	            <%} else{ %>
+	            	<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
+	            <%} %>
                 </div>
-                <% } %>
+            <% } %>
                 <div id="userInfo">
                     <span id="userPf-sub">
-                        <p><%= ib.getMemberName() %></p> 
-                        <% if(loginUser != null) {%>
+                      <p><%= ib.getMemberName() %></p>
+                       <% if(loginUser != null){ %>
                         <button type="button">쪽지보내기</button>
-                        <% } %>
+                        <%} %>
                     </span>
                     <div class="userPf"></div>
                 </div>
@@ -108,7 +120,7 @@
                 <h3><%= ib.getTitle() %></h3>
                 <p><%= ib.getContent() %></p>
             </div>
-
+			<h4>인기순위</h4>
             <div class="subImg">
                 <div class="sub-iboardImg"></div>
                 <div class="sub-iboardImg"></div>
@@ -121,16 +133,16 @@
         </div>
     </div>
     <script>
-    
+    <% if (at != null){%>
    		 // iboardImg에 사진 삽입
     	$(function(){
           $('.iboardImg').css({
-        	  'background-image'  : 'url("<%=at.getSavePath() %>/<%= at.getModifiedName() %>")',
+        	  'background-image'  : 'url("<%=at.getSavePath()%>/<%= at.getModifiedName() %>")',
         	  'background-repeat' : 'no-repeat',
         	  'background-position' : 'center',
         	  'background-size' : 'contain'
         	  });
-       
+       <%}%>
           $('.iboardImg').click(function(){
         	 // console.log($('.iboardImg')[0].style.height == "730px");
         	 // console.log($('.iboardImg')[0].style[7] == $('.iboardImg')[0].style[7]);
@@ -151,16 +163,17 @@
     	
     	
            // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
-  
     	
            
-			const N = '<%=contextPath%>/resources/image/scrap.png';
-			const Y = '<%=contextPath%>/resources/image/scrapted.png';
+			 const N = '<%=contextPath%>/resources/image/scrap.png';
+			 const Y = '<%=contextPath%>/resources/image/scrapted.png';
+			 const D = '<%=contextPath%>/resources/image/scrap.png';
 			
             $(function(){
+         		
             	<% if(loginUser != null) {%>
+            	
             	// loginUser가 스크랩을 누른 상태이면 scrapted.png를 띄워주고 아니면 scrap.png
-         
            		 	// console.log($('#scrap-image')[0].scr);
             		// console.log('핳하하ㅏ하핳');
             		// console.log(N);
@@ -168,8 +181,10 @@
             		// console.log($('#scrap-image')[0]);
             		// console.log($('#scrap-image')[0].src);
             		// console.log($('#scrap-image')[0].src == N);
-            		// console.log($($('#scrap-image')[0]).attr('src') == '<%= contextPath%>/resources/image/scrap.png');
+            		// console.log($($('#scrap-image')[0]).attr('src') == '<%= contextPath %>/resources/image/scrap.png');
             		// console.log($($('#scrap-image')[0]).attr('src') == N);
+            		//$('#scrap-image').attr({'src' : D});
+            		
             		$('#scrap-image').click(function(){
 	                if($($('#scrap-image')[0]).attr('src') == N){
 	                    $.ajax({
@@ -180,9 +195,15 @@
 	                    		memberNo : <%= loginUser.getMemNo() %>
 	                    	},
 	                    	type : 'post',
-	                    	success : function(result){
-	                    			//console.log($('#scrap-image').attr({'src' : Y}));
+	                    	success : function(e){
+	                    		console.log(e.scrap == 'Y');
+	                    		if(e.scrap == 'Y'){
 	                    			$('#scrap-image').attr({'src' : Y})
+	                    		}
+	                    			console.log(e.scrap);
+	                    	},
+	                    	error : function(){
+	                    		console.log('실패');
 	                    	}
 	                    });
 	                 }
@@ -196,8 +217,14 @@
 		                		
 	                		},
 	                		type : 'post',
-	                		success : function(result){
+	                		success : function(e){
+	                    		console.log(e.scrap == 'N');
+	                			if(e.scrap = 'N'){
 	                    			$('#scrap-image').attr({'src' : N})
+	                			};
+	                		},
+	                		error : function(){
+	                    		console.log('실패');
 	                		}
 	                	})
 	                };

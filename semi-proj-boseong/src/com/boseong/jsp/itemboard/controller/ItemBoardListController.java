@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.itemboard.model.service.ItemBoardService;
 import com.boseong.jsp.itemboard.model.vo.ItemBoard;
+import com.boseong.jsp.scrap.model.vo.Scrap;
 
 /**
  * Servlet implementation class ItemBoardListController
@@ -63,10 +64,11 @@ public class ItemBoardListController extends HttpServlet {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
-		System.out.println(currentPage);
+
 		// 값을 담기
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 	    ArrayList<ItemBoard> list = new ItemBoardService().selectIboardList(pi);	
+
 	    // 값을 담고 
 	    request.setAttribute("list", list);
 	    request.setAttribute("pi", pi);

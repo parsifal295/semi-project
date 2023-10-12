@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.ArrayList"
+	pageEncoding="UTF-8" import="java.util.ArrayList, com.boseong.jsp.reservation.model.vo.HorseReservation"
+%>
+
+<% 
+	HorseReservation selectedRsv = (HorseReservation)(request.getAttribute("selectedRsv"));
+	int reservNo = (selectedRsv.getReservNo()==0)? 0 : selectedRsv.getReservNo();
+	String programNo = (selectedRsv.getProgramNo()==null)? "2" : selectedRsv.getProgramNo();
+	String horseDate = (selectedRsv.getHorseDate()==null)? "" : selectedRsv.getHorseDate();
+	int horseTime = (selectedRsv.getHorseTime() == 0)? 10 : selectedRsv.getHorseTime();
+	int riderNum = (selectedRsv.getRiderNum() == 0)? 1 : selectedRsv.getRiderNum();
+	String message = (selectedRsv.getMessage()==null)? "요청사항 없음" : selectedRsv.getMessage();
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>승마 예약</title>
+<title>승마예약 변경</title>
 
 <style>
 #ride-info>table th {
@@ -36,9 +46,10 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<div id="box"></div>
 	<div class="page" id="content">
-		<form action="<%=contextPath%>/insertRide.rsv" method="get">
+		<form action="<%=contextPath%>/update.hs" method="get">
+			<input type = "hidden" name="reservNo" value="<%=reservNo%>">
 			<div id="ride-info">
-				<h2>프로그램 선택</h2>
+				<h2>승마예약 변경</h2>
 				<table>
 					<tr>
 						<th>프로그램 종류</th>
@@ -47,15 +58,15 @@
 						<th>인원</th>
 					</tr>
 					<tr>
-						<td><select name="programNo" value="1">
+						<td><select name="programNo" value="1" id="programNo">
 								<option value="1">유소년 승마 프로그램</option>
 								<option value="2">일반 체험</option>
 								<option value="3">장애물 레슨</option>
 						</select></td>
-						<td><input type="date" name="horseDate" id="horseDate" required>
+						<td><input type="date" name="horseDate" id="horseDate">
 						</td>
 						<td><select name="horseTime" id="horseTime">
-								<option>시간</option>
+								<option value="0">시간</option>
 								<option>10</option>
 								<option>11</option>
 								<option>12</option>
@@ -68,6 +79,26 @@
 								<option>19</option>
 								<option>20</option>
 						</select>시</td>
+						<script>
+					$(function(){
+						$('#horseTime>option').each(function(){
+							let horseTime = "<%=horseTime%>";
+							if($(this).val() == horseTime){
+								$(this).attr('selected', true);
+							}
+						})	
+						$('#programNo>option').each(function(){
+							if($(this).val() == <%=programNo%>){
+								$(this).attr('selected', true);
+							}
+						})
+						$('#riderNum>option').each(function(){
+							if($(this).val() == <%=riderNum%>){
+								$(this).attr('selected', true);
+							}
+						})
+					})
+						</script>
 						<td><select name="riderNum" id="riderNum">
 								<option value="1">1명</option>
 								<option value="2">2명</option>
@@ -106,8 +137,9 @@
 						<td colspan = "2">로그인 후 이용가능한 서비스입니다.</td>
 					</tr>
 					<%} %>
+					<tr>
 						<th>요청사항</th>
-						<td><textarea name="message" cols="100" rows="5">내용을 입력해주세요.</textarea>
+						<td><textarea name="message"cols="100" rows="5"><%=message %></textarea>
 						</td>
 					</tr>
 				</table>
@@ -127,7 +159,7 @@
 			</div>
 			<div id="confirm" align="center">
 				<input type="checkbox" required>주의사항을 읽었고 확인하였습니다. <br>
-				<button type="submit">예약하기</button>
+				<button type="submit" >예약하기</button>
 			</div>
 		</form>
 	</div>
@@ -137,10 +169,10 @@
 			let year = now.getFullYear();
 			let month = now.getMonth()+1;
 			let date = now.getDate();
-	//		let tomorrow = new Date(year, month, date+1);
-	//		year = tomorrow.getFullYear();
-	//		month = tomorrow.getMonth()+1;
-	//		date = tomorrow.getDate();
+			let tomorrow = new Date(year, month, date+1);
+//			year = tomorrow.getFullYear();
+//			month = tomorrow.getMonth()+1;
+//			date = tomorrow.getDate();
 			
 			if(month<10){
 				month = '0'+month;
@@ -165,7 +197,7 @@
 							type : 'get',
 							success : function(result) {
 							$('#horseTime').empty();
-							let $choice = $('<option></option>').text('시간');
+							let $choice = $('<option value="0"></option>').text('시간');
 							$('#horseTime').append($choice);
 								//자바스크립트, 제이쿼리 혼합문에서 제이쿼리 형식으로 바꿈!
 							for (let i = 10; i < 21; i++) {

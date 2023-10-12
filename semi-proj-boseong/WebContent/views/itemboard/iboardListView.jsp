@@ -16,16 +16,6 @@
 <meta charset="UTF-8">
 <title>보성마켓</title>
 <style>
-	/* #iboard-area{
-		width : 78%;
-		text-align : center;
-		margin : auto;
-		margin-bottom : 0;	
-		padding : 0;
-	}
-	.notice-table{
-		background-color : rgb(207, 207, 207);
-	} */
 	#btn{
 		margin-left: 84.5%;
 		margin-bottom: 10px;
@@ -38,7 +28,9 @@
 	<div class="page" id="content">
 	<div style="height : 300px; text-align: center;"></div>
 		<div class="page">
+		<%if(loginUser != null){ %>
 		<a type="submit" href="<%= contextPath %>/enrollform.ib" class="btn btn-primary btn-sm" id="btn">글작성</a>
+		<%} %>
 		<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default;">
 		<thead class="thead-light">
 	      <tr>

@@ -9,8 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import org.json.simple.JSONObject;
-
+import static com.boseong.jsp.common.JDBCTemplate.close;
 import com.boseong.jsp.itemboard.model.dao.ItemBoardDao;
 import com.boseong.jsp.scrap.model.vo.Scrap;
 
@@ -72,9 +71,58 @@ public class ScrapDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
 		}
-		System.out.println("DAO에서 select list값  : "+ list);
 		return list;
+	}
+	
+	public String iboardInsertNo(Connection conn, Scrap sc) {
+		
+		String status = "";
+		ResultSet rset = null;
+		String sql = prop.getProperty("iboardInsertNo");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			
+			pstmt.setObject(1, sc.getMemberNo());
+			pstmt.setObject(2, sc.getBoardNo());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				status = rset.getString("STATUS");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+		}
+		return status;
+	}
+	
+	public String iboardUpdateNo(Connection conn, Scrap sc) {
+		
+		String status = "";
+		String sql = prop.getProperty("iboardUpdateNo");
+		ResultSet rset = null;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			
+			pstmt.setObject(1, sc.getMemberNo());
+			pstmt.setObject(2, sc.getBoardNo());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				status = rset.getString("STATUS");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+		}
+		return status;
 	}
 	
 	
@@ -94,10 +142,6 @@ public class ScrapDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Dao update memberNo : " + sc.getMemberNo());
-		System.out.println("Dao update boardNo : " + sc.getBoardNo());
-		System.out.println("Dao update status : " + sc.getStatus());
-		System.out.println("Dao update  :" + update);
 		return update;
 	}
 

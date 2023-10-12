@@ -48,9 +48,34 @@
 		       ?,
 		       ?
 		       )
+	</entry>
 	
+	<entry key="updateMember">
+		UPDATE 
+		       TB_MEMBER
+		   SET 
+		       EMAIL = ?,
+		       PHONE = ?,
+		       AREA = ?
+		 WHERE
+		       MEM_ID = ?
+		   AND
+		       STATUS IN ('A', 'U')
 	
 	
 	</entry>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </properties>
