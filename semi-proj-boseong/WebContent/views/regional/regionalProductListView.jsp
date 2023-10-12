@@ -42,7 +42,6 @@
             
             font-size: xx-large;
             height: 100px;
-            
     }
 
 </style>
