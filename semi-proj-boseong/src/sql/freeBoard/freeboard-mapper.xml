@@ -170,7 +170,7 @@
 			WRITER,
 			IP_ADDRESS,
 			REPLY_CONTENT,
-			CREATE_DATE
+			(TO_CHAR(CREATE_DATE, 'YYYY/MM/DD HH24:MI:SS')) A
 		FROM
 			FB_REPLY
 		WHERE
@@ -179,5 +179,28 @@
 			STATUS = 'Y'
 		ORDER BY
 			REPLY_NO 
+	</entry>
+	<entry key="insertReply">
+		INSERT
+			INTO
+				FB_REPLY
+				(
+				REPLY_NO,
+				REF_BNO,
+				WRITER,
+				IP_ADDRESS,
+				REPLY_CONTENT,
+				PASSWORD
+				)
+		VALUES
+			(
+			SEQ_FB_REPLY_NO.NEXTVAL,
+			?,
+			?,
+			?,
+			?,
+			?
+			)
+		
 	</entry>
 </properties>

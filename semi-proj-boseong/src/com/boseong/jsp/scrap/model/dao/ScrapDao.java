@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.json.simple.JSONObject;
@@ -28,7 +29,7 @@ public class ScrapDao {
 		}
 	}
 	
-	public int iboardInsertScrap(Connection conn, JSONObject jObj) {
+	public int iboardInsertScrap(Connection conn, Scrap sc) {
 		
 		int result = 0;
 		String sql = prop.getProperty("iboardInsertScrap");
@@ -38,9 +39,9 @@ public class ScrapDao {
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			
-			pstmt.setObject(1, jObj.get("memberNo"));
-			pstmt.setObject(2, jObj.get("boardNo"));
-			pstmt.setObject(3, jObj.get("scrap"));
+			pstmt.setObject(1, sc.getMemberNo());
+			pstmt.setObject(2, sc.getBoardNo());
+			pstmt.setObject(3, sc.getStatus());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -49,53 +50,53 @@ public class ScrapDao {
 		return result;
 	}
 	
-	public Scrap iboardScrapSelect(Connection conn, JSONObject jObj) {
+	public ArrayList<Scrap> iboardScrapSelect(Connection conn, Scrap sc) {
 		
-		Scrap sc = null;
+		ArrayList<Scrap> list = new ArrayList();
 		String sql = prop.getProperty("iboardScrapSelect");		
 		ResultSet rset = null;
-		System.out.println("selectDao memerNo : "+jObj.get("memberNo"));
-		System.out.println("selectDao boardNo : " + jObj.get("boardNo"));
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
-			pstmt.setObject(1, jObj.get("memberNo"));
-			pstmt.setObject(2, jObj.get("boardNo"));
+			pstmt.setObject(1, sc.getMemberNo());
+			pstmt.setObject(2, sc.getBoardNo());
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
-				sc = new Scrap();
-				sc.setMemberNo(rset.getInt("MEM_NO"));
-				sc.setBoardNo(rset.getInt("IBOARD_NO"));
-				sc.setStatus(rset.getString("STATUS"));
+			while(rset.next()) {
+				Scrap sp = new Scrap();
+				sp.setMemberNo(rset.getInt("MEM_NO"));
+				sp.setBoardNo(rset.getInt("IBOARD_NO"));
+				sp.setStatus(rset.getString("STATUS"));
+				list.add(sc);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("DAO에서 sc값  : "+sc);
-		return sc;
+		System.out.println("DAO에서 select list값  : "+ list);
+		return list;
 	}
 	
 	
-	public int iboardScrapUpdate(Connection conn, JSONObject jObj) {
+	public int iboardScrapUpdate(Connection conn, Scrap sc) {
 		
-		int update = 1;
+		int update = 0;
 		String sql = prop.getProperty("iboardScrapUpdate");
-		System.out.println("updateDao memerNo : "+jObj.get("memberNo"));
-		System.out.println("updateDao boardNo : " + jObj.get("boardNo"));
-		System.out.println("updateDao scrap : " + jObj.get("scrap"));
+
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
-			pstmt.setObject(1, jObj.get("memberNo"));
-			pstmt.setObject(2, jObj.get("boardNo"));
-			pstmt.setObject(3, jObj.get("scrap"));
+			pstmt.setString(1, sc.getStatus());
+			pstmt.setInt(2, sc.getMemberNo());
+			pstmt.setInt(3, sc.getBoardNo());
 			
 			update = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("Dao update memberNo : " + sc.getMemberNo());
+		System.out.println("Dao update boardNo : " + sc.getBoardNo());
+		System.out.println("Dao update status : " + sc.getStatus());
 		System.out.println("Dao update  :" + update);
 		return update;
 	}

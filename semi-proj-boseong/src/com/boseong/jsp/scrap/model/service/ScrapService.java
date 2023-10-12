@@ -6,6 +6,7 @@ import static com.boseong.jsp.common.JDBCTemplate.getConnection;
 import static com.boseong.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
@@ -15,11 +16,11 @@ import com.boseong.jsp.scrap.model.vo.Scrap;
 public class ScrapService {
 	
 	
-	public int iboardInsertScrap(JSONObject jObj) {
+	public int iboardInsertScrap(Scrap sc) {
 		
 		Connection conn = getConnection();
 		
-		int result = new ScrapDao().iboardInsertScrap(conn, jObj);
+		int result = new ScrapDao().iboardInsertScrap(conn, sc);
 		
 		if(result > 0) {
 			commit(conn);
@@ -32,22 +33,22 @@ public class ScrapService {
 		return result;
 	}
 	
-	public Scrap iboardScrapSelect(JSONObject jObj) {
+	public ArrayList<Scrap> iboardScrapSelect(Scrap sc) {
 		
 		Connection conn = getConnection();
 	
-		Scrap sc = new ScrapDao().iboardScrapSelect(conn, jObj);
+		ArrayList<Scrap> list = new ScrapDao().iboardScrapSelect(conn, sc);
 		
 		close(conn);
 		
-		return sc;
+		return list;
 	}
 	
-	public int iboardScrapUpdate(JSONObject jObj) {
+	public int iboardScrapUpdate(Scrap sc) {
 		
 		Connection conn = getConnection();
 		
-		int update = new ScrapDao().iboardScrapUpdate(conn, jObj);
+		int update = new ScrapDao().iboardScrapUpdate(conn, sc);
 		
 		if(update > 0) {
 			commit(conn);

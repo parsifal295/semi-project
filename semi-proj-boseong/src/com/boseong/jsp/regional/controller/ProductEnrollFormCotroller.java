@@ -13,16 +13,16 @@ import com.boseong.jsp.regional.model.service.ProductNoticeService;
 import com.boseong.jsp.regional.model.vo.ProductNotice;
 
 /**
- * Servlet implementation class ProductnoticeDetailView
+ * Servlet implementation class ProductEnrollFormCotroller
  */
-@WebServlet("/detail.pn")
-public class ProductnoticeDetailViewController extends HttpServlet {
+@WebServlet("/enroll.pn")
+public class ProductEnrollFormCotroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductnoticeDetailViewController() {
+    public ProductEnrollFormCotroller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +31,15 @@ public class ProductnoticeDetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
-		
-		//System.out.println(noticeNo);
-		int result = new ProductNoticeService().increaseCount(noticeNo);
-		if(result > 0) {
 
-			request.getRequestDispatcher("views.regional.productnoticeDetailView.jsp").forward(request, response);
-			
-		}
-	}	
+		ArrayList<ProductNotice> list = new ProductNoticeService().selectProductNoticeList();
+		
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("views/regional/productnoticeEnrollForm.jsp").forward(request, response);
+	
+	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

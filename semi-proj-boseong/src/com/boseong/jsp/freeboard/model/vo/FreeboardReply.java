@@ -8,8 +8,9 @@ public class FreeboardReply {
   private String writer;
   private String ipAddress;
   private String content;
-  private Date createDate;
+  private String createDate;
   private String status;
+  private String password;
 
   public FreeboardReply() {}
 
@@ -19,8 +20,9 @@ public class FreeboardReply {
       String writer,
       String ipAddress,
       String content,
-      Date createDate,
-      String status) {
+      String createDate,
+      String status,
+      String password) {
     this.replyNo = replyNo;
     this.refNo = refNo;
     this.writer = writer;
@@ -28,6 +30,7 @@ public class FreeboardReply {
     this.content = content;
     this.createDate = createDate;
     this.status = status;
+    this.password = password;
   }
 
   public int getReplyNo() {
@@ -70,11 +73,11 @@ public class FreeboardReply {
     this.content = content;
   }
 
-  public Date getCreateDate() {
+  public String getCreateDate() {
     return this.createDate;
   }
 
-  public void setCreateDate(Date createDate) {
+  public void setCreateDate(String createDate) {
     this.createDate = createDate;
   }
 
@@ -84,6 +87,14 @@ public class FreeboardReply {
 
   public void setStatus(String status) {
     this.status = status;
+  }
+
+  public String getPassword() {
+    return this.password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   @Override
@@ -109,6 +120,9 @@ public class FreeboardReply {
         + "'"
         + ", status='"
         + getStatus()
+        + "'"
+        + ", password='"
+        + getPassword()
         + "'"
         + "}";
   }

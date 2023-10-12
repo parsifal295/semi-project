@@ -162,6 +162,7 @@ public class ItemBoardDao {
 				ib.setContent(rset.getString("IBOARD_CONTENT"));
 				ib.setPostDate(rset.getDate("IBOARD_POST_DATE"));
 				ib.setModifyDate(rset.getDate("IBOARD_MODIFY_DATE"));
+				ib.setStatus(rset.getString("STATUS"));
 				ib.setPrice(rset.getInt("PRICE"));
 			}
 		} catch (SQLException e) {
@@ -169,7 +170,7 @@ public class ItemBoardDao {
 		} finally {
 			close(rset);
 		}
-		System.out.println("iboardDetailListDao : " + ib);
+		// System.out.println("status DAO insert : " + ib.getStatus());
 		return ib; 
 	}
 	

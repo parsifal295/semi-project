@@ -307,7 +307,7 @@ public class FreeboardDao {
           fr.setWriter(rs.getString("WRITER"));
           fr.setIpAddress(rs.getString("IP_ADDRESS"));
           fr.setContent(rs.getString("REPLY_CONTENT"));
-          fr.setCreateDate(rs.getDate("CREATE_DATE"));
+          fr.setCreateDate(rs.getString("A"));
           list.add(fr);
         }
       }
@@ -315,5 +315,21 @@ public class FreeboardDao {
       e.printStackTrace();
     }
     return list;
+  }
+
+  public int insertReply(Connection conn, FreeboardReply fr) {
+    int result = 0;
+    String sql = prop.getProperty("insertReply");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, fr.getRefNo());
+      ps.setString(2, fr.getWriter());
+      ps.setString(3, fr.getIpAddress());
+      ps.setString(4, fr.getContent());
+      ps.setString(5, fr.getPassword());
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
   }
 }

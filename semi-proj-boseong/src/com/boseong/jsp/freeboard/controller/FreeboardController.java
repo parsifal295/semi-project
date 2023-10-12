@@ -270,13 +270,4 @@ public class FreeboardController {
 
     return request.getContextPath() + "/fboard.fb?cpage=1";
   }
-
-  public void selectReplyList(HttpServletRequest request, HttpServletResponse response)
-      throws IOException, ServletException {
-    // AJAX 처리
-    int boardNo = Integer.parseInt(request.getParameter("bno"));
-    ArrayList<FreeboardReply> list = new FreeboardService().selectReplyList(boardNo);
-    response.setContentType("application/json; charset=UTF-8");
-    new Gson().toJson(list, response.getWriter());
-  }
 }

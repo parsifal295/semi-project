@@ -1,7 +1,6 @@
-package com.boseong.jsp.regional.controller;
+package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.regional.model.service.ProductNoticeService;
-import com.boseong.jsp.regional.model.vo.ProductNotice;
+import com.boseong.jsp.reservation.model.service.HanokService;
+import com.boseong.jsp.reservation.model.vo.HanokReservation;
 
 /**
- * Servlet implementation class ProductnoticeDetailView
+ * Servlet implementation class HanokReservDeleteController
  */
-@WebServlet("/detail.pn")
-public class ProductnoticeDetailViewController extends HttpServlet {
+@WebServlet("/delete.hk")
+public class HanokReservDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductnoticeDetailViewController() {
+    public HanokReservDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +30,21 @@ public class ProductnoticeDetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		int reservNo = Integer.parseInt(request.getParameter("reservNo"));
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		
-		//System.out.println(noticeNo);
-		int result = new ProductNoticeService().increaseCount(noticeNo);
-		if(result > 0) {
-
-			request.getRequestDispatcher("views.regional.productnoticeDetailView.jsp").forward(request, response);
+		HanokReservation hanokRsv = new HanokReservation();
+		hanokRsv.setReservNo(reservNo);
+		hanokRsv.setMemNo(memNo);
+		
+		int result = new HanokService().deleteReservation(hanokRsv);
+		if(result>0) {
+			request.getSession().setAttribute("alertMsg", "예약 취소가 정상적으로 신청되었습니다.");
+			response.sendRedirect(request.getContextPath()+"/list.hk?memNo="+memNo);
+		}else {
 			
 		}
-	}	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

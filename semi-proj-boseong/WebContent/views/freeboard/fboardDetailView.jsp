@@ -142,13 +142,12 @@
           <tbody>
             <tr>
               <td>
-                <form action="#">
                   <input type="hidden" name="ip" id="ipvalue" value=""></input>
                   <div class="input-group mb-3 input-group-sm">
                      <div class="input-group-prepend">
                        <span class="input-group-text">닉네임</span>
                     </div>
-                    <input type="text" class="form-control" name="replyId">
+                    <input type="text" class="form-control" id="replyId">
                   </div>
               </td>
               <td>
@@ -156,25 +155,34 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">비밀번호</span>
                  </div>
-                 <input type="password" class="form-control" name="replyPw">
+                 <input type="password" class="form-control" id="replyPw">
                </div>
-              </form>
               </td>
+              <td>
+                <div class="input-group mb-3 input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">IP 주소</span>
+                 </div>
+                 <input type="text" class="form-control" readonly id="displayIp" name="replyIp">
+               </div>
+              </td>
+            
             </tr>
             <tr >
-            <td colspan ="2">
+            <td colspan ="3">
               <div class="form-group">
                 <label for="reply">Comment:</label>
-                <textarea class="form-control" rows="3" id="reply" required style="resize:none"></textarea>
+                <textarea class="form-control" id="replyContent" rows="3" name="reply" required style="resize:none"></textarea>
               </div>
             </td>
           </tr>
           <tr>
-            <td colspan ="2">
-              <button class="btn btn-primary btn-block">댓글등록</button>
+            <td colspan ="3">
+              <button onclick="insertReply();"class="btn btn-primary btn-block">댓글등록</button>
             </td>
           </tr>
         </tbody>
+        <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
         </table>
       </div>
       <!--update modal-->
@@ -273,22 +281,48 @@
             let resultStr = '';
             for (let i in result) {
               resultStr += '<tr>'
-                        + '<td>' + result[i].writer + '</td>'
+                        + '<td>' + result[i].writer + "(" + result[i].ipAddress + ")" + '</td>'
                         + '<td>' + result[i].content + '</td>'
                         + '<td>' + result[i].createDate + '</td>'
-                        + '</tr>'
+                        + '</tr>';
             }
             $('#reply-area thead').html(resultStr);
           },
-          error : function(){
+          error : function(e, msg){
             console.log('댓글 읽어오기 실패~');
+            console.log(msg);
+              
           }
         })
       };
       $(() => {
         selectReplyList();
-        setInterval(selectReplyList, 1000);
+        //setInterval(selectReplyList, 1000);
       });
+      function insertReply() {
+        $.ajax({
+          url : 'replyinsert.fb',
+          type : 'POST',
+          data : { 
+            bno : <%= fb.getBoardNo() %>,
+            id : $('#replyId').val(),
+            pw : $('#replyPw').val(),
+            content : $('#replyContent').val(),
+            ip : $('#displayIp').val()
+        },
+          success : function (result) {
+            if (result > 0) {
+              $('#replyId').val('');
+              $('#replyPw').val('');
+              $('#replyContent').val('');
+              selectReplyList();
+            }
+          }
+        });
+        location.reload();
+      }
+      
+      
     </script>
     <script>
       // GET IP ADDRESS
@@ -298,6 +332,7 @@
         console.log(obj);
         var ip = temp.ip;
         $("#ipvalue").val(ip);
+        $("#displayIp").val(ip);
       });
     </script>
 </body>

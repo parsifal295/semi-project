@@ -1,6 +1,7 @@
 package com.boseong.jsp.scrap.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,6 +41,28 @@ public class IboardScrapController extends HttpServlet {
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		
+		Scrap sc = new Scrap();
+		sc.setStatus(scrap);
+		sc.setBoardNo(boardNo);
+		sc.setMemberNo(memberNo);
+		
+		ArrayList<Scrap> list = new ScrapService().iboardScrapSelect(sc);
+		System.out.println("Controller list : " + list);
+		if(list != null && list.isEmpty()) {
+			int insert = new ScrapService().iboardInsertScrap(sc);
+			System.out.println("Controller insert : " + insert);
+		}else {
+			int update = new ScrapService().iboardScrapUpdate(sc);
+			System.out.println("Controller update : "  + update);
+		}
+		
+		request.setAttribute("sc", sc);
+		
+		
+		
+		
+		
+		
 		JSONObject jObj = new JSONObject();
 		jObj.put("scrap", scrap);
 		jObj.put("boardNo", boardNo);
@@ -48,33 +71,29 @@ public class IboardScrapController extends HttpServlet {
 		response.getWriter().print(jObj);
 		// System.out.println("조건문 밖  : " + jObj);
 		
-		try {
-		Scrap sc = new ScrapService().iboardScrapSelect(jObj);
-		request.setAttribute("sc", sc);
-		System.out.println("Controller sc값 : "+sc);
 		
-		 if(sc == null) {
-			 
-			 int insert = new ScrapService().iboardInsertScrap(jObj);
-				System.out.println("조건문 안  : " + jObj);
-				System.out.println("insert값 : " +insert);
-
-			 if(insert > 0) {
-				 request.setAttribute("alertMsg", "스크랩 되었습니다");
-				 request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp?bno=" + boardNo).forward(request, response);
-			 }
-			 
-		 } else {
-			 int update = new ScrapService().iboardScrapUpdate(jObj);
-			 System.out.println("sc값이 널이 아닐 때 ┐");
-			 System.out.println("update : " + update);
-			 if(update > 0) {
-				 request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp?bno=" + boardNo).forward(request, response);
-			 }
-		 }
-		 } catch(NullPointerException e){
-			e.printStackTrace();
-	}
+		
+//		try {
+//		ArrayList<Scrap> sc = new ScrapService().iboardScrapSelect(jObj);
+//		
+//		System.out.println("Controller sc값 : "+sc);
+//		
+//		 if(sc.isEmpty()) {
+//			 
+//			 int insert = new ScrapService().iboardInsertScrap(jObj);
+//				System.out.println("조건문 안  : " + jObj);
+//				System.out.println("insert값 : " +insert);
+//			 
+//		 } else {
+//			 
+//			 int update = new ScrapService().iboardScrapUpdate(jObj);
+//			 System.out.println("sc값이 널이 아닐 때 ┐");
+//			 System.out.println("update : " + update);
+//		 }
+//		 
+//		 } catch(NullPointerException e){
+//			e.printStackTrace();
+//		 }
 		
 		
 	}
