@@ -301,6 +301,7 @@ public class FreeboardDao {
           fr.setIpAddress(rs.getString("IP_ADDRESS"));
           fr.setContent(rs.getString("REPLY_CONTENT"));
           fr.setCreateDate(rs.getString("A"));
+          fr.setPassword(rs.getString("PASSWORD"));
           list.add(fr);
         }
       }
