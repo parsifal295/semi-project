@@ -171,4 +171,12 @@ public class HorseDao {
 		}
 		return selectedRsv;
 	}
+		
+		public int updateRide(Connection conn, HorseReservation horseRsv) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("updateRide");
+			
+			return result;
+		}
 }

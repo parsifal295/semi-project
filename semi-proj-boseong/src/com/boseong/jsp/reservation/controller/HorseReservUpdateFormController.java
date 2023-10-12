@@ -12,16 +12,16 @@ import com.boseong.jsp.reservation.model.service.HorseService;
 import com.boseong.jsp.reservation.model.vo.HorseReservation;
 
 /**
- * Servlet implementation class HorseReservUpdateControler
+ * Servlet implementation class HorseReservUpdateController
  */
-@WebServlet("/update.hs")
-public class HorseReservUpdateControler extends HttpServlet {
+@WebServlet("/updateForm.hs")
+public class HorseReservUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HorseReservUpdateControler() {
+    public HorseReservUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }

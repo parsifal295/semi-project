@@ -55,5 +55,15 @@ public class HorseService {
 		close(conn);
 		return selectedRsv;
 	}
+	public int updateRide(HorseReservation horseRsv) {
+		Connection conn= getConnection();
+		int result = new HorseDao().updateRide(conn, horseRsv);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 
 }

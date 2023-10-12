@@ -65,4 +65,22 @@
 	  	AND 
 	  		STATUS = 'Y'
 </entry>
+
+<entry key="updateRide">
+	UPDATE 
+			HORSE_RESERVATION 
+	  SET 
+	  		HORSE_PRO_NO = ?,
+	  		HORSE_DATE = ?,
+	  		HORSE_TIME = ?,
+	  		RIDER_NUM = ?,
+	  		MESSAGE = ? 
+	  WHERE 
+	  		RESERVATION_NO = ? 
+	  	AND 
+	  		MEM_NO = ?
+</entry>
+
+
+
 </properties>
