@@ -125,7 +125,31 @@ public class MemberDao {
 		   
 		  String sql = prop.getProperty("selectMember");
 		  
-	  
+		  try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,  memId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				m = new Member(rset.getInt("MEM_NO"),
+							   rset.getString("MEM_ID"),
+							   rset.getString("MEM_PWD"),
+							   rset.getString("MEM_NAME"),
+							   rset.getString("EMAIL"),
+							   rset.getString("PHONE"),
+							   rset.getString("AREA"),
+							   rset.getDate("ENROLL_DATE"),
+							   rset.getString("STATUS"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return m;
 	  }
 	  
 	  

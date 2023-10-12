@@ -60,6 +60,10 @@ public class MemberService {
 		
 		Member updateMem = new MemberDao().selectMember(conn, memId);
 		
+		JDBCTemplate.close(conn);
+		
+		return updateMem;
+		
 		
 	}
 
