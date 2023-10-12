@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,7 +150,15 @@
 		<div class="main_image_text"><h2 align=center style="font-size:60px;">한달 살기</h2></div>
 		
 		
-		<div class="box2" style="border:1px solid white;"><a href="<%=contextPath%>/resv.all">예약조회</a></h3></div>
+		
+	
+		<% if(loginUser != null){ %>
+			
+			<div class="box2" style="border:1px solid white;"><a href="<%= contextPath %>/resv.all" alert="로그인해주세요.">예약조회</a></div>
+			<% } %>
+	
+	
+	
 	</div>
 	
 	

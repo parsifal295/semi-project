@@ -50,13 +50,16 @@ public class GreenTeaReservInsertController extends HttpServlet {
 		
 		int result = new GreenteaService().insertReserv(g);
 		if(result > 0) {
-			System.out.println(result);
+			//System.out.println(result);
+			System.out.println(startDate);
+			
 			//request.getRequestDispatcher("/views/reservation/GreenTeaReservListView.jsp").forward(request, response);
-			response.sendRedirect(request.getContextPath()+"/green.li");
+			response.sendRedirect(request.getContextPath()+"/green.li?memNo" + memNo);
 			
 		}else {
 			request.getRequestDispatcher("/views/reservation/GreenteaReservationView.jsp").forward(request, response);
-			System.out.println(result);
+			//System.out.println(result);
+			System.out.println(startDate);
 		}
 		
 		

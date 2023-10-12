@@ -15,6 +15,7 @@
 	width:100%;
 	height : 100vh;
 	color : black;
+	
 
 }
 
@@ -32,6 +33,7 @@
 		height : 2000px;
 		margin : auto;
 		margin-bottom : 1000px;
+		align:center;
 		
 	}
 	
@@ -70,7 +72,7 @@
 			<hr>
 			
 			
-				<div class="listbox-area">
+				<div class="listbox-area" >
 				<br>
 					<table>
 					

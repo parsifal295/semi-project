@@ -16,16 +16,6 @@
 <meta charset="UTF-8">
 <title>보성마켓</title>
 <style>
-	/* #iboard-area{
-		width : 78%;
-		text-align : center;
-		margin : auto;
-		margin-bottom : 0;	
-		padding : 0;
-	}
-	.notice-table{
-		background-color : rgb(207, 207, 207);
-	} */
 	#btn{
 		margin-left: 84.5%;
 		margin-bottom: 10px;

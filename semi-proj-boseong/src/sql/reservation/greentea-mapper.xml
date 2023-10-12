@@ -7,19 +7,19 @@
 	<entry key="insertReserv">
 	INSERT
 	INTO
-		 TEA_RESERVATION
+		TEA_RESERVATION
 	VALUES(
-		SEQ_RESERV_NO.NEXTVAL
-		,?
-		,?
-		,?
-		,DEFAULT
-		,?
+		SEQ_RESERV_NO.NEXTVAL,
+		?,
+		?,
+		?,
+		?,
+		DEFAULT
 	)
-	
 	</entry>
 	
-	
+
+
 	<entry key="selectCourseNum">
 	SELECT
 		COURSE_NUM, INFO_DESC, PRICE
@@ -29,30 +29,30 @@
 	
 	
 	
+	
+	
 	<entry key="selectReservation">
 	SELECT
 		RESERVATION_NO,
-		MEM_NO,
 		START_DATE,
-		COURSE_NUM
+		COURSE_NUM,
+		BOOK_NUM
 	FROM
 		TEA_RESERVATION
+	WHERE
+		MEM_NO = ?
 	</entry>
 
-	
-
-	
-
-
-
-
-
-
-
-
-
-
-
+	<entry key="deleteReserv">
+	UPDATE
+		TEA_RESERVATION
+	SET
+		STATUS='N'
+	WHERE
+		BOOK_NUM = ?
+	AND
+		STATUS= 'Y'
+	</entry>
 
 
 

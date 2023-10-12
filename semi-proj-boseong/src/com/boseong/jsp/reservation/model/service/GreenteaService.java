@@ -65,6 +65,25 @@ public class GreenteaService {
 		
 		return list;
 	}
+
+	
+	
+	//그린티예약 죽이는 거
+	public int deleteGreentea(int bookNum) {
+		
+		Connection conn = getConnection();
+		
+		int result = new GreenteaDao().deleteGreentea(conn, bookNum);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	

@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" 
+    import="java.util.ArrayList, 
+    		com.boseong.jsp.reservation.model.vo.GreenteaReservation"
+    %>
+    
+    <%
+    ArrayList<GreenteaReservation> list = (ArrayList<GreenteaReservation>) request.getAttribute("list");
+%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +51,11 @@
 				if(list.isEmpty()){
 			%>
 			<h2 align="center">예약이 없습니다.</h2>
+			
 			<% } else { %>
+			
+			
+			
 			<% for(int i = 0; i < list.size(); i++) {%>
 			<table border="1" id="table2">
 			<tr bgcolor="#DCDCDC">
@@ -58,8 +71,11 @@
 				<td height="200"><%=list.get(i).getCourseNum() %> </td>
 				<td><%= list.get(i).getStartDate() %></td>
 				<td><%=list.get(i).getBookNum() %></td>
-				<td><%=list.get(i).getPrice() %></td>
-				<td></td>
+				<td>💸무료💸</td>
+				<td><%=list.get(i).getReservationNo() %></td>
+				
+				<!-- 예약 취소하기 -->
+				<% if(loginUser != null) && loginUser.getMemNo().equals(list.get(i).get%>
 				<td><button type="button" class="btn btn-danger" >예약취소</button></td>
 			</tr>
 			
