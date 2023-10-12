@@ -7,12 +7,6 @@
 <%
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
-	String scrap = "";
-	scrap = (String)session.getAttribute("status");
-	if(scrap == null){
-		scrap = "D";
-	}
-	System.out.println("DetailView Scrap : " + scrap);
 %>
 <!DOCTYPE html>
 <html>
@@ -53,10 +47,11 @@
         margin : 8px;
     }
     #userPf-sub{
-        width: 70%;
+        width: 60%;
         height: 90px;
         float: right;
         margin-top : 10px;
+        
     }
     #scrap-area{
         width: 200px;
@@ -84,6 +79,11 @@
         width: 100%;
         height: 100%;
     }
+    #updateBtn{
+    	width : 40px;
+    	height : 20px;
+    	float : right;
+    }
 </style>
 </head>
 <body>
@@ -96,23 +96,20 @@
             <div id="info">
             <% if(loginUser != null) { %>
                 <div id="scrap-area">
-	            <% if(scrap.equals("D")){ %>
 	            	<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
-	            <%} else if(scrap.equals("Y")){%>
-	                <img src="<%= contextPath%>/resources/image/scrapted.png" id="scrap-image">
-	            <%} else{ %>
-	            	<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
-	            <%} %>
                 </div>
             <% } %>
-                <div id="userInfo">
-                    <span id="userPf-sub">
-                      <p><%= ib.getMemberName() %></p>
-                       <% if(loginUser != null){ %>
-                        <button type="button">쪽지보내기</button>
-                        <%} %>
-                    </span>
-                    <div class="userPf"></div>
+            <div id="userInfo">
+	            <% if(loginUser.getMemNo() == ib.getMemberNo() ) {%>
+	            <div id="updateBtn"><a href="<%= contextPath %>/update.ib?bno=<%= ib.getBoardNo() %>">수정</a></div>
+	            <%} %>
+                <span id="userPf-sub">
+                <p><%= ib.getMemberName() %></p>
+                <% if(loginUser != null){ %>
+                <button type="button">쪽지보내기</button>
+                <%} %>
+                </span>
+                <div class="userPf"></div>
                 </div>
             </div>
 
@@ -133,7 +130,6 @@
         </div>
     </div>
     <script>
-    <% if (at != null){%>
    		 // iboardImg에 사진 삽입
     	$(function(){
           $('.iboardImg').css({
@@ -142,7 +138,6 @@
         	  'background-position' : 'center',
         	  'background-size' : 'contain'
         	  });
-       <%}%>
           $('.iboardImg').click(function(){
         	 // console.log($('.iboardImg')[0].style.height == "730px");
         	 // console.log($('.iboardImg')[0].style[7] == $('.iboardImg')[0].style[7]);
@@ -168,7 +163,12 @@
 			 const N = '<%=contextPath%>/resources/image/scrap.png';
 			 const Y = '<%=contextPath%>/resources/image/scrapted.png';
 			 const D = '<%=contextPath%>/resources/image/scrap.png';
-			
+			 
+			//새로 다시 코드를 짜보자...
+
+			 
+			 
+			 
             $(function(){
          		
             	<% if(loginUser != null) {%>
@@ -185,7 +185,7 @@
             		// console.log($($('#scrap-image')[0]).attr('src') == N);
             		//$('#scrap-image').attr({'src' : D});
             		
-            		$('#scrap-image').click(function(){
+            		$('#scrap-image').attr({'src' : D}).click(function(){
 	                if($($('#scrap-image')[0]).attr('src') == N){
 	                    $.ajax({
 	                    	url : 'scrap.ib',
@@ -200,7 +200,6 @@
 	                    		if(e.scrap == 'Y'){
 	                    			$('#scrap-image').attr({'src' : Y})
 	                    		}
-	                    			console.log(e.scrap);
 	                    	},
 	                    	error : function(){
 	                    		console.log('실패');
@@ -214,7 +213,6 @@
 	                			status : 'N',
 	                			boardNo : <%= ib.getBoardNo() %>,
 		                		memberNo : <%= loginUser.getMemNo() %>
-		                		
 	                		},
 	                		type : 'post',
 	                		success : function(e){

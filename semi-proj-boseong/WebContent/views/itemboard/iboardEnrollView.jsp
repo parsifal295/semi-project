@@ -28,7 +28,7 @@
                 <div style="height : 300px; text-align: center;"></div>
                 <div class="page" style="height : 700px;">
                     <table align="center" class="table-style">
-                        <tr><h1 style="text-align:center; ">중고거래 게시글 작성</h1></tr>
+                        <tr><h1 style="text-align:center; ">보성마켓 게시글 작성</h1></tr>
                         <tr>
                             <th style="text-align: center;">제목</th>
                             <td><input type="text" name="title" style="width:50%;" placeholder="제목을 입력해주세요" required></td>
