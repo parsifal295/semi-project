@@ -7,7 +7,11 @@
 <%
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
-	String scrap = (String)session.getAttribute("status");
+	String scrap = "";
+	scrap = (String)session.getAttribute("status");
+	if(scrap == null){
+		scrap = "D";
+	}
 	System.out.println("DetailView Scrap : " + scrap);
 %>
 <!DOCTYPE html>
@@ -94,9 +98,9 @@
                 <div id="scrap-area">
 	            <% if(scrap.equals("D")){ %>
 	            	<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
-	            <%} else if(scrap.equals("Y")){ %>
+	            <%} else if(scrap.equals("Y")){%>
 	                <img src="<%= contextPath%>/resources/image/scrapted.png" id="scrap-image">
-	            <%} else{%>
+	            <%} else{ %>
 	            	<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
 	            <%} %>
                 </div>
@@ -163,6 +167,7 @@
            
 			 const N = '<%=contextPath%>/resources/image/scrap.png';
 			 const Y = '<%=contextPath%>/resources/image/scrapted.png';
+			 const D = '<%=contextPath%>/resources/image/scrap.png';
 			
             $(function(){
          		
@@ -178,8 +183,9 @@
             		// console.log($('#scrap-image')[0].src == N);
             		// console.log($($('#scrap-image')[0]).attr('src') == '<%= contextPath %>/resources/image/scrap.png');
             		// console.log($($('#scrap-image')[0]).attr('src') == N);
+            		//$('#scrap-image').attr({'src' : D});
+            		
             		$('#scrap-image').click(function(){
-            			console.log('제발...');
 	                if($($('#scrap-image')[0]).attr('src') == N){
 	                    $.ajax({
 	                    	url : 'scrap.ib',

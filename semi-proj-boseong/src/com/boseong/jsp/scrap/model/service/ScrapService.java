@@ -27,6 +27,8 @@ public class ScrapService {
 			String st = new ScrapDao().iboardInsertNo(conn, sc);
 			if(st.equals("Y")) {
 				scrap = 1;
+			}else {
+				scrap = 0;
 			}
 		}else {
 			rollback(conn);

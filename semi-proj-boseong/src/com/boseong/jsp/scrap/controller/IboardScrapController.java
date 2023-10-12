@@ -56,10 +56,11 @@ public class IboardScrapController extends HttpServlet {
 		
 		if(list != null && list.isEmpty()) {
 			scrapNo = new ScrapService().iboardInsertScrap(sc);
-			if(scrapNo == 1) {
-				status = "Y";
-			}else {
+			if(scrapNo == 0) {
 				status = "D";
+				System.out.println("insert 안한 status : "+status);
+			}else {
+				status = "Y";
 			}
 			System.out.println("insert status : " + status);
 		}else {
