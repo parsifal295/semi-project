@@ -141,7 +141,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>
+              <td width="200">
                   <input type="hidden" name="ip" id="ipvalue" value=""></input>
                   <div class="input-group mb-3 input-group-sm">
                      <div class="input-group-prepend">
@@ -150,7 +150,7 @@
                     <input type="text" class="form-control" id="replyId">
                   </div>
               </td>
-              <td>
+              <td width="200">
                 <div class="input-group mb-3 input-group-sm">
                   <div class="input-group-prepend">
                     <span class="input-group-text">비밀번호</span>
@@ -158,7 +158,7 @@
                  <input type="password" class="form-control" id="replyPw">
                </div>
               </td>
-              <td>
+              <td width="200">
                 <div class="input-group mb-3 input-group-sm">
                   <div class="input-group-prepend">
                     <span class="input-group-text">IP 주소</span>
@@ -221,13 +221,11 @@
       <div class="modal fade" id="deleteModal">
         <div class="modal-dialog">
           <div class="modal-content">
-          
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">게시글 암호 입력</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            
             <!-- Modal body -->
             <div class="modal-body">
               게시글을 삭제하시려면 암호를 입력해 주세요:
@@ -237,17 +235,64 @@
                 <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();">확인</button>
               </form>
             </div>
-
-            
             <!-- Modal footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
-            
           </div>
         </div>
       </div>
-      <!-- end of delete modal -->
+      <!--start of edit comment modal-->
+      <div class="modal fade" id="editCommentModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">댓글수정</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" id="edit-reply-area">
+              <table align="center" style="width: 90%">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan = "3">
+                      <div class="input-group mb-3 input-group-sm">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" >비밀번호</span>
+                        </div>
+                        <input type="password" class="form-control" id="replyPw" placeholder="댓글 등록시 입력한 비밀번호를 입력해주세요" required>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr >
+                  <td colspan ="3">
+                    <div class="form-group">
+                      <label for="reply">Comment:</label>
+                      <textarea class="form-control" id="replyContent" rows="3" name="reply" required style="resize:none"></textarea>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan ="3">
+                    <button onclick="insertReply();"class="btn btn-primary btn-block">댓글수정</button>
+                  </td>
+                </tr>
+              </tbody>
+              <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
+              </table>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end of edit comment modal-->
+
     </div>
     <%@ include file = "../common/footer.jsp" %>
     <script>
@@ -281,10 +326,14 @@
             let resultStr = '';
             for (let i in result) {
               resultStr += '<tr>'
-                        + '<td>' + result[i].writer + "(" + result[i].ipAddress + ")" + '</td>'
-                        + '<td>' + result[i].content + '</td>'
-                        + '<td>' + result[i].createDate + '</td>'
-                        + '</tr>';
+                        + '<td width="200">' + result[i].writer + "(" + result[i].ipAddress + ")" + '</td>'
+                        + '<td width="300" align="center">' + result[i].createDate + '</td>'
+                        + '<td width="100" align="right">'
+                        + '<a href = "#" onclick="editReply();" data-toggle="modal" data-target="#editCommentModal" value="' + result[i].replyNo + '">수정</a>' + ' | ' + '<a href=#>삭제</a>' + '</td>'
+                        + '</tr>'
+                        + '<tr>'
+                        + '<td colspan="3" id="comment-text'+result[i].replyNo+'">' + result[i].content + '</td>'
+                        + '</tr>'+ '</hr>';
             }
             $('#reply-area thead').html(resultStr);
           },
@@ -299,6 +348,12 @@
         selectReplyList();
         //setInterval(selectReplyList, 1000);
       });
+      function editReply() {
+        $.ajax({
+          url : ,
+          type : 'post',
+        })
+      }
       function insertReply() {
         $.ajax({
           url : 'replyinsert.fb',

@@ -42,7 +42,7 @@ public class FreeboardService {
 
       // 2. 첨부파일 등록
       if (att != null) {
-        result2 = new FreeboardDao().insertAttachment(conn, att);
+        result2 = new AttachmentDao().insertAttachment(conn, att, 10);
       }
 
       // 3. transaction
