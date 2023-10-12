@@ -28,7 +28,9 @@
 	<div class="page" id="content">
 	<div style="height : 300px; text-align: center;"></div>
 		<div class="page">
+		<%if(loginUser != null){ %>
 		<a type="submit" href="<%= contextPath %>/enrollform.ib" class="btn btn-primary btn-sm" id="btn">글작성</a>
+		<%} %>
 		<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default;">
 		<thead class="thead-light">
 	      <tr>
