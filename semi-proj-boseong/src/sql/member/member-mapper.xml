@@ -80,6 +80,17 @@
 		       MEM_ID = ? 
 	</entry>
 	
+	<entry key="updatePwdMember">
+		UPDATE
+		       TB_MEMBER
+		   SET
+		       MEM_PWD = ?
+		 WHERE
+		 	   MEM_NO = ?
+		   AND
+		       MEM_PWD = ?       
+	</entry>
+	
 	
 	
 	
