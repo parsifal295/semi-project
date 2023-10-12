@@ -30,7 +30,37 @@ public class GreenteaDao {
 			}
 		}
 	
-	
+		
+		
+		//insertReserv 예약넣기 
+		public int insertReserv(Connection conn, GreenteaReservation g) {
+			
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("insertReserv");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				// memNo startDate courseNum  bookNum
+				pstmt.setInt(1,  g.getMemNo());
+				pstmt.setString(2,  g.getStartDate());
+				pstmt.setString(3, g.getCourseNum());
+				pstmt.setInt(4,  g.getBookNum());
+				
+				result = pstmt.executeUpdate();
+				
+				System.out.println(result);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+		}
+
+
+
 	
 	
 	
@@ -68,34 +98,7 @@ public class GreenteaDao {
 		}
 	
 		
-		//insertReserv 예약넣기 
-	public int insertReserv(Connection conn, GreenteaReservation g) {
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertReserv");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			// memNo startDate courseNum  bookNum
-			pstmt.setInt(1,  g.getMemNo());
-			pstmt.setString(2,  g.getStartDate());
-			pstmt.setString(3, g.getCourseNum());
-			pstmt.setInt(4,  g.getBookNum());
-			
-			result = pstmt.executeUpdate();
-			//System.out.println("예약되었습니다 확인용메세지");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return result;
-	}
-
-
-
+	
 
 
 
@@ -137,6 +140,29 @@ public class GreenteaDao {
 		}
 		
 		return list;
+	}
+
+
+
+	public int deleteGreentea(Connection conn, int bookNum) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReserv");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,  bookNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	

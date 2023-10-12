@@ -101,8 +101,8 @@
             },
             dateClick: function(info) {
             	
-            	$(".startDate").text(info.dateStr);
-            	document.getElementById('startDate').innerHTML = info.dateStr;
+            	
+            	$("#startDate").val(info.dateStr);
             }
           });
         calendar.render();
@@ -137,15 +137,18 @@
 		<div class="content2">
 			<h3><strong>내 예약 정보</strong></h3>
 			<hr>
-			예약 일자:  <a id='startDate' >  </a>
-            
+				
+				예약 일자: 
+				
+				<!--  <input id="startDate" name="startDate">-->
+				<input id="startDate" name="startDate"><a id="startDate"> </a>
+            	
             <!--  </select>-->
              
 			<br><br>
 			
 			<a>예약 회차: 
         	<select name="courseNum"> 
-        	
         	
 	            <option value="AM">오전(9시~12시)</option>
 	            <option value="PM">오후(12시~6시)</option>
@@ -194,6 +197,9 @@
 	
 	<div class="content4">
 	<h2>녹차밭 체험 규칙 검토</h2>
+	<div class="content4_1" align="right">
+	규칙을 확인하였습니다.<input type="checkbox" value="체험확인" name="mustCheck" required>
+	</div>
 	<hr>
 		체험시 반려동물 입장은 불가합니다.
 		체험시 체험지도사의 지시에 따라주시기 바랍니다.

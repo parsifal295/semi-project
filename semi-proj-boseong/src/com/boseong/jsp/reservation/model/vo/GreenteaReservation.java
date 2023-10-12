@@ -3,9 +3,9 @@ package com.boseong.jsp.reservation.model.vo;
 public class GreenteaReservation {
 	
 	public int reservationNo;
+	public int memNo;
 	public String startDate;
 	public String courseNum;
-	public int memNo;
 	public int bookNum;
 	//public String status;
 	
@@ -19,9 +19,10 @@ public class GreenteaReservation {
 			String status) {
 		super();
 		this.reservationNo = reservationNo;
+		this.memNo = memNo;
 		this.startDate = startDate;
 		this.courseNum = courseNum;
-		this.memNo = memNo;
+		
 		this.bookNum = bookNum;
 		//this.status = status;
 	}
@@ -76,22 +77,13 @@ public class GreenteaReservation {
 		this.bookNum = bookNum;
 	}
 
-	/*
-	public String getStatus() {
-		return status;
-	}
-
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	*/
 
 	@Override
 	public String toString() {
-		return "GreenteaReservation [reservationNo=" + reservationNo + ", startDate=" + startDate + ", courseNum="
-				+ courseNum + ", memNo=" + memNo + ", bookNum=" + bookNum +  "]";
+		return "GreenteaReservation [reservationNo=" + reservationNo + ", memNo=" + memNo + ", startDate=" + startDate
+				+ ", courseNum=" + courseNum + ", bookNum=" + bookNum + "]";
 	}
+
 	
 	
 
