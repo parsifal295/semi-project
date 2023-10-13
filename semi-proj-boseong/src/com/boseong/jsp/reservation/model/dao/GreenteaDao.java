@@ -50,7 +50,7 @@ public class GreenteaDao {
 				
 				result = pstmt.executeUpdate();
 				
-				System.out.println(result);
+				//System.out.println(result);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
