@@ -45,7 +45,6 @@ public class IboardScrapSelectController extends HttpServlet {
 		sc.setBoardNo(boardNo);
 		sc.setMemberNo(memberNo);
 		
-		
 		int scrapNo = 0;
 		String status = "";
 		Scrap st = new Scrap();

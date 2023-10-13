@@ -107,7 +107,12 @@
             <% } %>
             <div id="userInfo">
 	            <% if(loginUser != null && loginUser.getMemNo() == ib.getMemberNo() ) {%>
-	            <div id="userBtn"><a href="<%= contextPath %>/delete.ib?bno=<%= ib.getBoardNo() %>">삭제</a></div>
+	            <div id="userBtn"><a href="<%= contextPath %>/delete.ib?bno=<%= ib.getBoardNo() %>" onclick="deletealert();">삭제</a></div>
+	            <script>
+	            function deletealert(){
+	            	confirm('삭제하시겠습니까?');
+	            }
+	            </script>
 	            <div id="userBtn"><a href="<%= contextPath %>/update.ib?bno=<%= ib.getBoardNo() %>">수정</a></div>
 	            <%} %>
                 <span id="userPf-sub">
@@ -203,118 +208,30 @@
           })
     	});
     	
-    	
            // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
-    	
+
+           
+           
+           //----------------------------------------------------------------------------------//
            
 			 const N = '<%=contextPath%>/resources/image/scrap.png';
 			 const Y = '<%=contextPath%>/resources/image/scrapted.png';
 			 const D = '<%=contextPath%>/resources/image/scrap.png';
 			 
 			//새로 다시 코드를 짜보자...
-            $(function(){
-         		
             <% if(loginUser != null) { %>
-        
-            	// loginUser가 스크랩을 누른 상태이면 scrapted.png를 띄워주고 아니면 scrap.png
-           		 	// console.log($('#scrap-image')[0].scr);
-            		// console.log('핳하하ㅏ하핳');
-            		// console.log(N);
-            		// console.log($('#scrap-image'));
-            		// console.log($('#scrap-image')[0]);
-            		// console.log($('#scrap-image')[0].src);
-            		// console.log($('#scrap-image')[0].src == N);
-            		// console.log($($('#scrap-image')[0]).attr('src') == '<%= contextPath %>/resources/image/scrap.png');
-            		// console.log($($('#scrap-image')[0]).attr('src') == N);
-            		//$('#scrap-image').attr({'src' : D});
-            		
-            		
-            		
-            		// $('#scrap-image').attr({'src' : N}).click(function(){
-            		// 	$.ajax({
-            		// 		url : 'scrap.ib',
-            		// 		data : {
-	                //     		status : 'Y',
-	                //     		boardNo : <%= ib.getBoardNo() %>,
-	                //     		memberNo : <%= loginUser.getMemNo() %>
-	                //     	},
-	                //     	type : 'post',
-	                //     	success : function(e){
-	                //     		if(e.scrap == null){
-	                //     			$('#scrap-image').attr({'src' : N})
-	                //     		}
-	                //     		else{
-	                //     			$('#scrap-image').attr({'src' : Y})
-	                //     		}
-	                //     	}
-            			// })
-            			
-            		// $.ajax({
-            		// 	url : 'scrap.ib',
-            		// 	data : {
-            		// 		status : 'D',
-            		// 		boardNo : <%= ib.getBoardNo() %>,
-                    // 		memberNo : <%= loginUser.getMemNo() %> 
-            		// 	},
-            		// 	type : 'post',
-            		// 	success : function(e){
-            		// 		if(<%= loginUser.getMemNo()%> == e.memberNo && e.status == 'D'){
-	            	// 			if(e.status == "D"){
-	                //     			$('#scrap-image').attr({'src' : D})
-	            	// 			}
-	            	// 			else if(e.status == "Y"){
-	                //     			$('#scrap-image').attr({'src' : Y})
-	            	// 			}
-	            	// 			else{
-	                //     			$('#scrap-image').attr({'src' : N})
-	            	// 			}
-            		// 		}
-            		// 	}
-            		// });
-            		$('#scrap-image').click(function(){
-	                if($($('#scrap-image')[0]).attr('src') == N){
-	                    $.ajax({
-	                    	url : 'scrap.ib',
-	                    	data : {
-	                    		status : 'Y',
-	                    		boardNo : <%= ib.getBoardNo() %>,
-	                    		memberNo : <%= loginUser.getMemNo() %>
-	                    	},
-	                    	type : 'post',
-	                    	success : function(e){
-	                    		if(e.status == 'N'){
-	                    			$('#scrap-image').attr({'src' : Y})
-	                    		}
-	                    	},
-	                    	error : function(){
-	                    		console.log('실패');
-	                    	}
-	                    });
-	                    $('#scrap-image').attr({'src' : Y})
-	                 }
-	                else if($($('#scrap-image')[0]).attr('src') == Y) {
-	                	$.ajax({
-	                		url : 'scrap.ib',
-	                		data : {
-	                			status : 'N',
-	                			boardNo : <%= ib.getBoardNo() %>,
-		                		memberNo : <%= loginUser.getMemNo() %>
-	                		},
-	                		type : 'post',
-	                		success : function(e){
-	                			if(e.status = 'N'){
-	                    			$('#scrap-image').attr({'src' : N})
-	                			};
-	                		},
-	                		error : function(){
-	                    		console.log('실패');
-	                		}
-	                	})
-	                	$('#scrap-image').attr({'src' : N})
-	                };
-            		})
-            	<% } %>
+            $(function(){
+            	$.ajax({
+            		url : 'replyscrap.ib',
+            		data : {(
+            		)} // data end
+            	}) // ajax end
+            
+            
+            
+            
                })
+           	<% } %>
     </script>
 	
 <%@ include file="../common/footer.jsp" %>

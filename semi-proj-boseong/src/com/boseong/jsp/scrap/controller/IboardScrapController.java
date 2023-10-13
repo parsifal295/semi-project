@@ -48,26 +48,29 @@ public class IboardScrapController extends HttpServlet {
 		sc.setBoardNo(boardNo);
 		sc.setMemberNo(memberNo);
 
+		JSONObject jObj = new JSONObject();
 		int scrapNo = 0;
 		String status = "";
-		Scrap st = new Scrap();
-
-		if(scrap == null) {
+		System.out.println("1scrap : " + scrap);
+		ArrayList<Scrap> list = new ArrayList();
+		if(scrap.equals("D")) {
 			status = "D";
-			st.setStatus(status);
+		}else if(scrap.equals("Y")) {
+			list = new ScrapService().iboardScrapSelect(sc);
+				scrapNo = new ScrapService().iboardInsertScrap(sc);
+				status = "Y";
+		}else {
+			scrapNo = new ScrapService().iboardScrapUpdate(sc);
+			status = "N";
 		}
 		
-		ArrayList<Scrap> list = new ScrapService().iboardScrapSelect(sc);
-		
-
-		
-		JSONObject jObj = new JSONObject();
-		jObj.put("status", status);
+		System.out.println("2status : " + status);
 		jObj.put("boardNo", boardNo);
 		jObj.put("memberNo", memberNo);
 		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(jObj);
 	}
+	
 	
 
 	/**
