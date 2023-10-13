@@ -83,9 +83,6 @@
 	      	<script>
 	      		let area = '<%= area %>';
 	      		
-	      		$('select.class="custom-select custom-select-sm mb-3"').each(function(){
-	      			if(area.search($(this).val()) != -1){
-	      				$(this).attr('selected', true);
 	      		$('option').each(function(){
 	      			if(area.search($(this).val()) != -1){
 	      				$(this).attr('selected', 'true');
@@ -101,6 +98,63 @@
                 <button type="button" class="btn btn-danger btn-sm" data-toggle ="modal" data-target="#deleteForm">회원탈퇴</button>
 			</div>
 	      </form>
+		</div>
+		
+		<!-- 비밀번호 수정 모달창 -->
+		
+		<!-- The Modal -->
+		<div class="modal" id="updatePwdForm">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		
+		      <!-- Modal Header -->
+		      <div class="modal-header">
+		        <h4 class="modal-title">비밀번호 변경</h4>
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      </div>
+		
+		      <!-- Modal body -->
+		      <div class="modal-body">
+		      	<form action="<%= contextPath %>/updatdPwd.me" method="post">
+		      		 <div class="form-group">
+					    <label for="memPwd">현재 비밀번호 :</label>
+					    <input type="password" class="form-control" placeholder="현재 비밀번호를 입력해주세요." id="memPwd" name="memPwd"required>
+					 </div>
+					 <div class="form-group">
+					    <label for="updatePwd">새로운 비밀번호 :</label>
+					    <input type="password" class="form-control" placeholder="새로운 비밀번호를 입력해주세요." id="updatePwd" name="updatePwd" required>
+					 </div>
+					 <div class="form-group">
+					    <label for="checkPwd">새로운 비밀번호 확인 :</label>
+					    <input type="password" class="form-control" placeholder="새로운 비밀번호를 다시 입력해주세요." id="checkPwd" required>
+					 </div>
+					 <button type="submit" onclick="return validatePwd();" class="btn btn-sm btn-secondary">비밀번호 변경</button>
+					 
+					 <input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>">
+					 
+					 <script>
+					 	function validatePwd(){
+					 		
+					 		if($('#updatePwd').val() != $('#checkPwd').val()){
+					 			alert('새 비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+					 			$('#checkPwd').focus();
+					 			return false;
+					 		}
+					 		
+					 		return true;
+					 	}
+					 </script>
+							      	
+		      	</form>  
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+		      </div>
+		
+		    </div>
+		  </div>
 		</div>
 		
 		<div class="page">

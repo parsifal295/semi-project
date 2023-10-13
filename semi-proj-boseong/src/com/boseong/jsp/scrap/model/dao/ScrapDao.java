@@ -46,6 +46,7 @@ public class ScrapDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("insert result : " + result);
 		return result;
 	}
 	
@@ -59,7 +60,8 @@ public class ScrapDao {
 			
 			pstmt.setObject(1, sc.getMemberNo());
 			pstmt.setObject(2, sc.getBoardNo());
-			
+			// System.out.println("select memberNo : " + sc.getMemberNo());
+			// System.out.println("select boardNo : " + sc.getBoardNo());
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -74,6 +76,7 @@ public class ScrapDao {
 		} finally {
 			close(rset);
 		}
+		System.out.println("select list dao : " + list);
 		return list;
 	}
 	

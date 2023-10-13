@@ -65,5 +65,15 @@ public class HorseService {
 		}
 		return result;
 	}
+	public int deleteRide(HorseReservation horseRsv) {
+		Connection conn= getConnection();
+		int result = new HorseDao().deleteRide(conn, horseRsv);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 
 }

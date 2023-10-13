@@ -57,6 +57,11 @@ public class MemberUpdateController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "회원 정보가 수정되었습니다.");
 			Member updateMem = new MemberService().selectMember(memId);
+			session.setAttribute("loginUser", updateMem);
+			
+			
+			
+			
 			response.sendRedirect(request.getContextPath() + "/myPage.me");
 			
 			
