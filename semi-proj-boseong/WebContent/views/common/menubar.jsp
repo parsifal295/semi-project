@@ -191,15 +191,16 @@
 				<li>
 					<a href="">예약</a>
 					<ul>
-						<%if(loginUser!=null && loginUser.getMemId().equals("admin")){ %>
+						<%if(loginUser!=null && (loginUser.getMemId()).equals("admin")){ %>
 						<li><a href="<%=contextPath%>/adminHome.rsv">통합 예약관리</a></li>
-						<%}else{ %>
+						<%}else if(loginUser!=null){ %>
 						<li><a href="<%=contextPath%>/resv.all">예약 전체조회</a></li>
+						<%} %>
+						
 						<li><a href="<%=contextPath%>/horse.rsv">승마장</a></li>
 						<li><a href="<%=contextPath%>/green.ho">녹차밭체험</a></li>
 						<li><a href="<%=contextPath%>/hanok.rsv">한옥</a></li>
 						<li><a href="<%=contextPath%>/month.main">한달살기</a></li>
-						<%} %>
 						
 					</ul>
 				</li>
