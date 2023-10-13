@@ -91,6 +91,7 @@ public class AttachmentDao implements AttachmentDaoI {
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
       ps.setInt(1, boardNo);
       ps.setInt(2, categoryNo);
+      System.out.println("delete category : " + categoryNo);
       result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

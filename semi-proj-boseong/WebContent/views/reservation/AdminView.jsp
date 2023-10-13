@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%	
+	int horseCount = (request.getAttribute("horseCount")==null)? 0 : (int)request.getAttribute("horseCount");
+	int teaCount = (request.getAttribute("teaCount")==null)? 0 : (int)request.getAttribute("teaCount");
+	int hanokCount = (request.getAttribute("hanokCount")==null)? 0 : (int)request.getAttribute("hanokCount");
+	int monthCount = (request.getAttribute("monthCount")==null)? 0 : (int)request.getAttribute("monthCount");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +34,9 @@
 		text-align: center;
 		padding-top: 8px;
 		
+	}
+	.reserv-type h5{
+		cursor:pointer;
 	}
 	.verticalbar{
 		width:50px;
@@ -74,13 +83,24 @@
 						$('.reserv-type>div').click(function(){
 								let title = $(this).children().text();
 								$('#reserv-type').text(title);
+								$.ajax({
+									url:'',
+									data:{type:title},
+									success : function(e){
+										console.log('ajax succeed');
+										console.log(e);
+									},
+									error : function(e){
+										console.log('ajax failed');
+									}
+								})
 								})
 							})	
 						</script>
 					</div>
 					<div class="verticalbar">
 						<div>
-							<h1>0</h1>
+							<h1><%=horseCount %></h1>
 						</div>
 					</div>
 					<div class="reserv-type">
@@ -90,7 +110,7 @@
 						</div>
 					</div>
 						<div class="verticalbar">
-						<h1>0</h1>
+						<h1><%=teaCount %></h1>
 						</div>
 					<div class="reserv-type">
 						<img src="https://cdn-icons-png.flaticon.com/512/4498/4498251.png">
@@ -99,7 +119,7 @@
 						</div>
 					</div>
 					<div class="verticalbar">
-					<h1>0</h1>
+					<h1><%=hanokCount %></h1>
 					</div>
 					<div class="reserv-type">
 						<img src="https://static.thenounproject.com/png/5532605-200.png">
@@ -108,7 +128,7 @@
 						</div>
 					</div>
 					<div class="verticalbar">
-					<h1>0</h1>
+					<h1><%=monthCount %></h1>
 					</div>
 				</div>
 			</div>
@@ -129,49 +149,14 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>예약 번호</th>
-							<th>예약 날짜</th>
-							<th>예약자 이름</th>
-							<th>예약자 연락처</th>
-							<th>예약 현황</th>
+							<th colspan="5">예약 종류를 선택해주세요.</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>123</td>
-							<td>2023-10-10</td>
-							<td>홍길동</td>
-							<td>010-000-0000</td>
-							<td>예약취소</td>
+							<td colspan="5">예약내역이 없습니다.</td>
 						</tr>
-						<tr>
-							<td>123</td>
-							<td>2023-10-10</td>
-							<td>홍길동</td>
-							<td>010-000-0000</td>
-							<td>예약취소</td>
-						</tr>
-						<tr>
-							<td>123</td>
-							<td>2023-10-10</td>
-							<td>홍길동</td>
-							<td>010-000-0000</td>
-							<td>예약취소</td>
-						</tr>
-						<tr>
-							<td>123</td>
-							<td>2023-10-10</td>
-							<td>홍길동</td>
-							<td>010-000-0000</td>
-							<td>예약취소</td>
-						</tr>
-						<tr>
-							<td>123</td>
-							<td>2023-10-10</td>
-							<td>홍길동</td>
-							<td>010-000-0000</td>
-							<td>예약취소</td>
-						</tr>
+						
 					</tbody>
 				</table>
 			</div>

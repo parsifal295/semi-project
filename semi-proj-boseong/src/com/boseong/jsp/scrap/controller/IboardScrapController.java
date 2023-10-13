@@ -31,6 +31,7 @@ public class IboardScrapController extends HttpServlet {
     }
 
 	/**
+	 * @return 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,44 +42,53 @@ public class IboardScrapController extends HttpServlet {
 		String scrap = request.getParameter("status");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		
 		Scrap sc = new Scrap();
 		sc.setStatus(scrap);
 		sc.setBoardNo(boardNo);
 		sc.setMemberNo(memberNo);
-		
-		
-		ArrayList<Scrap> list = new ScrapService().iboardScrapSelect(sc);
+
 		int scrapNo = 0;
 		String status = "";
-		System.out.println("조건문 밖 list : " + list);
-		if(list != null || list.isEmpty()) {
-			System.out.println("조건문 안 list : "+list);
-			
-			scrapNo = new ScrapService().iboardInsertScrap(sc);
-			if(scrapNo == 1) {
-				status = "Y";
-			} 
-			// System.out.println("insert status : " + status);
-		}else{
-			scrapNo = new ScrapService().iboardScrapUpdate(sc);
-			if(scrapNo == 1) {
-				status = "Y";
-			} else {
-				status = "N";
-			}
-			System.out.println("status : " + status);
-			// System.out.println("update status : " + status);
+		Scrap st = new Scrap();
+
+		if(scrap == null) {
+			status = "D";
+			st.setStatus(status);
 		}
-		// System.out.println("session status : " + status);
+		
+//		ArrayList<Scrap> list = new ScrapService().iboardScrapSelect(sc);
+//		System.out.println("조건문 밖 list : " + list);
+//		if(list != null && list.isEmpty()) {
+//			list.add(st);
+//			scrapNo = new ScrapService().iboardInsertScrap(sc);
+//			if(scrapNo == 1) {
+//				status = "Y";
+//			} else {
+//				status = "D";
+//			}
+//			System.out.println("조건문 안 list : "+list);
+//			System.out.println("insert controller status : " + status);
+//		}else{
+//			scrapNo = new ScrapService().iboardScrapUpdate(sc);
+//			if(scrapNo == 1) {
+//				status = "Y";
+//			} else {
+//				status = "N";
+//			}
+//			System.out.println("status : " + status);
+//			System.out.println("update status : " + status);
+//		}
+		request.setAttribute("sc", sc);
+		request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp?bno=" + boardNo).forward(request, response);
 		
 		JSONObject jObj = new JSONObject();
-		jObj.put("scrap", scrap);
+		jObj.put("status", status);
 		jObj.put("boardNo", boardNo);
 		jObj.put("memberNo", memberNo);
 		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(jObj);
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

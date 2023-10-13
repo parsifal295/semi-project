@@ -37,24 +37,14 @@ public class GreenTeaReservlistcontroller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//여기 list관련 내용작성
 		
-		//HttpSession session = request.getSession();
-		//Member loginUser = (Member)session.getAttribute("loginUser");
+		int memNo = Integer.parseInt(request.getParameter("memNo")); 
 		
-		int memNo = 1;
-		//int memNo = Integer.parseInt(request.getParameter("memNo")); //얘로바꿔야대는듯 .근데 얘가 말썽부리는디어캄
-		System.out.println(memNo);
-		//input태그의 name키
-		
-		
-		
-		
-		
-		//if(loginUser != null && loginUser.getMemNo().equals=="memNo") {
 		ArrayList<GreenteaReservation> list = new GreenteaService().selectReservation(memNo);
+		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/reservation/GreenTeaReservListView.jsp").forward(request, response);
 	}
-	//}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

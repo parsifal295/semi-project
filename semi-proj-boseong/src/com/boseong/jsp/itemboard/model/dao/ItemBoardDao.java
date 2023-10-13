@@ -201,6 +201,43 @@ public class ItemBoardDao {
 		return result;
 	}
 	
+	
+	public int iboardUpdate(Connection conn, ItemBoard ib) {
+		
+		int result = 0;
+		String sql = prop.getProperty("iboardUpdate");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			
+			pstmt.setString(1, ib.getTitle());
+			pstmt.setString(2, ib.getContent());
+			pstmt.setInt(3, ib.getPrice());
+			pstmt.setInt(4, ib.getMemberNo());
+			pstmt.setInt(5, ib.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int iboardDelete(Connection conn, int boardNo) {
+		
+		int result = 0;
+		// 사실상은 DELETE가 아닌 UPDATE로 status를 'N'으로 set해준다
+		String sql = prop.getProperty("iboardDelete");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	
 	

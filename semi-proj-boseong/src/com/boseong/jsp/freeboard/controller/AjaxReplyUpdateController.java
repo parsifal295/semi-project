@@ -42,6 +42,8 @@ public class AjaxReplyUpdateController extends HttpServlet {
     FreeboardReply fr = new FreeboardReply();
     fr = m.get(replyNo);
     System.out.println(fr);
+    response.setContentType("text/html; charset=UTF-8");
+    response.getWriter().print(fr.getContent());
   }
 
   /**
