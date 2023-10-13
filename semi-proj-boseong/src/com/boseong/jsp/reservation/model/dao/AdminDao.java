@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
+import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.reservation.model.vo.AdminReservation;
 
 public class AdminDao {
@@ -46,11 +47,11 @@ public class AdminDao {
 		}		
 		return counts;
 	}
-	public ArrayList<AdminReservation> selectRides(Connection conn){
+	public ArrayList<AdminReservation> selectList(Connection conn, String key){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<AdminReservation> list = new ArrayList();
-		String sql = prop.getProperty("selectRides");
+		String sql = prop.getProperty(key);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -62,8 +63,8 @@ public class AdminDao {
 						rset.getInt("RESERVATION_NO"),
 						rset.getString("MEM_ID"),
 						rset.getString("PHONE"),
-						rset.getString("HORSE_PRO_NAME"),
-						rset.getString("HORSE_DATE"),
+						rset.getString("TYPE"),
+						rset.getString("START_DATE"),
 						rset.getString("STATUS")						
 						);
 				list.add(adminRsv);
@@ -84,5 +85,25 @@ public class AdminDao {
 		
 		return list;
 	}
-
+	public int selectListCount(Connection conn, String key) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty(key);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				listCount = rset.getInt("COUNT(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
 }

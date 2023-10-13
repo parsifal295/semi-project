@@ -12,50 +12,50 @@ import com.boseong.jsp.member.model.service.MemberService;
 import com.boseong.jsp.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberUpdatePwdController
+ * Servlet implementation class MemberDeleteController
  */
-@WebServlet("/updatePwd.me")
-public class MemberUpdatePwdController extends HttpServlet {
+@WebServlet("/delete.me")
+public class MemberDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberUpdatePwdController() {
+    public MemberDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    //public String getParameter(String val) {
+    	
+    	
+    
+    //}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession();
 		
-		Member loginUser =((Member)session.getAttribute("loginUser"));
-		
-		int memNo = loginUser.getMemNo();
-		String memId = loginUser.getMemId();
-		int num = Integer.parseInt(request.getParameter("memNo"));
+		request.setCharacterEncoding("UTF-8");
 		
 		String memPwd = request.getParameter("memPwd");
-		String updatePwd = request.getParameter("updatePwd");
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		int result = new MemberService().updatePwdMember(memNo, memPwd, updatePwd);
+		int result = new MemberService().deleteMember(memNo, memPwd);
 		
 		if(result > 0) {
-			session.setAttribute("alertMsg", "비밀번호가 변경되었습니다.");
-			Member updateMem = new MemberService().selectMember(memId);
-			session.setAttribute("loginUser", updateMem);
-			//System.out.println("ㅡㅡ");
+			session.removeAttribute("loginUser");
+			response.sendRedirect(request.getContextPath());
+			session.setAttribute("alertMsg", "탈퇴가 완료되었습니다.");
+			System.out.println("탈퇴완");
 		} else {
-			session.setAttribute("alertMsg", "비밀번호 변경에 실패했습니다. 다시 확인해주세요.");
-			//System.out.println("ㅡㅡ^");
+			session.setAttribute("alertMsg", "회원탈퇴에 실패했습니다.");
+			response.sendRedirect(request.getContextPath() + "/myPage.me");
+			//System.out.println("탈퇴ㄴㄴ");
 		}
-		
-		response.sendRedirect(request.getContextPath() + "/myPage.me");
 	
 	
 	}

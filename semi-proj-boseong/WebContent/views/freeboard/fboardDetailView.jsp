@@ -296,6 +296,32 @@
         </div>
       </div>
       <!--end of edit comment modal-->
+      <!--start of delete comment modal-->
+      <div class="modal fade" id="delete-comment-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">댓글 비밀번호 입력</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              댓글을 삭제하시려면 비밀번호를 입력해 주세요:
+              <input type="text" class="form-control" id="pass-delete" placeholder="작성시 입력했던 비밀번호" required>
+              <form method="post" action="#">
+                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
+                <button type="submit" style="float:right" class="btn btn-primary" onclick="checkDelete();">확인</button>
+              </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of delete comment modal-->
 
     </div>
     <%@ include file = "../common/footer.jsp" %>
@@ -318,8 +344,28 @@
           })
         }
       };
-    </script>
-    <script>
+      function checkDelete() {
+        var rNum = $('#reply-number').attr("value");
+        console.log(rNum);
+        var usrPass = $('#pass-delete').val();
+        var boardNo = <%=fb.getBoardNo() %>;
+        $.ajax({
+          url : 'deleteReply.fb',
+          data : {
+            bno : boardNo,
+            rNum : rNum,
+            usrPass : usrPass
+          },
+          success : function (result) {
+            if (result == 1) {
+              alert('댓글 삭제 성공');
+            } else {
+              alert('댓글 삭제 실패');
+            }
+          },
+        })
+        location.href = "<%=contextPath%>/detailView.fb?bno=" + boardNo;
+      };
       function insertReply() {
         $.ajax({
           url : 'replyinsert.fb',
@@ -342,8 +388,6 @@
         });
         location.reload();
       };
-    </script>
-    <script>
       function selectReplyList() {
         $.ajax({
           url : 'replylist.fb',
@@ -356,7 +400,10 @@
                         + '<td width="200">' + result[i].writer + "(" + result[i].ipAddress + ")" + '</td>'
                         + '<td width="300" align="center">' + result[i].createDate + '</td>'
                         + '<td width="100" align="right">'
-                        + '<a href = "#" onclick="showEditReply(this);" data-toggle="modal" data-target="#editCommentModal" value="' + result[i].replyNo + '">수정</a>' + ' | ' + '<a href=#>삭제</a>' + '</td>'
+                        + '<a href = "#" onclick="showEditReply(this);" data-toggle="modal" data-target="#editCommentModal" value="' 
+                        + result[i].replyNo + '">수정</a>' + ' | ' 
+                        + '<a href = "#" data-toggle="modal" id="reply-number" data-target="#delete-comment-modal" value="' 
+                        + result[i].replyNo + '">삭제</a>' + '</td>'
                         + '</tr>'
                         + '<tr>'
                         + '<td colspan="3" id="comment-text'+result[i].replyNo+'">' + result[i].content + '</td>'
@@ -412,13 +459,11 @@
           })
         } else {
           alert('비밀번호가 틀립니다.');
-          $(()=>{
+          $(() => {
             location.href = "<%=contextPath%>/detailView.fb?bno=" + boardNo;
           })
         }
       };  
-    </script>
-    <script>
       // GET IP ADDRESS
       $.getJSON("https://jsonip.com/", function (data) {
         var obj = JSON.stringify(data, null, 2);

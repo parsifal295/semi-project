@@ -339,4 +339,16 @@ public class FreeboardDao {
     }
     return result;
   }
+
+  public int deleteReply(Connection conn, int boardNo) {
+    int result = 0;
+    String sql = prop.getProperty("deleteReply");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
 }

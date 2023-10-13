@@ -1,5 +1,7 @@
 package com.boseong.jsp.reservation.model.vo;
 
+import com.boseong.jsp.freeboard.model.vo.PageInfo;
+
 public class AdminReservation {
 	private int reservNo;
 	private String member;
@@ -7,6 +9,26 @@ public class AdminReservation {
 	private String type;
 	private String startDate;
 	private String status;
+	private PageInfo pi;
+	
+	
+	public PageInfo getPi() {
+		return pi;
+	}
+	public void setPi(PageInfo pi) {
+		this.pi = pi;
+	}
+	public AdminReservation(int reservNo, String member, String phone, String type, String startDate, String status,
+			PageInfo pi) {
+		super();
+		this.reservNo = reservNo;
+		this.member = member;
+		this.phone = phone;
+		this.type = type;
+		this.startDate = startDate;
+		this.status = status;
+		this.pi = pi;
+	}
 	public AdminReservation(int reservNo, String member, String phone, String type, String startDate, String status) {
 		super();
 		this.reservNo = reservNo;
