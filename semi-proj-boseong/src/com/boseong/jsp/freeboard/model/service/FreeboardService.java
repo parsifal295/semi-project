@@ -177,4 +177,14 @@ public class FreeboardService {
     }
     return result;
   }
+
+  public int updateReply(FreeboardReply fr) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new FreeboardDao().updateReply(conn, fr);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
 }

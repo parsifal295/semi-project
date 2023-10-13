@@ -42,6 +42,7 @@ public class IboardScrapController extends HttpServlet {
 		String scrap = request.getParameter("status");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		
 		Scrap sc = new Scrap();
 		sc.setStatus(scrap);
 		sc.setBoardNo(boardNo);
@@ -56,30 +57,9 @@ public class IboardScrapController extends HttpServlet {
 			st.setStatus(status);
 		}
 		
-//		ArrayList<Scrap> list = new ScrapService().iboardScrapSelect(sc);
-//		System.out.println("조건문 밖 list : " + list);
-//		if(list != null && list.isEmpty()) {
-//			list.add(st);
-//			scrapNo = new ScrapService().iboardInsertScrap(sc);
-//			if(scrapNo == 1) {
-//				status = "Y";
-//			} else {
-//				status = "D";
-//			}
-//			System.out.println("조건문 안 list : "+list);
-//			System.out.println("insert controller status : " + status);
-//		}else{
-//			scrapNo = new ScrapService().iboardScrapUpdate(sc);
-//			if(scrapNo == 1) {
-//				status = "Y";
-//			} else {
-//				status = "N";
-//			}
-//			System.out.println("status : " + status);
-//			System.out.println("update status : " + status);
-//		}
-		request.setAttribute("sc", sc);
-		request.getRequestDispatcher("views/itemboard/iboardDetailView.jsp?bno=" + boardNo).forward(request, response);
+		ArrayList<Scrap> list = new ScrapService().iboardScrapSelect(sc);
+		
+
 		
 		JSONObject jObj = new JSONObject();
 		jObj.put("status", status);

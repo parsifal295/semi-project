@@ -326,4 +326,17 @@ public class FreeboardDao {
     }
     return result;
   }
+
+  public int updateReply(Connection conn, FreeboardReply fr) {
+    int result = 0;
+    String sql = prop.getProperty("updateReply");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setString(1, fr.getContent());
+      ps.setInt(2, fr.getReplyNo());
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
 }

@@ -202,6 +202,16 @@
 			?,
 			?
 			)
-		
+	</entry>
+	<entry key="updateReply">
+		UPDATE
+			FB_REPLY
+		SET
+			REPLY_CONTENT = ?,
+			CREATE_DATE = SYSDATE
+		WHERE
+			REPLY_NO = ?
+		AND
+			STATUS = 'Y' 
 	</entry>
 </properties>
