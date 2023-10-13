@@ -48,7 +48,11 @@
                             </td>
                         </tr>
                     </table>
-                    <div align="center"><button type="submit">등록</button><button type="reset">초기화</button></div>
+                    <div align="center">
+                    <button type="submit">등록</button>
+                    <button type="reset">초기화</button>
+                    <a type="submit" href="<%= contextPath %>/iboard.ib?cpage=1">목록으로</a>
+                    </div>
                 </div>
             </div>
         </form>
