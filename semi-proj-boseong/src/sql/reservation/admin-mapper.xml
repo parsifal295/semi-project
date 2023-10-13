@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<comment>Admin Reservation 관련 sql문</comment>
+
+<entry key="countUpcoming">
+SELECT 
+      'hanok' "TYPE",
+      COUNT(RESERVATION_NO) "COUNT"
+  FROM 
+      HANOK_RESERVATION 
+WHERE 
+      FROM_DATE>SYSDATE
+      UNION ALL
+SELECT 
+        'horse',
+        COUNT(RESERVATION_NO)
+    FROM
+        HORSE_RESERVATION 
+  WHERE 
+        HORSE_DATE>SYSDATE 
+    UNION ALL
+SELECT 
+        'month',
+        COUNT(RESERVATION_NO) 
+    FROM 
+        MONTH_RESERVATION 
+    WHERE 
+        START_DATE>SYSDATE 
+    UNION ALL 
+SELECT 
+        'tea',
+        COUNT(RESERVATION_NO) 
+    FROM 
+        TEA_RESERVATION 
+    WHERE 
+        START_DATE>SYSDATE
+</entry>
+
+</properties>

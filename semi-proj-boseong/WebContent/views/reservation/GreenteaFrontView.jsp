@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+     import="java.util.ArrayList, 
+    		com.boseong.jsp.reservation.model.vo.GreenteaReservation"
+%>
 
- 
+<%
+    ArrayList<GreenteaReservation> list = (ArrayList<GreenteaReservation>)request.getAttribute("list");
+%>
     
 <!DOCTYPE html>
 <html>
@@ -9,7 +14,6 @@
 <meta charset="UTF-8">
 <title>녹차밭메인페이지</title>
 <style>
-
 	
 	.page{
 		padding:0;
@@ -25,63 +29,50 @@
 		margin : auto;
 	}
 
-	
-	
-	
-
 	.mainpic{
-			width : 2000px;
-			height : 800px;
-			margin : auto;
-		}
-
+		width : 2000px;
+		height : 800px;
+		margin : auto;
+	}
 
 	.main_image{
-	position:relative;
+		position:relative;
 	}
-	
 	
 	.main_image_text{
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%, 90%);
-	color:white;
-	
+		position:absolute;
+		top:50%;
+		left:50%;
+		transform:translate(-50%, 90%);
+		color:white;
 	}
-
-	
-
 
 	.box1{
 		background-color : white;
 		font-size:30px;
 		width : 200px;
-		height : 200px;
+		height : 210px;
 		text-align:center;
 		position:absolute;
 		top:30%;
 		left:90%;
 		line-height: 200px;
 		transform:translate(-50%, 40%);
-		
 	}
 	
 	.box2{
 		background-color : white;
 		font-size:30px;
 		width : 200px;
-		height : 200px;
+		height : 210px;
 		text-align:center;
 		position:absolute;
 		line-height: 200px;
 		top:60%;
 		left:90%;
 		transform:translate(-50%, 50%);
-		
 	}
 	
-
 	.outer{
 			width : 1400px;
 			height : 1400px;
@@ -94,14 +85,11 @@
 			height:700px;
 	}	
 		
-		
 	.content1{
  		width:700px; 
  		height:500px;
  		float : left;
- 		
  		margin-left:200px;
- 		
 	}
 		
 	.content2{
@@ -123,22 +111,24 @@
 	
 		<div class="page">
 			<div class="mainpic">
-			<img src="https://blog.kakaocdn.net/dn/LD4SQ/btqESqHavW4/0ll3OGWhaVkEwtQRWPT391/img.jpg" width="2000" height="780" id="img9">
+				<img src="https://blog.kakaocdn.net/dn/LD4SQ/btqESqHavW4/0ll3OGWhaVkEwtQRWPT391/img.jpg" width="2000" height="780" id="img9">
 			</div>
 			<div class="main_image_text"><h2 align=center style="font-size:60px;">녹차밭 체험하기</h2></div>
-			<!-- 
-			<div class="box1" style="border:1px solid white;" ><a href="<%=contextPath %>/green.re">예약하기</a></h3></div>
-			<div class="box2" style="border:1px solid white;"><a href="<%=contextPath %>/resv.all">예약조회</a></div> 
-			-->
 			
-			
+
 			<% if(loginUser != null){ %>
-			<div class="box1" style="border:1px solid white;"><a href="<%= contextPath%>/green.re" alert="로그인해주세요.">예약하기</a></div>
-			<div class="box2" style="border:1px solid white;"><a href="<%= contextPath %>/green.li" alert="로그인해주세요.">예약조회</a></div>
+			
+			<form action="<%=contextPath%>/green.re" method="get">
+				<input type="hidden" id="memNo1" name="memNo" value="<%= loginUser.getMemNo() %>">											
+				<div class="box1" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;" >예약하기</button></div>
+			</form>
+			
+			<form action="<%=contextPath%>/green.li" method="post">
+				<input type="hidden" id="memNo" name="memNo" value="<%= loginUser.getMemNo() %>">
+				<div class="box2" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;" >예약조회</button></div>
+			</form>
 			<% } %>
-				<form action="<%=contextPath%>/green.li" method="post" >
-					<input type="hidden" name="memNo" value=<%= loginUser.getMemNo() %>>
-				</form>
+				
 		</div>
 		
 		
@@ -160,34 +150,32 @@
 					<h5>개장시간 : 오전 10:00~오후 18:00</h5>
 					<br>
 				</div>
-				
 			</div>
 		</div>
 		</div>
 		
 		<div class="page"></div>
 		
-		<div class="page" clear=" both">
+		<div class="page" clear="both">
 		
-						<div class="content3" >
-						<br>
-							<h3><strong>녹차밭 체험 소개(오전)</strong></h3>
-							<hr>
-							<p>
-							전라남도 보성은 우리나라 녹차의 약 40퍼센트를 생산하는 차의 고장으로,<br>
-					기후, 토양, 지형, 호수, 바다 등 자연환경이 잘 어우러져 최고급 차(茶)를 재배하고 있습니다.<br>
-					국내 최대 규모로 계단식으로 줄지어 늘어져있는 녹차 밭의 모습은 장관인데요.<br>
-					보성 녹차 밭에서는 자연 그대로 재배하는 녹차의 맛도 볼 수 있고, 차를 말리는 공장도 살펴볼 수 있답니다.<br>
-					끝없이 펼쳐지는 녹차 밭에서 신선한 공기를 마시며, 직접 찻잎을 따는 체험을 해보세요.<br>
+			<div class="content3" >
+			<br>
+			<h3><strong>녹차밭 체험 소개(오전)</strong></h3>
+			<hr>
+			<p>
+				전라남도 보성은 우리나라 녹차의 약 40퍼센트를 생산하는 차의 고장으로,<br>
+				기후, 토양, 지형, 호수, 바다 등 자연환경이 잘 어우러져 최고급 차(茶)를 재배하고 있습니다.<br>
+				국내 최대 규모로 계단식으로 줄지어 늘어져있는 녹차 밭의 모습은 장관인데요.<br>
+				보성 녹차 밭에서는 자연 그대로 재배하는 녹차의 맛도 볼 수 있고, 차를 말리는 공장도 살펴볼 수 있답니다.<br>
+				끝없이 펼쳐지는 녹차 밭에서 신선한 공기를 마시며, 직접 찻잎을 따는 체험을 해보세요.<br>
 					
-							</p>
-						</div>
-						<br><br>
+			</p>
+		</div>
+		<br><br>
 	
 		<div class="content5">
 			<h3><strong>공지사항 | 이용 안내 | 추천 인원</strong></h3>
 			<hr>
-			
 			<strong>[공지사항]</strong><br>
 			체험시 반려동물 입장은 불가합니다.
 			체험시 체험지도사의 지시에 따라주시기 바랍니다.
@@ -203,11 +191,13 @@
 			본 상품은 체험일 회당 최소인원(20명) 미만시 체험이 취소 될 수 있습니다.(모객 미달로 인한 체험 불가시 출발 2일전 별도 안내 드리오니, 구매시 연락처 확인 부탁드립니다.)
 			<br><br>
 		</div>
-		
-		
-		
 		</div>
 
+		<script>
+		function list(memNo){
+			location.href = "<%=contextPath%>/green.li?memNo="+memNo;
+		}
+		</script>
 
 
 

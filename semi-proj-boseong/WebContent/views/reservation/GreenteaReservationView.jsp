@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList"
+    import = "java.util.ArrayList"
+%>
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +11,6 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
   <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/index.global.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/index.global.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
@@ -17,71 +18,56 @@
 <style>
 	
 	.page{
-	padding:0;
-	margin:0;
-	width:100%;
-	height : 100vh;
-	color : black;
-
-}
+		padding:0;
+		margin:0;
+		width:100%;
+		height : 100vh;
+		color : black;
+	}
 
 	#content{
-	width : 1302px;
-	height : 100%;
-	margin : auto;
-}
+		width : 1302px;
+		height : 100%;
+		margin : auto;
+	}
 	
-	
-		
 	.content12{
-			width : 1400px;
-			height : 650px;
-			
+		width : 1400px;
+		height : 650px;	
 	}	
 		
-		
 	.content1{
-			width : 700px;
-			height : 600px;
-			margin : auto;
-			margin-top : 30px;
-			float : left;
-	
-	
+		width : 700px;
+		height : 600px;
+		margin : auto;
+		margin-top : 30px;
+		float : left;
 	}	
 		
 	.content2{
-	width : 630px;
-			height : 500px;
-			margin : auto;
-			margin-top : 30px;
-			margin-left:50px;
-			float : left;
-	
+		width : 630px;
+		height : 500px;
+		margin : auto;
+		margin-top : 30px;
+		margin-left:50px;
+		float : left;
 	}	
 		
-		
-		
-		
-		
 	.content3_1{
-			width:400px;
-			height:70px;
-			margin-top : 30px;
-			
+		width:400px;
+		height:70px;
+		margin-top : 30px;
 	}	
 		
 	.content3_2{
-			width:500px;
-			height:50px;
-			float : left;
-			
+		width:500px;
+		height:50px;
+		float : left;
 	}		
 		
 	.button{
-			float:right;
+		float:right;
 	}	
-		
 		
 </style>
 
@@ -100,15 +86,18 @@
               right: 'dayGridMonth'
             },
             dateClick: function(info) {
-            	
-            	
             	$("#startDate").val(info.dateStr);
             }
           });
         calendar.render();
       });
-
       
+   // 이전 날짜들은 선택막기
+      function noBefore(date){
+          if (date < new Date())
+              return [false];
+          return [true];
+      }
       
       
     </script>
@@ -117,7 +106,7 @@
 	
 	<%@ include file="../common/menubar.jsp" %>
 
-	
+
 	<div class="page" id="content">
 	<form action="<%=contextPath %>/green.in" method="get">
 	<div style="height:200px;"></div>
@@ -198,7 +187,7 @@
 	<div class="content4">
 	<h2>녹차밭 체험 규칙 검토</h2>
 	<div class="content4_1" align="right">
-	규칙을 확인하였습니다.<input type="checkbox" value="체험확인" name="mustCheck" required>
+	<input type="checkbox" value="체험확인" name="mustCheck" required>규칙을 확인하였습니다.
 	</div>
 	<hr>
 		체험시 반려동물 입장은 불가합니다.
@@ -215,9 +204,9 @@
 		본 상품은 체험일 회당 최소인원(20명) 미만시 체험이 취소 될 수 있습니다.(모객 미달로 인한 체험 불가시 출발 2일전 별도 안내 드리오니, 구매시 연락처 확인 부탁드립니다.)
 		<br><br>
 		
-		
+		<input type="hidden" id="memNo1" name="memNo" value="<%= loginUser.getMemNo() %>">											
 		<div class="button">
-		<button type="submit" class="btn btn-primary" >예약하기</button>
+		<button type="submit" class="btn btn-primary">예약하기</button>
 		</div>
 	</div>
 	</div>

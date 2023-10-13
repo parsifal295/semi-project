@@ -1,32 +1,27 @@
 package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.boseong.jsp.member.model.vo.Member;
-import com.boseong.jsp.reservation.model.service.GreenteaService;
-import com.boseong.jsp.reservation.model.vo.GreenteaReservation;
-
-
+import com.boseong.jsp.reservation.model.service.AdminService;
 
 /**
- * Servlet implementation class greenteareservlistcontroller
+ * Servlet implementation class AdminReservHomeController
  */
-@WebServlet("/green.li")
-public class GreenTeaReservlistcontroller extends HttpServlet {
+@WebServlet("/adminHome.rsv")
+public class AdminReservHomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GreenTeaReservlistcontroller() {
+    public AdminReservHomeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,16 +30,22 @@ public class GreenTeaReservlistcontroller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//여기 list관련 내용작성
+		//메뉴바에서 예약관리 선택시 화면 넘겨주는 컨트롤러
+		//응답화면 지정 전에 각 예약 종류 별 다가오는 예약 숫자 보여주기
+		HashMap counts = new AdminService().countUpcoming();
+		System.out.println(counts.keySet());
+		System.out.println(counts.values());
 		
-		int memNo = Integer.parseInt(request.getParameter("memNo")); 
+		request.setAttribute("hanokCount", (int) counts.get("hanok"));
+		request.setAttribute("horseCount", (int) counts.get("horse"));
+		request.setAttribute("teaCount", (int) counts.get("tea"));
+		request.setAttribute("monthCount", (int) counts.get("month"));
 		
-		ArrayList<GreenteaReservation> list = new GreenteaService().selectReservation(memNo);
+		request.getRequestDispatcher("views/reservation/AdminView.jsp").forward(request, response);
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/reservation/GreenTeaReservListView.jsp").forward(request, response);
+		
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

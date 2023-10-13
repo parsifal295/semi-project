@@ -194,13 +194,6 @@ public class FreeboardDao {
     return result;
   }
 
-  /**
-   * deleteFreeboard method -- deletes a freeboard article from the database
-   *
-   * @param conn the Connection object to connect to the database
-   * @param boardNo
-   * @return int
-   */
   public int deleteFreeboard(Connection conn, int boardNo) {
     int result = 0;
     String sql = prop.getProperty("deleteFreeboard");
@@ -308,6 +301,7 @@ public class FreeboardDao {
           fr.setIpAddress(rs.getString("IP_ADDRESS"));
           fr.setContent(rs.getString("REPLY_CONTENT"));
           fr.setCreateDate(rs.getString("A"));
+          fr.setPassword(rs.getString("PASSWORD"));
           list.add(fr);
         }
       }
