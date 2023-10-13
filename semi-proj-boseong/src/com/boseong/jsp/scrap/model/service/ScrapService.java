@@ -31,8 +31,11 @@ public class ScrapService {
 		}else {
 			rollback(conn);
 		}
+		if(scrap == 0) {
+			scrap = 3;
+		}
 		close(conn);
-		// System.out.println("Service insert Scrap : " + scrap);
+		System.out.println("Service insert Scrap : " + scrap);
 
 		return scrap;
 	}
@@ -50,18 +53,6 @@ public class ScrapService {
 		return list;
 	}
 	
-//	public int iboardListReturn(Scrap sc) {
-//		
-//		int status = 0;
-//		
-//		iboardScrapSelect(sc);
-//		
-//		if(sc.getStatus() == null && iboardScrapSelect(sc).isEmpty()) {
-//			status = 3;
-//			System.out.println("service status : " + status);
-//		}
-//		return status;
-//	}
 	
 	public int iboardScrapUpdate(Scrap sc) {
 		

@@ -44,34 +44,21 @@
 	</entry>
 	<entry key="iboardInsertNo">
 		SELECT 
-				STATUS
+				SC.STATUS
  		  FROM 
-     			(
-       			SELECT 
-       					CREATE_DATE,
-       					SCRAP_NO, 
-       					IBOARD_NO,
-       					SC.STATUS
-      		      FROM 
-      		      		TB_SCRAP SC
-         		  JOIN 
-         		  		TB_ITEMBOARD IB ON SC.IBOARD_NO = IB.BOARD_NO
-         		  JOIN 
-         		  		TB_MEMBER MEM ON SC.MEM_NO = MEM.MEM_NO
-      		     WHERE 
-      		     		MEM.STATUS != 'N'
-         		   AND 
-         		   		IB.STATUS = 'Y'
-        		   AND 
-        		   		SC.MEM_NO = ?
-       			   AND 
-       			   		IBOARD_NO = ?
-      			 ORDER 
-           			BY 
-             			CREATE_DATE DESC
-     		  )
-  		WHERE 
-        		ROWNUM = 1
+ 		  		TB_SCRAP SC
+  		  JOIN 
+  		  		TB_ITEMBOARD IB ON SC.IBOARD_NO = IB.BOARD_NO
+  		  JOIN 
+  		  		TB_MEMBER MEM ON SC.MEM_NO = MEM.MEM_NO
+ 		 WHERE 
+ 		 		MEM.STATUS != 'N'
+   		   AND 
+   		   		IB.STATUS = 'Y'
+   		   AND 
+   		   		SC.MEM_NO = ?
+   		   AND 
+   		   		IBOARD_NO = ?
 	</entry>
 	<entry key="iboardUpdateNo">
 		SELECT 

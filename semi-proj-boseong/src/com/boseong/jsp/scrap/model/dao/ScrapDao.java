@@ -38,15 +38,14 @@ public class ScrapDao {
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			
-			pstmt.setObject(1, sc.getMemberNo());
-			pstmt.setObject(2, sc.getBoardNo());
-			pstmt.setObject(3, sc.getStatus());
+			pstmt.setInt(1, sc.getMemberNo());
+			pstmt.setInt(2, sc.getBoardNo());
+			pstmt.setString(3, sc.getStatus());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("insert result : " + result);
 		return result;
 	}
 	
@@ -54,23 +53,25 @@ public class ScrapDao {
 		
 		ArrayList<Scrap> list = new ArrayList();
 		String sql = prop.getProperty("iboardScrapSelect");		
+		Scrap sp = new Scrap();
 		ResultSet rset = null;
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
-			pstmt.setObject(1, sc.getMemberNo());
-			pstmt.setObject(2, sc.getBoardNo());
+			pstmt.setInt(1, sc.getMemberNo());
+			pstmt.setInt(2, sc.getBoardNo());
 			// System.out.println("select memberNo : " + sc.getMemberNo());
 			// System.out.println("select boardNo : " + sc.getBoardNo());
 			rset = pstmt.executeQuery();
-			
+			System.out.println("1" + list);
 			while(rset.next()) {
-				Scrap sp = new Scrap();
 				sp.setMemberNo(rset.getInt("MEM_NO"));
 				sp.setBoardNo(rset.getInt("IBOARD_NO"));
 				sp.setStatus(rset.getString("STATUS"));
 				list.add(sc);
 			}
+			System.out.println("2" + list);
+			System.out.println("list 2 : " + list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -88,8 +89,8 @@ public class ScrapDao {
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
-			pstmt.setObject(1, sc.getMemberNo());
-			pstmt.setObject(2, sc.getBoardNo());
+			pstmt.setInt(1, sc.getMemberNo());
+			pstmt.setInt(2, sc.getBoardNo());
 			
 			rset = pstmt.executeQuery();
 			
@@ -101,6 +102,7 @@ public class ScrapDao {
 		} finally {
 			close(rset);
 		}
+		System.out.println("DAO insert scrap : " + status);
 		return status;
 	}
 	
@@ -112,8 +114,8 @@ public class ScrapDao {
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
-			pstmt.setObject(1, sc.getMemberNo());
-			pstmt.setObject(2, sc.getBoardNo());
+			pstmt.setInt(1, sc.getMemberNo());
+			pstmt.setInt(2, sc.getBoardNo());
 			
 			rset = pstmt.executeQuery();
 			
