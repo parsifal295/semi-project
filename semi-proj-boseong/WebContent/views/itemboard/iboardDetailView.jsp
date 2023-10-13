@@ -7,7 +7,6 @@
 <%
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
-	// Scrap sc = (Scrap)request.getAttribute("sc");
 %>
 <!DOCTYPE html>
 <html>
@@ -249,32 +248,33 @@
 	                //     		}
 	                //     	}
             			// })
-            		$.ajax({
-            			url : 'scrapselect.ib',
-            			data : {
-            				status : 'D',
-            				boardNo : <%= ib.getBoardNo() %>,
-                    		memberNo : <%= loginUser.getMemNo() %> 
-            			},
-            			type : 'post',
-            			success : function(e){
-            				if(<%= loginUser.getMemNo()%> == e.memberNo && e.status == 'D'){
-	            				if(e.status == "D"){
-	                    			$('#scrap-image').attr({'src' : D})
-	            				}
-	            				else if(e.status == "Y"){
-	                    			$('#scrap-image').attr({'src' : Y})
-	            				}
-	            				else{
-	                    			$('#scrap-image').attr({'src' : N})
-	            				}
-            				}
-            			}
-            		});
+            			
+            		// $.ajax({
+            		// 	url : 'scrap.ib',
+            		// 	data : {
+            		// 		status : 'D',
+            		// 		boardNo : <%= ib.getBoardNo() %>,
+                    // 		memberNo : <%= loginUser.getMemNo() %> 
+            		// 	},
+            		// 	type : 'post',
+            		// 	success : function(e){
+            		// 		if(<%= loginUser.getMemNo()%> == e.memberNo && e.status == 'D'){
+	            	// 			if(e.status == "D"){
+	                //     			$('#scrap-image').attr({'src' : D})
+	            	// 			}
+	            	// 			else if(e.status == "Y"){
+	                //     			$('#scrap-image').attr({'src' : Y})
+	            	// 			}
+	            	// 			else{
+	                //     			$('#scrap-image').attr({'src' : N})
+	            	// 			}
+            		// 		}
+            		// 	}
+            		// });
             		$('#scrap-image').click(function(){
 	                if($($('#scrap-image')[0]).attr('src') == N){
 	                    $.ajax({
-	                    	url : 'scrapselect.ib',
+	                    	url : 'scrap.ib',
 	                    	data : {
 	                    		status : 'Y',
 	                    		boardNo : <%= ib.getBoardNo() %>,
@@ -294,7 +294,7 @@
 	                 }
 	                else if($($('#scrap-image')[0]).attr('src') == Y) {
 	                	$.ajax({
-	                		url : 'scrapselect.ib',
+	                		url : 'scrap.ib',
 	                		data : {
 	                			status : 'N',
 	                			boardNo : <%= ib.getBoardNo() %>,
