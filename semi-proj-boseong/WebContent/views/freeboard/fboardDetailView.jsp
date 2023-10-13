@@ -271,7 +271,7 @@
                   <td colspan ="3">
                     <div class="form-group">
                       <label for="reply">Comment:</label>
-                      <textarea class="form-control" id="replyContent" rows="3" name="reply" required style="resize:none"></textarea>
+                      <textarea class="form-control" id="replyEdit" rows="3" name="reply" required style="resize:none"></textarea>
                     </div>
                   </td>
                 </tr>
@@ -353,7 +353,7 @@
                         + '<td width="200">' + result[i].writer + "(" + result[i].ipAddress + ")" + '</td>'
                         + '<td width="300" align="center">' + result[i].createDate + '</td>'
                         + '<td width="100" align="right">'
-                        + '<a href = "#" onclick="editReply(this);" data-toggle="modal" data-target="#editCommentModal" value="' + result[i].replyNo + '">수정</a>' + ' | ' + '<a href=#>삭제</a>' + '</td>'
+                        + '<a href = "#" onclick="showEditReply(this);" data-toggle="modal" data-target="#editCommentModal" value="' + result[i].replyNo + '">수정</a>' + ' | ' + '<a href=#>삭제</a>' + '</td>'
                         + '</tr>'
                         + '<tr>'
                         + '<td colspan="3" id="comment-text'+result[i].replyNo+'">' + result[i].content + '</td>'
@@ -373,19 +373,22 @@
         //setInterval(selectReplyList, 1000);
       });
 
-      function editReply(f) {
+      function showEditReply(f) {
         $.ajax({
           url : 'replyupdate.fb',
           data : {
             replyNo : $(f).attr("value"),
             bno : <%= fb.getBoardNo() %>
           },
-          success : $(() => {
-            console.log($(f).attr("value"))
-          })
+          success : function(result) {
+            console.log(result);
+            $('#replyEdit').val(result);
+          }
         })
       };
-      
+      function editReply() {
+
+      };
     </script>
     <script>
       // GET IP ADDRESS
