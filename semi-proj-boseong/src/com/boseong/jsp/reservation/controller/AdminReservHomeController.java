@@ -1,7 +1,7 @@
 package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,9 +31,16 @@ public class AdminReservHomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//메뉴바에서 예약관리 선택시 화면 넘겨주는 컨트롤러
-		
 		//응답화면 지정 전에 각 예약 종류 별 다가오는 예약 숫자 보여주기
-		//ArrayList list = new AdminService().countUpcoming();
+		HashMap counts = new AdminService().countUpcoming();
+		System.out.println(counts.keySet());
+		System.out.println(counts.values());
+		
+		request.setAttribute("hanokCount", (int) counts.get("hanok"));
+		request.setAttribute("horseCount", (int) counts.get("horse"));
+		request.setAttribute("teaCount", (int) counts.get("tea"));
+		request.setAttribute("monthCount", (int) counts.get("month"));
+		
 		request.getRequestDispatcher("views/reservation/AdminView.jsp").forward(request, response);
 		
 		
