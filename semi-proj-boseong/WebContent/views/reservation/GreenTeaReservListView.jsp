@@ -36,11 +36,10 @@
 <body>
 <%@ include file="../common/menubar.jsp" %>
 
-	<form action="<%=contextPath%>/green.li" method="post" >
-		<input type="hidden" name="memNo" value=<%= loginUser.getMemNo() %>>
-	</form>
+
 	
 	<div class="page" id="content">
+		
 	<div style="height:200px;"></div>
 	
 	<div class="page">
@@ -52,13 +51,15 @@
 			
 			<%
 				if(list.isEmpty()){
+					
 			%>
+			
 			<h2 align="center">예약이 없습니다.</h2>
 			
 			<% } else { %>
 			
 			<% for(int i = 0; i < list.size(); i++) {%>
-			<% System.out.println(loginUser); %>
+			
 			
 			
 			<table border="1" id="table2">
@@ -72,6 +73,7 @@
 			</tr>
 			
 			<tr>
+			
 				<td height="200"><%=list.get(i).getCourseNum() %> </td>
 				<td><%= list.get(i).getStartDate() %></td>
 				<td><%=list.get(i).getBookNum() %></td>
@@ -80,7 +82,10 @@
 				
 				<!-- 예약 취소하기 -->
 				<!-- 로그인이 되어있고 + 이미 리스트로 위에 들어왓고.  -->
-				<td><a href="<%= contextPath %>/green.de?nno=<%= list.get(i).getReservationNo()%>" class="btn btn-danger btn-sm" >삭제하기</a></td>
+				
+				<td>
+					<a href="<%= contextPath %>/green.de?nno=<%= list.get(i).getReservationNo()%>" class="btn btn-danger btn-sm" >삭제하기</a>
+				</td>
 			</tr>
 			<%} %>
 		<%} %>
