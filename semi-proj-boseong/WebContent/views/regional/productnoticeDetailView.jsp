@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.boseong.jsp.regional.model.vo.ProductNotice" %>
+<%
+	ProductNotice p = (ProductNotice)request.getAttribute("p");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +27,7 @@
 			<br><br><br>
 			<tr>
 				<th width="100">제목</th>
-				<td width="500" colspan="3">공지사항</td>
+				<td width="500" colspan="3"></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
