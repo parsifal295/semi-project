@@ -33,7 +33,8 @@ public class AdminReservHomeController extends HttpServlet {
 		//메뉴바에서 예약관리 선택시 화면 넘겨주는 컨트롤러
 		
 		//응답화면 지정 전에 각 예약 종류 별 다가오는 예약 숫자 보여주기
-		ArrayList list = new AdminService().countUpcoming();
+		//ArrayList list = new AdminService().countUpcoming();
+		request.getRequestDispatcher("views/reservation/AdminView.jsp").forward(request, response);
 		
 		
 	}
