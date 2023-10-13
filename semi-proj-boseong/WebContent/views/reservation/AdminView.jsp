@@ -83,6 +83,17 @@
 						$('.reserv-type>div').click(function(){
 								let title = $(this).children().text();
 								$('#reserv-type').text(title);
+								$.ajax({
+									url:'',
+									data:{type:title},
+									success : function(e){
+										console.log('ajax succeed');
+										console.log(e);
+									},
+									error : function(e){
+										console.log('ajax failed');
+									}
+								})
 								})
 							})	
 						</script>
