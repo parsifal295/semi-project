@@ -35,11 +35,12 @@ public class ProductnoticeDetailViewController extends HttpServlet {
 		
 		//System.out.println(noticeNo);
 		int result = new ProductNoticeService().increaseCount(noticeNo);
-		if(result > 0) {
-
-			request.getRequestDispatcher("views.regional.productnoticeDetailView.jsp").forward(request, response);
 			
-		}
+			ProductNotice p = new ProductNoticeService().selectProductNotice(noticeNo);
+			request.setAttribute("p", p);
+			
+			request.getRequestDispatcher("views/regional/productnoticeDetailView.jsp").forward(request, response);
+			
 	}	
 
 	/**

@@ -253,6 +253,10 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body" id="edit-reply-area">
+              <form method="post" action="<%=contextPath%>/updateReply.fb" >
+                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>">
+                <input type="hidden" id="reply-password" name="replyPass" value=""> 
+                <input type="hidden" id="reply-number" name="rNum" value=""> 
               <table align="center" style="width: 90%">
                 <thead>
                 </thead>
@@ -263,7 +267,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" >비밀번호</span>
                         </div>
-                        <input type="password" class="form-control" id="replyPw" placeholder="댓글 등록시 입력한 비밀번호를 입력해주세요" required>
+                        <input type="password" class="form-control" id="reply-passform" placeholder="댓글 등록시 입력한 비밀번호를 입력해주세요">
                       </div>
                     </td>
                   </tr>
@@ -277,12 +281,12 @@
                 </tr>
                 <tr>
                   <td colspan ="3">
-                    <button onclick="insertReply();"class="btn btn-primary btn-block">댓글수정</button>
+                    <button onclick="checkReplyPassword();"class="btn btn-primary btn-block">댓글수정</button>
                   </td>
                 </tr>
               </tbody>
-              <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
-              </table>
+            </table>
+          </form>
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
@@ -345,7 +349,6 @@
           url : 'replylist.fb',
           data : {bno : <%= fb.getBoardNo() %>},
           success : function(result) {
-            console.log(result);
             // 댓글 개수만큼 루프반복 (댓글전체출력을 위해서..)
             let resultStr = '';
             for (let i in result) {
@@ -374,21 +377,46 @@
       });
 
       function showEditReply(f) {
+        var rNum = $(f).attr("value");
         $.ajax({
-          url : 'replyupdate.fb',
+          url : 'replyUpdateForm.fb',
           data : {
-            replyNo : $(f).attr("value"),
+            replyNo : rNum,
             bno : <%= fb.getBoardNo() %>
           },
           success : function(result) {
-            console.log(result);
-            $('#replyEdit').val(result);
+            $('#reply-number').attr("value", rNum); 
+            $('#replyEdit').val(result.content);
+            $('#reply-password').attr("value", result.password);
           }
         })
       };
-      function editReply() {
-
-      };
+      function checkReplyPassword() {
+        var userPwd = $('#reply-passform').val();
+        var replyPwd = $('#reply-password').val();
+        var replyToUpdate = $('#replyEdit').val();
+        var boardNo = <%= fb.getBoardNo() %>
+        // 암호 일치시 
+        if (userPwd == replyPwd) {
+          $.ajax({
+            url : 'updateReply.fb',
+            data : {
+              replyNo : $('#reply-number').val(),
+              bno : boardNo,
+              reply : replyToUpdate
+            },
+            success : $(()=>{
+              alert('댓글이 성공적으로 수정되었습니다.'),
+              location.href = "<%=contextPath%>/detailView.fb?bno=" + boardNo
+            })
+          })
+        } else {
+          alert('비밀번호가 틀립니다.');
+          $(()=>{
+            location.href = "<%=contextPath%>/detailView.fb?bno=" + boardNo;
+          })
+        }
+      };  
     </script>
     <script>
       // GET IP ADDRESS

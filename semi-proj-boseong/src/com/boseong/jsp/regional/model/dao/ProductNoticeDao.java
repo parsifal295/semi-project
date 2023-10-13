@@ -103,5 +103,33 @@ public class ProductNoticeDao {
 		
 		return result;
 	}
-
+	
+	public ProductNotice selectProductNotice(Connection conn, int noticeNo) {
+	
+		ProductNotice p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectProductNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			rset  = pstmt.executeQuery();
+			System.out.println(rset);
+			if(rset.next()) {
+				p = new ProductNotice();
+				p.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				p.setNoticeNo(rset.getInt("NOTICE_NO"));
+				p.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				p.setCreateDate(rset.getDate("CREATE_DATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return p;
+	}	
+	
 }
