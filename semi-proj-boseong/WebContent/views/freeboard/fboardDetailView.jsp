@@ -412,6 +412,9 @@
           })
         } else {
           alert('비밀번호가 틀립니다.');
+          $(()=>{
+            location.href = "<%=contextPath%>/detailView.fb?bno=" + boardNo;
+          })
         }
       };  
     </script>
