@@ -28,7 +28,7 @@ public class ScrapService {
 		
 		return list;
 	}
-	
+	 
 	public int iboardInsertScrap(Scrap sc) {
 		
 		Connection conn = getConnection();
@@ -37,7 +37,7 @@ public class ScrapService {
 		int scrap = 0;
 		if(insert > 0) {
 			commit(conn);
-			String st = new ScrapDao().iboardInsertNo(conn, sc);
+			// String st = new ScrapDao().iboardInsertNo(conn, sc);
 		}else {
 			rollback(conn);
 		}
@@ -54,7 +54,7 @@ public class ScrapService {
 		int update = new ScrapDao().iboardScrapUpdate(conn, sc);
 		if(update > 0) {
 			commit(conn);
-			String st = new ScrapDao().iboardUpdateNo(conn, sc);
+			// String st = new ScrapDao().iboardUpdateNo(conn, sc);
 		}else {
 			rollback(conn);
 		}

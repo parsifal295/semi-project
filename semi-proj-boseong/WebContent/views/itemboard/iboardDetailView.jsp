@@ -213,25 +213,56 @@
            
            
            //----------------------------------------------------------------------------------//
-           
-			 const N = '<%=contextPath%>/resources/image/scrap.png';
-			 const Y = '<%=contextPath%>/resources/image/scrapted.png';
-			 const D = '<%=contextPath%>/resources/image/scrap.png';
-			 
+               
 			//새로 다시 코드를 짜보자...
             <% if(loginUser != null) { %>
-            $(function(){
-            	$.ajax({
-            		url : 'replyscrap.ib',
-            		data : {(
-            		)} // data end
-            	}) // ajax end
+				let scrap = '<%= contextPath%>/resources/image/scrap.png';
+				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
+				
+				$(function(){
+				$('#scrap-image').click(function(){
+					scrapReply();
+				});
+				})
+				
+				function scrapReply(){
+					$.ajax({
+						url : 'scrap.ib',
+						type : 'POST',
+						data : {
+							boardNo : '<%= ib.getBoardNo() %>',
+							memberNo : '<%= loginUser.getMemNo() %>',
+						},
+						success : function(e){ // e가 반환값임 
+							if(e.status == 'N'&& e.memberNo == <%=loginUser.getMemNo()%>) { // DB에서 뽑혀온 값 
+								$('#scrap-image').attr({'src' : scrap});  
+								// ↑ 이건 id가 scrap-image인 태그의 src attribute를 scrap으로 지정하는 것. => image 경로 
+							}
+							else{
+								$('#scrap-image').attr({'src' : scrapted});
+							}
+						}
+					})
+	  		    }
+            	
+            	
+            	
+			 
+			 
             
-            
-            
-            
-               })
            	<% } %>
+            
+            // 
+            // if (스크랩 버튼 on && DB에 엔트리가 없음--최초로 스크랩 버튼 눌렀을 때) {
+            // ajax로 컨트롤러로 상태 보내기
+            // } else if (스크랩 버튼 off)
+           // } else if (스크랩 버튼 on, DB에 엔트리가 있음-- 스크랩 버튼 눌렀던 적이 있고 삭제한적도 있음){
+            // 
+          // }
+              
+            
+
+            
     </script>
 	
 <%@ include file="../common/footer.jsp" %>

@@ -23,6 +23,7 @@
 				)
 	</entry>
 	<entry key="iboardScrapSelect">
+		
 		SELECT 
 				SC.MEM_NO, 
 				IBOARD_NO, 
