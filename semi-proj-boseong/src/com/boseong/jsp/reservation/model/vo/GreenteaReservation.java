@@ -22,7 +22,6 @@ public class GreenteaReservation {
 		this.memNo = memNo;
 		this.startDate = startDate;
 		this.courseNum = courseNum;
-		
 		this.bookNum = bookNum;
 		//this.status = status;
 	}

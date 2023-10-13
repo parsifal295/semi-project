@@ -42,7 +42,8 @@ public class HanokReservDeleteController extends HttpServlet {
 			request.getSession().setAttribute("alertMsg", "예약 취소가 정상적으로 신청되었습니다.");
 			response.sendRedirect(request.getContextPath()+"/list.hk?memNo="+memNo);
 		}else {
-			
+			request.getSession().setAttribute("alertMsg", "한옥 예약이 취소되지 않았습니다ㅜ");
+			response.sendRedirect(request.getContextPath()+"/list.hk?memNo="+memNo);
 		}
 	}
 

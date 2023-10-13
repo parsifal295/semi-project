@@ -122,4 +122,25 @@
  		 WHERE 
  		 		CATEGORY_NO = ?
 	</entry>
+	<entry key="iboardUpdate">
+		UPDATE 
+				TB_ITEMBOARD 
+		   SET 
+		   		IBOARD_TITLE = ?,
+		   		IBOARD_CONTENT = ?,
+		   		IBOARD_MODIFY_DATE = SYSDATE,
+		   		PRICE = ? 
+		 WHERE 
+		 		MEM_NO = ? 
+		   AND 
+		   		BOARD_NO = ?
+	</entry>
+	<entry key="iboardDelete">
+		UPDATE 
+				TB_ITEMBOARD
+  		   SET 
+  		   		STATUS = 'N'
+		 WHERE 
+		 		BOARD_NO = ?
+	</entry>
 </properties>

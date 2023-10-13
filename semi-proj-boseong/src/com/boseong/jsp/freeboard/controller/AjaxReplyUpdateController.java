@@ -2,11 +2,7 @@ package com.boseong.jsp.freeboard.controller;
 
 import com.boseong.jsp.freeboard.model.service.FreeboardService;
 import com.boseong.jsp.freeboard.model.vo.FreeboardReply;
-import com.google.gson.Gson;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet implementation class AjaxReplyUpdateController */
-@WebServlet("/replyupdate.fb")
+@WebServlet("/updateReply.fb")
 public class AjaxReplyUpdateController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -31,17 +27,15 @@ public class AjaxReplyUpdateController extends HttpServlet {
    */
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
-    int boardNo = Integer.parseInt(request.getParameter("bno"));
-    int replyNo = Integer.parseInt(request.getParameter("replyNo"));
-    ArrayList<FreeboardReply> list = new FreeboardService().selectReplyList(boardNo);
-    Map<Integer, FreeboardReply> m = new HashMap<>();
-    for (FreeboardReply reply : list) {
-      m.put(reply.getReplyNo(), reply);
-    }
+    // 댓글수정 버튼클릭시 리디렉션 & 암호 검사(jsp)
     FreeboardReply fr = new FreeboardReply();
-    fr = m.get(replyNo);
-    System.out.println(fr);
+    int boardNo = Integer.parseInt(request.getParameter("bno"));
+    int rNum = Integer.parseInt(request.getParameter("replyNo"));
+    String reply = "";
+    reply = request.getParameter("reply");
+    fr.setReplyNo(rNum);
+    fr.setContent(reply);
+    new FreeboardService().updateReply(fr);
   }
 
   /**

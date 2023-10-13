@@ -198,4 +198,27 @@ public class HorseDao {
 			
 			return result;
 		}
+		
+		
+		public int deleteRide(Connection conn, HorseReservation horseRsv) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("deleteRide");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, horseRsv.getReservNo());
+				pstmt.setInt(2, horseRsv.getMemNo());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+		}
+		
 }

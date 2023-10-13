@@ -80,6 +80,16 @@
 	  	AND 
 	  		MEM_NO = ?
 </entry>
+<entry key = "deleteRide">
+	UPDATE
+		HORSE_RESERVATION 
+	SET 
+		STATUS='N' 
+	WHERE 
+		RESERVATION_NO = ? 
+	AND 
+		MEM_NO = ?
+</entry>
 
 
 

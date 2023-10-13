@@ -301,6 +301,7 @@ public class FreeboardDao {
           fr.setIpAddress(rs.getString("IP_ADDRESS"));
           fr.setContent(rs.getString("REPLY_CONTENT"));
           fr.setCreateDate(rs.getString("A"));
+          fr.setPassword(rs.getString("PASSWORD"));
           list.add(fr);
         }
       }
@@ -319,6 +320,31 @@ public class FreeboardDao {
       ps.setString(3, fr.getIpAddress());
       ps.setString(4, fr.getContent());
       ps.setString(5, fr.getPassword());
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public int updateReply(Connection conn, FreeboardReply fr) {
+    int result = 0;
+    String sql = prop.getProperty("updateReply");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setString(1, fr.getContent());
+      ps.setInt(2, fr.getReplyNo());
+      result = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public int deleteReply(Connection conn, int boardNo) {
+    int result = 0;
+    String sql = prop.getProperty("deleteReply");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, boardNo);
       result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

@@ -10,6 +10,26 @@ public class HanokReservation {
 	private String toDate;
 	private int clientNum;
 	private String message;
+	private String status;
+	
+	public HanokReservation(int reservNo, int roomNo, int memNo, String fromDate, String toDate, int clientNum,
+			String message, String status) {
+		super();
+		this.reservNo = reservNo;
+		this.roomNo = roomNo;
+		this.memNo = memNo;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
+		this.clientNum = clientNum;
+		this.message = message;
+		this.status = status;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public HanokReservation() {
 		super();
 	}
@@ -78,7 +98,8 @@ public class HanokReservation {
 	@Override
 	public String toString() {
 		return "HanokReservation [reservNo=" + reservNo + ", roomNo=" + roomNo + ", memNo=" + memNo + ", fromDate="
-				+ fromDate + ", toDate=" + toDate + ", clientNum=" + clientNum + ", message=" + message + "]";
+				+ fromDate + ", toDate=" + toDate + ", clientNum=" + clientNum + ", message=" + message + ", status="
+				+ status + "]";
 	}
 	
 	

@@ -71,7 +71,7 @@ ul, li {
 									<td><h5>예약 인원</h5><%=list.get(i).getRiderNum() %></td>
 									<td>
 									<button class="btn btn-warning update-hs">예약 변경</button>
-									<button class="btn btn-danger">예약 취소</button>
+									<button class="btn btn-danger" data-toggle="modal" data-target="#delete-hs">예약 취소</button>
 									</td>
 								</tr>
 
@@ -86,6 +86,35 @@ ul, li {
 		</div>
 
 	</div>
+	
+	<!-- 모다루~~~ -->
+	<div class="modal" id="delete-hs">
+		<div class="modal-dialog">
+			<div class = "modal-content">
+			<!-- Modal Header -->
+			<div class = "modal-header">
+				<h4 class="modal-title">승마예약 취소</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!-- Modal body -->
+			<div class= "modal-body">
+				<form action="delete.hs">
+					<h5>확인을 위해 예약 번호를 입력해주세요.</h5>
+					<label for = "reservNo">예약 번호 :</label>
+					<input type = "text" name="reservNo" id="reservNo" required>
+					<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>">
+			</div>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-danger">삭제</button>
+			</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	
+	
 	<script>
 		$(function(){
 			$('.update-hs').click(function(){
@@ -94,7 +123,6 @@ ul, li {
 			});
 		})
 	</script>
-
 
 	<%@include file="../common/footer.jsp"%>
 

@@ -47,7 +47,7 @@
         margin : 8px;
     }
     #userPf-sub{
-        width: 60%;
+        width: 50%;
         height: 90px;
         float: right;
         margin-top : 10px;
@@ -79,11 +79,17 @@
         width: 100%;
         height: 100%;
     }
-    #updateBtn{
+    #userBtn{
     	width : 40px;
     	height : 20px;
     	float : right;
     }
+	#img-area{
+		width: 230px;
+		height : 70%;
+		margin: 20px;
+	}
+
 </style>
 </head>
 <body>
@@ -100,8 +106,14 @@
                 </div>
             <% } %>
             <div id="userInfo">
-	            <% if(loginUser.getMemNo() == ib.getMemberNo() ) {%>
-	            <div id="updateBtn"><a href="<%= contextPath %>/update.ib?bno=<%= ib.getBoardNo() %>">수정</a></div>
+	            <% if(loginUser != null && loginUser.getMemNo() == ib.getMemberNo() ) {%>
+	            <div id="userBtn"><a href="<%= contextPath %>/delete.ib?bno=<%= ib.getBoardNo() %>" onclick="deletealert();">삭제</a></div>
+	            <script>
+	            function deletealert(){
+	            	confirm('삭제하시겠습니까?');
+	            }
+	            </script>
+	            <div id="userBtn"><a href="<%= contextPath %>/update.ib?bno=<%= ib.getBoardNo() %>">수정</a></div>
 	            <%} %>
                 <span id="userPf-sub">
                 <p><%= ib.getMemberName() %></p>
@@ -119,10 +131,50 @@
             </div>
 			<h4>인기순위</h4>
             <div class="subImg">
-                <div class="sub-iboardImg"></div>
-                <div class="sub-iboardImg"></div>
-                <div class="sub-iboardImg"></div>
-                <div class="sub-iboardImg"></div>
+                <div class="sub-iboardImg">
+					<div id="img-area">
+						<!-- 여기에 스크랩 많은 순위 select후 나열 -->
+					</div>
+					<div id="img-content-area">
+						<span>
+							<h5>제목들어감</h5>
+							<p>판매자 이름</p>
+						</span>
+					</div>
+				</div>
+                <div class="sub-iboardImg">
+					<div id="img-area">
+						<!-- 여기에 스크랩 많은 순위 select후 나열 -->
+					</div>
+					<div id="img-content-area">
+						<span>
+							<h5>제목들어감</h5>
+							<p>판매자 이름</p>
+						</span>
+					</div>
+				</div>
+				<div class="sub-iboardImg">
+					<div id="img-area">
+						<!-- 여기에 스크랩 많은 순위 select후 나열 -->
+					</div>
+					<div id="img-content-area">
+						<span>
+							<h5>제목들어감</h5>
+							<p>판매자 이름</p>
+						</span>
+					</div>
+				</div>
+				<div class="sub-iboardImg">
+					<div id="img-area">
+						<!-- 여기에 스크랩 많은 순위 select후 나열 -->
+					</div>
+					<div id="img-content-area">
+						<span>
+							<h5>제목들어감</h5>
+							<p>판매자 이름</p>
+						</span>
+					</div>
+				</div>
             </div>
             <div align="center">
                 <a href="<%= contextPath %>/iboard.ib?cpage=1" style="margin : auto;">목록으로</a>
@@ -156,79 +208,30 @@
           })
     	});
     	
-    	
            // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
-    	
+
+           
+           
+           //----------------------------------------------------------------------------------//
            
 			 const N = '<%=contextPath%>/resources/image/scrap.png';
 			 const Y = '<%=contextPath%>/resources/image/scrapted.png';
 			 const D = '<%=contextPath%>/resources/image/scrap.png';
 			 
 			//새로 다시 코드를 짜보자...
-
-			 
-			 
-			 
+            <% if(loginUser != null) { %>
             $(function(){
-         		
-            	<% if(loginUser != null) {%>
-            	
-            	// loginUser가 스크랩을 누른 상태이면 scrapted.png를 띄워주고 아니면 scrap.png
-           		 	// console.log($('#scrap-image')[0].scr);
-            		// console.log('핳하하ㅏ하핳');
-            		// console.log(N);
-            		// console.log($('#scrap-image'));
-            		// console.log($('#scrap-image')[0]);
-            		// console.log($('#scrap-image')[0].src);
-            		// console.log($('#scrap-image')[0].src == N);
-            		// console.log($($('#scrap-image')[0]).attr('src') == '<%= contextPath %>/resources/image/scrap.png');
-            		// console.log($($('#scrap-image')[0]).attr('src') == N);
-            		//$('#scrap-image').attr({'src' : D});
-            		
-            		$('#scrap-image').attr({'src' : D}).click(function(){
-	                if($($('#scrap-image')[0]).attr('src') == N){
-	                    $.ajax({
-	                    	url : 'scrap.ib',
-	                    	data : {
-	                    		status : 'Y',
-	                    		boardNo : <%= ib.getBoardNo() %>,
-	                    		memberNo : <%= loginUser.getMemNo() %>
-	                    	},
-	                    	type : 'post',
-	                    	success : function(e){
-	                    		console.log(e.scrap == 'Y');
-	                    		if(e.scrap == 'Y'){
-	                    			$('#scrap-image').attr({'src' : Y})
-	                    		}
-	                    	},
-	                    	error : function(){
-	                    		console.log('실패');
-	                    	}
-	                    });
-	                 }
-	                else{
-	                	$.ajax({
-	                		url : 'scrap.ib',
-	                		data : {
-	                			status : 'N',
-	                			boardNo : <%= ib.getBoardNo() %>,
-		                		memberNo : <%= loginUser.getMemNo() %>
-	                		},
-	                		type : 'post',
-	                		success : function(e){
-	                    		console.log(e.scrap == 'N');
-	                			if(e.scrap = 'N'){
-	                    			$('#scrap-image').attr({'src' : N})
-	                			};
-	                		},
-	                		error : function(){
-	                    		console.log('실패');
-	                		}
-	                	})
-	                };
-            		});
-            	<% } %>
+            	$.ajax({
+            		url : 'replyscrap.ib',
+            		data : {(
+            		)} // data end
+            	}) // ajax end
+            
+            
+            
+            
                })
+           	<% } %>
     </script>
 	
 <%@ include file="../common/footer.jsp" %>

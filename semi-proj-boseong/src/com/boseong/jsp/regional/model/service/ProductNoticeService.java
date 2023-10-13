@@ -48,5 +48,15 @@ public class ProductNoticeService implements ProductNoticeServiceI{
 		return result;
 	}
 	
+	public ProductNotice selectProductNotice(int noticeNo) {
+		
+		Connection conn = getConnection();
+		
+		ProductNotice p = new ProductNoticeDao().selectProductNotice(conn, noticeNo);
+		
+		close(conn);
+		
+		return p;
+	}
 	
 }

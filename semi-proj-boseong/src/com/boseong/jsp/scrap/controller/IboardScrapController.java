@@ -31,6 +31,7 @@ public class IboardScrapController extends HttpServlet {
     }
 
 	/**
+	 * @return 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,39 +47,31 @@ public class IboardScrapController extends HttpServlet {
 		sc.setStatus(scrap);
 		sc.setBoardNo(boardNo);
 		sc.setMemberNo(memberNo);
-		
-		
-		ArrayList<Scrap> list = new ScrapService().iboardScrapSelect(sc);
+
+		JSONObject jObj = new JSONObject();
 		int scrapNo = 0;
 		String status = "";
-		System.out.println("조건문 밖 list : " + list);
-		if(list != null || list.isEmpty()) {
-			System.out.println("조건문 안 list : "+list);
-			
-			scrapNo = new ScrapService().iboardInsertScrap(sc);
-			if(scrapNo == 1) {
+		System.out.println("1scrap : " + scrap);
+		ArrayList<Scrap> list = new ArrayList();
+		if(scrap.equals("D")) {
+			status = "D";
+		}else if(scrap.equals("Y")) {
+			list = new ScrapService().iboardScrapSelect(sc);
+				scrapNo = new ScrapService().iboardInsertScrap(sc);
 				status = "Y";
-			} 
-			// System.out.println("insert status : " + status);
-		}else{
+		}else {
 			scrapNo = new ScrapService().iboardScrapUpdate(sc);
-			if(scrapNo == 1) {
-				status = "Y";
-			} else {
-				status = "N";
-			}
-			System.out.println("status : " + status);
-			// System.out.println("update status : " + status);
+			status = "N";
 		}
-		// System.out.println("session status : " + status);
 		
-		JSONObject jObj = new JSONObject();
-		jObj.put("scrap", scrap);
+		System.out.println("2status : " + status);
 		jObj.put("boardNo", boardNo);
 		jObj.put("memberNo", memberNo);
 		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(jObj);
 	}
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

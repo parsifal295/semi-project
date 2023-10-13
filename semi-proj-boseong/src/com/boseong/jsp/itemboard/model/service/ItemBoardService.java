@@ -84,6 +84,48 @@ public class ItemBoardService {
 		return ib;
 	}
 	
+	
+	public int iboardUpdate(ItemBoard ib , Attachment att) {
+		// board update result 초기화
+		int result1 = 0;
+		// 기존첨부파일이 없다면 초기화된 숫자값이 0이기 때문에 기존첨부파일이 있을때 가정을 1로 초기화한다
+		int result2 = 1;
+		// att table을 다른 게시판도 같이 사용하기 때문에 보성마켓 categoryNo를 초기화 후 보내줘야 한다
+		int categoryNo = 20;
+		
+		Connection conn = getConnection();
+		
+		// board UPDATE
+		result1 = new ItemBoardDao().iboardUpdate(conn, ib);
+		// 하지만 첨부파일은 다시 
+		if(att != null) {
+			// VO필드에 초기화되어있으면 0이기에 
+			if(att.getFileNo() > 0) {
+				// 기존첨부파일이 있다면 → UPDATE
+				result2 = new AttachmentDao().updateAttachment(conn, att);
+			} else {
+				// 기존첨부파일이 없다면 → INSERT
+				result2 = new AttachmentDao().insertAttachment(conn, att, categoryNo);
+			}
+		}
+		result2 = new AttachmentDao().updateAttachment(conn, att);
+		
+		close(conn);
+		
+		return (result1 * result2);
+	}
+	
+	
+	public int iboardDelete(int boardNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ItemBoardDao().iboardDelete(conn, boardNo);
+		
+		close(conn);
+		
+		return result;
+	}
 
 	
 
