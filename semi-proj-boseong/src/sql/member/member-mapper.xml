@@ -91,6 +91,18 @@
 		       MEM_PWD = ?       
 	</entry>
 	
+	<entry key="deleteMember">
+		UPDATE
+		       TB_MEMBER
+		   SET
+		       STATUS = 'N'
+		 WHERE
+			   USER_NO = ?
+		   AND 
+		       USER_PWD = ?
+		   AND 
+		       STATUS = 'Y'	
+	</entry>
 	
 	
 	

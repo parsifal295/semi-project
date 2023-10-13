@@ -115,7 +115,7 @@
 		
 		      <!-- Modal body -->
 		      <div class="modal-body">
-		      	<form action="<%= contextPath %>/updatdPwd.me" method="post">
+		      	<form action="<%= request.getContextPath() %>/updatePwd.me" method="post">
 		      		 <div class="form-group">
 					    <label for="memPwd">현재 비밀번호 :</label>
 					    <input type="password" class="form-control" placeholder="현재 비밀번호를 입력해주세요." id="memPwd" name="memPwd"required>
@@ -130,7 +130,7 @@
 					 </div>
 					 <button type="submit" onclick="return validatePwd();" class="btn btn-sm btn-secondary">비밀번호 변경</button>
 					 
-					 <input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>">
+					 <input type="hidden" name="memNo" value="<%= loginUser.getMemNo() %>">
 					 
 					 <script>
 					 	function validatePwd(){
@@ -144,6 +144,41 @@
 					 		return true;
 					 	}
 					 </script>
+							      	
+		      	</form>  
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+		      </div>
+		
+		    </div>
+		  </div>
+		</div>
+		
+		<!-- 회원탈퇴 모달창 -->
+		
+		<!-- The Modal -->
+		<div class="modal" id="deleteForm">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		
+		      <!-- Modal Header -->
+		      <div class="modal-header">
+		        <h4 class="modal-title">회원 탈퇴</h4>
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      </div>
+		
+		      <!-- Modal body -->
+		      <div class="modal-body">
+		      	<form action="<%= request.getContextPath() %>/delete.me" method="post">
+		      		<div class="form-group">
+                    <label for="deletePwd">안전한 회원 탈퇴를 위해 비밀번호를 다시 한 번 입력해주세요.</label>
+                    <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." id="deletePwd" name="memPwd" required >
+              		</div>
+                 
+                 <button type="submit" class="btn btn-sm btn-danger" onclick="return deleteMember();">회원탈퇴</button>
 							      	
 		      	</form>  
 		      </div>
