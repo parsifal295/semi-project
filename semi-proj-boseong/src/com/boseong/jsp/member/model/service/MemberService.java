@@ -89,11 +89,9 @@ public class MemberService {
 		
 		int result = new MemberDao().deleteMember(conn, memNo, memPwd);
 		
-		if(result > 0) {
-			JDBCTemplate.commit(conn);
-		} else {
-			JDBCTemplate.rollback(conn);
-		}
+		if(result > 0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		
 		JDBCTemplate.close(conn);
 		
 		return result;

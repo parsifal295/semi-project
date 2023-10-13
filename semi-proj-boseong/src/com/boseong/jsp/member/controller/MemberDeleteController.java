@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.boseong.jsp.member.model.service.MemberService;
+import com.boseong.jsp.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberDeleteController
@@ -24,24 +26,36 @@ public class MemberDeleteController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    public String getParameter(String val) {
+    //public String getParameter(String val) {
     	
     	
     
-    }
+    //}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		HttpSession session = request.getSession();
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		String memPwd = request.getParameter("memPwd");
-		int memNo = request.getParameter("memNo");
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		int result = new MemberService().deleteMember("memNo", "memPwd");
+		int result = new MemberService().deleteMember(memNo, memPwd);
 		
+		if(result > 0) {
+			session.removeAttribute("loginUser");
+			response.sendRedirect(request.getContextPath());
+			session.setAttribute("alertMsg", "탈퇴가 완료되었습니다.");
+			System.out.println("탈퇴완");
+		} else {
+			session.setAttribute("alertMsg", "회원탈퇴에 실패했습니다.");
+			response.sendRedirect(request.getContextPath() + "/myPage.me");
+			//System.out.println("탈퇴ㄴㄴ");
+		}
 	
 	
 	}

@@ -178,7 +178,7 @@
                     <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." id="deletePwd" name="memPwd" required >
               		</div>
                  
-                 <button type="submit" class="btn btn-sm btn-danger" onclick="return deleteMember();">회원탈퇴</button>
+                 	<button type="submit" class="btn btn-sm btn-danger">회원 탈퇴</button>
 							      	
 		      	</form>  
 		      </div>

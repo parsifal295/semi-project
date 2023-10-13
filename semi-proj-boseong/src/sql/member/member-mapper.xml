@@ -97,11 +97,11 @@
 		   SET
 		       STATUS = 'N'
 		 WHERE
-			   USER_NO = ?
+			   MEM_NO = ?
 		   AND 
-		       USER_PWD = ?
+		       MEM_PWD = ?
 		   AND 
-		       STATUS = 'Y'	
+		       STATUS = 'U'	
 	</entry>
 	
 	
