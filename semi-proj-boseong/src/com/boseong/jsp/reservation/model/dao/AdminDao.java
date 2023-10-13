@@ -5,12 +5,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Properties;
 
-import com.boseong.jsp.reservation.model.vo.GreenteaReservation;
-import com.boseong.jsp.reservation.model.vo.HanokReservation;
-import com.boseong.jsp.reservation.model.vo.HorseReservation;
-import com.boseong.jsp.reservation.model.vo.MonthlivingReservation;
+import static com.boseong.jsp.common.JDBCTemplate.*;
 
 public class AdminDao {
 	private Properties prop = new Properties();
@@ -23,45 +22,26 @@ public class AdminDao {
 		}
 	}
 	
-	public HorseReservation countUpcomingRide(Connection conn) {
-		HorseReservation horseRsv = null;
+	public HashMap countUpcoming(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("countUpcomingRide");
-
+		HashMap counts = new HashMap();
+		String sql = prop.getProperty("countUpcoming");
 		
-		
-		return horseRsv;
-	}
-	public HanokReservation countUpcomingStay(Connection conn) {
-		HanokReservation hanokRsv = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("countUpcomingStay");
-		
-		
-		
-		return hanokRsv;
-	}
-	public MonthlivingReservation countUpcomingMonth(Connection conn) {
-		MonthlivingReservation monthRsv = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("countUpcomingRide");
-		
-		
-		
-		return monthRsv;
-	}
-	public GreenteaReservation countUpcomingTea(Connection conn) {
-		GreenteaReservation teaRsv = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("countUpcomingRide");
-		
-		
-		
-		return teaRsv;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				counts.put(rset.getString("TYPE"), rset.getInt("COUNT"));
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}		
+		return counts;
 	}
 
 }
