@@ -214,4 +214,14 @@
 		AND
 			STATUS = 'Y' 
 	</entry>
+	<entry key="deleteReply">
+		UPDATE
+			FB_REPLY
+		SET
+			STATUS = 'N'
+		WHERE
+			REPLY_NO = ?
+		AND
+			STATUS = 'Y'
+	</entry>
 </properties>
