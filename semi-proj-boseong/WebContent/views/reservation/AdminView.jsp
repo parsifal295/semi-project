@@ -117,6 +117,7 @@
 					$(function(){
 						$('.reserv-type>div').click(function(){
 								let title = $(this).children().text();
+								$('#reserv-type').text(title);
 								$.ajax({
 									url:'getList.rsv',
 									data:{type:title},
@@ -124,6 +125,7 @@
 										console.log('ajax succeed');
 										console.log(e);
 											$('#reserv-table-body').empty();
+										
 										for(let i=0; i<e.length;i++){
 											$el =$('<tr></tr>');
 											$el.append($('<td></td>').text(e[i].reservNo));
@@ -149,7 +151,7 @@
 				</div>
 				<div>
 				<form action = "">
-					<input type="radio" id="search-by-name" name="searchType" checked><label for="search-by-name">이름</label>
+					<input type="radio" id="search-by-name" name="searchType" checked><label for="search-by-name">아이디</label>
 					<input type="radio" id="search-by-no" name="searchType"><label for="search-by-no">예약번호</label>
 					<input type="text" placeholder="검색어를 입력하세요(기본 : 예약자 이름으로 검색)" name="search-key" required style="width:400px">
 					<button type="submit">
@@ -163,13 +165,14 @@
 							<th>예약 번호</th>
 							<th>예약자 아이디</th>
 							<th>전화번호</th>
-							<th>예약 종류</th>
+							<th>예약종류</th>
+							<th>예약 날짜(시작일)</th>
 							<th>예약 상태</th>
 						</tr>
 					</thead>
 					<tbody id="reserv-table-body">
 						<tr>
-							<td colspan="5">예약내역이 없습니다.</td>
+							<td colspan="5">예약 종류를 선택해주세요.</td>
 						</tr>
 						
 					</tbody>

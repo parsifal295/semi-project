@@ -46,11 +46,11 @@ public class AdminDao {
 		}		
 		return counts;
 	}
-	public ArrayList<AdminReservation> selectRides(Connection conn){
+	public ArrayList<AdminReservation> selectList(Connection conn, String key){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<AdminReservation> list = new ArrayList();
-		String sql = prop.getProperty("selectRides");
+		String sql = prop.getProperty(key);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -62,8 +62,8 @@ public class AdminDao {
 						rset.getInt("RESERVATION_NO"),
 						rset.getString("MEM_ID"),
 						rset.getString("PHONE"),
-						rset.getString("HORSE_PRO_NAME"),
-						rset.getString("HORSE_DATE"),
+						rset.getString("TYPE"),
+						rset.getString("START_DATE"),
 						rset.getString("STATUS")						
 						);
 				list.add(adminRsv);

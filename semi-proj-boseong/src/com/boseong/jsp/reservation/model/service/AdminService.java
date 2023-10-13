@@ -19,13 +19,16 @@ public class AdminService {
 	}
 	public ArrayList<AdminReservation> selectList(String type){
 		Connection conn= getConnection();
-		ArrayList<AdminReservation> list = null;
+		String key = "";
+		System.out.println(type);
 		switch(type) {
-		case "승마장": list = new AdminDao().selectRides(conn); break;
-		case "녹차 체험" : break;
-		case "한옥 스테이" : break;
-		case "한달 살기" : break;
+		case "승마장": key="selectRides"; break;
+		case "녹차 체험" : key ="selectTea"; break;
+		case "한옥 스테이" : key ="selectHanok"; break;
+		case "한달 살기" : key ="selectMonth"; break;
 		}
+		System.out.println(key);
+		ArrayList<AdminReservation> list = new AdminDao().selectList(conn, key);
 		close(conn);
 		return list;
 	}
