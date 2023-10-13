@@ -78,25 +78,6 @@
 						<div>
 							<h5>승마장</h5>
 						</div>
-						<script>
-					$(function(){
-						$('.reserv-type>div').click(function(){
-								let title = $(this).children().text();
-								$('#reserv-type').text(title);
-								$.ajax({
-									url:'',
-									data:{type:title},
-									success : function(e){
-										console.log('ajax succeed');
-										console.log(e);
-									},
-									error : function(e){
-										console.log('ajax failed');
-									}
-								})
-								})
-							})	
-						</script>
 					</div>
 					<div class="verticalbar">
 						<div>
@@ -132,6 +113,36 @@
 					</div>
 				</div>
 			</div>
+						<script>
+					$(function(){
+						$('.reserv-type>div').click(function(){
+								let title = $(this).children().text();
+								$.ajax({
+									url:'getList.rsv',
+									data:{type:title},
+									success : function(e){
+										console.log('ajax succeed');
+										console.log(e);
+											$('#reserv-table-body').empty();
+										for(let i=0; i<e.length;i++){
+											$el =$('<tr></tr>');
+											$el.append($('<td></td>').text(e[i].reservNo));
+											$el.append($('<td></td>').text(e[i].member));
+											$el.append($('<td></td>').text(e[i].phone));
+											$el.append($('<td></td>').text(e[i].type));
+											$el.append($('<td></td>').text(e[i].startDate));
+											$el.append($('<td></td>').text(e[i].status));
+											$('#reserv-table-body').append($el);
+										}
+
+									},
+									error : function(e){
+										console.log('ajax failed');
+									}
+								})
+								})
+							})	
+						</script>
 			<div id="search-reserv">
 				<div>
 					<h4>최근 예약내역</h4>
@@ -148,11 +159,15 @@
 				</div>
 				<table class="table">
 					<thead>
-						<tr>
-							<th colspan="5">예약 종류를 선택해주세요.</th>
+						<tr id="reserv-table-head">
+							<th>예약 번호</th>
+							<th>예약자 아이디</th>
+							<th>전화번호</th>
+							<th>예약 종류</th>
+							<th>예약 상태</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="reserv-table-body">
 						<tr>
 							<td colspan="5">예약내역이 없습니다.</td>
 						</tr>
