@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
+import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.reservation.model.vo.AdminReservation;
 
 public class AdminDao {
@@ -84,5 +85,25 @@ public class AdminDao {
 		
 		return list;
 	}
-
+	public int selectListCount(Connection conn, String key) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty(key);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				listCount = rset.getInt("COUNT(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
 }

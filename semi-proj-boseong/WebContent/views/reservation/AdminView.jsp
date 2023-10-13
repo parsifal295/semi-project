@@ -120,7 +120,7 @@
 								$('#reserv-type').text(title);
 								$.ajax({
 									url:'getList.rsv',
-									data:{type:title},
+									data:{type:title, cpage:1},
 									success : function(e){
 										console.log('ajax succeed');
 										console.log(e);
