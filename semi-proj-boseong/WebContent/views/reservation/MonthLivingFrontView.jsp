@@ -6,27 +6,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
 <title>한달살기 메인페이지</title>
   
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <script>
-	  $( function() {
-	    $("#datepicker").datepicker();
-	  } );
-  </script>
   
   
 <style>
-	.allouter{
-	margin-top : 250px;
-	height : 2500px;
-	}
 	
+	.page{
+		padding:0;
+		margin:0;
+		width:100%;
+		height : 100vh;
+		color : black;
+	}
+
+	#content{
+		width : 1302px;
+		height : 100%;
+		margin : auto;
+	}
 
 	.mainpic{
 			width : 2000px;
@@ -43,72 +43,40 @@
 	position:absolute;
 	top:50%;
 	left:50%;
-	transform:translate(-50%, -50%);
+	transform:translate(-50%, 50%);
 	color:white;
 	
 	}
-
-	
-
 
 	.box2{
 		background-color : white;
 		font-size:30px;
 		width : 200px;
-		height : 200px;
+		height : 210px;
 		text-align:center;
 		position:absolute;
 		line-height: 200px;
 		top:60%;
 		left:90%;
-		transform:translate(-50%, -90%);
+		transform:translate(-50%, -60%);
 		
 	}
 	
 
+
+
 	.outer{
-			width : 1500px;
-			height : 1800px;
+			width : 1400px;
+			height : 1000px;
 			margin : auto;
-			margin-top : 100px;
+			
 		}
 		
-	.content1{
- 		width:100%;
- 		height:200px;
- 		
- 		
-	}
+	
 		
-	.content1_1{
-		width:450px;
-		height:100px;
-		margin:23px;
-		float : left;
-	
-	}	
-		
-	.content1_2{
-		width:450px;
-		height:100px;
-		margin:23px;
-		float : left;
-	
-	}		
-	
-	.content1_3{
-		width:450px;
-		height:100px;
-		margin:23px;
-		float : left;
-	
-	}		
-		
-	
-	
 	 .list-area {
         text-align : center;
-        border : 1px solid red;
+        
     }
 	
 		
@@ -132,6 +100,13 @@
     }	
 		
 		
+		
+		
+		
+		
+		
+	
+		
 </style>
 
 
@@ -139,56 +114,36 @@
 
 </head>
 <body>
-<%@ include file="../common/menubar.jsp" %>
+	<%@ include file="../common/menubar.jsp" %>
 
-<div class="allouter">
 	
-	<div class="main_image">
-		<div class="mainpic">
-		<img src="https://tour.paju.go.kr/upload/tour/2020/6/18/bdbe4c95-1f51-4c6b-b8c9-5eed17edd422.jpg" width="2000" height="780" id="img9">
-		</div>
-		<div class="main_image_text"><h2 align=center style="font-size:60px;">한달 살기</h2></div>
-		
-		
-		
+	<div class="page">
+	<div style="height:200px;"></div>
 	
-		<% if(loginUser != null){ %>
+		<div class="page" style="height:900px;">
+			<div class="mainpic">
+				<img src="https://tour.paju.go.kr/upload/tour/2020/6/18/bdbe4c95-1f51-4c6b-b8c9-5eed17edd422.jpg" width="2000" height="780" id="img9">
+			</div>
+			<div class="main_image_text"><h2 align=center style="font-size:60px;">한달 살기</h2></div>
 			
-			<div class="box2" style="border:1px solid white;"><a href="<%= contextPath %>/resv.all" alert="로그인해주세요.">예약조회</a></div>
+
+			<% if(loginUser != null){ %>
+			
+			<form action="<%=contextPath%>/resv.all" method="post">
+							<input type="hidden" id="memNo" name="memNo" value="<%= loginUser.getMemNo() %>">
+							<div class="box2" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;" >예약조회</button></div>
+						</form>
 			<% } %>
-	
-	
-	
-	</div>
-	
-	
-	
-	<div class="outer">
-		<div class="content1">
-		<!--  
-			<div class="content1_1">
-			<h5>날짜<br></h5>
-			
-			<p>Date: <input type="text" id="datepicker"></p>
-			
-			</div>
-			<div class="content1_2">
-			<h5>인원<br></h5>
-			<input type="number" name="amount" min="0" max="50" value="1" step="1">
-			
-			</div>
-			<div class="content1_3">
-			<h5><br></h5>
-			
-			
-			</div>
-		-->
-		
+				
 		</div>
 		
-	
-	
-		<div class="list-area">
+		
+		<div class="page" style="height:1200px" clear="both">
+			<div class="content1_0" align="center">
+			<h2>🏠숙소 정보🏠</h2>
+			<hr>
+				<div class="content1" align="center">
+					<div class="list-area">
 		
 			<div class="thumbnail" align="center">
 			<img src="https://www.yupdduk.com/images/menu/2020_hotmenuY01.png" alt="메로나망고맛">
@@ -214,38 +169,44 @@
                     </p>
 			</div>
 			
-			<div class="thumbnail" align="center">
-			<img src="https://www.yupdduk.com/images/menu/2020_hotmenuY01.png" alt="메로나망고맛">
-                    <p>
-                    <h5><b>숙소이름 </b><br></h5>
-                       	 방 소개
-                    </p>
-			</div>
 			
-			<div class="thumbnail" align="center">
-			<img src="https://www.yupdduk.com/images/menu/2020_hotmenuY01.png" alt="메로나망고맛">
-                    <p>
-                    <h5><b>숙소이름 </b><br></h5>
-                       	 방 소개
-                    </p>
-			</div>
 			
-			<div class="thumbnail" align="center">
-			<img src="https://www.yupdduk.com/images/menu/2020_hotmenuY01.png" alt="메로나망고맛">
-                    <p>
-                    <h5><b>숙소이름 </b><br></h5>
-                       	 방 소개
-                    </p>
+			
 			</div>
 		
 		</div>
+		</div>
+				
+				
+				</div>
+				
+				
+			</div>
 		
 		
 		
-	</div>	
+		
+		<div class="page" clear="both" style="height:700px">
+		
+			
+		</div>
+		<br><br>
+	
+		
+		</div>
+		</div>
+			
+		
+	
+		
 	
 	
-</div>
+	
+	
+	
+	
+	
+	
 	
 
 
