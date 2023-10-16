@@ -27,14 +27,16 @@ public class AjaxNoticeUpdateController extends HttpServlet {
    */
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    int noticeNo = Integer.parseInt(request.getParameter("nno"));
+    request.setCharacterEncoding("UTF-8");
     String title = request.getParameter("title");
     String content = request.getParameter("content");
+    int noticeNo = Integer.parseInt(request.getParameter("nno"));
     Notice n = new Notice();
     n.setNoticeTitle(title);
     n.setNoticeNo(noticeNo);
     n.setNoticeContent(content);
     // 내용
+    System.out.println(n);
     new NoticeService().updateNotice(n);
     response.sendRedirect(request.getContextPath() + "/fboard.fb?cpage=1");
   }
