@@ -59,4 +59,38 @@ public class ProductNoticeService implements ProductNoticeServiceI{
 		return p;
 	}
 	
+	public int updateNotice(ProductNotice p) {
+		
+		Connection conn = getConnection();
+		
+		new ProductNoticeDao().updateNotice(conn, p);
+		
+		int result = new ProductNoticeDao().updateNotice(conn, p);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	public int deleteNotice(int noticeNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ProductNoticeDao().deleteNotice(conn, noticeNo);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+		
+	}
+
 }

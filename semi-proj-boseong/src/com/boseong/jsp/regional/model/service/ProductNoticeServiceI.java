@@ -7,6 +7,8 @@ import com.boseong.jsp.regional.model.vo.ProductNotice;
 public interface ProductNoticeServiceI {
 	
 	// 공지사항리스트조회(R)
+//	ArrayList<ProductNotice> selectProductNoticeList();
+
 	ArrayList<ProductNotice> selectProductNoticeList();
 
 }

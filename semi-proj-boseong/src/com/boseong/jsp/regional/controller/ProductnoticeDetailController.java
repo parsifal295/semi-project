@@ -40,7 +40,7 @@ public class ProductnoticeDetailController extends HttpServlet {
 			request.setAttribute("p", p);
 			
 			request.getRequestDispatcher("views/regional/productnoticeDetailView.jsp").forward(request, response);
-			
+//			System.out.println(result);
 	}	
 
 	/**
