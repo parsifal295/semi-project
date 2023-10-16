@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 
 import com.boseong.jsp.reservation.model.service.HorseService;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class HorseDateCheck
@@ -33,16 +34,11 @@ public class HorseDateCheck extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String horseDate = request.getParameter("horseDate");
-		System.out.println(horseDate);
 		ArrayList list = new HorseService().dateCheck(horseDate);
-
-		//한글 포함될 일 없음
 		response.setContentType("application/json; charset=UTF-8");
 		JSONArray jArr = new JSONArray();
-		for(int i = 0; i<list.size(); i++) {
-			jArr.add(list.get(i));
-		}
-		response.getWriter().print(jArr);
+		Gson gsn = new Gson();
+		gsn.toJson(list, response.getWriter());
 	}
 	
 	/**

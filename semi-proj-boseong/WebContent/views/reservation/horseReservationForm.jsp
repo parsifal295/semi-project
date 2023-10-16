@@ -55,19 +55,9 @@
 						<td><input type="date" name="horseDate" id="horseDate" required>
 						</td>
 						<td><select name="horseTime" id="horseTime">
-								<option>시간</option>
-								<option>10</option>
-								<option>11</option>
-								<option>12</option>
-								<option>13</option>
-								<option>14</option>
-								<option>15</option>
-								<option>16</option>
-								<option>17</option>
-								<option>18</option>
-								<option>19</option>
-								<option>20</option>
-						</select>시</td>
+								<option value="0">예약 날짜를 선택해주세요.</option>
+
+						</select></td>
 						<td><select name="riderNum" id="riderNum">
 								<option value="1">1명</option>
 								<option value="2">2명</option>
@@ -79,7 +69,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><h6>※당일 예약 신청 및 변경 주의</h6></td>
+						<td><h6>※당일 예약 시 업체 문의 필요</h6></td>
 						<td><h6>※예약 가능시간 : 10AM ~ 8PM</h6></td>
 						<td><h6>※최대인원 : 5명</h6></td>
 					<tr>
@@ -133,14 +123,12 @@
 	</div>
 	<script>
 		$(function() {
+			//페이지 로드 시 오늘의 날짜를 'yyyy-MM-dd'형식으로 만들어서
+			//input:date 인 #horseDate의 최솟값으로 정해준다.
 			let now = new Date();
 			let year = now.getFullYear();
 			let month = now.getMonth()+1;
 			let date = now.getDate();
-	//		let tomorrow = new Date(year, month, date+1);
-	//		year = tomorrow.getFullYear();
-	//		month = tomorrow.getMonth()+1;
-	//		date = tomorrow.getDate();
 			
 			if(month<10){
 				month = '0'+month;
@@ -155,6 +143,8 @@
 			$(':text').click(function() {
 				alert('예약자 성함과 연락처가 다르다면 회원정보를 변경해주세요!');
 			});
+			//예약 가능시간 : 10시~ 20시, 날짜 선택 시  해당 날짜에 이미 예약된 시간을 조회해와서
+			//이를 제외한 시간대의 option만 생성
 			$('#horseDate').change(
 					function() {
 						$.ajax({
@@ -165,12 +155,12 @@
 							type : 'get',
 							success : function(result) {
 							$('#horseTime').empty();
-							let $choice = $('<option></option>').text('시간');
+							let $choice = $('<option></option>').text('시간').val(0);
 							$('#horseTime').append($choice);
 								//자바스크립트, 제이쿼리 혼합문에서 제이쿼리 형식으로 바꿈!
 							for (let i = 10; i < 21; i++) {
 								if (result.indexOf(i) == -1) {
-								let $time = $('<option></option>').text(i);
+								let $time = $('<option></option>').text(i+'시').val(i);
 								$('#horseTime').append($time);
 								}
 

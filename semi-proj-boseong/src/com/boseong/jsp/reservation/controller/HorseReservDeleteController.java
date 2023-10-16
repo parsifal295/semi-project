@@ -41,12 +41,10 @@ public class HorseReservDeleteController extends HttpServlet {
 		int result = new HorseService().deleteRide(horseRsv);
 		if(result>0) {//예약 취소 성공
 			request.getSession().setAttribute("alertMsg", "예약 취소 성공!");
-			response.sendRedirect(request.getContextPath()+"/list.hs?memNo="+memNo);
 		}else {//예약 취소 실패
-			request.getSession().setAttribute("alertMsg", "승마 예약 취소 실패! 예약 정보를 확인하고 다시 시도해주세요.");
-			response.sendRedirect(request.getContextPath());
-			
+			request.getSession().setAttribute("alertMsg", "승마 예약 취소 실패! 예약 정보를 확인하고 다시 시도해주세요.");			
 		}
+		response.sendRedirect(request.getContextPath()+"/list.hs?memNo="+memNo);
 	}
 
 	/**

@@ -18,4 +18,14 @@ public class NoticeService {
     }
     return list;
   }
+
+  public Notice selectNotice(int noticeNo) {
+    Notice n = null;
+    try (Connection conn = getConnection()) {
+      n = new NoticeDao().selectNotice(conn, noticeNo);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return n;
+  }
 }
