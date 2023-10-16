@@ -55,11 +55,31 @@
           </td>
         </tr>
         <tr>
-          <td colspan="6">
-            <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
-                목록으로
-            </a>
-        </td>
+          <% if ((loginUser != null) && (loginUser.getStatus().equals("A"))) { %>
+            <!--관리자 로그인시-->
+            <td colspan="2">
+              <a href="#" class="btn btn-primary btn-block btn-warning" >
+                  수정
+              </a>
+            </td>
+            <td colspan="2">
+              <a href="#" class="btn btn-primary btn-block btn-danger" >
+                  삭제
+              </a>
+            </td>
+            <td colspan="2">
+              <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
+                  목록으로
+              </a>
+            </td>
+          <% } else { %>
+            <!--비로그인 상태 혹은 관리자가 아닌 사람이 로그인했을시-->
+            <td colspan="6">
+              <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
+                  목록으로
+              </a>
+            </td>
+        <% } %>
         </tr>
       </tbody>
     </table>
