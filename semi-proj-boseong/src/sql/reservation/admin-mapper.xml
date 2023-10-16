@@ -167,5 +167,121 @@ SELECT
 	SELECT COUNT(*) FROM MONTH_RESERVATION
 </entry>
 
+<entry key="selectReservation">
+SELECT 
+    RESERV_TYPE, RESERVATION_NO, MEM_ID, PHONE, "TYPE", START_DATE, STATUS 
+FROM (SELECT 
+      '한옥 스테이' "RESERV_TYPE",
+      RESERVATION_NO,
+      MEM_ID,
+      SUBSTR(PHONE,1,3)||'-****-'||SUBSTR(PHONE,10,12) "PHONE",
+      ROOM_TYPE "TYPE",
+      TO_CHAR(FROM_DATE)||'('||(TO_DATE-FROM_DATE)||'박)' "START_DATE",
+      HK.STATUS "STATUS"
+ FROM HANOK_RESERVATION HK 
+ JOIN TB_MEMBER USING(MEM_NO) 
+ JOIN ROOM_INFO USING(ROOM_NO) 
+ UNION ALL
+ SELECT 
+          '승마장' "RESERV_TYPE",
+          RESERVATION_NO,
+          MEM_ID,
+          SUBSTR(PHONE,1,3)||'-****-'||SUBSTR(PHONE,10,12) "PHONE",
+          HORSE_PRO_NAME "TYPE",
+          TO_CHAR(HORSE_DATE) "START_DATE",
+          HR.STATUS "STATUS"
+     FROM HORSE_RESERVATION HR 
+     JOIN TB_MEMBER USING(MEM_NO) 
+     JOIN HORSE_PROGRAM USING(HORSE_PRO_NO) 
+UNION ALL 
+SELECT 
+          '녹차 체험' "RESERV_TYPE",
+          RESERVATION_NO,
+          MEM_ID,
+          SUBSTR(PHONE,1,3)||'-****-'||SUBSTR(PHONE,10,12) "PHONE",
+          COURSE_NUM "TYPE",
+          TO_CHAR(START_DATE) "START_DATE",
+          T.STATUS "STATUS" 
+     FROM TEA_RESERVATION T 
+     JOIN TB_MEMBER USING(MEM_NO) 
+UNION ALL 
+SELECT 
+          '한달 살기' "RESERV_TYPE",
+          RESERVATION_NO,
+          MEM_ID,
+          SUBSTR(PHONE,1,3)||'-****-'||SUBSTR(PHONE,10,12) "PHONE",
+          LODGE_NAME "TYPE",
+          TO_CHAR(START_DATE) "START_DATE",
+          M.STATUS "STATUS" 
+     FROM 
+          MONTH_RESERVATION M 
+     JOIN TB_MEMBER USING(MEM_NO) 
+     JOIN MONTH_INFO USING(LODGE_NO)) 
+WHERE RESERVATION_NO=?
+</entry>
+
+<entry key="selectById">
+SELECT 
+       ROWNUM, 
+       RESERV_TYPE, 
+       RESERVATION_NO, 
+       MEM_ID, 
+       PHONE, 
+       "TYPE", 
+       START_DATE, 
+       STATUS 
+FROM (
+    (SELECT 
+      '한옥 스테이' "RESERV_TYPE",
+      RESERVATION_NO,
+      MEM_ID,
+      SUBSTR(PHONE,1,3)||'-****-'||SUBSTR(PHONE,10,12) "PHONE",
+      ROOM_TYPE "TYPE",
+      TO_CHAR(FROM_DATE)||'('||(TO_DATE-FROM_DATE)||'박)' "START_DATE",
+      HK.STATUS "STATUS"
+     FROM HANOK_RESERVATION HK 
+     JOIN TB_MEMBER USING(MEM_NO) 
+     JOIN ROOM_INFO USING(ROOM_NO) 
+     UNION ALL 
+     SELECT 
+              '승마장' "RESERV_TYPE",
+              RESERVATION_NO,
+              MEM_ID,
+              SUBSTR(PHONE,1,3)||'-****-'||SUBSTR(PHONE,10,12) "PHONE",
+              HORSE_PRO_NAME "TYPE",
+              TO_CHAR(HORSE_DATE) "START_DATE",
+              HR.STATUS "STATUS"
+         FROM HORSE_RESERVATION HR 
+         JOIN TB_MEMBER USING(MEM_NO) 
+         JOIN HORSE_PROGRAM USING(HORSE_PRO_NO) 
+    UNION ALL 
+    SELECT 
+              '녹차 체험' "RESERV_TYPE",
+              RESERVATION_NO,
+              MEM_ID,
+              SUBSTR(PHONE,1,3)||'-****-'||SUBSTR(PHONE,10,12) "PHONE",
+              COURSE_NUM "TYPE",
+              TO_CHAR(START_DATE) "START_DATE",
+              T.STATUS "STATUS" 
+         FROM TEA_RESERVATION T 
+         JOIN TB_MEMBER USING(MEM_NO) 
+    UNION ALL 
+    SELECT 
+              '한달 살기' "RESERV_TYPE",
+              RESERVATION_NO,
+              MEM_ID,
+              SUBSTR(PHONE,1,3)||'-****-'||SUBSTR(PHONE,10,12) "PHONE",
+              LODGE_NAME "TYPE",
+              TO_CHAR(START_DATE) "START_DATE",
+              M.STATUS "STATUS" 
+         FROM 
+              MONTH_RESERVATION M 
+         JOIN TB_MEMBER USING(MEM_NO) 
+         JOIN MONTH_INFO USING(LODGE_NO)
+         )ORDER BY RESERVATION_NO DESC)
+WHERE MEM_ID = ? AND ROWNUM BETWEEN 1 AND 7
+</entry>
+
+
 
 </properties>

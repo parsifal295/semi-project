@@ -46,6 +46,18 @@ public class AdminService {
 		
 		return lsitCount;
 	}
+	public AdminReservation selectReservation(int searchKey) {
+		Connection conn = getConnection();
+		AdminReservation selectedRsv = new AdminDao().selectReservation(conn, searchKey);
+		close(conn);
+		return selectedRsv;
+	}
+	public ArrayList<AdminReservation> selectById(String searchKey){
+		Connection conn = getConnection();
+		ArrayList<AdminReservation> list = new AdminDao().selectById(conn, searchKey);
+		close(conn);
+		return list;
+	}
 
 
 }

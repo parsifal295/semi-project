@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
-import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.reservation.model.vo.AdminReservation;
 
 public class AdminDao {
@@ -105,5 +104,70 @@ public class AdminDao {
 			close(pstmt);
 		}
 		return listCount;
+	}
+	
+	public AdminReservation selectReservation(Connection conn, int searchKey) {
+		PreparedStatement pstmt = null;
+		AdminReservation selectedRsv = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, searchKey);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				selectedRsv = 
+						new AdminReservation(
+						rset.getInt("RESERVATION_NO"),
+						rset.getString("MEM_ID"),
+						rset.getString("PHONE"),
+						rset.getString("TYPE"),
+						rset.getString("START_DATE"),
+						rset.getString("STATUS"),
+						rset.getString("RESERV_TYPE")
+						);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return selectedRsv;
+	}
+	public ArrayList<AdminReservation> selectById(Connection conn, String searchKey) {
+		PreparedStatement pstmt = null;
+		ArrayList<AdminReservation> list = new ArrayList();
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectById");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, searchKey);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				AdminReservation selectedRsv = new AdminReservation(
+								rset.getInt("RESERVATION_NO"),
+								rset.getString("MEM_ID"),
+								rset.getString("PHONE"),
+								rset.getString("TYPE"),
+								rset.getString("START_DATE"),
+								rset.getString("STATUS"),
+								rset.getString("RESERV_TYPE")
+								);
+				list.add(selectedRsv);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
 }

@@ -46,6 +46,9 @@
 		text-align:center;
 		padding-top:100px;
 	}
+	#search-reserv{
+		height:750px;
+	}
 	#search-reserv>div{
 		margin-top:5px;
 		float:left;
@@ -150,15 +153,78 @@
 					<h4>최근 예약내역</h4>
 				</div>
 				<div>
-				<form action = "">
-					<input type="radio" id="search-by-name" name="searchType" checked><label for="search-by-name">아이디</label>
-					<input type="radio" id="search-by-no" name="searchType"><label for="search-by-no">예약번호</label>
-					<input type="text" placeholder="검색어를 입력하세요(기본 : 예약자 이름으로 검색)" name="search-key" required style="width:400px">
-					<button type="submit">
+					<input type="radio" id="search-by-id" name="searchType" checked value="id"><label for="search-by-id">아이디</label>
+					<input type="radio" id="search-by-no" name="searchType" value="no"><label for="search-by-no">예약번호</label>
+					<input type="text" placeholder="검색어를 입력하세요(기본 : 예약자 아이디로 검색)" name="searchKey" id="search-key" required style="width:400px">
+					<button type="submit" onclick="return test();">
 					<img class="search-icon" src="https://icons.veryicon.com/png/o/miscellaneous/conventional-use/advanced-search.png">
 					</button>
-				</form>
 				</div>
+				<script>
+					function test(){
+						let types = document.getElementsByName('searchType');
+						let key = document.getElementById('search-key').value;
+						let searchType;
+						let regExp = /^[0-9]+$/;
+						for(let i =0; i<types.length; i++){
+							if(types[i].checked){
+								searchType = types[i].value;
+							}
+						}
+						if(searchType == 'no'){
+							if(!regExp.test(key)){
+								alert('예약번호로 검색합니다. 숫자만 입력해주세요.');
+								return false;
+							}							
+						}
+						return true;						
+					}
+				</script>
+				<script>
+					$(function(){
+						$('button:submit').click(function(){
+							$.ajax({
+								url : 'search.rsv',
+								data : {searchType : $(':radio').filter(':checked').val(), searchKey : $('#search-key').val()},
+								success: function(e){
+									$('#reserv-table-body').empty();
+									$('#reserv-type').text('');									
+									//예약 번호로 조회해서 객체이거나 널이거나
+									$el =$('<tr></tr>');
+									if(e == null || e.length==0){
+										$('#reserv-table-body').append($('<tr><td colspan="6"></td></tr>')).text('예약 정보가 존재하지 않습니다.');
+									}
+									else if(e.length == undefined){									
+										$el.append($('<td></td>').text(e.reservNo+'('+e.reservType+')'));
+										$el.append($('<td></td>').text(e.member));
+										$el.append($('<td></td>').text(e.phone));
+										$el.append($('<td></td>').text(e.type));
+										$el.append($('<td></td>').text(e.startDate));
+										$el.append($('<td></td>').text(e.status));
+										$('#reserv-table-body').append($el);
+									}
+									else
+									{for(let i in e){
+										$el =$('<tr></tr>');
+										$el.append($('<td></td>').text(e[i].reservNo+'('+e[i].reservType+')'));
+										$el.append($('<td></td>').text(e[i].member));
+										$el.append($('<td></td>').text(e[i].phone));
+										$el.append($('<td></td>').text(e[i].type));
+										$el.append($('<td></td>').text(e[i].startDate));
+										$el.append($('<td></td>').text(e[i].status));
+										$('#reserv-table-body').append($el);			
+										}
+									}
+								},
+								error:function(e){
+									console.log(e);
+								}
+							})
+						})
+					})
+				</script>
+
+
 				<table class="table">
 					<thead>
 						<tr id="reserv-table-head">

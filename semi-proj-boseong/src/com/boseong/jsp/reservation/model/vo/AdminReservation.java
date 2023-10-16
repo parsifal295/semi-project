@@ -9,17 +9,17 @@ public class AdminReservation {
 	private String type;
 	private String startDate;
 	private String status;
-	private PageInfo pi;
+	private String reservType;
 	
 	
-	public PageInfo getPi() {
-		return pi;
+	public String getReservType() {
+		return reservType;
 	}
-	public void setPi(PageInfo pi) {
-		this.pi = pi;
+	public void setReservType(String reservType) {
+		this.reservType = reservType;
 	}
 	public AdminReservation(int reservNo, String member, String phone, String type, String startDate, String status,
-			PageInfo pi) {
+			String reservType) {
 		super();
 		this.reservNo = reservNo;
 		this.member = member;
@@ -27,7 +27,7 @@ public class AdminReservation {
 		this.type = type;
 		this.startDate = startDate;
 		this.status = status;
-		this.pi = pi;
+		this.reservType = reservType;
 	}
 	public AdminReservation(int reservNo, String member, String phone, String type, String startDate, String status) {
 		super();
@@ -44,7 +44,7 @@ public class AdminReservation {
 	@Override
 	public String toString() {
 		return "AdminReservation [reservNo=" + reservNo + ", member=" + member + ", phone=" + phone + ", type=" + type
-				+ ", startDate=" + startDate + ", status=" + status + "]";
+				+ ", startDate=" + startDate + ", status=" + status + ", reservType=" + reservType + "]";
 	}
 	public int getReservNo() {
 		return reservNo;
