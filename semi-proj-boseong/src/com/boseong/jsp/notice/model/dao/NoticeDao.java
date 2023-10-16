@@ -55,6 +55,7 @@ public class NoticeDao {
         if (rs.next()) {
           n = new Notice();
           n.setCategory(10);
+          n.setNoticeNo(rs.getInt("NOTICE_NO"));
           n.setNoticeTitle(rs.getString("NOTICE_TITLE"));
           n.setNoticeContent(rs.getString("NOTICE_CONTENT"));
           n.setCreateDate(rs.getString("A"));
