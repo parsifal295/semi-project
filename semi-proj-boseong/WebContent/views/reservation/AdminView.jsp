@@ -59,7 +59,7 @@
 		height : 30px;
 	}
 	#update-area{
-		padding-left:750px;
+		padding-left:900px;
 	}
 
 </style>
@@ -246,12 +246,13 @@
 			</div>
 			<div id="update-area">
 				<div class="btn-group">
-					<input type="text" placeholder="예약 번호">
-					<button class= "btn btn-secondary">예약 상세조회</button>
-					<button class="btn btn-success">예약 수정</button>
+					<input type="text" placeholder="예약 번호" id="reservNo" name="reservNo">
 					<button class="btn btn-success">예약 삭제</button>
 				</div>
 			</div>
+			<script>
+			
+			</script>
 		
 		</div>
 	</div>
