@@ -308,7 +308,7 @@
             <!-- Modal body -->
             <div class="modal-body">
               댓글을 삭제하시려면 비밀번호를 입력해 주세요:
-              <input type="text" class="form-control" id="pass-delete" placeholder="작성시 입력했던 비밀번호" required>
+              <input type="password" class="form-control" id="pass-delete" placeholder="작성시 입력했던 비밀번호" required autocomplete="off">
               <form method="post" action="#">
                 <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
                 <button type="submit" style="float:right" class="btn btn-primary" onclick="checkDelete();">확인</button>
@@ -448,7 +448,7 @@
           $.ajax({
             url : 'updateReply.fb',
             data : {
-              replyNo : $('#reply-number').val(),
+              replyNo : $('#reply-number').attr("value"),
               bno : boardNo,
               reply : replyToUpdate
             },
