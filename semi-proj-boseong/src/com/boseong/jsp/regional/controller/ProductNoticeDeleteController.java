@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.boseong.jsp.regional.model.service.ProductNoticeService;
-import com.boseong.jsp.regional.model.vo.ProductNotice;
 
 /**
- * Servlet implementation class PrductNoticeInsertController
+ * Servlet implementation class ProductNoticeDeleteController
  */
-@WebServlet("/insert.pn")
-public class PrductNoticeInsertController extends HttpServlet {
+@WebServlet("/delete.pn")
+public class ProductNoticeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PrductNoticeInsertController() {
+    public ProductNoticeDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,26 +28,16 @@ public class PrductNoticeInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+
+		int noticeNo = Integer.parseInt(request.getParameter("nno"));
 		
-		String noticeTitle = request.getParameter("title");
-		String noticeContent = request.getParameter("content");
-		
-		ProductNotice p = new ProductNotice();
-		p.setNoticeTitle(noticeTitle);
-		p.setNoticeContent(noticeContent);
-//		int noticeNo = Integer.parseInt(request.getParameter("nno"));
-//		int result = new ProductNoticeService().increaseCount(noticeNo);
-		int result = new ProductNoticeService().insertProductNotice(p);
+		int result = new ProductNoticeService().deleteNotice(noticeNo);
 		
 		if(result > 0) {
-			
 			response.sendRedirect(request.getContextPath() + "/list.pn");
-			
-		} else { 
-			request.getRequestDispatcher("views/regional/productnoticeListView.jsp").forward(request, response);
-	
 		}
+	
+	
 	}
 
 	/**

@@ -7,6 +7,8 @@ import com.boseong.jsp.freeboard.model.service.FreeboardService;
 import com.boseong.jsp.freeboard.model.vo.Freeboard;
 import com.boseong.jsp.freeboard.model.vo.FreeboardReply;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
+import com.boseong.jsp.notice.model.service.NoticeService;
+import com.boseong.jsp.notice.model.vo.Notice;
 import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import java.io.File;
@@ -58,7 +60,9 @@ public class FreeboardController {
         new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 
     ArrayList<Freeboard> list = new FreeboardService().selectFboardList(pi); // 전체 게시글 객체
+    ArrayList<Notice> noticeList = new NoticeService().selectNoticeList();
     request.setAttribute("list", list);
+    request.setAttribute("noticeList", noticeList);
     request.setAttribute("pi", pi);
     return "/views/freeboard/fboardListView.jsp";
   }
