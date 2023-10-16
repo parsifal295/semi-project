@@ -155,7 +155,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">비밀번호</span>
                  </div>
-                 <input type="password" class="form-control" id="replyPw">
+                 <input type="password" class="form-control" id="replyPw" autocomplete="off">
                </div>
               </td>
               <td width="200">
@@ -267,7 +267,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" >비밀번호</span>
                         </div>
-                        <input type="password" class="form-control" id="reply-passform" placeholder="댓글 등록시 입력한 비밀번호를 입력해주세요">
+                        <input type="password" class="form-control" id="reply-passform" placeholder="댓글 등록시 입력한 비밀번호를 입력해주세요" autocomplete="off">
                       </div>
                     </td>
                   </tr>

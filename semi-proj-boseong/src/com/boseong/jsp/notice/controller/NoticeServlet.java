@@ -31,8 +31,9 @@ public class NoticeServlet extends HttpServlet {
     String view = "";
     boolean flag = true;
     switch (uri) {
-      case "notice.no":
-        new NoticeController().selectNoticeList(request, response);
+      case "noticeView.no":
+        flag = false;
+        view = new NoticeController().selectNotice(request, response);
         break;
     }
 

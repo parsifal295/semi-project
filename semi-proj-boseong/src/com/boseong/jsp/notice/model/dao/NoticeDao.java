@@ -37,11 +37,34 @@ public class NoticeDao {
           n.setCreateDate(rs.getString("A"));
           n.setModifyDate(rs.getString("B"));
           n.setCount(rs.getInt("COUNT"));
+          list.add(n);
         }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return list;
+  }
+
+  public Notice selectNotice(Connection conn, int noticeNo) {
+    Notice n = null;
+    String sql = prop.getProperty("selectNotice");
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setInt(1, noticeNo);
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          n = new Notice();
+          n.setCategory(10);
+          n.setNoticeTitle(rs.getString("NOTICE_TITLE"));
+          n.setNoticeContent(rs.getString("NOTICE_CONTENT"));
+          n.setCreateDate(rs.getString("A"));
+          n.setModifyDate(rs.getString("B"));
+          n.setCount(rs.getInt("COUNT"));
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return n;
   }
 }

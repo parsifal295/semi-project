@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ page
-import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %> 
-<% ArrayList<Freeboard>
-	list = (ArrayList<Freeboard>)request.getAttribute("list"); 
-    PageInfo pi = (PageInfo)request.getAttribute("pi"); 
-    int currentPage = pi.getCurrentPage(); 
-    int startPage = pi.getStartPage(); 
-    int endPage = pi.getEndPage(); 
-    int maxPage = pi.getMaxPage(); 
+import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.jsp.notice.model.vo.*" %> 
+<%  ArrayList<Freeboard> list = (ArrayList<Freeboard>)request.getAttribute("list"); 
+    ArrayList<Notice> noticeList = (ArrayList<Notice>)request.getAttribute("noticeList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi"); 
+	int currentPage = pi.getCurrentPage(); 
+	int startPage = pi.getStartPage(); 
+	int endPage = pi.getEndPage(); 
+	int maxPage = pi.getMaxPage(); 
 %>
 <!DOCTYPE html>
 <html>
@@ -36,10 +36,10 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 				<thead class="thead-light">
 					<tr>
 						<th width="100">번호</th>
-						<th width="350">제목</th>
+						<th width="300">제목</th>
 						<th width="170">작성자</th>
 						<th width="60">조회수</th>
-						<th width="100">작성일</th>
+						<th width="170">작성일</th>
 					</tr>
 				</thead>
 				<tbody style="cursor:default">
@@ -47,15 +47,30 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 					<tr>
 						<td colspan="5">조회된 게시글이 없습니다..</td>
 					</tr>
-					<% } else { %> <% for (Freeboard b : list) { %>
-					<tr>
-						<td><%=b.getBoardNo()%></td>
-						<td><%=b.getTitle() %></td>
-						<td><%=b.getWriter() %></td>
-						<td><%=b.getCount() %></td>
-						<td><%=b.getCreateDate() %></td>
-					</tr>
-					<% } %> <% } %>
+					<% } else { %> 
+					<% if (!noticeList.isEmpty()) { %>
+						<% for (Notice n : noticeList) { 
+							int trIndex = 1; %>
+							<tr value="<%=trIndex%>">
+								<td>공지</td>
+								<td><%=n.getNoticeTitle() %></td>
+								<td>관리자</td>
+								<td><%=n.getCount() %></td>
+								<td><%=n.getModifyDate() %></td>
+							</tr>
+							<%trIndex++;
+						 } %>
+					<% } %>
+						<% for (Freeboard b : list) { %>
+							<tr>
+								<td><%=b.getBoardNo()%></td>
+								<td><%=b.getTitle() %></td>
+								<td><%=b.getWriter() %></td>
+								<td><%=b.getCount() %></td>
+								<td><%=b.getCreateDate() %></td>
+							</tr>
+						<% } %>
+					<% } %>
 				</tbody>
 			</table>
 			<div class="paging-area" align="center">
@@ -109,9 +124,17 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 		<%@ include file = "../common/footer.jsp" %>
     <script>
       $(()=>{
-        $("#tb > tbody > tr").click(function(){
-          location.href = "<%=contextPath%>/detailView.fb?bno=" + $(this).children().eq(0).text();
-        })
+				$("#tb > tbody > tr").click(function(){
+					var index = $(this).children().eq(0).text();
+						if (index =='공지') {
+							index = $(this).attr("value");
+							console.log(index);
+							location.href = "<%=contextPath%>/noticeView.no?nno=" + index;
+						}
+						else {
+							location.href = "<%=contextPath%>/detailView.fb?bno=" + index;
+						}
+					})
       })
     </script>
 	</body>

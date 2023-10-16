@@ -52,7 +52,7 @@
 											>비밀번호</span
 										>
 									</div>
-									<input type="password" class="form-control" name="password" required />
+									<input type="password" class="form-control" name="password" required autocomplete="off" />
 								</div>
 							</td>
 							<td colspan="2">
