@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RegionalCookieRecipeController
+ * Servlet implementation class RegionalJamDetailController
  */
-@WebServlet("/cookie.re")
-public class RegionalCookieRecipeController extends HttpServlet {
+@WebServlet("/jam.re")
+public class RegionalJamDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegionalCookieRecipeController() {
+    public RegionalJamDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class RegionalCookieRecipeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("/views/regional/regionalProductCookieRecipeView.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/regional/regionalProductJamRecipeView.jsp").forward(request, response);
 	}
 
 	/**

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment> 공지사항 SQL문 </comment>
+	<entry key="selectNoticeList">
+	SELECT
+		NOTICE_NO,
+		CATEGORY_NO,
+		NOTICE_TITLE,
+		NOTICE_CONTENT,
+		(TO_CHAR(CREATE_DATE, 'YYYY/MM/DD HH24:MI:SS')) A,
+		(TO_CHAR(MODIFY_DATE, 'YYYY/MM/DD HH24:MI:SS')) B,
+		COUNT
+	FROM
+		TB_NOTICE
+	WHERE
+		STATUS = 'Y'
+	ORDER BY
+		NOTICE_NO
+	</entry>
+</properties>

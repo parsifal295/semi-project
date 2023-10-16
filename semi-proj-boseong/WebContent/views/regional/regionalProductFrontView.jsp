@@ -111,7 +111,7 @@
                 <tr><td id="option5">배송비</td><td>무료</td></tr>
 		</table>
 		<form>
-            	<input type="button" id="cart" value="장바구니" style="float:right;">
+            	<input type="button" onclick="location.href='views/regional/regionalProductOrderListView.jsp'" id="cart" value="장바구니" style="float:right;">
             	<input type="button" onclick="location.href='views/regional/regionalProductOrderView.jsp'" id="buy" value="바로구매" style="float:right;">
            </form>
 		
