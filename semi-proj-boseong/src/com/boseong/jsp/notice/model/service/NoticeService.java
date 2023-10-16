@@ -28,4 +28,34 @@ public class NoticeService {
     }
     return n;
   }
+
+  public int updateNotice(Notice n) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new NoticeDao().updateNotice(conn, n);
+      if (result > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public int deleteNotice(int noticeNo) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new NoticeDao().deleteNotice(conn, noticeNo);
+      if (result > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
 }

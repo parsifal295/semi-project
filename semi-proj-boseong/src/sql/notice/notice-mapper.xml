@@ -34,4 +34,29 @@
 		AND
 			STATUS = 'Y'
 	</entry>
+	<entry key="updateNotice">
+		UPDATE
+			TB_NOTICE
+		SET
+			(
+			NOTICE_TITLE = ?,
+			NOTICE_CONTENT = ?
+			)
+		WHERE
+			NOTICE_NO = ?
+		AND
+			STATUS = 'Y'
+	</entry>
+	<entry key="deleteNotice">
+		UPDATE
+			TB_NOTICE
+		SET	
+			(
+			STATUS = 'N'
+			)
+		WHERE
+			NOTICE_NO = ?
+		AND
+			STATUS = 'Y'
+	</entry>
 </properties>
