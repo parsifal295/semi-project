@@ -244,19 +244,20 @@ public class ItemBoardDao {
 		ArrayList<ItemBoard> list = new ArrayList();
 		String sql = prop.getProperty("searchbarList");
 		ResultSet rset = null;
+		int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
 			pstmt.setString(1, "%"+ keyword +"%");
-			
-			
-			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
-			int endRow = startRow + pi.getBoardLimit() - 1;
-			
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
-			
+			System.out.println("iboard dao search keyword : " + keyword);
+			System.out.println("iboard dao search startRow : " + startRow);
+			System.out.println("iboard dao search endRow : " + endRow);
+
 			rset = pstmt.executeQuery();
+			
 			while(rset.next()) {
 				ItemBoard ib = new ItemBoard();
 				ib.setBoardNo(rset.getInt("BOARD_NO"));
@@ -274,6 +275,7 @@ public class ItemBoardDao {
 		} finally {
 			close(rset);
 		}
+		System.out.println("IB DAO SEARCH LIST : " + list);
 		return list;
 	}
 

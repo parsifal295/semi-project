@@ -3,7 +3,7 @@
 <%@ page import="java.util.ArrayList, com.boseong.jsp.itemboard.model.vo.ItemBoard,
 			     com.boseong.jsp.freeboard.model.vo.PageInfo"%>
 <%
-	ArrayList<ItemBoard> list = (ArrayList<ItemBoard>)request.getAttribute("list");
+	ArrayList<ItemBoard> list = (ArrayList<ItemBoard>)request.getAttribute("searched");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
