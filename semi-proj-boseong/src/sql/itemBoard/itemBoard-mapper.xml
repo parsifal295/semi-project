@@ -143,4 +143,55 @@
 		 WHERE 
 		 		BOARD_NO = ?
 	</entry>
+	<entry key="searchbarList">
+  		SELECT 
+				BOARD_NO, 
+				MEM_NAME,
+				IBOARD_TITLE,
+				IBOARD_CONTENT,
+				IBOARD_POST_DATE,
+				IBOARD_MODIFY_DATE,
+				COUNT,
+				PRICE,
+				ROWNUM RNUM
+	      FROM    
+       (SELECT 
+				BOARD_NO, 
+				MEM_NAME,
+				IBOARD_TITLE,
+				IBOARD_CONTENT,
+				IBOARD_POST_DATE,
+				IBOARD_MODIFY_DATE,
+				COUNT,
+				PRICE,
+				ROWNUM RNUM
+	      FROM 
+	   (SELECT  
+				BOARD_NO, 
+				MEM_NAME,
+				IBOARD_TITLE,
+				IBOARD_CONTENT,
+				IBOARD_POST_DATE,
+				IBOARD_MODIFY_DATE,
+				COUNT,
+				PRICE,
+				ROWNUM RNUM
+	      FROM  
+	      		TB_ITEMBOARD IB
+	      JOIN 
+ 		  		TB_MEMBER MEM ON IB.MEM_NO = MEM.MEM_NO
+	     WHERE 
+	     		IBOARD_TITLE LIKE ?
+  		   AND 
+  		   		IB.STATUS = 'Y'
+  		   AND
+  		   		CATEGORY_NO = 20
+  		   AND
+  		   		MEM.STATUS != 'N'
+         ORDER 
+	        BY 
+	        	IBOARD_POST_DATE DESC) A)
+         WHERE  
+         		RNUM BETWEEN ? AND ? 
+	</entry>
 </properties>
