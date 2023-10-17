@@ -21,11 +21,12 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	      <form action="<%= request.getContextPath() %>/insert.me" method="post">
+	      <form action="<%= request.getContextPath() %>/insert.me" method="post" id="enroll-form">
 	      	<table>
 	      		<tr>
 	      			<td>* 아이디</td>
 	      			<td><input type="text" name="memId" maxlength="12" required></td>
+	      			<td><button type="button" onclick="idCheck();">중복확인</button>
 	      		</tr>
 	      		<tr>
 	      			<td>* 비밀번호</td>
@@ -64,12 +65,51 @@
 				</tr>
 	      	</table>
 	      	
-	      	<div align="center">
-				<button type="submit">회원가입</button>
+	      	<div align="center" id="enroll-button">
+				<button type="submit" disabled>회원가입</button>
 			</div>
 	      	
 	      </form>
 	      </div>
+	      
+	      <script>
+	      	function idCheck(){
+	      		
+	      		const $memId = $('#enroll-form input[name=memId]');
+	      		
+	      		$.ajax({
+	      			url : 'idCheck.me',
+	      			data : {checkId : $memId.val()}, //키, 밸류
+	      			success : function(result){
+	      				//console.log(result)
+	      				if(result == 'NNNNN'){
+	      					alert('이미 존재하거나 탈퇴한 회원의 아이디입니다.');
+	      					$memId.val('').focus();
+	      				} else {
+	      					if(confirm('사용가능한 아이디입니다. 사용하시겠습니까?')){
+	      						$memId.attr('readonly', true);
+	      						$('#enroll-button button[type=submit]').removeAttr('disabled');
+	      					}
+	      					else {
+	      						$memId.val('').focus();
+	      					}
+	      					
+	      				}
+	      			},
+	      			error : function(){
+	      				console.log('아이디 중복체크 실패');
+	      			}
+	      			
+	      		});
+	      		
+	      		
+	      		
+	      		
+	      		
+	      		
+	      	}
+	      
+	      </script>
 	
 	      <!-- Modal footer -->
 	      <div class="modal-footer">

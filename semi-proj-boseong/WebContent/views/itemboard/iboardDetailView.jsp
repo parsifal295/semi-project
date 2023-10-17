@@ -5,6 +5,7 @@
 			     com.boseong.jsp.scrap.model.vo.Scrap" %>
 <%@ page import="java.util.ArrayList" %>
 <%
+  
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
 %>
@@ -104,9 +105,10 @@
             <div class="iboardImg"></div>
             <div id="info">
             <% if(loginUser != null) { %>
-                <div id="scrap-area">
-	            	<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
-                </div>
+							<div id="scrap-area">
+							<% if (ib. )
+							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
+							</div>
             <% } %>
             <div id="userInfo">
 	            <% if(loginUser != null && loginUser.getMemNo() == ib.getMemberNo() ) {%>
@@ -210,15 +212,15 @@
         	  }
           })
     	});
-    	
-           // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
+			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
+		</script>
 
            
-           
+		<script>
            //----------------------------------------------------------------------------------//
                
 			//새로 다시 코드를 짜보자...
-            <% if(loginUser != null) { %>
+          
 				let scrap = '<%= contextPath%>/resources/image/scrap.png';
 				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
 				
