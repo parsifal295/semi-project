@@ -16,7 +16,7 @@ import com.boseong.jsp.reservation.model.vo.greenteaInfo;
 
 public class GreenteaService {
 	
-	//이건왜하는겨?
+	
 	public GreenteaService() {}
 	
 	//추가하기.

@@ -32,7 +32,7 @@ public class GreenTeaReservInsertController extends HttpServlet {
 		
 		//나중에 수정필요->수정완료(10/12)
 		//int memNo = 1;
-		int memNo = Integer.parseInt(request.getParameter("memNo")); // 또뭐가문제냐고..
+		int memNo = Integer.parseInt(request.getParameter("memNo")); 
 		String startDate = request.getParameter("startDate");
 		String courseNum = request.getParameter("courseNum");
 		int bookNum = Integer.parseInt(request.getParameter("bookNum")); 
@@ -44,10 +44,10 @@ public class GreenTeaReservInsertController extends HttpServlet {
 		g.setCourseNum(courseNum);
 		g.setBookNum(bookNum);
 		
+		
 		int result = new GreenteaService().insertReserv(g);
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath()+"/green.li?memNo=" + memNo);
-			
+			response.sendRedirect(request.getContextPath()+"/green.li?memNo=" + memNo);	
 		}else {
 			request.getRequestDispatcher("/views/reservation/GreenteaReservationView.jsp").forward(request, response);
 		}

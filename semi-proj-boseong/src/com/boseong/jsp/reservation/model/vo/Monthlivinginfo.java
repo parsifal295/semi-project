@@ -8,6 +8,14 @@ public class Monthlivinginfo {
 	private String lodgeInfo;
 	
 	
+	public Monthlivinginfo(int lodgeNo, String lodgeName, int price) {
+		super();
+		this.lodgeNo = lodgeNo;
+		this.lodgeName = lodgeName;
+		this.price = price;
+	}
+
+
 	public Monthlivinginfo() {
 		super();
 	}

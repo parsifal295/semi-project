@@ -21,12 +21,14 @@
 		width:100%;
 		height : 100vh;
 		color : black;
+		
 	}
 
 	#content{
 		width : 1302px;
 		height : 100%;
 		margin : auto;
+		
 	}
 
 	.mainpic{
@@ -156,7 +158,7 @@
 		
 		<div class="page"></div>
 		
-		<div class="page" clear="both">
+		<div class="page" clear="both" style="margin-left:1em">
 		
 			<div class="content3" >
 			<br>

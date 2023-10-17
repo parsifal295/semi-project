@@ -88,7 +88,7 @@
 		<div class="page" style="height:300px;" ></div>
 		
 		
-		<div class="page" style="height:1500px; width:1800px;">
+		<div class="page" style="height:1500px; width:1800px; margin-left:1em;">
 				<div class="title">
 				<h3><strong><%=m.getLodgeName()%></strong></h3>
 				</div>
@@ -96,9 +96,10 @@
 				
 			<% if(loginUser != null){ %>	
 				<div class="reserv_btn">
-					<form action="<%=contextPath%>/month.in" method="post">
+					<form action="<%=contextPath%>/month.fo" method="post">
 							<input type="hidden" id="memNo" name="memNo" value="<%= loginUser.getMemNo() %>">
-							<input type="hidden" id="lodgeNo" value="<%=m.getLodgeNo() %>">
+							<input type="hidden" id="lodgeNo" name="lodgeNo" value="<%=m.getLodgeNo() %>">
+							
 					<button type="submit" class="btn btn-primary btn-lg" >예약하기</button>
 					</form>
 				</div>
@@ -147,6 +148,16 @@
 		</div>
 		
 		</div>
+		
+		<script>
+		function list(memNo){
+			location.href = "<%=contextPath%>/month.in?memNo="+memNo;
+			location.href = "<%=contextPath%>/month.in?lodgeNo="+lodgeNo;"
+		}
+		</script>
+		
+		
+		
 		
 		
 

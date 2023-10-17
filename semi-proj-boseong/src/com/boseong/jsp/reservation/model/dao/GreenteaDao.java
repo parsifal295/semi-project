@@ -17,7 +17,7 @@ import com.boseong.jsp.reservation.model.vo.greenteaInfo;
 
 public class GreenteaDao {
 	
-		/* 만든이유 prop잘 작동시키려고 (?)*/
+		/* prop*/
 		private Properties prop = new Properties();
 		
 		public GreenteaDao() {

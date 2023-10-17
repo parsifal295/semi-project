@@ -60,13 +60,6 @@ public class MonthlivingDao {
 						rset.getString("LODGE_INFO")
 				
 					);
-				/*m = new Monthlivinginfo();
-				m.setLodgeNo(rset.getInt("LODGE_NO"));
-				m.setLodgeName(rset.getString("LODGE_NAME"));
-				m.setLodgeLocation(rset.getString("LODGE_LOCATION"));
-				m.setPrice(rset.getInt("PRICE"));
-				m.setLodgeInfo(rset.getString("LODGE_INFO"));	
-				*/
 			}
 			
 			
@@ -78,14 +71,54 @@ public class MonthlivingDao {
 		}
 		return m;
 	}
-	
-	
-	
-	/*
-	public ArrayList<Monthlivinginfo> selectMonthlivinginfoList(Connection conn){
+
+
+
+
+
+
+
+	public int insertReserv(Connection conn, MonthlivingReservation mr) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReserv");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			/*memNo
+			lodgeNo
+			startDate
+			peopleNum */
+			pstmt.setInt(1,  mr.getMemNo());
+			pstmt.setInt(2,  mr.getLodgeNo());
+			pstmt.setString(3,  mr.getStartDate());
+			pstmt.setInt(4,  mr.getPeopleNum());
+			
+			result = pstmt.executeUpdate();
+			System.out.println(result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+
+
+
+
+	//얘 안쓰는거같음
+	public ArrayList<Monthlivinginfo> selectMonthlivinginfoList(Connection conn) {
+		
 		ArrayList<Monthlivinginfo> list = new ArrayList();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		
 		String sql = prop.getProperty("selectMonthlivinginfoList");
 		
 		try {
@@ -93,29 +126,91 @@ public class MonthlivingDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				Monthlivinginfo m = new Monthlivinginfo();
-				m.setLodgeNo(rset.getInt("LODGE_NO"));
-				m.setLodgeName(rset.getString("LODGE_NAME"));
-				m.setLodgeLocation(rset.getString("LODGE_LOCATION"));
-				m.setPrice(rset.getInt("PRICE"));
-				m.setLodgeInfo(rset.getString("LODGE_INFO"));
-				list.add(m);
+				Monthlivinginfo mi = new Monthlivinginfo();
+				/*
+				 * LODGE_NO
+					LODGE_NAME
+					LODGE_LOCATION
+					PRICE
+					LODGE_INFO
+				 */
+				mi.setLodgeNo(rset.getInt("LODGE_NO"));
+				mi.setLodgeName(rset.getString("LODGE_NAME"));
+				mi.setLodgeLocation(rset.getString("LODGE_PRICE"));
 				
+				
+				list.add(mi);
 			}
 			
-			
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
+		
 		return list;
-		
-		
 	}
-	*/
+
+	
+	
+
+
+
+
+
+
+
+	public ArrayList<MonthlivingReservation> selectReservation(Connection conn, int memNo) {
+		ArrayList<MonthlivingReservation> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1,  memNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				MonthlivingReservation mr = new MonthlivingReservation() ;
+				
+				
+				/*
+				 * private int reservationNo;
+					private int memNo;
+					private int lodgeNo;
+					private String startDate;
+					private int peopleNum;
+					
+				 */
+				mr.setReservationNo(rset.getInt("RESERVATION_NO"));
+				mr.setMemNo(memNo);
+				
+				mr.setLodgeNo(rset.getInt("LODGE_NO"));
+				mr.setStartDate(rset.getString("START_DATE"));
+				mr.setPeopleNum(rset.getInt("PEOPLE_NUM"));
+				
+				list.add(mr);
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+
+	
+	
+	
 	
 	
 	

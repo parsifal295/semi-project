@@ -44,6 +44,19 @@
 		color:white;
 	}
 
+	.box1{
+		background-color : white;
+		font-size:30px;
+		width : 200px;
+		height : 210px;
+		text-align:center;
+		position:absolute;
+		top:30%;
+		left:90%;
+		line-height: 200px;
+		transform:translate(-50%, 40%);
+	}
+	
 	.box2{
 		background-color : white;
 		font-size:30px;
@@ -54,7 +67,7 @@
 		line-height: 200px;
 		top:60%;
 		left:90%;
-		transform:translate(-50%, -60%);
+		transform:translate(-50%, 50%);
 	}
 	
 
@@ -123,7 +136,14 @@
 
 			<% if(loginUser != null){ %>
 			
-				<form action="<%=contextPath%>/resv.all" method="post">
+				<form action="<%=contextPath%>/month.fo" method="get">
+					<input type="hidden" id="memNo1" name="memNo" value="<%= loginUser.getMemNo() %>">											
+					<div class="box1" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;" >예약하기</button></div>
+				</form>
+			
+			
+			
+				<form action="<%=contextPath%>/month.li" method="post">
 							<input type="hidden" id="memNo" name="memNo" value="<%= loginUser.getMemNo() %>">
 							
 							<div class="box2" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;" >예약조회</button></div>
@@ -216,6 +236,10 @@
         	            return;
         	        }
         	    }
+        	    
+        	    function list(memNo){
+        			location.href = "<%=contextPath%>/month.li?memNo="+memNo;
+        		}
         	    
     </script>  
 

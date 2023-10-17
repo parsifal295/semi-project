@@ -23,9 +23,7 @@ public class MonthlivingService {
 
 	
 
-	
-	
-	
+	//----------------
 	public Monthlivinginfo selectMonthlivinginfo(int lodgeNo) {
 		
 		Connection conn = getConnection();
@@ -38,34 +36,48 @@ public class MonthlivingService {
 	}
 
 
-
-
-
-
+	//---------------
 	public int insertReserv(MonthlivingReservation mr) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		Connection conn = getConnection();
+		int result = new MonthlivingDao().insertReserv(conn, mr);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
 	}
 
 
+	//-------------------
+	public ArrayList<Monthlivinginfo> selectMonthlivinginfoList(){
+		Connection conn = getConnection();
+		ArrayList<Monthlivinginfo> list = new MonthlivingDao().selectMonthlivinginfoList(conn);
+		close(conn);
+		return list;
+	}
 
 
-
-
-	
-	
-	/*
-	
-	public ArrayList<Monthlivinginfo> selectMonthlivinginfo(){
+	//-------------------
+		public ArrayList<MonthlivingReservation> selectReservation(int memNo){
 		
 		Connection conn = getConnection();
-		ArrayList <Monthlivinginfo> list  = new MonthlivingDao().selectMonthlivinginfo(conn, 0);
+		
+		ArrayList<MonthlivingReservation> list = new MonthlivingDao().selectReservation(conn, memNo);
 		
 		close(conn);
 		
-		return list;	
+		return list;
+		
+		
+		
 	}
-	*/
+	
+	
+	
+
 	
 	
 

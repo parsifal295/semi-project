@@ -1,23 +1,28 @@
 package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.boseong.jsp.reservation.model.service.MonthlivingService;
+import com.boseong.jsp.reservation.model.vo.MonthlivingReservation;
+
 /**
- * Servlet implementation class MonthLivingReservFormController
+ * Servlet implementation class MonthLivingReservListController
  */
-@WebServlet("/month.fo")
-public class MonthLivingReservFormController extends HttpServlet {
+@WebServlet("/month.li")
+public class MonthLivingReservListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MonthLivingReservFormController() {
+    public MonthLivingReservListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +31,15 @@ public class MonthLivingReservFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		
-		request.getRequestDispatcher("/views/reservation/MonthLivingReservForm.jsp").forward(request, response);
+		ArrayList<MonthlivingReservation> list = new MonthlivingService().selectReservation(memNo);
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/reservation/MonthLivingReservListView.jsp").forward(request, response);
+	
 	}
 
 	/**

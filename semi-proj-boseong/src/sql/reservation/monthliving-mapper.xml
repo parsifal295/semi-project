@@ -18,12 +18,68 @@
 	</entry>
 	
 	
+	<entry key="insertReserv">
+	INSERT
+	INTO
+		MONTH_RESERVATION
+	VALUES(
+		SEQ_RESERV_NO.NEXTVAL,
+		?,
+		?,
+		?,
+		?,
+		DEFAULT
+	)
+	</entry>
 
+
+	<entry key="selectMonthlivinginfoList">
+	SELECT
+		LODGE_NO,
+		LODGE_NAME,
+		LODGE_PRICE
+	FROM
+		MONTH_INFO
+	
+	
+	</entry>
+	
+	<entry key= "selectReserv">
+		SELECT
+			RESERVATION_NO,
+			LODGE_NO,
+			MEM_NO,
+			START_DATE,
+			PEOPLE_NUM,
+		FROM
+			MONTH_RESERVATION
+		WHERE
+			RESERVATION_NO = ?
+		AND
+			MEM_NO = ?
+		AND
+			STATUS = 'Y'
+		ORDER BY
+			RESERVATION_NO
+	</entry>
 	
 	
 	
 	
 	
+	
+	
+	
+	<entry key = "deleteReserv">
+		UPDATE
+			MONTH_RESERVATION
+		SET
+			STATUS = 'N'
+		WHERE
+			RESERVATION_NO = ?
+		AND
+			MEM_NO = ?
+	</entry>
 	
 	
 	

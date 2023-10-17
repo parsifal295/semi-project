@@ -33,9 +33,7 @@ public class GreenTeaReservDeleteController extends HttpServlet {
 		//회원정보 = 회원아이디(memNo), number가져오기
 		int reservationNo = Integer.parseInt(request.getParameter("nno"));
 		
-		
 		int result = new GreenteaService().deleteGreentea(reservationNo);
-		
 		
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "예약 취소되었습니다.");					
