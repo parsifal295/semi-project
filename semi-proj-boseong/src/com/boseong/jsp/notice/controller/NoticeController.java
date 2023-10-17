@@ -15,4 +15,41 @@ public class NoticeController {
     request.setAttribute("n", n);
     return "/views/notice/noticeDetailView.jsp";
   }
+
+  public String updateView(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
+    String title = request.getParameter("title");
+    String content = request.getParameter("content");
+    int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+    Notice n = new Notice();
+    n.setNoticeTitle(title);
+    n.setNoticeNo(noticeNo);
+    n.setNoticeContent(content);
+    request.setAttribute("n", n);
+    return "views/notice/noticeUpdateView.jsp";
+  }
+
+  public String updateNotice(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
+    String title = request.getParameter("title");
+    String content = request.getParameter("content");
+    int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+    Notice n = new Notice();
+    n.setNoticeTitle(title);
+    n.setNoticeNo(noticeNo);
+    n.setNoticeContent(content);
+    new NoticeService().updateNotice(n);
+
+    return request.getContextPath() + "/fboard.fb?cpage=1";
+  }
+
+  public String deleteNotice(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
+    int noticeNo = Integer.parseInt(request.getParameter("nno"));
+    new NoticeService().deleteNotice(noticeNo);
+    return "";
+  }
 }

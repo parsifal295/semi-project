@@ -75,6 +75,7 @@ public class NoticeDao {
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
       ps.setString(1, n.getNoticeTitle());
       ps.setString(2, n.getNoticeContent());
+      ps.setInt(3, n.getNoticeNo());
       result = ps.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

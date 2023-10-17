@@ -6,15 +6,15 @@
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>공지사항 수정</title>
-<style>
-    td {
-        padding: 2px;
-    }
-</style>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <title>공지사항 수정</title>
+    <style>
+        td {
+            padding: 2px;
+        }
+    </style>
+  </head>
   <body>
     <%@ include file = "../common/menubar.jsp" %>
     <div class="outer" id="content">
@@ -31,38 +31,44 @@
           </tr>
         </thead>
         <tbody>
+          <form action="<%= contextPath %>/updateNotice.no" method="post">
+            <input type="hidden" name="noticeNo" value="<%= n.getNoticeNo() %>">
           <tr>
             <td colspan="6">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">제목</span>
-                    </div>
-                    <p class="form-control" name="title" style="cursor : default"><%=n.getNoticeTitle() %></p>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">제목</span>
                 </div>
+                <input type="text" class="form-control" name="title" required value="<%=n.getNoticeTitle()%>" />
+              </div>
             </td>
           </tr>
           <tr>
             <td colspan="6">
-                <div class="form-group">
-                    <label for="comment">글 내용: </label>
-                    <p
-                        class="form-control"
-                        id="article"
-                        name="content"
-                        style="cursor : default"
-                    ><%=n.getNoticeContent() %></p>
-                </div>
+              <div class="form-group">
+                <label for="comment">글 수정: </label>
+                <textarea
+                  class="form-control"
+                  rows="10"
+                  id="article"
+                  name="content"
+                  required
+                  style="resize:none"
+                ><%=n.getNoticeContent()%></textarea>
+              </div>
             </td>
           </tr>
           <tr>
               <td colspan="6">
-                <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-warning" >
+                <button type="submit" class="btn btn-primary btn-warning" >
                     수정하기
-                </a>
+                </button>
+              </form>
               </td>
           </tr>
         </tbody>
       </table>
     </div>
+    <%@ include file = "../common/footer.jsp" %>
   </body>
 </html>

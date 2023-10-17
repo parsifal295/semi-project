@@ -58,9 +58,12 @@
             <% if ((loginUser != null) && (loginUser.getStatus().equals("A"))) { %>
               <!--관리자 로그인시-->
               <td colspan="2">
-                <a href="<%= contextPath %>/updateView.no" class="btn btn-primary btn-block btn-warning" >
-                    수정
-                </a>
+                <form action="<%=contextPath%>/updateView.no" method="post">
+                  <input type="hidden" name="noticeNo" value="<%= n.getNoticeNo() %>">
+                  <input type="hidden" name="title" value="<%= n.getNoticeTitle() %>">
+                  <input type="hidden" name="content" value="<%= n.getNoticeContent() %>">
+                  <button type="submit" class="btn btn-primary btn-block btn-warning">수정</button>
+                </form>
               </td>
               <td colspan="2">
                 <a href="<%= contextPath %>/delete.no" class="btn btn-primary btn-block btn-danger" >
@@ -84,21 +87,6 @@
         </tbody>
       </table>
     </div>
-    <script>
-      $(() => {
-        $.ajax({
-          url : 'updateView.no',
-          type : 'post',
-          data : {
-            noticeNo : <%= n.getNoticeNo() %>,
-            title : '<%= n.getNoticeTitle() %>',
-            content : '<%= n.getNoticeContent() %>'
-          },
-          success : function() {
-            console.log(1);
-          }
-        })
-      });
-    </script>
+    <%@ include file = "../common/footer.jsp" %>
   </body>
 </html>

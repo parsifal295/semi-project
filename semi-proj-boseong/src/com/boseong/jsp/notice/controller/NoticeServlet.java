@@ -35,6 +35,15 @@ public class NoticeServlet extends HttpServlet {
         flag = false;
         view = new NoticeController().selectNotice(request, response);
         break;
+      case "updateView.no":
+        flag = false;
+        view = new NoticeController().updateView(request, response);
+        break;
+      case "updateNotice.no":
+        view = new NoticeController().updateNotice(request, response);
+        break;
+      case "delete.no":
+        break;
     }
 
     if (flag) {
