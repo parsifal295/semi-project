@@ -6,15 +6,15 @@
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>공지사항 View</title>
-<style>
-    td {
-        padding: 2px;
-    }
-</style>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <title>공지사항 View</title>
+    <style>
+        td {
+            padding: 2px;
+        }
+    </style>
+  </head>
   <body>
     <%@ include file = "../common/menubar.jsp" %>
     <div class="outer" id="content">
@@ -58,7 +58,7 @@
             <% if ((loginUser != null) && (loginUser.getStatus().equals("A"))) { %>
               <!--관리자 로그인시-->
               <td colspan="2">
-                <a href="<%= contextPath %>/update.no" class="btn btn-primary btn-block btn-warning" >
+                <a href="<%= contextPath %>/updateView.no" class="btn btn-primary btn-block btn-warning" >
                     수정
                 </a>
               </td>
@@ -87,17 +87,18 @@
     <script>
       $(() => {
         $.ajax({
-          url : 'update.no',
+          url : 'updateView.no',
+          type : 'post',
           data : {
-            nno : <%= n.getNoticeNo() %>,
-            title : <%= n.getNoticeTitle() %>,
-            content : <%= n.getNoticeContent() %>
+            noticeNo : <%= n.getNoticeNo() %>,
+            title : '<%= n.getNoticeTitle() %>',
+            content : '<%= n.getNoticeContent() %>'
           },
           success : function() {
             console.log(1);
           }
         })
-      })
+      });
     </script>
   </body>
 </html>

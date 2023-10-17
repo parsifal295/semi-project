@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet implementation class AjaxNoticeUpdateController */
-@WebServlet("/update.no")
+@WebServlet("/updateView.no")
 public class AjaxNoticeUpdateController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class AjaxNoticeUpdateController extends HttpServlet {
     request.setCharacterEncoding("UTF-8");
     String title = request.getParameter("title");
     String content = request.getParameter("content");
-    int noticeNo = Integer.parseInt(request.getParameter("nno"));
+    int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
     Notice n = new Notice();
     n.setNoticeTitle(title);
     n.setNoticeNo(noticeNo);
@@ -38,7 +38,7 @@ public class AjaxNoticeUpdateController extends HttpServlet {
     // 내용
     System.out.println(n);
     new NoticeService().updateNotice(n);
-    response.sendRedirect(request.getContextPath() + "/fboard.fb?cpage=1");
+    request.getRequestDispatcher("views/notice/noticeUpdateView.jsp").forward(request, response);
   }
 
   /**
