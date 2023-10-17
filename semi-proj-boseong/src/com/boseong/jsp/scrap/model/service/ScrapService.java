@@ -25,17 +25,13 @@ public class ScrapService {
     Connection conn = getConnection();
 
     int insert = new ScrapDao().iboardInsertScrap(conn, sc);
-    int scrap = 0;
     if (insert > 0) {
       commit(conn);
-      // String st = new ScrapDao().iboardInsertNo(conn, sc);
     } else {
       rollback(conn);
     }
     close(conn);
-    System.out.println("Service insert Scrap : " + scrap);
-
-    return scrap;
+    return insert;
   }
 
   public int iboardScrapUpdate(Scrap sc) {
