@@ -106,7 +106,7 @@
             <div id="info">
             <% if(loginUser != null) { %>
 							<div id="scrap-area">
-							<% if (ib. )
+							
 							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
 							</div>
             <% } %>
