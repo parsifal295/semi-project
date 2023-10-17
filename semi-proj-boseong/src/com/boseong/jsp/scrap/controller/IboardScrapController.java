@@ -70,20 +70,20 @@ public class IboardScrapController extends HttpServlet {
 			// list가 비어있다면 insert
 			scrapNo = new ScrapService().iboardInsertScrap(sc);
 			if(sc.getStatus() == null) {
-				status = "scrap";
-			} else {
 				status = "scrapted";
 			}
 		}else{
 			// list에 값이 있다면 update
 			scrapNo = new ScrapService().iboardScrapUpdate(sc);	
-			if(sc.getStatus() == null) {
-				status = "scrap";
-			}else {
-				status = "scrapted";
+			for(Scrap st : list) {
+				System.out.println(st.getStatus());
+				if(sc.getStatus().equals("scrap")) {
+					status = "scrap";
+				}else {
+					status = "scrapted";
+				}
 			}
 		}
-		
 
 		System.out.println("Status : " + status);
 		

@@ -106,6 +106,11 @@
 		width: 100%;
 		text-align: right;
 		float: right;
+		color : #e5e8e5c3;
+	}
+	#login-form a{
+		text-decoration: none;
+		color : #e5e8e5c3;	
 	}
 	/* ---------------- navigator 영역 부분 ---------------- */
 	#navi {

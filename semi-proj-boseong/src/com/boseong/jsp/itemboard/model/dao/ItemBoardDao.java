@@ -238,6 +238,44 @@ public class ItemBoardDao {
 		}
 		return result;
 	}
+	
+	public ArrayList<ItemBoard> searchbarList(Connection conn, String keyword, PageInfo pi){
+		
+		ArrayList<ItemBoard> list = new ArrayList();
+		String sql = prop.getProperty("searchbarList");
+		ResultSet rset = null;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			
+			pstmt.setString(1, "%"+ keyword +"%");
+			
+			
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				ItemBoard ib = new ItemBoard();
+				ib.setBoardNo(rset.getInt("BOARD_NO"));
+				ib.setMemberName(rset.getString("MEM_NAME"));
+				ib.setTitle(rset.getString("IBOARD_TITLE"));
+				ib.setContent(rset.getString("IBOARD_CONTENT"));
+				ib.setPostDate(rset.getDate("IBOARD_POST_DATE"));
+				ib.setModifyDate(rset.getDate("IBOARD_MODIFY_DATE"));
+				ib.setCount(rset.getInt("COUNT"));
+				ib.setPrice(rset.getInt("PRICE"));
+				list.add(ib);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+		}
+		return list;
+	}
 
 	
 	

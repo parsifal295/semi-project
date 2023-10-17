@@ -1,5 +1,7 @@
 package com.boseong.jsp.scrap.model.dao;
 
+import static com.boseong.jsp.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,8 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import static com.boseong.jsp.common.JDBCTemplate.close;
 import com.boseong.jsp.itemboard.model.dao.ItemBoardDao;
+import com.boseong.jsp.itemboard.model.vo.ItemBoard;
 import com.boseong.jsp.scrap.model.vo.Scrap;
 
 public class ScrapDao {
@@ -46,6 +48,7 @@ public class ScrapDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("DAO scrap result : " + result);
 		return result;
 	}
 	
@@ -145,5 +148,6 @@ public class ScrapDao {
 		}
 		return update;
 	}
+	
 
 }
