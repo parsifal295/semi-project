@@ -5,6 +5,7 @@
 			     com.boseong.jsp.scrap.model.vo.Scrap" %>
 <%@ page import="java.util.ArrayList" %>
 <%
+  
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
 %>
@@ -101,9 +102,10 @@
             <div class="iboardImg"></div>
             <div id="info">
             <% if(loginUser != null) { %>
-                <div id="scrap-area">
-	            	<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
-                </div>
+							<div id="scrap-area">
+							<% if (ib. )
+							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
+							</div>
             <% } %>
             <div id="userInfo">
 	            <% if(loginUser != null && loginUser.getMemNo() == ib.getMemberNo() ) {%>
