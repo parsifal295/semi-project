@@ -68,10 +68,14 @@ public class ItemBoardListController extends HttpServlet {
 		// 값을 담기
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 	    ArrayList<ItemBoard> list = new ItemBoardService().selectIboardList(pi);	
-
+	    // 검새한 게시글 list
+	    String keyword = request.getParameter("keyword");
+		ArrayList<ItemBoard> searched = new ItemBoardService().searchbarList(keyword,pi);
+		System.out.println("searched controller : " + searched);
 	    // 값을 담고 
 	    request.setAttribute("list", list);
 	    request.setAttribute("pi", pi);
+	    request.setAttribute("searched", searched);
 	    // 응답 화면 지정
 		request.getRequestDispatcher("views/itemboard/iboardListView.jsp?cpage=1").forward(request, response);
 	

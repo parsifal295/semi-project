@@ -17,8 +17,27 @@
 <title>보성마켓</title>
 <style>
 	#btn{
-		margin-left: 84.5%;
-		margin-bottom: 10px;
+		float : left;
+		margin-left : 144px;
+		margin-bottom : 20px;
+	}
+	#searchbar{
+		width : 200px; 
+		float : right;
+		margin-right : 20px;
+	}
+	#searchBtn{
+		float : right;
+	}
+	#search-area{
+		width : 350px;
+		margin-right : 144px;
+		margin-bottom : 20px;
+		float : right;
+	}
+	#select{
+		float : left;
+		margin-right : 10px; 
 	}
 </style>
 </head>
@@ -31,6 +50,14 @@
 		<%if(loginUser != null){ %>
 		<a type="submit" href="<%= contextPath %>/enrollform.ib" class="btn btn-primary btn-sm" id="btn">글작성</a>
 		<%} %>
+		<div id="search-area">
+			<!-- <select name="select" class="custom-select-sm" id="select">
+				<option name=value="item">제품</option>
+				<option value="price">가격</option>
+			</select> -->
+			<a type="submit" href="<%= contextPath %>/search.ib" class="btn btn-primary btn-sm" id="searchBtn">검색</a>
+			<input type="text" name="keyword" class="form-control form-control-sm" id="searchbar" placeholder="제품입력">
+		</div>
 		<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default;">
 		<thead class="thead-light">
 	      <tr>
