@@ -40,16 +40,29 @@ public class NoticeController {
     n.setNoticeTitle(title);
     n.setNoticeNo(noticeNo);
     n.setNoticeContent(content);
-    System.out.println(n);
     new NoticeService().updateNotice(n);
+    return request.getContextPath() + "/fboard.fb?cpage=1";
+  }
+
+  public String insertNotice(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
+    String title = request.getParameter("title");
+    String content = request.getParameter("content");
+    int category = Integer.parseInt(request.getParameter("category"));
+    Notice n = new Notice();
+    n.setNoticeTitle(title);
+    n.setCategory(category);
+    n.setNoticeContent(content);
+    new NoticeService().insertNotice(n);
     return request.getContextPath() + "/fboard.fb?cpage=1";
   }
 
   public String deleteNotice(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     request.setCharacterEncoding("UTF-8");
-    int noticeNo = Integer.parseInt(request.getParameter("nno"));
+    int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
     new NoticeService().deleteNotice(noticeNo);
-    return "";
+    return request.getContextPath() + "/fboard.fb?cpage=1";
   }
 }

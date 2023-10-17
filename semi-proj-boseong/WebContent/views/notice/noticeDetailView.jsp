@@ -64,26 +64,28 @@
                   <input type="hidden" name="content" value="<%= n.getNoticeContent() %>">
                   <button type="submit" class="btn btn-primary btn-block btn-warning">수정</button>
                 </form>
-              </td>
-              <td colspan="2">
-                <a href="<%= contextPath %>/delete.no" class="btn btn-primary btn-block btn-danger" >
-                    삭제
-                </a>
-              </td>
-              <td colspan="2">
-                <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
+                </td>
+                <td colspan="2">
+                  <form action="<%= contextPath %>/delete.no" method="post">
+                    <input type="hidden" name="noticeNo" value="<%= n.getNoticeNo() %>">
+                    <button type="submit" class="btn btn-primary btn-block btn-danger" >
+                      삭제</button>
+                  </form>
+                </td>
+                <td colspan="2">
+                  <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
                     목록으로
-                </a>
-              </td>
-            <% } else { %>
-              <!--비로그인 상태 혹은 관리자가 아닌 사람이 로그인했을시-->
-              <td colspan="6">
-                <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
-                    목록으로
-                </a>
-              </td>
-          <% } %>
-          </tr>
+                  </a>
+                </td>
+                <% } else { %>
+                  <!--비로그인 상태 혹은 관리자가 아닌 사람이 로그인했을시-->
+                  <td colspan="6">
+                    <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
+                      목록으로
+                    </a>
+                  </td>
+                  <% } %>
+                </tr>
         </tbody>
       </table>
     </div>

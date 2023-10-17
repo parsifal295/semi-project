@@ -58,4 +58,14 @@ public class NoticeService {
     }
     return result;
   }
+
+  public int insertNotice(Notice n) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new NoticeDao().insertNotice(conn, n);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
 }

@@ -43,6 +43,10 @@ public class NoticeServlet extends HttpServlet {
         view = new NoticeController().updateNotice(request, response);
         break;
       case "delete.no":
+        view = new NoticeController().deleteNotice(request, response);
+        break;
+      case "write.no":
+        view = new NoticeController().insertNotice(request, response);
         break;
     }
 
