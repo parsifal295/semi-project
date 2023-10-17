@@ -212,15 +212,15 @@
         	  }
           })
     	});
-    	
-           // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
+			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
+		</script>
 
            
-           
+		<script>
            //----------------------------------------------------------------------------------//
                
 			//새로 다시 코드를 짜보자...
-            <% if(loginUser != null) { %>
+          
 				let scrap = '<%= contextPath%>/resources/image/scrap.png';
 				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
 				

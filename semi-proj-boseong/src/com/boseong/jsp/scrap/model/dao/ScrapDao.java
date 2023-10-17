@@ -52,7 +52,7 @@ public class ScrapDao {
   public Scrap iboardScrapSelect(Connection conn, Scrap sc) {
 
     String sql = prop.getProperty("iboardScrapSelect");
-    Scrap sp = new Scrap();
+    Scrap sp = null;
     ResultSet rset = null;
 
     try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -61,6 +61,7 @@ public class ScrapDao {
       pstmt.setInt(2, sc.getBoardNo());
       rset = pstmt.executeQuery();
       if (rset.next()) {
+        sp = new Scrap();
         sp.setMemberNo(rset.getInt("MEM_NO"));
         sp.setBoardNo(rset.getInt("IBOARD_NO"));
         sp.setStatus(rset.getString("STATUS"));

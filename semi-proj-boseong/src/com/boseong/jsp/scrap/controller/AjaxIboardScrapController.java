@@ -32,36 +32,24 @@ public class AjaxIboardScrapController extends HttpServlet {
     request.setCharacterEncoding("UTF-8");
     response.setContentType("application/json; charset=UTF-8");
 
-    String scrap = request.getParameter("status");
+    // 스크랩 버튼 클릭여부 반환값. 널 핸들링 필요
+    String scrapStatus = request.getParameter("status");
     int boardNo = Integer.parseInt(request.getParameter("boardNo"));
     int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 
     Scrap scrapToFind = new Scrap();
-    scrapToFind.setStatus(scrap);
     scrapToFind.setBoardNo(boardNo);
     scrapToFind.setMemberNo(memberNo);
 
-    // scrapNo 로 받은 값을 String status로 바꿔서 반환해줌
-    int scrapNo = 0;
-    String status = "";
+    // 게시글 번호 & 유저번호로 스크랩 여부 조회
     Scrap scrapResult = new ScrapService().iboardScrapSelect(scrapToFind);
 
-    if (list != null && !list.isEmpty()) {
-      scrapNo = new ScrapService().iboardScrapUpdate(sc);
-      if (scrapNo == 1) {
-        status = "Y";
-      } else {
-        status = "D";
-      }
-      System.out.println("list == null  : " + status);
-    } else {
-      scrapNo = new ScrapService().iboardInsertScrap(sc);
-      if (scrapNo == 1) {
-        status = "Y";
-      } else {
-        status = "N";
-      }
-    }
+    // 스크랩 여부 저장
+    String status = scrapResult.getStatus();
+
+    // 조회결과값이 null (스크랩 된 적이 없음) && 스크랩버튼 클릭시
+    if ((scrapResult == null) && scrapStatus == "Y") {}
+
     System.out.println("Controller insert Scrap : " + status);
 
     JSONObject jObj = new JSONObject();

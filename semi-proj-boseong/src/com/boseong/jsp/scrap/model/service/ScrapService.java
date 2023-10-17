@@ -5,7 +5,6 @@ import static com.boseong.jsp.common.JDBCTemplate.commit;
 import static com.boseong.jsp.common.JDBCTemplate.getConnection;
 import static com.boseong.jsp.common.JDBCTemplate.rollback;
 
-import com.boseong.jsp.scrap.controller.IboardScrapController;
 import com.boseong.jsp.scrap.model.dao.ScrapDao;
 import com.boseong.jsp.scrap.model.vo.Scrap;
 import java.sql.Connection;
@@ -14,15 +13,10 @@ import java.util.ArrayList;
 public class ScrapService {
 
   public Scrap iboardScrapSelect(Scrap sc) {
-
     Connection conn = getConnection();
-
-    Scrap s = new Scrap();
-
+    Scrap s = null;
     s = new ScrapDao().iboardScrapSelect(conn, sc);
-
     close(conn);
-
     return s;
   }
 
