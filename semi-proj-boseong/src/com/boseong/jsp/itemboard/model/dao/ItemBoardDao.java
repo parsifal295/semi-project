@@ -278,6 +278,32 @@ public class ItemBoardDao {
 		System.out.println("IB DAO SEARCH LIST : " + list);
 		return list;
 	}
+	
+	
+	public int keywordListCount(Connection conn, String keyword) {
+		
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("keywordListCount");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%");
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("COUNT(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
 
 	
 	
