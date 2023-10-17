@@ -40,8 +40,8 @@ public class NoticeController {
     n.setNoticeTitle(title);
     n.setNoticeNo(noticeNo);
     n.setNoticeContent(content);
+    System.out.println(n);
     new NoticeService().updateNotice(n);
-
     return request.getContextPath() + "/fboard.fb?cpage=1";
   }
 
