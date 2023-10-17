@@ -47,7 +47,8 @@ box-sizing : border-box;
 	<div id="content" class="page">
 		<div class="page">
 			<form action="insertHanok.rsv">
-				<input type="hidden" name="userNo" value="<%=loginUser.getMemNo()%>">
+				<input type="hidden" name="userNo" 
+				<%if(loginUser != null){ %> value="<%=loginUser.getMemNo()%>" <%} %>>
 				<h2>객실 선택</h2>
 				<table class="table">
 					<tr>
@@ -77,7 +78,7 @@ box-sizing : border-box;
 						</td>
 						<td>
 							<input type ="number" max=4 min =2 placeholder=2 name="clientNum" id="clientNum" value="2" required>
-							<span>최대 인원 : </span>
+							<span>인원 선택</span>
 						</td>
 						<td>
 							객실 타입을 선택하세요.
@@ -89,6 +90,7 @@ box-sizing : border-box;
 				</table>
 				<h2>투숙객 정보</h2>
 				 <table class="table">
+				 <%if(loginUser!=null){ %>
 					<tr>
 						<th>투숙객 성함</th>
 						<td><input type="text" readonly value="<%=loginUser.getMemName() %>"></td>
@@ -97,6 +99,11 @@ box-sizing : border-box;
 						<th>연락처</th>
 						<td><input type="text" readonly value="<%=loginUser.getPhone()%>"></td>
 					</tr>
+				<%}else{ %>
+					<tr>
+						<td>예약하시려면 로그인해주세요.</td>
+					</tr>
+				<%} %>
 					<tr>
 						<th>요청사항</th>
 						<td>
@@ -156,7 +163,7 @@ box-sizing : border-box;
 						else{
 							let str=$('#roomType :selected').text()+'에는 다음 기간에 이미 예약이 존재합니다ㅜㅜ';
 							for (let i in e){
-								str += '\n체크인 : ' + e[i].fromDate + ' 체크아웃 : ' + e[i].toDate;
+								str += '\n' + e[i].fromDate + ' ~ ' + e[i].toDate;
 							}
 							alert(str);
 						}
@@ -177,22 +184,18 @@ box-sizing : border-box;
 				success : function(e){
 				$('#clientNum').attr({min :e.baseNum, placeholder:e.baseNum, max : e.maxNum}).val(e.baseNum);
 				$('#reserv-info').children().eq(4).text(e.price+'원');
-				if(e.extraPrice == 0){
-					e.extraPrice = '해당 없음';
-					//$('#reserv-info').children().eq(5).text(e.extraPrice);
-				}
-				else{
-					e.extraPrice += '원';
-				}
-				$('#reserv-info').children().eq(5).text(e.extraPrice);
+				let $extraPrice = (e.extraPrice==0)? '해당 없음' : e.extraPrice+'원';
+				$('#reserv-info').children().eq(5).text($extraPrice);
 				$('#reserv-info span').text('최대인원 : '+e.maxNum);
 				},
+			
 				error : function(e){
 					alert('실패');
 					console.log(e);
 				}
 				})
 			});
+		
 		let now = new Date();
 		let year = now.getFullYear();
 		let month = now.getMonth()+1;

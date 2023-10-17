@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RegionalProductSoapController
+ * Servlet implementation class RegionalTeaDetailController
  */
-@WebServlet("/soap.rp")
-public class RegionalProductSoapController extends HttpServlet {
+@WebServlet("/tea.rp")
+public class RegionalTeaDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegionalProductSoapController() {
+    public RegionalTeaDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,8 @@ public class RegionalProductSoapController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("/views/regional/regionalProductSoapView.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/regional/regionalProductTeaView.jsp").forward(request, response);
+	
 	}
 
 	/**

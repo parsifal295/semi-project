@@ -177,4 +177,34 @@ public class FreeboardService {
     }
     return result;
   }
+
+  public int updateReply(FreeboardReply fr) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new FreeboardDao().updateReply(conn, fr);
+      if (result > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+  public int deleteReply(int boardNo) {
+    int result = 0;
+    try (Connection conn = getConnection()) {
+      result = new FreeboardDao().deleteReply(conn, boardNo);
+      if (result > 0) {
+        commit(conn);
+      } else {
+        rollback(conn);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
 }

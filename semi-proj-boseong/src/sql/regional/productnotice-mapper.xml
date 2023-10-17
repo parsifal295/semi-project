@@ -29,7 +29,7 @@
 				)
 		VALUES
 				(
-				SEQ_NNO.NEXTVAL
+				SEQ_NOTICE_NO.NEXTVAL
 				,?
 				,?
 				)
@@ -45,5 +45,43 @@
 		 		NOTICE_NO = ? 
 		   AND
 		   		STATUS = 'Y' 
+	</entry>
+	
+	<entry key="selectProductNotice">
+		SELECT
+				NOTICE_NO,
+				NOTICE_TITLE, 
+				NOTICE_CONTENT, 
+				CREATE_DATE 
+		  FROM  
+		   		PRODUCT_NOTICE
+	     WHERE
+		   		NOTICE_NO = ? 
+		   AND
+		 		PRODUCT_NOTICE.STATUS = 'Y' 
+	</entry> 
+	
+	<entry key="updateNotice">
+		UPDATE
+				PRODUCT_NOTICE
+		   SET
+		   		NOTICE_TITLE = ?, 
+				NOTICE_CONTENT = ?	
+		 WHERE
+		   		NOTICE_NO = ? 
+		   AND
+		 		PRODUCT_NOTICE.STATUS = 'Y' 			
+	</entry>
+	
+	<entry key="deleteNotice">
+		UPDATE
+				PRODUCT_NOTICE
+		   SET
+		   		STATUS = 'N'
+		 WHERE
+		 		NOTICE_NO = ?
+		   AND
+		   		STATUS = 'Y'		   				
+		
 	</entry>
 </properties>

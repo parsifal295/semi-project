@@ -9,39 +9,39 @@
 			TB_FREEBOARD
 	</entry>
 	<entry key="selectFboardList"> 
-        SELECT 
+		SELECT 
 			BOARD_NO,
 			ART_WRITER,
 			IP_ADDRESS,
 			ART_TITLE,
 			COUNT,
-            CREATE_DATE,
-            ROWNUM RNUM
-        FROM    
-        (SELECT
-            BOARD_NO,
-			ART_WRITER,
-			IP_ADDRESS,
-			ART_TITLE,
-			COUNT,
-            CREATE_DATE,
-            ROWNUM RNUM
-        FROM
-		(SELECT
-			BOARD_NO,
-			ART_WRITER,
-			IP_ADDRESS,
-			ART_TITLE,
-			COUNT,
-            CREATE_DATE,
-            ROWNUM
-		FROM
-			TB_FREEBOARD
-		WHERE 
-			STATUS = 'Y'
+			CREATE_DATE,
+			ROWNUM RNUM
+		FROM    
+			(SELECT
+				BOARD_NO,
+				ART_WRITER,
+				IP_ADDRESS,
+				ART_TITLE,
+				COUNT,
+				CREATE_DATE,
+				ROWNUM RNUM
+			FROM
+				(SELECT
+					BOARD_NO,
+					ART_WRITER,
+					IP_ADDRESS,
+					ART_TITLE,
+					COUNT,
+					CREATE_DATE,
+					ROWNUM
+				FROM
+					TB_FREEBOARD
+				WHERE 
+					STATUS = 'Y'
         ORDER BY
             BOARD_NO DESC) A)
-        WHERE RNUM BETWEEN ? AND ?    
+		WHERE RNUM BETWEEN ? AND ?    
 	</entry>
 	<entry key="insertBoard">
 		INSERT
@@ -126,43 +126,49 @@
 			OR (IP_ADDRESS LIKE ?) 
 			AND STATUS = 'Y')
 	</entry>
+
 	<entry key="getSearchResult">
 		SELECT 
-		BOARD_NO,
-		ART_WRITER,
-		IP_ADDRESS,
-		ART_TITLE,
-		COUNT,
-					CREATE_DATE,
-					ROWNUM RNUM
-			FROM    
+			BOARD_NO,
+			ART_WRITER,
+			IP_ADDRESS,
+			ART_TITLE,
+			COUNT,
+			CREATE_DATE,
+			ROWNUM RNUM
+		FROM    
 			(SELECT
-					BOARD_NO,
-		ART_WRITER,
-		IP_ADDRESS,
-		ART_TITLE,
-		COUNT,
-					CREATE_DATE,
-					ROWNUM RNUM
+				BOARD_NO,
+				ART_WRITER,
+				IP_ADDRESS,
+				ART_TITLE,
+				COUNT,
+				CREATE_DATE,
+				ROWNUM RNUM
 			FROM
-	(SELECT
-		BOARD_NO,
-		ART_WRITER,
-		IP_ADDRESS,
-		ART_TITLE,
-		COUNT,
+				(SELECT
+					BOARD_NO,
+					ART_WRITER,
+					IP_ADDRESS,
+					ART_TITLE,
+					COUNT,
 					CREATE_DATE,
 					ROWNUM
-	FROM
-		TB_FREEBOARD
-	WHERE 
-		((ART_TITLE LIKE ? OR ART_CONTENT LIKE ?) 
-		OR (ART_WRITER LIKE ?) 
-		OR (IP_ADDRESS LIKE ?) 
-		AND STATUS = 'Y')
-			ORDER BY
+				FROM
+					TB_FREEBOARD
+				WHERE 
+						((ART_TITLE LIKE ? 
+					OR 
+						ART_CONTENT LIKE ?) 
+					OR 
+						(ART_WRITER LIKE ?) 
+					OR 
+						(IP_ADDRESS LIKE ?) 
+					AND
+						STATUS = 'Y')
+				ORDER BY
 					BOARD_NO DESC) A)
-			WHERE RNUM BETWEEN ? AND ?  
+		WHERE RNUM BETWEEN ? AND ?  
 	</entry>
 	<entry key="selectReplyList">
 		SELECT
@@ -202,6 +208,26 @@
 			?,
 			?
 			)
-		
+	</entry>
+	<entry key="updateReply">
+		UPDATE
+			FB_REPLY
+		SET
+			REPLY_CONTENT = ?,
+			CREATE_DATE = SYSDATE
+		WHERE
+			REPLY_NO = ?
+		AND
+			STATUS = 'Y' 
+	</entry>
+	<entry key="deleteReply">
+		UPDATE
+			FB_REPLY
+		SET
+			STATUS = 'N'
+		WHERE
+			REPLY_NO = ?
+		AND
+			STATUS = 'Y'
 	</entry>
 </properties>

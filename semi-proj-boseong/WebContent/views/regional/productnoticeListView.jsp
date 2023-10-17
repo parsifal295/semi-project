@@ -66,12 +66,16 @@
 					 		<td><%= p.getCount() %></td>
 					 		<td><%= p.getCreateDate() %></td>
 						</tr>
-					  <% } %>
-					 <% } %>
-					 <div align="right">	 					
-					<a href="<%= contextPath %>/enroll.pn" class="btn btn-sm btn-info">글작성</a>
+					
+				  <% } %>
+				<% } %>
+					 <div align="right">
+					 <%if(loginUser != null){ %>	 					
+					<a href="<%= contextPath %>/enroll.pn" method="post" class="btn btn-sm btn-info">글작성</a>
 					</div>
 				</tbody>
+				<%}else{ %>
+			<%} %>
 			</table>	
 		</div>
 	

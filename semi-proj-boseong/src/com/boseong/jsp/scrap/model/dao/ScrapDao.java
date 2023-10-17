@@ -60,18 +60,14 @@ public class ScrapDao {
 			
 			pstmt.setInt(1, sc.getMemberNo());
 			pstmt.setInt(2, sc.getBoardNo());
-			// System.out.println("select memberNo : " + sc.getMemberNo());
-			// System.out.println("select boardNo : " + sc.getBoardNo());
 			rset = pstmt.executeQuery();
-			System.out.println("1" + list);
 			while(rset.next()) {
 				sp.setMemberNo(rset.getInt("MEM_NO"));
 				sp.setBoardNo(rset.getInt("IBOARD_NO"));
 				sp.setStatus(rset.getString("STATUS"));
 				list.add(sc);
 			}
-			System.out.println("2" + list);
-			System.out.println("list 2 : " + list);
+			System.out.println("Select list : " + list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

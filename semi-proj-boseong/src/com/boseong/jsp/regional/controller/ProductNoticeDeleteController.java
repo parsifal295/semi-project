@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.boseong.jsp.regional.model.service.ProductNoticeService;
+
 /**
- * Servlet implementation class RegionalProductTeaController
+ * Servlet implementation class ProductNoticeDeleteController
  */
-@WebServlet("/tea.rp")
-public class RegionalProductTeaController extends HttpServlet {
+@WebServlet("/delete.pn")
+public class ProductNoticeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegionalProductTeaController() {
+    public ProductNoticeDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +29,14 @@ public class RegionalProductTeaController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("/views/regional/regionalProductTeaView.jsp").forward(request, response);
+		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		
+		int result = new ProductNoticeService().deleteNotice(noticeNo);
+		
+		if(result > 0) {
+			response.sendRedirect(request.getContextPath() + "/list.pn");
+		}
+	
 	
 	}
 

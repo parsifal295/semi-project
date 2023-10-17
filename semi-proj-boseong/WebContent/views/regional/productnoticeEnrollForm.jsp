@@ -29,7 +29,8 @@
 	<h2 align="center">공지사항 작성하기</h2>
 	<br><br>
 	
-	<form action="<%= contextPath %>/enroll.pn" method="post" id="enroll-form">
+	<form action="<%= contextPath %>/insert.pn" method="post" id="enroll-form">
+		
 		<table align="center">
 		<tr>
 			<th width="50">제목</th>

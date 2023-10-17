@@ -103,5 +103,75 @@ public class ProductNoticeDao {
 		
 		return result;
 	}
-
+	
+	public ProductNotice selectProductNotice(Connection conn, int noticeNo) {
+	
+		ProductNotice p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectProductNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			rset  = pstmt.executeQuery();
+			System.out.println(rset);
+			if(rset.next()) {
+				p = new ProductNotice();
+				p.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				p.setNoticeNo(rset.getInt("NOTICE_NO"));
+				p.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				p.setCreateDate(rset.getDate("CREATE_DATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return p;
+	}	
+	
+	public int updateNotice(Connection conn, ProductNotice p) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, p.getNoticeTitle());
+			pstmt.setString(2, p.getNoticeContent());
+			pstmt.setInt(3, p.getNoticeNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	public int deleteNotice(Connection conn, int noticeNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 }

@@ -40,7 +40,7 @@ public class AjaxReplyInsertController extends HttpServlet {
     fr.setContent(content);
     fr.setIpAddress(ipAddr);
     System.out.println(fr);
-    int result = new FreeboardService().insertReply(fr);
+    new FreeboardService().insertReply(fr);
   }
 
   /**

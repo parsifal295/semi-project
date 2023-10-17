@@ -34,7 +34,7 @@ public class IboardScrapSelectController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+		response.setContentType("application/json; charset=UTF-8");
 		
 		String scrap = request.getParameter("status");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
@@ -44,8 +44,8 @@ public class IboardScrapSelectController extends HttpServlet {
 		sc.setStatus(scrap);
 		sc.setBoardNo(boardNo);
 		sc.setMemberNo(memberNo);
-		
-		
+
+		// scrapNo 로 받은 값을 String status로 바꿔서 반환해줌
 		int scrapNo = 0;
 		String status = "";
 		Scrap st = new Scrap();
@@ -73,7 +73,6 @@ public class IboardScrapSelectController extends HttpServlet {
 		jObj.put("status", status);
 		jObj.put("boardNo", boardNo);
 		jObj.put("memberNo", memberNo);
-		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(jObj);
 	}
 

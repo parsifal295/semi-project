@@ -174,50 +174,52 @@ public class MemberDao {
 		}
 		return result;
 		  
-		  
-		  
 	  }
 	  
-	  
+	  public int deleteMember(Connection conn, int memNo, String memPwd) {
+		  
+		  int result = 0;
+		  PreparedStatement pstmt = null;
+		  String sql = prop.getProperty("deleteMember");
+		  
+		  try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNo);
+			pstmt.setString(2, memPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+	  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

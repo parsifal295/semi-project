@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RegionalSoupRecipeController
+ * Servlet implementation class RegionalSoupDetailController
  */
 @WebServlet("/soup.re")
-public class RegionalSoupRecipeController extends HttpServlet {
+public class RegionalSoupDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegionalSoupRecipeController() {
+    public RegionalSoupDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
