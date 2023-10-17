@@ -57,6 +57,7 @@
 		color: black;
 	}
 	#header {
+		z-index: 30;
 		margin: 0;
 		padding: 0;
 		width: 100%;

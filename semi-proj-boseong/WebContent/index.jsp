@@ -76,7 +76,7 @@
 			<div class="boseong-intro-image"></div>
 			<div class="boseong-intro-write" id="font">
 				<span>
-					<h5></h5>
+					<br>
 					<h6>Here, in Boseong, we can find solace, peace, <br><br>
 						 and a gentle reminder of life's simple joys</h6><br>
 					<p>
