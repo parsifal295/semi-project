@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MonthLivingReservController
+ * Servlet implementation class MonthLivingReservFormController
  */
-@WebServlet("/month.res")
-public class MonthLivingReservController extends HttpServlet {
+@WebServlet("/month.fo")
+public class MonthLivingReservFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MonthLivingReservController() {
+    public MonthLivingReservFormController() {
         super();
         // TODO Auto-generated constructor stub
     }

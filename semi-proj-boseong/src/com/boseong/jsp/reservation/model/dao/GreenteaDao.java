@@ -116,13 +116,7 @@ public class GreenteaDao {
 			
 			while(rset.next()) {
 				GreenteaReservation gr = new GreenteaReservation();
-				/*
-				 * public int reservationNo;
-					public String startDate;
-					public String courseNum;
-					public int memNo;
-					public int bookNum;
-				 * */
+				
 				gr.setReservationNo(rset.getInt("RESERVATION_NO"));
 				gr.setMemNo(memNo);
 				gr.setStartDate(rset.getString("START_DATE"));

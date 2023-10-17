@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.boseong.jsp.reservation.model.service.MonthlivingService;
+import com.boseong.jsp.reservation.model.vo.Monthlivinginfo;
+
 /**
  * Servlet implementation class MonthLivingDetailController
  */
@@ -26,8 +29,25 @@ public class MonthLivingDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		//확인완료
+		int lodgeNo = Integer.parseInt(request.getParameter("lodgeNo"));
+		//System.out.println(lodgeNo);
+		
+		Monthlivinginfo m = new MonthlivingService().selectMonthlivinginfo(lodgeNo);
+		//System.out.println(m);
+		request.setAttribute("Monthlivinginfo", m);
+		request.setAttribute("lodgeNo",lodgeNo);
+		
+		request.getRequestDispatcher("views/reservation/MonthLivingDetailView.jsp").forward(request, response);
+		
+	
+	
+	
+	
+	
+	
+	
 	}
 
 	/**

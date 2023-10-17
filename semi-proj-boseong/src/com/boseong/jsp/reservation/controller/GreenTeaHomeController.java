@@ -31,13 +31,9 @@ public class GreenTeaHomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		ArrayList<greenteaInfo>list = new GreenteaService().selectService();
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/reservation/GreenteaFrontView.jsp").forward(request, response);
-		
-	
 	}
 
 	

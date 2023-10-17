@@ -160,7 +160,7 @@
 		
 			<div class="content3" >
 			<br>
-			<h3><strong>녹차밭 체험 소개(오전)</strong></h3>
+			<h3><strong>녹차밭 체험 소개</strong></h3>
 			<hr>
 			<p>
 				전라남도 보성은 우리나라 녹차의 약 40퍼센트를 생산하는 차의 고장으로,<br>

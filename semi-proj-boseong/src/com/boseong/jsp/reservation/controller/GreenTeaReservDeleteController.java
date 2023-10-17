@@ -28,32 +28,22 @@ public class GreenTeaReservDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	
+
 		//현재 로그인한 회원의 정보
 		//회원정보 = 회원아이디(memNo), number가져오기
 		int reservationNo = Integer.parseInt(request.getParameter("nno"));
-		//int reservationNo = Integer.parseInt(request.getParameter("reservationNo"));
+		
 		
 		int result = new GreenteaService().deleteGreentea(reservationNo);
-		//System.out.println(reservationNo);
+		
 		
 		if(result > 0) {
-			System.out.println(result);
 			request.getSession().setAttribute("alertMsg", "예약 취소되었습니다.");					
 			response.sendRedirect(request.getContextPath() + "/green.ho");
-			
 		} else {
-			System.out.println(result);
 			request.getSession().setAttribute("alertMsg", "예약 취소 실패하였습니다.");
 			request.getRequestDispatcher("views/reservation/GreenTeaReservListView.jsp").forward(request, response);
 		}
-		
-		
-		
-		
-	
 	}
 
 	/**

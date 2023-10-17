@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList"
-    import = "java.util.ArrayList"
 %>
 
 <!DOCTYPE html>
@@ -87,17 +86,14 @@
             },
             dateClick: function(info) {
             	$("#startDate").val(info.dateStr);
+            	console.log(info)
             }
           });
         calendar.render();
       });
       
-   // 이전 날짜들은 선택막기
-      function noBefore(date){
-          if (date < new Date())
-              return [false];
-          return [true];
-      }
+   // 이전 날짜들은 선택막기->이거작동ㅇ안해...ㅜ
+      
       
       
     </script>
@@ -128,21 +124,15 @@
 			<hr>
 				
 				예약 일자: 
-				
-				<!--  <input id="startDate" name="startDate">-->
 				<input id="startDate" name="startDate"><a id="startDate"> </a>
-            	
-            <!--  </select>-->
              
 			<br><br>
 			
 			<a>예약 회차: 
-        	<select name="courseNum"> 
-        	
-	            <option value="AM">오전(9시~12시)</option>
-	            <option value="PM">오후(12시~6시)</option>
-	  
-       		</select>
+	        	<select name="courseNum"> 
+		            <option value="AM">오전(9시~12시)</option>
+		            <option value="PM">오후(12시~6시)</option>
+				</select>
         	</a>
         	
 			<br><br>
@@ -151,8 +141,6 @@
 			명(최대인원:10명)</a>
 			<br>
 			
-		
-		
 		</div>
 		</div>
 		
