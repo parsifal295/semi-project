@@ -29,9 +29,12 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 		<%@ include file = "../common/menubar.jsp" %>
 		<div class="outer" id="content">
 			<div style="height:200px"></div>
-			<div id="btn" align="right">
-            <a class="btn btn-primary" href="<%= contextPath %>/enrollForm.fb">글쓰기</a>
-            </div>
+			<% if ((loginUser != null) && (loginUser.getStatus().equals("A"))) { %>
+			<a class="btn btn-primary btn-warning" href="views/notice/noticeInsertView.jsp">공지작성</a>
+			<% } %>
+			<a class="btn btn-primary" href="<%= contextPath %>/enrollForm.fb">글쓰기</a>
+	
+            
 			<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default">
 				<thead class="thead-light">
 					<tr>
@@ -49,17 +52,15 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 					</tr>
 					<% } else { %> 
 					<% if (!noticeList.isEmpty()) { %>
-						<% for (Notice n : noticeList) { 
-							int trIndex = 1; %>
-							<tr value="<%=trIndex%>">
+						<% for (Notice n : noticeList) { %>
+							<tr value="<%=n.getNoticeNo()%>">
 								<td>공지</td>
 								<td><%=n.getNoticeTitle() %></td>
 								<td>관리자</td>
 								<td><%=n.getCount() %></td>
 								<td><%=n.getModifyDate() %></td>
 							</tr>
-							<%trIndex++;
-						 } %>
+						<% } %>
 					<% } %>
 						<% for (Freeboard b : list) { %>
 							<tr>

@@ -35,8 +35,8 @@ public class GreenTeaReservlistcontroller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//여기 list관련 내용작성
 		
+		//여기 list관련 내용작성
 		int memNo = Integer.parseInt(request.getParameter("memNo")); 
 		
 		ArrayList<GreenteaReservation> list = new GreenteaService().selectReservation(memNo);

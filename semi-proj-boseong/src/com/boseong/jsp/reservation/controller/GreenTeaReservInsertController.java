@@ -36,11 +36,9 @@ public class GreenTeaReservInsertController extends HttpServlet {
 		String startDate = request.getParameter("startDate");
 		String courseNum = request.getParameter("courseNum");
 		int bookNum = Integer.parseInt(request.getParameter("bookNum")); 
-		//System.out.println(memNo);
 		
-		
+
 		GreenteaReservation g = new GreenteaReservation();
-		//g.setReservationNo(reservationNo);
 		g.setMemNo(memNo);
 		g.setStartDate(startDate);
 		g.setCourseNum(courseNum);
@@ -48,19 +46,11 @@ public class GreenTeaReservInsertController extends HttpServlet {
 		
 		int result = new GreenteaService().insertReserv(g);
 		if(result > 0) {
-			//System.out.println(result);
-			//System.out.println(startDate);
-			
-			//request.getRequestDispatcher("/views/reservation/GreenTeaReservListView.jsp").forward(request, response);
 			response.sendRedirect(request.getContextPath()+"/green.li?memNo=" + memNo);
 			
 		}else {
 			request.getRequestDispatcher("/views/reservation/GreenteaReservationView.jsp").forward(request, response);
-			//System.out.println(result);
-			//System.out.println(startDate);
 		}
-		
-		
 	}
 
 	/**

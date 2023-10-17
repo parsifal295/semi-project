@@ -38,10 +38,9 @@
 		UPDATE
 			TB_NOTICE
 		SET
-			(
 			NOTICE_TITLE = ?,
-			NOTICE_CONTENT = ?
-			)
+			NOTICE_CONTENT = ?,
+			MODIFY_DATE = SYSDATE
 		WHERE
 			NOTICE_NO = ?
 		AND
@@ -51,12 +50,33 @@
 		UPDATE
 			TB_NOTICE
 		SET	
-			(
+			MODIFY_DATE = SYSDATE,
 			STATUS = 'N'
-			)
 		WHERE
 			NOTICE_NO = ?
 		AND
 			STATUS = 'Y'
+	</entry>
+	<entry key="insertNotice">
+		INSERT
+			INTO
+				TB_NOTICE
+				(
+				NOTICE_NO,
+				CATEGORY_NO,
+				NOTICE_TITLE,
+				NOTICE_CONTENT,
+				CREATE_DATE,
+				MODIFY_DATE
+				)
+			VALUES
+				(
+				SEQ_NOTICE_NO.NEXTVAL,
+				?,
+				?,
+				?,
+				SYSDATE,
+				SYSDATE
+				)
 	</entry>
 </properties>

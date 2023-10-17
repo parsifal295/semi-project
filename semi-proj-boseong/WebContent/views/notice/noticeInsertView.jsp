@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.boseong.jsp.notice.model.vo.*" %>
-<%
-  Notice n = (Notice)request.getAttribute("n");
-%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>공지사항 수정</title>
+    <title>공지사항 작성하기</title>
     <style>
         td {
             padding: 2px;
@@ -31,22 +27,22 @@
           </tr>
         </thead>
         <tbody>
-          <form action="<%= contextPath %>/updateNotice.no" method="post">
-            <input type="hidden" name="noticeNo" value="<%= n.getNoticeNo() %>">
+          <form action="<%= contextPath %>/write.no" method="post">
+            <input type="hidden" name="category" value="10">
           <tr>
             <td colspan="6">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">제목</span>
                 </div>
-                <input type="text" class="form-control" name="title" required value="<%=n.getNoticeTitle()%>" />
+                <input type="text" class="form-control" name="title" required />
               </div>
             </td>
           </tr>
           <tr>
             <td colspan="6">
               <div class="form-group">
-                <label for="comment">글 수정: </label>
+                <label for="comment">글 작성하기: </label>
                 <textarea
                   class="form-control"
                   rows="10"
@@ -54,14 +50,14 @@
                   name="content"
                   required
                   style="resize:none"
-                ><%=n.getNoticeContent()%></textarea>
+                ></textarea>
               </div>
             </td>
           </tr>
           <tr>
               <td colspan="6">
                 <button type="submit" class="btn btn-primary btn-warning" >
-                    수정하기
+                    작성하기
                 </button>
               </form>
               </td>
