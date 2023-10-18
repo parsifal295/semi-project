@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.ArrayList, com.boseong.jsp.reservation.model.vo.HorseReservation"%>
+	import="java.util.ArrayList, com.boseong.jsp.reservation.model.vo.HorseReservation,
+	com.boseong.jsp.freeboard.model.vo.PageInfo"%>
 
 <%
 	ArrayList<HorseReservation> list = (ArrayList<HorseReservation>) request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int currentPage = pi.getCurrentPage();
+    int startPage = pi.getStartPage();
+    int endPage = pi.getEndPage();
+    int maxPage = pi.getMaxPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -77,12 +83,27 @@ ul, li {
 
 							</table>
 						</div>
+						</div>
 					</fieldset>
 							<%}%>
 						<%}%>
 				</li>
 			</ul>
 
+				<div class="reserv-paging-area">
+				<%if(currentPage!=1){ %>
+					<button onclick="reservPageShift('<%=currentPage-1%>');">&lt;</button>
+				<%} %>
+				<%for(int i=startPage; i<endPage+1 ;i++){ %>
+					<%if(currentPage != i){ %>
+					<button onclick="reservPageShift('<%=i%>');"><%=i%></button>
+					<%}else{ %>
+					<button disabled><%=i%></button>
+					<%} %>
+				<%} %>
+				<%if(currentPage != maxPage){ %>
+					<button onclick="reservPageShift('<%=currentPage+1%>');">&gt;</button>
+				<%} %>
 		</div>
 
 	</div>

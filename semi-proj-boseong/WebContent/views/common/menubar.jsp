@@ -171,7 +171,7 @@
 		bottom: 0;
 	}
 	#box{
-	height:210px;
+	height:200px;
 	}
 	/*----------------------------------------------------------*/
 </style>
@@ -229,7 +229,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="<%=contextPath%>">갤러리</a>
+					<a href="<%=contextPath%>/gallery.gy">갤러리</a>
 				</li>
 				<li>
 					<a href="">예약</a>

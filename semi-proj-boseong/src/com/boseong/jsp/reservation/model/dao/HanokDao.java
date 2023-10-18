@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.reservation.model.vo.HanokReservation;
 import com.boseong.jsp.reservation.model.vo.Room;
 
@@ -169,16 +170,21 @@ public class HanokDao {
 		}		
 		return result;
 	}
-	public ArrayList<HanokReservation> selectReservList(Connection conn, int memNo){
+	public ArrayList<HanokReservation> selectReservList(Connection conn, int memNo, PageInfo pi){
 		ArrayList<HanokReservation> list = new ArrayList();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectReservList");
 		
 		try {
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = pi.getCurrentPage()*pi.getBoardLimit();
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, memNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -278,7 +284,7 @@ public class HanokDao {
 		
 		return result;
 	}
-	public int selectListCount(Connection conn) {
+	public int selectListCount(Connection conn, int memNo) {
 		int count = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -286,6 +292,9 @@ public class HanokDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNo);
+			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				count = rset.getInt("COUNT(*)");

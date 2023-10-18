@@ -66,7 +66,7 @@
 				<button class="btn btn-outline-secondary" id="hk-reserv-list"><h1>예약 조회</h1></button>
 				<script>
 				$(function(){
-			    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk?memNo=<%=loginUser.getMemNo()%>"});
+			    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk?memNo=<%=loginUser.getMemNo()%>&cpage=1"});
 				})
 				</script>
 				

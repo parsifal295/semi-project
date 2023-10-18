@@ -61,7 +61,7 @@
 	#update-area{
 		padding-left:900px;
 	}
-	#admin-reserv-page{
+	.reserv-page{
 	background-color: rgb(242, 245, 236);
 	}
 	
@@ -72,7 +72,7 @@
 
 <%@ include file = "../common/menubar.jsp" %>
 <div id = "box"></div>
-<div id="admin-reserv-page">
+<div class="reserv-page">
 	<div id="content" class="page"><!--content 너비는 1032, 높이는 화면 크기에 맞춰짐-->
 		<div class = "page">
 			<h1><span id="reserv-type">통합</span>예약 관리</h1>
@@ -81,7 +81,7 @@
 				
 				<div>
 					<div class="reserv-type">
-						<img src="https://w7.pngwing.com/pngs/676/968/png-transparent-horse-rider-equestrian-jockey-computer-icons-horse-animals-sport-racing.png" alt="">
+						<img src="<%=contextPath %>/resources/image/reservation/ride-icon3.png" alt="">
 						<div>
 							<h5>승마장</h5>
 						</div>
@@ -92,7 +92,7 @@
 						</div>
 					</div>
 					<div class="reserv-type">
-						<img src="https://png.pngtree.com/png-vector/20190319/ourmid/pngtree-vector-leaf-icon-png-image_845949.jpg">
+						<img src="<%=contextPath %>/resources/image/reservation/tea-icon.png">
 						<div>
 							<h5>녹차 체험</h5>
 						</div>
@@ -101,7 +101,7 @@
 						<h1><%=teaCount %></h1>
 						</div>
 					<div class="reserv-type">
-						<img src="https://cdn-icons-png.flaticon.com/512/4498/4498251.png">
+						<img src="<%=contextPath %>/resources/image/reservation/hanok-icon.png">
 						<div>
 							<h5>한옥 스테이</h5>
 						</div>
@@ -110,7 +110,7 @@
 					<h1><%=hanokCount %></h1>
 					</div>
 					<div class="reserv-type">
-						<img src="https://static.thenounproject.com/png/5532605-200.png">
+						<img src="<%=contextPath %>/resources/image/reservation/month-icon.png">
 						<div>
 							<h5>한달 살기</h5>
 						</div>
@@ -198,17 +198,9 @@
 									if(e == null || e.length==0){
 										$('#reserv-table-body').append($('<tr><td colspan="6"></td></tr>')).text('예약 정보가 존재하지 않습니다.');
 									}
-									else if(e.length == undefined){									
-										$el.append($('<td></td>').text(e.reservNo+'('+e.reservType+')'));
-										$el.append($('<td></td>').text(e.member));
-										$el.append($('<td></td>').text(e.phone));
-										$el.append($('<td></td>').text(e.type));
-										$el.append($('<td></td>').text(e.startDate));
-										$el.append($('<td></td>').text(e.status));
-										$('#reserv-table-body').append($el);
-									}
 									else
-									{for(let i in e){
+									{
+										for(let i in e){
 										$el =$('<tr></tr>');
 										$el.append($('<td></td>').text(e[i].reservNo+'('+e[i].reservType+')'));
 										$el.append($('<td></td>').text(e[i].member));
