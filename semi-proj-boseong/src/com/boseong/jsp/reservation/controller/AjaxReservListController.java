@@ -34,30 +34,15 @@ public class AjaxReservListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String type = request.getParameter("type");
-//		
-//		int listCount;
-//		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-//		int pageLimit;
-//		int boardLimit;
-//		int maxPage;
-//		int startPage;
-//		int endPage;
-//		pageLimit = 7;
-//		boardLimit = 3;
-//		
-//		listCount = new AdminService().selectListCount(type);
-//		maxPage = (int)Math.ceil((double)listCount/boardLimit);
-//		startPage = pageLimit*((currentPage-1)/pageLimit)+1;
-//		endPage = startPage + pageLimit-1;
-//		
-//		if(endPage>maxPage) {
-//			endPage=maxPage;
-//		}
-//		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit,maxPage, startPage, endPage);
-//		
-		ArrayList<AdminReservation> list = 	new AdminService().selectList(type);
-		
+		String type = request.getParameter("type");		
+		String key = "";
+		switch(type) {
+		case "승마장": key="selectRides"; break;
+		case "녹차 체험" : key ="selectTea"; break;
+		case "한옥 스테이" : key ="selectHanok"; break;
+		case "한달 살기" : key ="selectMonth"; break;
+		}
+		ArrayList<AdminReservation> list = 	new AdminService().selectList(key);
 		response.setContentType("application/json; charset=UTF-8");
 		Gson gsn = new Gson();
 		gsn.toJson(list, response.getWriter());

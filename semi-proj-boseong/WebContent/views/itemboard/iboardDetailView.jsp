@@ -122,11 +122,10 @@
 	            <%} %>
                 <span id="userPf-sub">
                 <p><%= ib.getMemberName() %></p>
-                <% if(loginUser != null){ %>
-                <button type="button">쪽지보내기</button>
-                <%} %>
                 </span>
-                <div class="userPf"></div>
+                <div class="userPf">
+					<!-- 여기에 스크랩 개수 마다 select해서 vip/vvip에따라 사진이 달라짐 -->
+				</div>
                 </div>
             </div>
 
@@ -136,6 +135,7 @@
             </div>
 			<h4>인기순위</h4>
             <div class="subImg">
+            
                 <div class="sub-iboardImg">
 					<div id="img-area">
 						<!-- 여기에 스크랩 많은 순위 select후 나열 -->
@@ -212,9 +212,7 @@
         	  }
           })
     	});
-			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
-			
-	
+
 			// 게시글 조회시 DB조회하여 스크랩 여부 리턴해주는 Ajax script
 			$(() => {
 				let on = '<%= contextPath%>/resources/image/scrap.png';

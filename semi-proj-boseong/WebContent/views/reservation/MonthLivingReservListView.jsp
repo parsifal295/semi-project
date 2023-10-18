@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" 
     import="java.util.ArrayList, 
-    		com.boseong.jsp.reservation.model.vo.GreenteaReservation"
+    		com.boseong.jsp.reservation.model.vo.MonthlivingReservation,
+    		com.boseong.jsp.reservation.model.vo.Monthlivinginfo"
     %>
     
     <%
-    ArrayList<GreenteaReservation> list = (ArrayList<GreenteaReservation>)request.getAttribute("list");
+    ArrayList<MonthlivingReservation> list = (ArrayList<MonthlivingReservation>)request.getAttribute("list");
 	%>
     
     
@@ -13,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>녹차밭 예약확인페이지</title>
+<title>한달살기 예약확인페이지</title>
 
 <style>
 	
@@ -47,7 +48,7 @@
 	<br>
 		
 			
-			<div class="title1"><h4>녹차밭 체험 예약</h4></div>
+			<div class="title1"><h4>한달살기 예약</h4></div>
 			
 			<%
 				if(list.isEmpty()){
@@ -64,8 +65,8 @@
 			
 			<table border="1" id="table2">
 			<tr bgcolor="#DCDCDC">
-				<th width="300" height="40">예약 회차</th>
-				<th width="350">예약 날짜</th>
+				<th width="300" height="40">숙소명</th>
+				<th width="350">예약 월</th>
 				<th width="250">인원</th>
 				<th width="250">가격</th>
 				<th width="100">예약번호 </th>
@@ -79,17 +80,17 @@
 			
 			<tr>
 			
-				<td height="50"><%=list.get(i).getCourseNum() %> </td>
+				<td height="50"><%=list.get(i).getLodgeNo() %> </td>
 				<td><%= list.get(i).getStartDate() %></td>
-				<td><%=list.get(i).getBookNum() %></td>
-				<td>무료</td>
+				<td><%=list.get(i).getPeopleNum() %></td>
+				<td>2000000</td>
 				<td><%=list.get(i).getReservationNo() %></td>
 				
 				<!-- 예약 취소하기 -->
 				<!-- 로그인이 되어있고 + 이미 리스트로 위에 들어왓고.  -->
 				
 				<td>
-					<a href="<%= contextPath %>/green.de?nno=<%= list.get(i).getReservationNo()%>" class="btn btn-danger btn-sm" >삭제하기</a>
+					<a href="<%= contextPath %>/month.del?nno=<%= list.get(i).getReservationNo()%>" class="btn btn-danger btn-sm" >삭제하기</a>
 				</td>
 			</tr>
 			<%} %>

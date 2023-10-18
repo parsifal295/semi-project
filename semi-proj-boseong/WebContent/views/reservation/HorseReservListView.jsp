@@ -50,31 +50,55 @@ ul, li {
 <body>
 
 	<%@include file="../common/menubar.jsp"%>
+	<%int memNo = (loginUser == null)? 0 : loginUser.getMemNo(); %>
 	<div id="box"></div>
 	<div class="page" id="content">
-
+		
 		<div class="page">
 			<h1>예약 조회</h1>
+			<div class="reserv-paging-area">
+				<%if(currentPage!=1){ %>
+					<button onclick="reservPageShift('<%=currentPage-1%>');">&lt;</button>
+				<%} %>
+				<%for(int i=startPage;i<endPage+1;i++){ %>
+					<%if(currentPage != i){ %>
+					<button onclick="reservPageShift('<%=i%>');"><%=i %></button>
+					<%}else{ %>
+					<button disabled><%=i%></button>
+					<%} %>
+				<%} %>
+				<%if(currentPage != maxPage){ %>
+					<button onclick="reservPageShift('<%=currentPage+1%>');">&gt;</button>
+				<%} %>
+			</div>
+				<script>
+			function reservPageShift(page){
+				let pageLocation = '<%=contextPath%>/list.hs?memNo=<%=memNo%>&cpage='+page;
+				location.href=pageLocation;
+			}
+				</script>
+			
 			<ul id="horse-reserv-list">
-				<li>
 					<%
 						if (list.isEmpty()) {
 					%>
 					<h1>예약이 없습니다.</h1> 
 					<%} else {%> 
-						<%for (int i = 0; i < list.size(); i++) {%>
+						<%for (HorseReservation hr : list) {%>
+						<%System.out.println(hr); %>
+				<li>
 					<fieldset>
 						<legend>
-							<h2><%=list.get(i).getProgramNo() %></h2>
+							<h2><%=hr.getProgramNo() %></h2>
 						</legend>
 						<div>
 							<table>
 
 								<tr>
-									<td><%=list.get(i).getReservNo() %></td>
-									<td><h5>예약일</h5><%=list.get(i).getHorseDate() %></td>
-									<td><h5>예약 시간</h5><%=list.get(i).getHorseTime() %></td>
-									<td><h5>예약 인원</h5><%=list.get(i).getRiderNum() %></td>
+									<td><%=hr.getReservNo() %></td>
+									<td><h5>예약일</h5><%=hr.getHorseDate() %></td>
+									<td><h5>예약 시간</h5><%=hr.getHorseTime() %></td>
+									<td><h5>예약 인원</h5><%=hr.getRiderNum() %></td>
 									<td>
 									<button class="btn btn-warning update-hs">예약 변경</button>
 									<button class="btn btn-danger" data-toggle="modal" data-target="#delete-hs">예약 취소</button>
@@ -83,29 +107,14 @@ ul, li {
 
 							</table>
 						</div>
-						</div>
+
 					</fieldset>
+				</li>
 							<%}%>
 						<%}%>
-				</li>
 			</ul>
 
-				<div class="reserv-paging-area">
-				<%if(currentPage!=1){ %>
-					<button onclick="reservPageShift('<%=currentPage-1%>');">&lt;</button>
-				<%} %>
-				<%for(int i=startPage; i<endPage+1 ;i++){ %>
-					<%if(currentPage != i){ %>
-					<button onclick="reservPageShift('<%=i%>');"><%=i%></button>
-					<%}else{ %>
-					<button disabled><%=i%></button>
-					<%} %>
-				<%} %>
-				<%if(currentPage != maxPage){ %>
-					<button onclick="reservPageShift('<%=currentPage+1%>');">&gt;</button>
-				<%} %>
-		</div>
-
+	</div>
 	</div>
 	
 	<!-- 모다루~~~ -->
@@ -123,7 +132,8 @@ ul, li {
 					<h5>확인을 위해 예약 번호를 입력해주세요.</h5>
 					<label for = "reservNo">예약 번호 :</label>
 					<input type = "text" name="reservNo" id="reservNo" required>
-					<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>">
+					<input type="hidden" name="memNo" value="<%=memNo%>">
+					<input type="hidden" name="cpage" value="<%=currentPage%>">
 			</div>
 			<!-- Modal Footer -->
 			<div class="modal-footer">
@@ -140,7 +150,7 @@ ul, li {
 		$(function(){
 			$('.update-hs').click(function(){
 				let reservNo = $(this).parent().parent().children().eq(0).text();
-				location.href = "<%=contextPath%>/updateForm.hs?reservNo="+reservNo;
+				location.href = "<%=contextPath%>/updateForm.hs?cpage=<%=currentPage%>&reservNo="+reservNo;
 			});
 		})
 	</script>

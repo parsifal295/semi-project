@@ -32,6 +32,8 @@ public class HorseReservListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		
 		int listCount;
 		int currentPage;
 		int pageLimit;
@@ -39,35 +41,26 @@ public class HorseReservListController extends HttpServlet {
 		int maxPage;
 		int startPage;
 		int endPage;
-		int memNo = Integer.parseInt(request.getParameter("memNo"));
-		//listCount = new HorseService().selectListCount(memNo);
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		listCount = new HorseService().selectListCount(memNo);
-		pageLimit=5;
-		boardLimit = 2;
-		
+		pageLimit=3;
+		boardLimit = 3;		
 		startPage = pageLimit*((currentPage-1)/pageLimit)+1;
 		maxPage = (int)(Math.ceil((double)listCount/boardLimit));
-		
-		//Integer.parseInt(request.getParameter("memNo"));
 		endPage = startPage + pageLimit-1;
 		if(endPage > maxPage) {
 			endPage=maxPage;
 		}
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit,maxPage,startPage,endPage);
-		System.out.println(pi);
+		
 		ArrayList<HorseReservation> list = new HorseService().selectRides(memNo, pi);
-		
-		for(HorseReservation hr:list) {
-			System.out.println(hr);
-		}
-		
+		System.out.println(list);
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/reservation/HorseReservListView.jsp").forward(request, response);
 	}
 
-	/**
+	/**S
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

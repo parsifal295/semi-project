@@ -32,7 +32,6 @@ public class MonthLivingHomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//확인 완료
 		request.getRequestDispatcher("/views/reservation/MonthLivingFrontView.jsp").forward(request, response);
 	}
 

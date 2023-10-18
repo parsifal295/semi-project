@@ -18,34 +18,13 @@ public class AdminService {
 		close(conn);		
 		return counts;
 	}
-	public ArrayList<AdminReservation> selectList(String type){
+	public ArrayList<AdminReservation> selectList(String key){
 		Connection conn= getConnection();
-		String key = "";
-		switch(type) {
-		case "승마장": key="selectRides"; break;
-		case "녹차 체험" : key ="selectTea"; break;
-		case "한옥 스테이" : key ="selectHanok"; break;
-		case "한달 살기" : key ="selectMonth"; break;
-		}
 		ArrayList<AdminReservation> list = new AdminDao().selectList(conn, key);
 		close(conn);
 		return list;
 	}
-	public int selectListCount(String type) {
-		Connection conn= getConnection();
-		String key = "";
-		System.out.println(type);
-		switch(type) {
-		case "승마장": key="selectRidesCount"; break;
-		case "녹차 체험" : key ="selectTeaCount"; break;
-		case "한옥 스테이" : key ="selectHanokCount"; break;
-		case "한달 살기" : key ="selectMonthCount"; break;
-		}
-		System.out.println(key);
-		int lsitCount = new AdminDao().selectListCount(conn, key);
-		
-		return lsitCount;
-	}
+
 	public AdminReservation selectReservation(int searchKey) {
 		Connection conn = getConnection();
 		AdminReservation selectedRsv = new AdminDao().selectReservation(conn, searchKey);

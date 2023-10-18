@@ -17,7 +17,6 @@
 		width:100%;
 		height : 100vh;
 		color : black;
-
 	}
 
 	#content{
@@ -25,15 +24,10 @@
 		height : 100%;
 		margin : auto;
 	}
-
-
-
-	
 	
 	.table {
 		width:100%;
 	}
-	
 	
 </style>
 
@@ -69,7 +63,7 @@
 						</p></td>
 					</tr>
 				
-					<tr >
+					<tr>
 					<td colspan="3" height=150><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1679109.252335724!2d124.77562059374998!3d34.717530499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35721322dfb7fb45%3A0xde1b220a30bc536d!2z64yA7ZWc64uk7JuQ!5e0!3m2!1sko!2skr!4v1696402092716!5m2!1sko!2skr" width="1200" height="700"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></td>
 					</tr>
 				
@@ -112,7 +106,7 @@
 					
 					<!-- ---------------------1끝 2시작----------------------------------------- -->
 				
-				<%}else if(tour.equals("보성 대원사 벚꽃길")) { %>
+				<% }else if(tour.equals("보성 대원사 벚꽃길")) { %>
 					<tr>
 						<th colspan="3" width=1200 height=100></th>
 					</tr>
@@ -122,7 +116,7 @@
 					</tr>
 					
 					<tr>
-					<td colspan="3"width=200><p style="font-size:18px">전라남도 보성군  | 코스 총거리 : 약 5.3km</p></td>
+					<td colspan="3" width=200><p style="font-size:18px">전라남도 보성군  | 코스 총거리 : 약 5.3km</p></td>
 					
 					</tr>
 				
