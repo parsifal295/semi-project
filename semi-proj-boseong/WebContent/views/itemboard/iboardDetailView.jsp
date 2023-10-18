@@ -5,7 +5,6 @@
 			     com.boseong.jsp.scrap.model.vo.Scrap" %>
 <%@ page import="java.util.ArrayList" %>
 <%
-  
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
 %>
@@ -213,14 +212,6 @@
           })
     	});
 			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
-		</script>
-
-           
-		<script>
-           //----------------------------------------------------------------------------------//
-               
-			//새로 다시 코드를 짜보자...
-          
 				let scrap = '<%= contextPath%>/resources/image/scrap.png';
 				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
 				
@@ -251,26 +242,7 @@
 							});
 						}
 					})
-	  		    }
-            	
-            	
-            	
-			 
-			 
-            
-           	<% } %>
-            
-            // 
-            // if (스크랩 버튼 on && DB에 엔트리가 없음--최초로 스크랩 버튼 눌렀을 때) {
-            // ajax로 컨트롤러로 상태 보내기
-            // } else if (스크랩 버튼 off)
-           // } else if (스크랩 버튼 on, DB에 엔트리가 있음-- 스크랩 버튼 눌렀던 적이 있고 삭제한적도 있음){
-            // 
-          // }
-              
-            
-
-            
+				} 
     </script>
 	
 <%@ include file="../common/footer.jsp" %>
