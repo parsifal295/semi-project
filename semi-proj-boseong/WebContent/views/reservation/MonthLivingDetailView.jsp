@@ -4,11 +4,11 @@
 <%
 	int lodgeNo = (int)request.getAttribute("lodgeNo");
 	Monthlivinginfo m = (Monthlivinginfo)request.getAttribute("Monthlivinginfo");
-	String imgName = "";
+	String img = "";
 	switch(lodgeNo){
-	case 1 : imgName = "house1.jpg"; break;
-	case 2 : imgName = "house2.jpg"; break;
-	case 3 : imgName = "house3.jpg"; break;
+	case 1 : img = "house1.jpg"; break;
+	case 2 : img = "house2.jpg"; break;
+	case 3 : img = "house3.jpg"; break;
 }
 %>    
     
@@ -108,7 +108,7 @@
 			
 			<div class="main_image">
 				<div class="mainpic">
-					<img src="<%=contextPath %>/resources/image/reservation/<%=imgName %>" alt="Monthlivinginfo<%=lodgeNo%>" style="width:1800px; height:800px; ">
+					<img src="<%=contextPath %>/resources/image/reservation/<%=img %>" alt="Monthlivinginfo<%=lodgeNo%>" style="width:1800px; height:800px; ">
 				</div>
 			</div>
 				

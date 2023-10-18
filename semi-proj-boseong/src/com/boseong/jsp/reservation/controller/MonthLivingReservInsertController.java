@@ -44,16 +44,15 @@ public class MonthLivingReservInsertController extends HttpServlet {
 		
 		
 		MonthlivingReservation mr = new MonthlivingReservation(
-				//memNo, lodgeNo, startDate, peopleNum
+				memNo, lodgeNo, startDate, peopleNum
 				);
-		mr.setLodgeNo(lodgeNo);
-		mr.setMemNo(memNo);
-		mr.setStartDate(startDate);
-		mr.setPeopleNum(peopleNum);
+		//mr.setLodgeNo(lodgeNo);
+		//mr.setMemNo(memNo);
+		//mr.setStartDate(startDate);
+		//mr.setPeopleNum(peopleNum);
 		
 		int result = new MonthlivingService().insertReserv(mr);
-		//System.out.println(result);
-	
+
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "한달살이 예약 성공");
 			//response.sendRedirect(request.getContextPath()+"/month.main");

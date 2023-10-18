@@ -86,17 +86,13 @@ public class MonthlivingDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			/*memNo
-			lodgeNo
-			startDate
-			peopleNum */
 			pstmt.setInt(1,  mr.getMemNo());
 			pstmt.setInt(2,  mr.getLodgeNo());
 			pstmt.setString(3,  mr.getStartDate());
 			pstmt.setInt(4,  mr.getPeopleNum());
 			
 			result = pstmt.executeUpdate();
-			System.out.println(result);
+			//System.out.println(result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -165,7 +161,6 @@ public class MonthlivingDao {
 			
 			while(rset.next()) {
 				MonthlivingReservation mr = new MonthlivingReservation() ;
-				
 				
 				mr.setReservationNo(rset.getInt("RESERVATION_NO"));
 				mr.setMemNo(memNo);

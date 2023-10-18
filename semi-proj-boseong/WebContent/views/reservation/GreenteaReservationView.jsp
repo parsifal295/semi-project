@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList"
+    pageEncoding="UTF-8" 
+    import="java.util.ArrayList,
+            com.boseong.jsp.reservation.model.vo.greenteaInfo"
 %>
+
+<%@ page import="com.boseong.jsp.reservation.model.vo.greenteaInfo" %>    
+    
+
+
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +16,7 @@
 <title>녹차밭 예약페이지</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/index.global.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/index.global.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
@@ -70,11 +78,15 @@
 </style>
 
 
+
+
+
 </head>
 <body>
-	<!-- 스크립트시작 -->
+<!-- 스크립트시작 -->
 	<script>
-      document.addEventListener('DOMContentLoaded', function() {
+
+	document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             selectable: true,
@@ -85,12 +97,20 @@
             },
             dateClick: function(info) {
             	$("#startDate").val(info.dateStr);
-            	console.log(info)
-            }
+            	console.log(info);
+            	
+            	
+            },
+ 
           });
         calendar.render();
-        fixedWeekConut:false;
       });
+		
+     
+      
+      
+      
+      
     </script>
 	<!-- 스크립트끝 -->
 	
@@ -99,23 +119,25 @@
 
 
 	<div class="page" id="content">
-		<form action="<%=contextPath %>/green.in" method="get">
-			<div style="height:200px;"></div>
-			<div class="page" style="height:1000px;">
-				<hr style="border:solid 0.5px grey;">
-				<h2 align="center">녹차밭 예약하기</h2>
-				<hr style="border:solid 0.5px grey;">
+	<form action="<%=contextPath %>/green.in" method="get">
+	<div style="height:200px;"></div>
+	<div class="page" style="height:800px;">
+	<hr style="border:solid 0.5px grey;">
+	<h2 align="center">녹차밭 예약하기</h2>
+	<hr style="border:solid 0.5px grey;">
+	
+	<br><br>
+	<div class="content12">
+	
+		<div class="content1">
 		
-				<br><br>
-			<div class="content12">
-			<div class="content1">
-				<div id='calendar'></div>
-			</div>
-			
-			<div class="content2">
-				<h3><strong>내 예약 정보</strong></h3>
-				<hr>
-				
+		<div id='calendar'></div>
+		</div>
+		
+		<div class="content2">
+			<h3><strong>내 예약 정보</strong></h3>
+			<hr>
+			  
 				예약 일자: 
 				<input id="startDate" name="startDate"><a id="startDate"> </a>
 				<br><br>
@@ -189,10 +211,22 @@
 				<button type="submit" class="btn btn-primary">예약하기</button>
 			</div>
 		</div>
-		</div>
-		</form>
+	</div>
+	</form>
 	</div>
 	
+	
+	</div>
+	
+	
+
+
+
+
+
+
+
+
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
