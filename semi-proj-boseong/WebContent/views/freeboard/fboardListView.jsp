@@ -104,6 +104,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 						<table class="table table-sm" align="center" style="width: 32%" style="cursor:default">
 						<tr>
 							<th width="100">
+								<!--검색 조건 설정 (form 태그로 넘어가는)-->
 									<select name="condition" class="custom-select-sm">
 										<option value="titleContent">제목+내용</option>
 										<option value="writer">작성자</option>
@@ -111,6 +112,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 									</select>
 							</th>
 							<th width="250">
+								<!--검색어 (form태그로 넘어가는)-->
 								<input type="text" name="conditionText" class="form-control form-control-sm">
 							</th>
 							<th>

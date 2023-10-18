@@ -235,9 +235,11 @@
 					}
 				})
 			})
+			
 			$('#scrap-image').click(function(){
 				let on = '<%= contextPath%>/resources/image/scrap.png';
 				let off = '<%= contextPath%>/resources/image/scrapted.png';
+				// 스크랩 버튼 상태에 따라 img 태그의 value 값을 넘길 준비 
 				if ($('#scrap-image').attr('src') == on) {
 						$('#scrap-image').attr('src', off);
 						$('#scrap-image').attr('value', 'Y')
@@ -253,7 +255,7 @@
 						boardNo : '<%= ib.getBoardNo() %>',
 						memberNo : '<%= loginUser.getMemNo() %>'
 					},
-					success : function(){ // e가 반환값임 
+					success : function(){  
 						if ($('#scrap-image').attr('src') == on) {
 							$('#scrap-image').attr('value', 'Y')
 						} else if ($('#scrap-image').attr('src') == off) {
