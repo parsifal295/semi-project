@@ -107,7 +107,7 @@
 
 							<div id="scrap-area">
 							
-							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
+							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image" value="">
 							</div>
             <% } %>
             <div id="userInfo">
@@ -215,7 +215,14 @@
 			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
 			
 			$(function(){
+				let scrap = '<%= contextPath%>/resources/image/scrap.png';
+				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
 				$('#scrap-image').click(function(){
+					if ($('#scrap-image').attr('src') == scrap) {
+						$('#scrap-image').attr('src', scrapted);
+					} else {
+						$('#scrap-image').attr('src', scrap);
+					}
 					setScrapStatus();
 				});
 			})
@@ -227,24 +234,22 @@
 					url : 'scrap.ib',
 					type : 'POST',
 					data : {
-						status : status,
+						status : $('#scrap-image').attr('value'),
 						boardNo : '<%= ib.getBoardNo() %>',
-						memberNo : '<%= loginUser.getMemNo() %>',
+						memberNo : '<%= loginUser.getMemNo() %>'
 					},
 					success : function(e){ // e가 반환값임 
-						console.log(e);
-
-						
-							// $('#scrap-image').attr({'src' : scrap}).click(function(){
-							// if(e.status == 'scrapted'&& e.memberNo == <%=loginUser.getMemNo()%>) { // DB에서 뽑혀온 값 
-							// 	$('#scrap-image').attr({'src' : scrapted});  
-							// 	// ↑ 이건 id가 scrap-image인 태그의 src attribute를 scrap으로 지정하는 것. => image 경로 
-							// }
-							// else{
-							// 	$('#scrap-image').attr({'src' : scrap});
-							// }
-							// });
+						if ($('#scrap-image').attr('src') == scrap) {
+							$('#scrap-image').attr('value', 'N')
+						} else if ($('#scrap-image').attr('src') == scrapted) {
+							$('#scrap-image').attr('value', 'Y')
 						}
+						console.log($('#scrap-image').attr('value'));
+						},
+					error : function() {
+						console.log('error')
+					}
+						
 					})
 				} 
     </script>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet implementation class IboardScrapSelectController */
-@WebServlet("/scrapselect.ib")
+@WebServlet("/scrap.ib")
 public class AjaxIboardScrapController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,6 @@ public class AjaxIboardScrapController extends HttpServlet {
     // response.setContentType("application/json; charset=UTF-8");
     response.setContentType("text/html; charset=UTF-8");
 
-    // 스크랩 버튼 클릭여부 반환값. 널 핸들링 필요
     String scrapStatus = request.getParameter("status");
     int boardNo = Integer.parseInt(request.getParameter("boardNo"));
     int memberNo = Integer.parseInt(request.getParameter("memberNo"));
@@ -48,7 +47,12 @@ public class AjaxIboardScrapController extends HttpServlet {
     Scrap scrapResult = new ScrapService().iboardScrapSelect(scrapToFind);
 
     // 스크랩 여부 저장
-    String status = scrapResult.getStatus();
+    String status = "";
+    if (scrapResult != null) {
+      status = scrapResult.getStatus();
+    } else {
+      status = "N";
+    }
 
     // 스크랩 버튼 활성화 되었을 때..
     if (scrapStatus.equals("Y")) {
@@ -70,6 +74,7 @@ public class AjaxIboardScrapController extends HttpServlet {
         new ScrapService().iboardScrapUpdate(scrapToInsert);
       }
     }
+    System.out.println(status);
     response.getWriter().print(status);
   }
 
