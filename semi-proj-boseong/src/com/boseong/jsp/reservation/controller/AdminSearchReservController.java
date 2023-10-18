@@ -34,6 +34,7 @@ public class AdminSearchReservController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		String searchType = request.getParameter("searchType");
 		String searchKey = request.getParameter("searchKey");
+		System.out.println("searchKey : "+searchKey);
 		ArrayList<AdminReservation> list = new ArrayList();
 		response.setContentType("application/json; charset=UTF-8");
 		Gson gsn = new Gson();
