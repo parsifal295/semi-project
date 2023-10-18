@@ -220,5 +220,13 @@ public class HorseDao {
 			}
 			return result;
 		}
+	public int selectListCount(Connection conn) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListCount");
+		
+		return count;
+	}
 		
 }

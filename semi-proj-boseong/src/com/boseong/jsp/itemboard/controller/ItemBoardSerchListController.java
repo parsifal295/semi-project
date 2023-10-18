@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.itemboard.model.service.ItemBoardService;
 import com.boseong.jsp.itemboard.model.vo.ItemBoard;
-import com.boseong.jsp.scrap.model.vo.Scrap;
 
 /**
- * Servlet implementation class ItemBoardListController
+ * Servlet implementation class ItemBoardSerchListController
  */
-@WebServlet("/iboard.ib")
-public class ItemBoardListController extends HttpServlet {
+@WebServlet("/search.ib")
+public class ItemBoardSerchListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ItemBoardListController() {
+    public ItemBoardSerchListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +32,8 @@ public class ItemBoardListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
+		String keyword = request.getParameter("keyword");
 		// 페이징 처리를 위한 필요한 변수들
 		int listCount;    // 게시글의 총 개수
 		int currentPage;  // 현재 페이지(사용자가 요청한 페이지)
@@ -43,7 +43,7 @@ public class ItemBoardListController extends HttpServlet {
 		int startPage;    // 페이징바의 시작 수
 		int endPage;      // 페에징바의 끝 수
 		// COUNT(*)게시글의 총 개수
-		listCount = new ItemBoardService().selectListCount();
+		listCount = new ItemBoardService().keywordListCount(keyword);
 		// 현재 cpage(key)=value의 값 뽑기
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		// 페이징바의 최대 개수 = 10
@@ -66,14 +66,18 @@ public class ItemBoardListController extends HttpServlet {
 
 		// 값을 담기
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
-	    ArrayList<ItemBoard> list = new ItemBoardService().selectIboardList(pi);	
+	    System.out.println("iboard.ib keyword : " + keyword);
+	    
 	    // 검새한 게시글 list
+		ArrayList<ItemBoard> searched = new ItemBoardService().searchbarList(keyword,pi);
+		System.out.println("searched controller : " + searched);
 	    // 값을 담고 
-	    request.setAttribute("list", list);
 	    request.setAttribute("pi", pi);
-	    // 응답 화면 지정
-		request.getRequestDispatcher("views/itemboard/iboardListView.jsp?cpage=1").forward(request, response);
-	
+	    request.setAttribute("searched", searched);
+		request.setAttribute("keyword", keyword);
+		
+		request.getRequestDispatcher("views/itemboard/iboardResultListView.jsp?cpage=1").forward(request, response);
+
 	}
 
 	/**

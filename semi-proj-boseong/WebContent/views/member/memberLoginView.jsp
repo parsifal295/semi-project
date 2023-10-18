@@ -34,9 +34,9 @@
 		    
 		     <div class="form-group">
 		    
-		         <input type="submit" class="btn btn-secondary" id="btn-login" value="로그인">
+		         <input type="submit" class="btn btn-success" id="btn-login" value="로그인">
 		    
-		         <input type="button" class="btn btn-secondary" value="회원가입" data-toggle="modal" data-target="#memberEnrollForm">
+		         <input type="button" class="btn btn-outline-success" value="회원가입" data-toggle="modal" data-target="#memberEnrollForm">
 		    
 		     </div>
 	      

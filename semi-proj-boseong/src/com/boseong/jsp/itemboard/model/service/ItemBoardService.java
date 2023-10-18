@@ -126,7 +126,29 @@ public class ItemBoardService {
 		
 		return result;
 	}
+	
+	public ArrayList<ItemBoard> searchbarList(String keyword, PageInfo pi){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ItemBoard> list = new ItemBoardDao().searchbarList(conn, keyword, pi);
+		
+		close(conn);
+		
+		return list;
+	}
 
+	
+	public int keywordListCount(String keyword){
+		
+		Connection conn = getConnection();
+		
+		int listCount = new ItemBoardDao().keywordListCount(conn, keyword);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
 
 }

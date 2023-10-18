@@ -132,6 +132,10 @@ VALUES(
 			
 </entry>
 
+<entry key = "selectListCount">
+	SELECT COUNT(*) FROM HANOK_RESERVATION WHERE STATUS='Y'
+</entry>
+
 
 
 

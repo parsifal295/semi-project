@@ -31,13 +31,13 @@
 	
 	<div class="outer">
 	<br>
-	<h2 align="center">공지사항 작성하기</h2>
+	<h2 align="center">공지사항 수정하기</h2>
 	<br><br>
-	
-	<form action="<%= contextPath %>/updateForm.pn" method="post" id="update-form">
+	<%if(loginUser != null){ %>
+	<form action="<%= contextPath %>/insert.pn" method="post" id="update-form">
 		
-		<input type="hidden" name="nno" value="<% p.getNoticeNo() %>">
-		<%if(loginUser != null){ %>
+		<input type="hidden" name="nno" value="<%= p.getNoticeNo() %>">
+		
 		<table align="center">
 		<tr>
 			<th width="50">제목</th>
@@ -54,12 +54,12 @@
 				<textarea name="content" rows="10" style="resize:none;" required><%= p.getNoticeContent() %></textarea>
 		</table>
 		<br><br>
-		
 		<div align="center">
 			<button type="submit" class="btn btn-sm btn-primary">등록하기</button>
 			<button type="button" class="btn btn-sm btn-secondary" onclick="history.back();" >뒤로가기</button>
 			<!-- history.back() 이전페이지로 돌아감 -->
 		</div>
+		
 		<%}else{ %>
 		<%} %>
 	

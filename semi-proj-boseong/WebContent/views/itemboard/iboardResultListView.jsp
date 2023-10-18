@@ -3,7 +3,8 @@
 <%@ page import="java.util.ArrayList, com.boseong.jsp.itemboard.model.vo.ItemBoard,
 			     com.boseong.jsp.freeboard.model.vo.PageInfo"%>
 <%
-	ArrayList<ItemBoard> list = (ArrayList<ItemBoard>)request.getAttribute("list");
+	ArrayList<ItemBoard> list = (ArrayList<ItemBoard>)request.getAttribute("searched");
+	String keyword = (String)request.getAttribute("keyword");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -94,13 +95,13 @@
 			<ul class="pagination justify-content-center" style="margin: 20px 0">
 				<% if(currentPage != 1) { %>
 				<li class="page-item">
-					<a class="page-link" href="<%=contextPath%>/iboard.ib?cpage=<%= currentPage - 1 %>">Previous</a>
+					<a class="page-link" href="<%=contextPath%>/search.ib?cpage=<%= currentPage - 1 %>&keyword=<%= keyword %>">Previous</a>
 				</li>
 				<% } %> 
 				<% for(int i = startPage; i <= endPage; i++) { %>
 				 <% if(currentPage != i) { %>
 				 <li class="page-item">
-                             <a class="page-link" href="<%=contextPath%>/iboard.ib?cpage=<%=i%>"><%=i%></a>
+                             <a class="page-link" href="<%=contextPath%>/search.ib?cpage=<%=i%>&keyword=<%= keyword %>"><%=i%></a>
                           </li>
 				 <% } else { %>
 			     <li class="page-item active">
@@ -109,7 +110,8 @@
 				 <% } %>
 				<% } %> 
 				<% if (currentPage!= maxPage) { %>
-				<li class="page-item"><a class="page-link" href="<%=contextPath%>/iboard.ib?cpage=<%= currentPage + 1 %>">Next</a></li>
+				<li class="page-item"><a class="page-link" href="<%=contextPath%>/search.ib?cpage=<%= currentPage + 1 %>&keyword=<%= keyword %>">Next</a></li>
+				<li class="page-item"><a class="page-link" type="submit" href="<%= contextPath %>/iboard.ib?cpage=1">목록으로</a></li>
 				<% } %>
 			</ul>
 			</div>  
