@@ -154,12 +154,14 @@
 	}
 	#navi > li > ul:hover {
 		display: block;
+		background-color: rgba(0, 0, 0, 0.358);
 	}
 	#navi > li > ul a {
 		font-size: 17px;
 	}
 	#navi > li > ul a:hover {
 		font-size: 20px;
+		background-color: rgba(0, 0, 0, 0.358);
 	}
 	/* ---------------- navigator 영역 부분 end ---------------- */
 	#userBox {
