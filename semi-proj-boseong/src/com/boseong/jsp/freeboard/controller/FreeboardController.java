@@ -78,12 +78,15 @@ public class FreeboardController {
     int startPage; // 시작 페이지
     int endPage; // 끝 페이지
     String returnMe = "/views/freeboard/fboardSearchResultView.jsp";
+
     // 필요한 변수 뽑기
     // ** 검색조건 (제목+내용 or 작성자 or ip 주소) / 검색어 **
     String condition = request.getParameter("condition");
     String keyword = request.getParameter("conditionText");
 
+    // 검색 결과 건수 조회 (페이징 처리를 위해 총 갯수가 필요함)
     listCount = new FreeboardService().getSearchCount(condition, keyword);
+
     System.out.println(listCount);
     currentPage = Integer.parseInt(request.getParameter("cpage"));
     pageLimit = 10;
@@ -96,6 +99,8 @@ public class FreeboardController {
     }
     PageInfo pi =
         new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+
+    // 페이징 처리 포함해서 검색 결과 list로 반환
     ArrayList<Freeboard> list = new FreeboardService().getSearchResult(condition, keyword, pi);
     request.setAttribute("list", list);
     request.setAttribute("pi", pi);
