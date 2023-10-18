@@ -26,7 +26,6 @@ public class MonthLivingReservFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.getRequestDispatcher("/views/reservation/MonthLivingReservForm.jsp").forward(request, response);
 	}
 

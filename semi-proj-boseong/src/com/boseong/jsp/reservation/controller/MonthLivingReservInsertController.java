@@ -30,22 +30,10 @@ public class MonthLivingReservInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*
-		 * 	private int memNo;
-			private int lodgeNo;
-			
-			private String startDate;
-			
-			private int peopleNum;
-		 */
-		
-		
-		//나중에 수정 필요
-		//int memNo = Integer.parseInt(request.getParameter("memNo"));
-		int memNo = 1;
+		//int memNo = 1;
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		
 		//int lodgeNo = 1;
-		//System.out.println(lodgeNo);
 		int lodgeNo = Integer.parseInt(request.getParameter("lodgeNo"));
 		
 		
@@ -64,11 +52,12 @@ public class MonthLivingReservInsertController extends HttpServlet {
 		mr.setPeopleNum(peopleNum);
 		
 		int result = new MonthlivingService().insertReserv(mr);
-	System.out.println(result);
+		//System.out.println(result);
 	
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "한달살이 예약 성공");
-			response.sendRedirect(request.getContextPath()+"/month.main");
+			//response.sendRedirect(request.getContextPath()+"/month.main");
+			response.sendRedirect(request.getContextPath()+"/month.li?memNo=" + memNo);
 		} else {
 			request.getSession().setAttribute("alertMsg", "한달살이 예약 실패");
 			request.getRequestDispatcher("/views/reservation/MonthLivingReservForm.jsp").forward(request, response);

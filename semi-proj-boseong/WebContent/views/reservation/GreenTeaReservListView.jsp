@@ -58,13 +58,13 @@
 			
 			<% } else { %>
 			
-			<% for(int i = 0; i < list.size(); i++) {%>
+			
 			
 			
 			
 			<table border="1" id="table2">
 			<tr bgcolor="#DCDCDC">
-				<th width="300" height="60">예약 회차</th>
+				<th width="300" height="40">예약 회차</th>
 				<th width="350">예약 날짜</th>
 				<th width="250">인원</th>
 				<th width="250">가격</th>
@@ -72,12 +72,17 @@
 				<th width="100">예약취소 </th>
 			</tr>
 			
+			<% for(int i = 0; i < list.size(); i++) {%>
+			
+			
+			
+			
 			<tr>
 			
-				<td height="200"><%=list.get(i).getCourseNum() %> </td>
+				<td height="50"><%=list.get(i).getCourseNum() %> </td>
 				<td><%= list.get(i).getStartDate() %></td>
 				<td><%=list.get(i).getBookNum() %></td>
-				<td>💸무료💸</td>
+				<td>무료</td>
 				<td><%=list.get(i).getReservationNo() %></td>
 				
 				<!-- 예약 취소하기 -->

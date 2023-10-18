@@ -36,30 +36,31 @@
 	<entry key="selectMonthlivinginfoList">
 	SELECT
 		LODGE_NO,
-		LODGE_NAME,
-		LODGE_PRICE
+		PRICE
 	FROM
 		MONTH_INFO
 	
 	
 	</entry>
 	
-	<entry key= "selectReserv">
+	<entry key= "selectReservation">
 		SELECT
 			RESERVATION_NO,
 			LODGE_NO,
 			MEM_NO,
 			START_DATE,
 			PEOPLE_NUM,
+			PRICE
 		FROM
 			MONTH_RESERVATION
+		JOIN
+			MONTH_INFO USING(LODGE_NO)
 		WHERE
-			RESERVATION_NO = ?
-		AND
 			MEM_NO = ?
 		AND
 			STATUS = 'Y'
-		ORDER BY
+		ORDER 
+		BY
 			RESERVATION_NO
 	</entry>
 	
@@ -78,7 +79,7 @@
 		WHERE
 			RESERVATION_NO = ?
 		AND
-			MEM_NO = ?
+			STATUS = 'Y'
 	</entry>
 	
 	

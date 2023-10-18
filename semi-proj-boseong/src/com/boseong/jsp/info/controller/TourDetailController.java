@@ -27,16 +27,10 @@ public class TourDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		String tour = request.getParameter("tour");
 	    request.setAttribute("tour", tour);
 	    request.getRequestDispatcher("views/info/TourDetailView.jsp").forward(request, response);
-	    
-		
-		
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

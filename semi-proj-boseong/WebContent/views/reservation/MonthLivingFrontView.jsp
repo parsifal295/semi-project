@@ -5,6 +5,7 @@
  
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
   
@@ -69,24 +70,17 @@
 		left:90%;
 		transform:translate(-50%, 50%);
 	}
-	
-
-
 
 	.outer{
-			width : 1400px;
-			height : 1000px;
-			margin : auto;
-		}
-		
-	
+		width : 1400px;
+		height : 1000px;
+		margin : auto;
+	}
 		
 	 .list-area {
-        text-align : center;
-        
+        text-align : center; 
     }
 	
-		
 	.thumbnail {
         border : 1px solid black;
         width : 400px;
@@ -107,19 +101,9 @@
     }	
 		
 		
-		
-		
-		
-		
-		
-	
-		
 </style>
-
-
-
-
 </head>
+
 <body>
 	<%@ include file="../common/menubar.jsp" %>
 
@@ -127,105 +111,88 @@
 	<div class="page">
 	<div style="height:200px;"></div>
 	
-		<div class="page" style="height:900px;">
-			<div class="mainpic">
-				<img src="<%=contextPath %>/resources/image/reservation/monthlivingmain.jpg" width="2000" height="780" id="img9">
-			</div>
-			<div class="main_image_text"><h2 align=center style="font-size:60px;">한달 살기</h2></div>
-			
-
-			<% if(loginUser != null){ %>
-			
-				<form action="<%=contextPath%>/month.fo" method="get">
-					<input type="hidden" id="memNo1" name="memNo" value="<%= loginUser.getMemNo() %>">											
-					<div class="box1" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;" >예약하기</button></div>
-				</form>
-			
-			
-			
-				<form action="<%=contextPath%>/month.li" method="post">
-							<input type="hidden" id="memNo" name="memNo" value="<%= loginUser.getMemNo() %>">
-							
-							<div class="box2" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;" >예약조회</button></div>
-				</form>
-			<% } %>
-				
+	<div class="page" style="height:900px;">
+		<div class="mainpic">
+			<img src="<%=contextPath %>/resources/image/reservation/monthlivingmain.jpg" width="2000" height="780" id="img9">
 		</div>
 		
+		<div class="main_image_text"><h2 align=center style="font-size:60px;">한달 살기</h2>
+		</div>
+			
+
+		<% if(loginUser != null){ %>
+			
+			<form action="<%=contextPath%>/month.fo" method="get">
+				<input type="hidden" id="memNo1" name="memNo" value="<%= loginUser.getMemNo() %>">											
+				<div class="box1" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;">예약하기</button></div>
+			</form>
+			
+			
+			
+			<form action="<%=contextPath%>/month.li" method="post">
+				<input type="hidden" id="memNo" name="memNo" value="<%= loginUser.getMemNo() %>">
+				<div class="box2" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;">예약조회</button></div>
+			</form>
+		<% } %>
+				
+	</div>
 		
-		<div class="page" style="height:1200px" clear="both">
-			<div class="content1_0" align="center">
-			<h2>🏠숙소 정보🏠</h2>
-			<hr>
+		
+		
+		
+	<div class="page" style="height:1200px" clear="both">
+		<div class="content1_0" align="center">
+		<h2>🏠숙소 정보🏠</h2>
+		<hr>
 			
 			
-		<div class="content1" align="center" id="thumbnails">
+			<div class="content1" align="center" id="thumbnails">
 					
-		<div class="list-area">
-		
-			<div class="thumbnail" align="center">
-			<!--  <input type="hidden" >-->
-			<!-- <img src="https://image.goodchoice.kr/resize_490x348/affiliate/2019/06/20/11/ec67d36c-9413-d75c-dcdf-7d937a576a17-original.jpg" alt="메로나망고맛"> -->
-			<img src="<%=contextPath %>/resources/image/reservation/house1.jpg" alt="">
-                    <p>
-                    <h5><b>수진한옥팬션</b><br></h5>
-                       보성의 득량면에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다.
-                    </p>
-			</div>
+				<div class="list-area">
 			
-			
-			<div class="thumbnail" align="center">
-			<!--  <input type="hidden" >-->
-			
-            <img src="<%=contextPath %>/resources/image/reservation/house2.jpg" alt="">
-                   <p>
-                    <h5><b>이진래 고택</b><br></h5>
-                       	 보성의 득량면에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다.
-                    </p>
-			</div>
-			
-			<div class="thumbnail" align="center">
-			<!--  <input type="hidden" >-->
-			<img src="<%=contextPath %>/resources/image/reservation/house3.jpg" alt="">
-                    <p>
-                    <h5><b>큰기와집</b><br></h5>
-                       	 보성의 조성면에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다.
-                    </p>
-			</div>
-			
-			
-			
-			
-			</div>
-		
-		</div>
-		</div>
-				
-				
+					<div class="thumbnail" align="center">
+					<!--  <input type="hidden" >-->
+					
+						<img src="<%=contextPath %>/resources/image/reservation/house1.jpg" alt="">
+		           		<p>
+			            	<h5><b>수진한옥팬션</b><br></h5>
+			                                보성의 득량면에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다.
+		            	</p>
+					</div>
+					
+					
+					<div class="thumbnail" align="center">
+					<!--  <input type="hidden" >-->
+					
+		            <img src="<%=contextPath %>/resources/image/reservation/house2.jpg" alt="">
+		                   <p>
+		                   <h5><b>이진래 고택</b><br></h5>
+		                       	 보성의 득량면에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다.
+		                   </p>
+					</div>
+					
+					
+					<div class="thumbnail" align="center">
+					<!--  <input type="hidden" >-->
+					
+					<img src="<%=contextPath %>/resources/image/reservation/house3.jpg" alt="">
+		                    <p>
+		                    <h5><b>큰기와집</b><br></h5>
+		                       	 보성의 조성면에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다.
+		                    </p>
+					</div>					
 				</div>
-				
-				
-			</div>
+			</div>	
+		</div>			
+	</div>				
+</div>
 		
-		
-		
-		
-		<div class="page" clear="both" style="height:700px">
-		
-			
-		</div>
-		<br><br>
-	
-		
-		
+	<div class="page" clear="both" style="height:700px">
+	</div>
+	<br><br>
 
-		
-	
-		
-	
 	
 <%@ include file="../common/footer.jsp" %>
-
 
 	<script>
         	 let thumbnails = document.getElementsByClassName("thumbnail");
@@ -242,13 +209,6 @@
         		}
         	    
     </script>  
-
-
-
-
-
-
-
 
 
 </body>

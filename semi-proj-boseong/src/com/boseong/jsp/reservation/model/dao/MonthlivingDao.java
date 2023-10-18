@@ -112,7 +112,7 @@ public class MonthlivingDao {
 
 
 
-	//얘 안쓰는거같음
+	//
 	public ArrayList<Monthlivinginfo> selectMonthlivinginfoList(Connection conn) {
 		
 		ArrayList<Monthlivinginfo> list = new ArrayList();
@@ -127,18 +127,8 @@ public class MonthlivingDao {
 			
 			while(rset.next()) {
 				Monthlivinginfo mi = new Monthlivinginfo();
-				/*
-				 * LODGE_NO
-					LODGE_NAME
-					LODGE_LOCATION
-					PRICE
-					LODGE_INFO
-				 */
 				mi.setLodgeNo(rset.getInt("LODGE_NO"));
-				mi.setLodgeName(rset.getString("LODGE_NAME"));
-				mi.setLodgeLocation(rset.getString("LODGE_PRICE"));
-				
-				
+				mi.setLodgeLocation(rset.getString("PRICE"));
 				list.add(mi);
 			}
 			
@@ -177,17 +167,8 @@ public class MonthlivingDao {
 				MonthlivingReservation mr = new MonthlivingReservation() ;
 				
 				
-				/*
-				 * private int reservationNo;
-					private int memNo;
-					private int lodgeNo;
-					private String startDate;
-					private int peopleNum;
-					
-				 */
 				mr.setReservationNo(rset.getInt("RESERVATION_NO"));
 				mr.setMemNo(memNo);
-				
 				mr.setLodgeNo(rset.getInt("LODGE_NO"));
 				mr.setStartDate(rset.getString("START_DATE"));
 				mr.setPeopleNum(rset.getInt("PEOPLE_NUM"));
@@ -206,6 +187,35 @@ public class MonthlivingDao {
 		
 		
 		return list;
+	}
+
+
+
+
+
+
+
+	public int deleteMonthLiving(Connection conn, int reservationNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReserv");
+		
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,  reservationNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	

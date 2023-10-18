@@ -97,13 +97,13 @@
               right: 'dayGridMonth'
             },
             dateClick: function(info) {
-            	$("#startDate").val(info.dateStr);
+            	$("#startMonth").val(info.dateStr);
             	console.log(info);
             	
             	 var str = info.dateStr;
             	 var result1 = str.substring(0,7);
             	 console.log(result1);
-            	 $("#startMonth").val(result1);
+            	 $("#startDate").val(result1);
             	 //자바스크립트로 값을 지정해줘야댄다고 하심
             	 //method를 써서...substr 써서..
             	 //2023-10-14
@@ -157,7 +157,7 @@
 				
 				
 				예약 월: 
-				<input id="startMonth" name="startMonth"><a id="startMonth"> </a>
+				<input id="startDate" name="startDate"><a id="startDate"> </a>
 				
 				
 				
