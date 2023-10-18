@@ -173,5 +173,35 @@ public class ProductNoticeDao {
 		}
 		return result;
 	}
-	
+	public ArrayList<ProductNotice> selectProductReviewList(Connection conn){
+		
+		ArrayList<ProductNotice> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductReviewList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductNotice p = new ProductNotice();
+				p.setNoticeNo(rset.getInt("NOTICE_NO"));
+				p.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				p.setCount(rset.getInt("COUNT"));
+				p.setCreateDate(rset.getDate("CREATE_DATE"));
+				
+				list.add(p);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 }

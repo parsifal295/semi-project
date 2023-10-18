@@ -63,7 +63,7 @@
             </table>
             
            <form>
-            	<input type="button" onclick="location.href='#'" id="review" value="구매리뷰" style="float:right;">
+            	<input type="button" onclick="location.href='https://boseongmall.co.kr/product/detail.html?product_no=1066&cate_no=28&display_group=1#prdReview'" id="review" value="구매리뷰" style="float:right;">
             	<input type="button" onclick="location.href='list.pn'" id="notice" value="공지사항" style="float:right;">
            </form>
             
