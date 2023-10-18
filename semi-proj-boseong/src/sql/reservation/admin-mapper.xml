@@ -151,19 +151,6 @@ SELECT
     WHERE RNUM BETWEEN 1 AND 7
 </entry>
 
-<entry key="selectRidesCount">
-	SELECT COUNT(*) FROM HORSE_RESERVATION
-</entry>
-<entry key="selectTeaCount">
-	SELECT COUNT(*) FROM TEA_RESERVATION
-</entry>
-<entry key="selectHanokCount">
-	SELECT COUNT(*) FROM HANOK_RESERVATION
-</entry>
-<entry key="selectMonthCount">
-	SELECT COUNT(*) FROM MONTH_RESERVATION
-</entry>
-
 <entry key="selectReservation">
 SELECT 
     RESERV_TYPE, RESERVATION_NO, MEM_ID, PHONE, "TYPE", START_DATE, STATUS 

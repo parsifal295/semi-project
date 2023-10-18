@@ -212,8 +212,7 @@
         	  }
           })
     	});
-			
-	
+
 			// 게시글 조회시 DB조회하여 스크랩 여부 리턴해주는 Ajax script
 			$(() => {
 				let on = '<%= contextPath%>/resources/image/scrap.png';

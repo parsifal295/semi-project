@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.GreenteaService;
+import com.boseong.jsp.reservation.model.service.MonthlivingService;
 
 /**
- * Servlet implementation class GreenTeaReservDeleteController
+ * Servlet implementation class MonthLivingReservDeleteControlelr
  */
-@WebServlet("/green.de")
-public class GreenTeaReservDeleteController extends HttpServlet {
+@WebServlet("/month.del")
+public class MonthLivingReservDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GreenTeaReservDeleteController() {
+    public MonthLivingReservDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,20 +28,21 @@ public class GreenTeaReservDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//현재 로그인한 회원의 정보
-		//회원정보 = 회원아이디(memNo), number가져오기
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 		int reservationNo = Integer.parseInt(request.getParameter("nno"));
 		
-		int result = new GreenteaService().deleteGreentea(reservationNo);
+		int result = new MonthlivingService().deleteMonthliving(reservationNo);
 		
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "예약 취소되었습니다.");					
-			response.sendRedirect(request.getContextPath() + "/green.ho");
+			response.sendRedirect(request.getContextPath() + "/month.main");
 		} else {
-			request.getSession().setAttribute("alertMsg", "예약 취소 실패하였습니다.");
-			request.getRequestDispatcher("views/reservation/GreenTeaReservListView.jsp").forward(request, response);
+			request.getSession().setAttribute("alertMsg", "예약 취소 실패하였습니다.");request.getRequestDispatcher("views/reservation/MonthLivingReservListView.jsp").forward(request, response);
+			request.getRequestDispatcher("views/reservation/MonthLivingReservListView.jsp").forward(request, response);
 		}
+		
 	}
 
 	/**

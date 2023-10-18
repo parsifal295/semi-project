@@ -3,6 +3,7 @@
     import="java.util.ArrayList,
             com.boseong.jsp.reservation.model.vo.Monthlivinginfo"
 %>
+<%@ page import="com.boseong.jsp.reservation.model.vo.Monthlivinginfo" %>    
     
 <%
 	ArrayList<Monthlivinginfo> list = (ArrayList<Monthlivinginfo>)request.getAttribute("list");
@@ -96,13 +97,13 @@
               right: 'dayGridMonth'
             },
             dateClick: function(info) {
-            	$("#startDate").val(info.dateStr);
+            	$("#startMonth").val(info.dateStr);
             	console.log(info);
             	
             	 var str = info.dateStr;
             	 var result1 = str.substring(0,7);
             	 console.log(result1);
-            	 $("#startMonth").val(result1);
+            	 $("#startDate").val(result1);
             	 //자바스크립트로 값을 지정해줘야댄다고 하심
             	 //method를 써서...substr 써서..
             	 //2023-10-14
@@ -143,9 +144,20 @@
 		<div class="content2">
 			<h3><strong>내 예약 정보</strong></h3>
 			<hr>
+			  
+				<a>예약 숙소: 
+	        	<select name="lodgeNo"> 
+		            <option value="1">수진한옥팬션</option>
+		            <option value="2">이진래 고택</option>
+		            <option value="3">큰기와집</option>
+				</select>
+        	</a>
+        	
+        	<br><br>
+				
 				
 				예약 월: 
-				<input id="startMonth" name="startMonth"><a id="startMonth"> </a>
+				<input id="startDate" name="startDate"><a id="startDate"> </a>
 				
 				
 				
@@ -153,7 +165,7 @@
 
 			<br><br>
 			<a>인원:
-				<input type="number" name="bookNum" min="0" max="10" value="1" step="1">
+				<input type="number" name="peopleNum" min="0" max="10" value="1" step="1">
 			명(최대인원:10명)</a>
 			<br>
 			
@@ -181,7 +193,7 @@
 	
 	
 	<div class="content3">
-	<br><br>
+	<br>
 	 이름 : <input type="text" name="memName" placeholder="이름을 입력해주세요." required>
 	 <br><br>
 	 전화번호 : <input type="text" name="phone" placeholder="전화번호를 입력해주세요." required>
@@ -217,6 +229,7 @@
 		<br><br>
 		
 		<input type="hidden" id="memNo1" name="memNo" value="<%= loginUser.getMemNo() %>">											
+		
 		<div class="button">
 		<button type="submit" class="btn btn-primary">예약하기</button>
 		</div>
@@ -227,7 +240,11 @@
 	
 	</div>
 	
-
+	<script>
+		function list(memNo){
+			location.href = "<%=contextPath%>/month.li?memNo="+memNo;
+		}
+		</script>
 
 
 

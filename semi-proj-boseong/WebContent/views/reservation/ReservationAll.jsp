@@ -10,11 +10,10 @@
     %>
     
     <%
-	
     ArrayList<GreenteaReservation> list = (ArrayList<GreenteaReservation>) request.getAttribute("list");
-
-%>
+	%>
     
+ 
     
     
 <!DOCTYPE html>
@@ -33,31 +32,31 @@
 		}
 
 	.title{
-		margin-bottom:50px;
+			margin-bottom:50px;
 	}
 
 
 	.container{
-		width : 1800px;
-		height : 800px;
+			width : 1800px;
+			height : 800px;
 	}
 
 	
 
 	.hanok{
-	margin-bottom:50px;
+			margin-bottom:50px;
 	}
 	
 	.table{
-	margin-bottom:50px;
+			margin-bottom:50px;
 	}
 
 
 	.horse{
-	margin-bottom:50px;
+			margin-bottom:50px;
 	}
 	.monthliving{
-	margin-bottom:50px;
+			margin-bottom:50px;
 	}
 	
 	
@@ -76,7 +75,7 @@
 			<div class="title1"><h4>한옥 예약</h4></div>
 			<table border="1" id="table1">
 				<tr bgcolor="#DCDCDC">
-					<th width="300" height="60">Room No</th>
+					<th width="300" height="40">Room No</th>
 					<th width="350">예약 날짜</th>
 					<th width="250">인원</th>
 					<th width="250">가격</th>
@@ -85,12 +84,12 @@
 				</tr>
 				
 				<tr>
-					<td height="200"></td>
+					<td height="50"></td>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><button type="button" class="btn btn-danger" >예약취소(이거 회원탈퇴 모달형식으로 진행)</button></td>
+					<td><button type="button" class="btn btn-danger">예약취소</button></td>
 				</tr>
 			</table><!-- table -->
 			
@@ -105,7 +104,7 @@
 		<div class="title1"><h4>한달 살기</h4></div>
 		<table border="1" id="table2">
 			<tr bgcolor="#DCDCDC">
-				<th width="300" height="60">숙소명</th>
+				<th width="300" height="40">숙소명</th>
 				<th width="350">예약 날짜</th>
 				<th width="250">인원</th>
 				<th width="250">가격</th>
@@ -114,7 +113,7 @@
 			</tr>
 			
 			<tr>
-				<td height="200"></td>
+				<td height="50"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -133,7 +132,7 @@
 		<div class="title1"><h4>승마 체험</h4></div>
 		<table border="1" id="table2">
 			<tr bgcolor="#DCDCDC">
-				<th width="300" height="60">프로그램 종류</th>
+				<th width="300" height="40">프로그램 종류</th>
 				<th width="350">예약 날짜</th>
 				<th width="250">인원</th>
 				<th width="250">가격</th>
@@ -142,7 +141,7 @@
 			</tr>
 			
 			<tr>
-				<td height="200"></td>
+				<td height="50"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -160,7 +159,7 @@
 		<div class="title1"><h4>녹차밭 체험</h4></div>
 		<table border="1" id="table2">
 			<tr bgcolor="#DCDCDC">
-				<th width="300" height="60">예약 회차</th>
+				<th width="300" height="40">예약 회차</th>
 				<th width="350">예약 날짜</th>
 				<th width="250">인원</th>
 				<th width="250">가격</th>
@@ -169,7 +168,7 @@
 			</tr>
 			
 			<tr>
-				<td height="200"></td>
+				<td height="50"></td>
 				<td></td>
 				<td></td>
 				<td></td>

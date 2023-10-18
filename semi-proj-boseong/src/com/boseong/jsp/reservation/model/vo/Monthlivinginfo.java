@@ -1,5 +1,7 @@
 package com.boseong.jsp.reservation.model.vo;
 
+import java.util.ArrayList;
+
 public class Monthlivinginfo {
 	private int lodgeNo;
 	private String lodgeName;
@@ -8,6 +10,14 @@ public class Monthlivinginfo {
 	private String lodgeInfo;
 	
 	
+	public Monthlivinginfo(int lodgeNo, String lodgeName, int price) {
+		super();
+		this.lodgeNo = lodgeNo;
+		this.lodgeName = lodgeName;
+		this.price = price;
+	}
+
+
 	public Monthlivinginfo() {
 		super();
 	}
@@ -78,6 +88,9 @@ public class Monthlivinginfo {
 		return "Monthlivinginfo [lodgeNo=" + lodgeNo + ", lodgeName=" + lodgeName + ", lodgeLocation=" + lodgeLocation
 				+ ", price=" + price + ", lodgeInfo=" + lodgeInfo + "]";
 	}
+
+
+	
 	
 	
 	

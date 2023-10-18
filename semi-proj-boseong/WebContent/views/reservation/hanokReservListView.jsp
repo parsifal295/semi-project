@@ -114,6 +114,7 @@ text-align:center;}
 					<label for = "reservNo">예약 번호 :</label>
 					<input type = "text" name="reservNo" id="reservNo" required>
 					<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>">
+					<input type="hidden" name="cpage" value="<%=currentPage%>">
 					<button type="submit">취소</button>
 				</form>
 			</div>

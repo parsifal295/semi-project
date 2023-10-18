@@ -32,21 +32,13 @@ public class MonthLivingDetailController extends HttpServlet {
 		
 		//확인완료
 		int lodgeNo = Integer.parseInt(request.getParameter("lodgeNo"));
-		//System.out.println(lodgeNo);
 		
 		Monthlivinginfo m = new MonthlivingService().selectMonthlivinginfo(lodgeNo);
-		//System.out.println(m);
+		
 		request.setAttribute("Monthlivinginfo", m);
 		request.setAttribute("lodgeNo",lodgeNo);
 		
 		request.getRequestDispatcher("views/reservation/MonthLivingDetailView.jsp").forward(request, response);
-		
-	
-	
-	
-	
-	
-	
 	
 	}
 

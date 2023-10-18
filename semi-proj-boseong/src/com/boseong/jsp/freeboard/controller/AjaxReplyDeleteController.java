@@ -31,10 +31,15 @@ public class AjaxReplyDeleteController extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     request.setCharacterEncoding("UTF-8");
+
+    // 게시글 번호, 유저가 입력한 비밀번호, 댓글번호
     int boardNo = Integer.parseInt(request.getParameter("bno"));
     String userPass = request.getParameter("usrPass");
     int rNum = Integer.parseInt(request.getParameter("rNum"));
-    // 댓글 전체목록 map에 넣고 번호로 비밀번호 조회
+
+    // 댓글 전체목록 map에 넣고 댓글번호로 비밀번호 조회 (비교 용도)
+    // 이유 : 댓글 객체 한개 조회용 코드치기가 싫었음
+    // K : 댓글 번호 , V : Reply 객체
     ArrayList<FreeboardReply> list = new ArrayList<>();
     list = new FreeboardService().selectReplyList(boardNo);
     Map<Integer, FreeboardReply> map = new HashMap<>();
@@ -47,6 +52,7 @@ public class AjaxReplyDeleteController extends HttpServlet {
       new FreeboardService().deleteReply(rNum);
       // ajax injection
       response.setContentType("text/html; charset=UTF-8");
+      // 암호 일치시 1 넘기면 jsp에서 정상적으로 삭제 되었다고 alert창 띄우는 용도
       response.getWriter().print("1");
     }
     // request.getContextPath() + "/detailView.fb?bno=" + boardNo;

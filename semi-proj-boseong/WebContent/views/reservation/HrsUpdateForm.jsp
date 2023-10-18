@@ -10,6 +10,7 @@
 	int horseTime = (selectedRsv.getHorseTime() == 0)? 10 : selectedRsv.getHorseTime();
 	int riderNum = (selectedRsv.getRiderNum() == 0)? 1 : selectedRsv.getRiderNum();
 	String message = (selectedRsv.getMessage()==null)? "요청사항 없음" : selectedRsv.getMessage();
+	int cpage = (request.getAttribute("cpage")==null)? 1 : (Integer)request.getAttribute("cpage");
 %>
 
 <!DOCTYPE html>
@@ -47,6 +48,7 @@
 	<div id="box"></div>
 	<div class="page" id="content">
 		<form action="<%=contextPath%>/update.hs" method="get">
+			<input type="hidden" name="cpage" value="<%=cpage%>">
 			<input type = "hidden" name="reservNo" value="<%=reservNo%>">
 			<div id="ride-info">
 				<h2>승마예약 변경</h2>
