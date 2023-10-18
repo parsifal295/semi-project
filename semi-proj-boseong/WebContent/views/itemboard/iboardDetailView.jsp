@@ -240,8 +240,10 @@
 				let off = '<%= contextPath%>/resources/image/scrapted.png';
 				if ($('#scrap-image').attr('src') == on) {
 						$('#scrap-image').attr('src', off);
+						$('#scrap-image').attr('value', 'Y')
 					} else {
 						$('#scrap-image').attr('src', on);
+						$('#scrap-image').attr('value', 'N')
 					}
 				$.ajax({
 					url : 'scrap.ib',
