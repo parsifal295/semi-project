@@ -87,7 +87,6 @@ public class FreeboardController {
     // 검색 결과 건수 조회 (페이징 처리를 위해 총 갯수가 필요함)
     listCount = new FreeboardService().getSearchCount(condition, keyword);
 
-    System.out.println(listCount);
     currentPage = Integer.parseInt(request.getParameter("cpage"));
     pageLimit = 10;
     boardLimit = 10;
