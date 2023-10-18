@@ -10,5 +10,6 @@ public interface ProductNoticeServiceI {
 //	ArrayList<ProductNotice> selectProductNoticeList();
 
 	ArrayList<ProductNotice> selectProductNoticeList();
+	ArrayList<ProductNotice> selectProductReviewList();
 
 }

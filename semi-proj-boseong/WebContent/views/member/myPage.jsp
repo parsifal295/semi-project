@@ -128,7 +128,7 @@
 					    <label for="checkPwd">새로운 비밀번호 확인 :</label>
 					    <input type="password" class="form-control" placeholder="새로운 비밀번호를 다시 입력해주세요." id="checkPwd" required>
 					 </div>
-					 <button type="submit" onclick="return validatePwd();" class="btn btn-sm btn-secondary">비밀번호 변경</button>
+					 <button type="submit" onclick="return validatePwd();" class="btn btn-warning">비밀번호 변경</button>
 					 
 					 <input type="hidden" name="memNo" value="<%= loginUser.getMemNo() %>">
 					 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.reservation.model.service.HorseService;
 import com.boseong.jsp.reservation.model.vo.HorseReservation;
 
@@ -31,11 +32,38 @@ public class HorseReservListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//회원번호 가져가기
+		int listCount;
+		int currentPage;
+		int pageLimit;
+		int boardLimit;
+		int maxPage;
+		int startPage;
+		int endPage;
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		//listCount = new HorseService().selectListCount(memNo);
+		currentPage = Integer.parseInt(request.getParameter("cpage"));
+		listCount = new HorseService().selectListCount(memNo);
+		pageLimit=5;
+		boardLimit = 2;
+		
+		startPage = pageLimit*((currentPage-1)/pageLimit)+1;
+		maxPage = (int)(Math.ceil((double)listCount/boardLimit));
+		
 		//Integer.parseInt(request.getParameter("memNo"));
-		ArrayList<HorseReservation> list = new HorseService().selectRides(memNo);
+		endPage = startPage + pageLimit-1;
+		if(endPage > maxPage) {
+			endPage=maxPage;
+		}
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit,maxPage,startPage,endPage);
+		System.out.println(pi);
+		ArrayList<HorseReservation> list = new HorseService().selectRides(memNo, pi);
+		
+		for(HorseReservation hr:list) {
+			System.out.println(hr);
+		}
+		
 		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/reservation/HorseReservListView.jsp").forward(request, response);
 	}
 

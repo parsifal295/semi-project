@@ -30,7 +30,7 @@
 	      		</tr>
 	      		<tr>
 	      			<td>* 비밀번호</td>
-	      			<td><input type="password" name="memPwd" maxlength="15" id="memPwd" required></td>
+	      			<td><input type="password" name="memPwd" maxlength="15" id="pwd" required></td>
 	      		</tr>
 	      		<tr>
 	      			<td>* 비밀번호 확인</td>
@@ -38,7 +38,7 @@
 	      		</tr>
 	      		<tr>
 					<td>* 이름</td>
-					<td><input type="text" name="memName" maxlength="5" required></td>
+					<td><input type="text" name="memName" maxlength="5" id="memName" required></td>
 				</tr>
 				<tr>
 					<td>&nbsp;&nbsp;이메일</td>
@@ -46,7 +46,7 @@
 				</tr>
 				<tr>
 					<td>* 전화번호</td>
-					<td><input type="text" name="phone" placeholder="-포함해서 입력해주세요."></td>
+					<td><input type="text" name="phone" placeholder="-포함해서 입력해주세요." id="phone"></td>
 				</tr>
 				<tr>
 				<td>* 주소</td>
@@ -66,7 +66,7 @@
 	      	</table>
 	      	
 	      	<div align="center" id="enroll-button">
-				<button type="submit" disabled onclick="chkPW()" class="btn btn-success">회원가입</button>
+				<button type="submit" disabled onclick="checkMail" class="btn btn-success">회원가입</button>
 			</div>
 	      	
 	      </form>
@@ -104,46 +104,63 @@
 	      			}
 	      		});
 	      	}
-	      		
-	      	// 유효성 검사
 	      	
-	      	// 아이디
-	      	$('#memberEnrollForm').on('submit',()=>{
+	      	// 아이디 유효성 검사
+	      	$('#memberEnrollForm').on('submit',() => {
 		    	let idval = $('#memId').val()
 		        let idvalcheck = /^[a-z0-9]+$/
 		        if (!idvalcheck.test(idval) || idval.length<6){
-		        	alert('아이디는 영소문자,숫자로 구성된 6글자 이상으로 조합하시오.')
-		            $('#memId').focus()
+		        	alert('아이디는 영소문자 및 숫자를 포함하여 6글자 이상으로 입력해주세요.')
+		            $('#memId').focus().removeAttr('readonly');
+		        	$('#enroll-button button[type=submit]').attr('disabled', true);
 		            return false
 		        }
 		    });
 	      	
-	      
+	      	// 비밀번호 유효성 검사
+	      	$('#memberEnrollForm').on('submit',() => {
+		    	let pwdval = $('#pwd').val()
+		        let pwdvalcheck = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+		        if (!pwdvalcheck.test(pwdval) || pwdval.length<8){
+		        	alert('비밀번호는 대소문자 및 숫자를 포함하여 8자 이상으로 입력해주세요.');
+		            $('#pwd').focus()
+		            return false
+		        }
+		        	/*
+		        	if(pwd.value != pwdcheck.value) {
+		        		alert('비밀번호 확인을 다시 입력해주세요.');
+			            $('#pwdcheck').focus()
+			            return false
+		        	}
+		        	*/
+		    });
+	      	
+	      	// 핸드폰번호 유효성 검사
+	      	$('#memberEnrollForm').on('submit',() => {
+		    	let phoneval = $('#phone').val()
+		        let phonevalcheck = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		        if (!phonevalcheck.test(phoneval) || phoneval.length<12){
+		        	alert('핸드폰번호는 -포함해서 입력해주세요.')
+		            $('#phone').focus()
+		            return false
+		        }
+		    });
+	      	
+	      	
+	      	
+	      	
+	      	
+	      	
+	        
 	      </script>
-	      <script>
-	      function chkPW(){
-
-	    	  var pw = $("#memPwd").val();
-	    	  var num = pw.search(/[0-9]/g);
-	    	  var eng = pw.search(/[a-z]/ig);
-	    	  var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-
-	    	  if(pw.length < 10 || pw.length > 20){
-	    	   alert("10자리 ~ 20자리 이내로 입력해주세요.");
-	    	   return false;
-	    	  }else if(pw.search(/\s/) != -1){
-	    	   alert("비밀번호는 공백 없이 입력해주세요.");
-	    	   return false;
-	    	  }else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
-	    	   alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
-	    	   return false;
-	    	  }else {
-	    	 	console.log("통과");	 
-	    	  }
-
-	    	 }
 	      
-	      </script>
+	      
+	      
+	      
+	      
+	    
+	    
+	      
 	      
 	      
 	      	

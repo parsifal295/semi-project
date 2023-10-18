@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.reservation.model.vo.HorseProgram;
 import com.boseong.jsp.reservation.model.vo.HorseReservation;
 
@@ -78,20 +79,27 @@ public class HorseDao {
 		}		
 		return list;
 	}
-	public ArrayList<HorseReservation> selectRides(Connection conn, int memNo){
+	public ArrayList<HorseReservation> selectRides(Connection conn, int memNo, PageInfo pi){
 		ArrayList<HorseReservation> list = new ArrayList();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectRides");
 		
 		try {
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = pi.getCurrentPage()*pi.getBoardLimit();
+			
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, memNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				HorseReservation hrsv = new HorseReservation();
+				
 				hrsv.setReservNo(rset.getInt("RESERVATION_NO"));
 				hrsv.setMemNo(memNo);
 				hrsv.setProgramNo(rset.getString("HORSE_PRO_NAME"));
@@ -220,12 +228,27 @@ public class HorseDao {
 			}
 			return result;
 		}
-	public int selectListCount(Connection conn) {
+	public int selectListCount(Connection conn, int memNo) {
 		int count = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectListCount");
 		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				count = rset.getInt("COUNT(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 		return count;
 	}
 		

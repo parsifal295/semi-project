@@ -33,11 +33,10 @@
 	<br>
 	<h2 align="center">공지사항 수정하기</h2>
 	<br><br>
-	<%if(loginUser != null){ %>
-	<form action="<%= contextPath %>/insert.pn" method="post" id="update-form">
+	<form action="<%= contextPath %>/update.pn" method="post" id="update-form">
 		
 		<input type="hidden" name="nno" value="<%= p.getNoticeNo() %>">
-		
+		<%if(loginUser != null){ %>
 		<table align="center">
 		<tr>
 			<th width="50">제목</th>
@@ -59,11 +58,8 @@
 			<button type="button" class="btn btn-sm btn-secondary" onclick="history.back();" >뒤로가기</button>
 			<!-- history.back() 이전페이지로 돌아감 -->
 		</div>
-		
 		<%}else{ %>
 		<%} %>
-	
-	
 		<br><br>
 	</div>
 
