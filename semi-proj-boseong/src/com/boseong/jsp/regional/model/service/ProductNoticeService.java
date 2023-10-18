@@ -63,8 +63,6 @@ public class ProductNoticeService implements ProductNoticeServiceI{
 		
 		Connection conn = getConnection();
 		
-		new ProductNoticeDao().updateNotice(conn, p);
-		
 		int result = new ProductNoticeDao().updateNotice(conn, p);
 		
 		if(result > 0) {

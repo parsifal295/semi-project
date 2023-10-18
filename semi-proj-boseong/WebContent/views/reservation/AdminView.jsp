@@ -61,7 +61,10 @@
 	#update-area{
 		padding-left:900px;
 	}
-
+	#admin-reserv-page{
+	background-color: rgb(242, 245, 236);
+	}
+	
 </style>
 
 </head>
@@ -69,7 +72,8 @@
 
 <%@ include file = "../common/menubar.jsp" %>
 <div id = "box"></div>
-	<div id="content" classp="page"><!--content 너비는 1032, 높이는 화면 크기에 맞춰짐-->
+<div id="admin-reserv-page">
+	<div id="content" class="page"><!--content 너비는 1032, 높이는 화면 크기에 맞춰짐-->
 		<div class = "page">
 			<h1><span id="reserv-type">통합</span>예약 관리</h1>
 			<div>
@@ -255,6 +259,7 @@
 			</script>
 		
 		</div>
+	</div>
 	</div>
 <%@include file = "../common/footer.jsp" %>
 
