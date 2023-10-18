@@ -212,25 +212,25 @@
           })
     	});
 			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
+			
+			$(function(){
+				$('#scrap-image').click(function(){
+					setScrapStatus();
+				});
+			})
+			
+			function setScrapStatus(){
 				let scrap = '<%= contextPath%>/resources/image/scrap.png';
 				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
-				
-				$(function(){
-				$('#scrap-image').click(function(){
-					scrapReply();
-				});
-				})
-				
-				function scrapReply(){
-					$.ajax({
-						url : 'scrap.ib',
-						type : 'POST',
-						data : {
-							boardNo : '<%= ib.getBoardNo() %>',
-							memberNo : '<%= loginUser.getMemNo() %>',
-						},
-						success : function(e){ // e가 반환값임 
-							console.log(e.status);
+				$.ajax({
+					url : 'scrap.ib',
+					type : 'POST',
+					data : {
+						boardNo : '<%= ib.getBoardNo() %>',
+						memberNo : '<%= loginUser.getMemNo() %>',
+					},
+					success : function(e){ // e가 반환값임 
+						console.log(e.status);
 							$('#scrap-image').attr({'src' : scrap}).click(function(){
 							if(e.status == 'scrapted'&& e.memberNo == <%=loginUser.getMemNo()%>) { // DB에서 뽑혀온 값 
 								$('#scrap-image').attr({'src' : scrapted});  
@@ -244,8 +244,6 @@
 					})
 				} 
     </script>
-	
 <%@ include file="../common/footer.jsp" %>
-	
 </body>
 </html>
