@@ -154,12 +154,14 @@
 	}
 	#navi > li > ul:hover {
 		display: block;
+		background-color: rgba(0, 0, 0, 0.358);
 	}
 	#navi > li > ul a {
 		font-size: 17px;
 	}
 	#navi > li > ul a:hover {
 		font-size: 20px;
+		background-color: rgba(0, 0, 0, 0.358);
 	}
 	/* ---------------- navigator 영역 부분 end ---------------- */
 	#userBox {
@@ -223,7 +225,6 @@
 					<a href="">커뮤니티</a>
 					<ul>
 						<li><a href="<%= contextPath %>/fboard.fb?cpage=1">자유게시판</a></li>
-						<li><a href="#">도움의 손</a></li>
 						<li><a href="<%= contextPath %>/iboard.ib?cpage=1">보성 마켓</a></li>
 					</ul>
 				</li>
@@ -263,8 +264,13 @@
 				</li>
 			</ul>
 			<!-- navi 영역 end -->
-			<div id="logoPlace" class="font"></div>
+			<div id="logoPlace" class="font" onclick="backtoindex();"></div>
 		</div>
+		<script>
+			function backtoindex(){
+				location.href = '<%= contextPath %>';
+			}
+		</script>
 	</header>
 	<%@ include file = "../member/memberLoginView.jsp" %>
 	<%@ include file = "../member/memberEnrollForm.jsp" %>

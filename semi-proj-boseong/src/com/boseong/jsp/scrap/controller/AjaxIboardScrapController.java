@@ -1,16 +1,13 @@
 package com.boseong.jsp.scrap.controller;
 
-import com.boseong.jsp.itemboard.model.service.ItemBoardService;
 import com.boseong.jsp.scrap.model.service.ScrapService;
 import com.boseong.jsp.scrap.model.vo.Scrap;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.simple.JSONObject;
 
 /** Servlet implementation class IboardScrapSelectController */
 @WebServlet("/scrapselect.ib")
