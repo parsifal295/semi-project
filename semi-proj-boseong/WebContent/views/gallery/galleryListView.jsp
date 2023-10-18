@@ -72,13 +72,15 @@
 				<!-- 등록된 사진이 있을 경우 -->
 				<div class="gallery-area" align="center"  id="imageTag">
 					<img src="<%= g.getSavePath() %>/<%= g.getModifiedName() %>" id="image">
+					<a href="<%= g.getLink() %>" id="tag"></a>
 				</div>
 			   <script>
 				$(function(){
 					$('#tag').hide();
 					
 					$('#image').click(function(){
-						location.href = <%= g.getLink() %>;
+						$('#tag').click();
+						// location.href = '<%= g.getLink() %>';
 					})
 				});
 			   </script>
