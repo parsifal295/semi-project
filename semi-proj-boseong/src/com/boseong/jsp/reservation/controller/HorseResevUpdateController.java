@@ -38,6 +38,8 @@ public class HorseResevUpdateController extends HttpServlet {
 		int memNo = Integer.parseInt(request.getParameter("userNo"));
 		String message = request.getParameter("message");
 		
+		int cpage = Integer.parseInt(request.getParameter("cpage"));
+		
 		HorseReservation horseRsv = new HorseReservation();
 		horseRsv.setReservNo(reservNo);
 		horseRsv.setMemNo(memNo);
@@ -50,7 +52,7 @@ public class HorseResevUpdateController extends HttpServlet {
 		int result = new HorseService().updateRide(horseRsv);
 		if(result>0) {
 			//request.getRequestDispatcher("/views/reservation/HorseReservListView.jsp").forward(request, response);
-			response.sendRedirect(request.getContextPath()+"/list.hs?memNo="+memNo);
+			response.sendRedirect(request.getContextPath()+"/list.hs?memNo="+memNo+"&cpage="+cpage);
 		}else {
 			request.getRequestDispatcher("views/reservation/HorseFrontView.jsp").forward(request, response);
 		}

@@ -88,6 +88,7 @@ public class HorseDao {
 		try {
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = pi.getCurrentPage()*pi.getBoardLimit();
+			System.out.println("RNUM :"+startRow+"부터"+endRow+"까지 조회");
 			
 			pstmt=conn.prepareStatement(sql);
 			

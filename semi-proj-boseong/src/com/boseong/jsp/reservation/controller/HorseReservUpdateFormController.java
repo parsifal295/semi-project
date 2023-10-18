@@ -31,9 +31,11 @@ public class HorseReservUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int reservNo = Integer.parseInt(request.getParameter("reservNo"));
+		int cpage = Integer.parseInt(request.getParameter("cpage"));
 		HorseReservation selectedRsv = new HorseService().selectRide(reservNo);
 		System.out.println(selectedRsv);
 		request.setAttribute("selectedRsv", selectedRsv);
+		request.setAttribute("cpage", cpage);
 		
 		request.getRequestDispatcher("views/reservation/HrsUpdateForm.jsp").forward(request, response);
 	}
