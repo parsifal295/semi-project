@@ -8,6 +8,7 @@ import static com.boseong.jsp.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.reservation.model.dao.HorseDao;
 import com.boseong.jsp.reservation.model.vo.HorseProgram;
 import com.boseong.jsp.reservation.model.vo.HorseReservation;
@@ -36,9 +37,9 @@ public class HorseService {
 		
 		return list;
 	}
-	public ArrayList<HorseReservation> selectRides(int memNo){
+	public ArrayList<HorseReservation> selectRides(int memNo, PageInfo pi){
 		Connection conn = getConnection();
-		ArrayList<HorseReservation> list = new HorseDao().selectRides(conn, memNo);
+		ArrayList<HorseReservation> list = new HorseDao().selectRides(conn, memNo, pi);
 		close(conn);
 		return list;
 	}
@@ -75,9 +76,9 @@ public class HorseService {
 		}
 		return result;
 	}
-	public int selectListCount() {
+	public int selectListCount(int memNo) {
 		Connection conn = getConnection();
-		int count = new HorseDao().selectListCount(conn);
+		int count = new HorseDao().selectListCount(conn, memNo);
 		close(conn);
 		return count;
 	}

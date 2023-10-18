@@ -222,7 +222,7 @@
 		}	
 	};
 	function rideList(memNo){
-			location.href = "<%=contextPath%>/list.hs?memNo="+memNo;
+			location.href = "<%=contextPath%>/list.hs?cpage=1&memNo="+memNo;
 		}
 		// 슬라이더 동작 정의
 		const swiper = new Swiper('.swiper', {

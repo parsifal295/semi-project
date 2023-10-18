@@ -8,6 +8,7 @@ import static com.boseong.jsp.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.reservation.model.dao.HanokDao;
 import com.boseong.jsp.reservation.model.vo.HanokReservation;
 import com.boseong.jsp.reservation.model.vo.Room;
@@ -52,9 +53,9 @@ public class HanokService {
 		close(conn);
 		return result;
 	}
-	public ArrayList<HanokReservation> selectReservList(int memNo){
+	public ArrayList<HanokReservation> selectReservList(int memNo, PageInfo pi){
 		Connection conn = getConnection();
-		ArrayList<HanokReservation> list = new HanokDao().selectReservList(conn, memNo);
+		ArrayList<HanokReservation> list = new HanokDao().selectReservList(conn, memNo, pi);
 		close(conn);
 		return list;
 	}
@@ -86,9 +87,9 @@ public class HanokService {
 		close(conn);
 		return result;
 	}
-	public int selectListCount() {
+	public int selectListCount(int memNo) {
 		Connection conn = getConnection();
-		int count = new HanokDao().selectListCount(conn);
+		int count = new HanokDao().selectListCount(conn, memNo);
 		close(conn);
 		return count;
 	}

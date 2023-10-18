@@ -34,13 +34,14 @@ public class HanokReservUpdateFormController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int reservNo = Integer.parseInt(request.getParameter("reservNo"));
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		int cpage = Integer.parseInt(request.getParameter("cpage"));
 		HanokReservation hanokRsv = new HanokReservation();
 		hanokRsv.setReservNo(reservNo);
 		hanokRsv.setMemNo(memNo);
 		HanokReservation selectedRsv = new HanokService().selectReservation(hanokRsv);
 		if(selectedRsv == null) {
 			request.getSession().setAttribute("alertMsg", "예약정보를 다시 확인해주세요.");
-			response.sendRedirect(request.getContextPath()+"/list.hk?memNo="+memNo);
+			response.sendRedirect(request.getContextPath()+"/list.hk?memNo="+memNo+"&cpage="+cpage);
 		}else {
 		request.setAttribute("selectedRsv", selectedRsv);
 
