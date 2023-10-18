@@ -84,4 +84,20 @@
 		   		STATUS = 'Y'		   				
 		
 	</entry>
+	
+	<entry key="selectProductReviewList">
+		SELECT
+				NOTICE_NO, 
+				NOTICE_TITLE, 
+				NOTICE_CONTENT, 
+				CREATE_DATE, 
+				COUNT 
+		  FROM  
+		   		PRODUCT_NOTICE 
+		 WHERE 
+			    PRODUCT_NOTICE.STATUS = 'Y' 
+	     ORDER
+	        BY
+	        	CREATE_DATE DESC 		      		
+	</entry>
 </properties>

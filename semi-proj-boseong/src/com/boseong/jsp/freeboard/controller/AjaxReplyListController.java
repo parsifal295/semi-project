@@ -34,8 +34,6 @@ public class AjaxReplyListController extends HttpServlet {
     ArrayList<FreeboardReply> list = new FreeboardService().selectReplyList(boardNo);
     response.setContentType("application/json; charset=UTF-8");
     new Gson().toJson(list, response.getWriter());
-    //	    response.setContentType("text/html; charset=UTF-8");
-    //	    response.getWriter().print(123);
   }
 
   /**
