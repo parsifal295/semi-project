@@ -69,10 +69,10 @@ public class GalleryInsertController extends HttpServlet {
 			
 			int insert = new GalleryService().insertGallery(gy, link);
 			if(insert > 0) {
-				request.getSession().setAttribute("alertMsg", "게시글 등록을 성공하였습니다!");
+				request.getSession().setAttribute("alertMsg", "갤러리 등록을 성공하였습니다!");
 				response.sendRedirect(request.getContextPath() + "/gallery.gy");
 			}else {
-				request.setAttribute("alertMsg", "게시물 등록에 실패하였습니다.");
+				request.setAttribute("alertMsg", "갤러리 등록에 실패하였습니다.");
 				request.getRequestDispatcher("views/gallery/GalleryListView.jsp").forward(request, response);
 				
 			}
