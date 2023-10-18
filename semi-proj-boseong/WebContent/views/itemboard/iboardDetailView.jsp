@@ -214,22 +214,35 @@
     	});
 			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
 			
-			$(function(){
-				let scrap = '<%= contextPath%>/resources/image/scrap.png';
-				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
-				$('#scrap-image').click(function(){
-					if ($('#scrap-image').attr('src') == scrap) {
-						$('#scrap-image').attr('src', scrapted);
-					} else {
-						$('#scrap-image').attr('src', scrap);
+	
+			// 게시글 조회시 DB조회하여 스크랩 여부 리턴해주는 Ajax script
+			$(() => {
+				let on = '<%= contextPath%>/resources/image/scrap.png';
+				let off = '<%= contextPath%>/resources/image/scrapted.png';
+				$.ajax({
+					url : 'scrapselect.ib',
+					type : 'post',
+					data : {
+						boardNo : '<%= ib.getBoardNo() %>',
+						memberNo : '<%= loginUser.getMemNo() %>',
+					},
+					success : function(r) {
+						if (r == 'Y') {
+							$('#scrap-image').attr('src', off);
+						} else {
+							$('#scrap-image').attr('src', on);
+						}
 					}
-					setScrapStatus();
-				});
+				})
 			})
-			
-			function setScrapStatus(){
-				let scrap = '<%= contextPath%>/resources/image/scrap.png';
-				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
+			$('#scrap-image').click(function(){
+				let on = '<%= contextPath%>/resources/image/scrap.png';
+				let off = '<%= contextPath%>/resources/image/scrapted.png';
+				if ($('#scrap-image').attr('src') == on) {
+						$('#scrap-image').attr('src', off);
+					} else {
+						$('#scrap-image').attr('src', on);
+					}
 				$.ajax({
 					url : 'scrap.ib',
 					type : 'POST',
@@ -238,11 +251,11 @@
 						boardNo : '<%= ib.getBoardNo() %>',
 						memberNo : '<%= loginUser.getMemNo() %>'
 					},
-					success : function(e){ // e가 반환값임 
-						if ($('#scrap-image').attr('src') == scrap) {
-							$('#scrap-image').attr('value', 'N')
-						} else if ($('#scrap-image').attr('src') == scrapted) {
+					success : function(){ // e가 반환값임 
+						if ($('#scrap-image').attr('src') == on) {
 							$('#scrap-image').attr('value', 'Y')
+						} else if ($('#scrap-image').attr('src') == off) {
+							$('#scrap-image').attr('value', 'N')
 						}
 						console.log($('#scrap-image').attr('value'));
 						},
@@ -251,7 +264,8 @@
 					}
 						
 					})
-				} 
+				})
+		
     </script>
 <%@ include file="../common/footer.jsp" %>
 </body>
