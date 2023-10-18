@@ -77,7 +77,7 @@
     }
     
     .parent {
-    	border : 1px solid blue;
+    	border : 1px solid black;
     }
     .parent>div{
     	float:left;
@@ -103,10 +103,11 @@
 		</div>
 		<div class="section-table">
 		<table>
+		<h1>녹차 가루</h1>
 		<tr>
              	<tr><td id="option1" width="200">원산지</td><td>국내</td></tr>
-                <tr><td id="option2">소비자가</td><td>7000원</td></tr>
-                <tr><td id="option3">판매가</td><td>7000원</td></tr>
+                <tr><td id="option2">소비자가</td><td>5000원</td></tr>
+                <tr><td id="option3">판매가</td><td>5000원</td></tr>
                 <tr><td id="option4">배송방법</td><td>배송</td></tr>
                 <tr><td id="option5">배송비</td><td>무료</td></tr>
 		</table>

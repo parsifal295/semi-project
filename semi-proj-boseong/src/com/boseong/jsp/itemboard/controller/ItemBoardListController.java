@@ -42,7 +42,6 @@ public class ItemBoardListController extends HttpServlet {
 		int maxPage;      // 가장 마지막 페이지의 몇번째의 페이지 인지(총 페이지의 개수)
 		int startPage;    // 페이징바의 시작 수
 		int endPage;      // 페에징바의 끝 수
-		
 		// COUNT(*)게시글의 총 개수
 		listCount = new ItemBoardService().selectListCount();
 		// 현재 cpage(key)=value의 값 뽑기
@@ -69,13 +68,9 @@ public class ItemBoardListController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 	    ArrayList<ItemBoard> list = new ItemBoardService().selectIboardList(pi);	
 	    // 검새한 게시글 list
-	    String keyword = request.getParameter("keyword");
-		ArrayList<ItemBoard> searched = new ItemBoardService().searchbarList(keyword,pi);
-		System.out.println("searched controller : " + searched);
 	    // 값을 담고 
 	    request.setAttribute("list", list);
 	    request.setAttribute("pi", pi);
-	    request.setAttribute("searched", searched);
 	    // 응답 화면 지정
 		request.getRequestDispatcher("views/itemboard/iboardListView.jsp?cpage=1").forward(request, response);
 	

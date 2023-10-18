@@ -75,5 +75,11 @@ public class HorseService {
 		}
 		return result;
 	}
+	public int selectListCount() {
+		Connection conn = getConnection();
+		int count = new HorseDao().selectListCount(conn);
+		close(conn);
+		return count;
+	}
 
 }

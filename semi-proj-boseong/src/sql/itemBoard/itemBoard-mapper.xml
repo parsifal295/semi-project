@@ -194,4 +194,14 @@
          WHERE  
          		RNUM BETWEEN ? AND ? 
 	</entry>
+	<entry key="keywordListCount">
+		SELECT
+				COUNT(*)
+		  FROM
+		  		TB_ITEMBOARD
+		 WHERE
+		 		STATUS = 'Y'
+		   AND
+		   		IBOARD_TITLE = ?
+	</entry>
 </properties>

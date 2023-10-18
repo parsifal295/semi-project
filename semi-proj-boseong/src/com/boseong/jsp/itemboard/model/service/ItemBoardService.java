@@ -139,5 +139,16 @@ public class ItemBoardService {
 	}
 
 	
+	public int keywordListCount(String keyword){
+		
+		Connection conn = getConnection();
+		
+		int listCount = new ItemBoardDao().keywordListCount(conn, keyword);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
 
 }

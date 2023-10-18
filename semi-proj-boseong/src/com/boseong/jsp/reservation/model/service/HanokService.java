@@ -86,4 +86,10 @@ public class HanokService {
 		close(conn);
 		return result;
 	}
+	public int selectListCount() {
+		Connection conn = getConnection();
+		int count = new HanokDao().selectListCount(conn);
+		close(conn);
+		return count;
+	}
 }

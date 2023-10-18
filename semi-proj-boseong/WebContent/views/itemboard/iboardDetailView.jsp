@@ -5,7 +5,6 @@
 			     com.boseong.jsp.scrap.model.vo.Scrap" %>
 <%@ page import="java.util.ArrayList" %>
 <%
-  
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
 %>
@@ -105,9 +104,10 @@
             <div class="iboardImg"></div>
             <div id="info">
             <% if(loginUser != null) { %>
+
 							<div id="scrap-area">
-							<% if (ib. )
-							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
+							
+							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image" value="">
 							</div>
             <% } %>
             <div id="userInfo">
@@ -213,67 +213,46 @@
           })
     	});
 			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
-		</script>
-
-           
-		<script>
-           //----------------------------------------------------------------------------------//
-               
-			//새로 다시 코드를 짜보자...
-          
+			
+			$(function(){
 				let scrap = '<%= contextPath%>/resources/image/scrap.png';
 				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
-				
-				$(function(){
 				$('#scrap-image').click(function(){
-					scrapReply();
+					if ($('#scrap-image').attr('src') == scrap) {
+						$('#scrap-image').attr('src', scrapted);
+					} else {
+						$('#scrap-image').attr('src', scrap);
+					}
+					setScrapStatus();
 				});
-				})
-				
-				function scrapReply(){
-					$.ajax({
-						url : 'scrap.ib',
-						type : 'POST',
-						data : {
-							boardNo : '<%= ib.getBoardNo() %>',
-							memberNo : '<%= loginUser.getMemNo() %>',
-						},
-						success : function(e){ // e가 반환값임 
-							console.log(e.status);
-							$('#scrap-image').attr({'src' : scrap}).click(function(){
-							if(e.status == 'scrapted'&& e.memberNo == <%=loginUser.getMemNo()%>) { // DB에서 뽑혀온 값 
-								$('#scrap-image').attr({'src' : scrapted});  
-								// ↑ 이건 id가 scrap-image인 태그의 src attribute를 scrap으로 지정하는 것. => image 경로 
-							}
-							else{
-								$('#scrap-image').attr({'src' : scrap});
-							}
-							});
+			})
+			
+			function setScrapStatus(){
+				let scrap = '<%= contextPath%>/resources/image/scrap.png';
+				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
+				$.ajax({
+					url : 'scrap.ib',
+					type : 'POST',
+					data : {
+						status : $('#scrap-image').attr('value'),
+						boardNo : '<%= ib.getBoardNo() %>',
+						memberNo : '<%= loginUser.getMemNo() %>'
+					},
+					success : function(e){ // e가 반환값임 
+						if ($('#scrap-image').attr('src') == scrap) {
+							$('#scrap-image').attr('value', 'N')
+						} else if ($('#scrap-image').attr('src') == scrapted) {
+							$('#scrap-image').attr('value', 'Y')
 						}
+						console.log($('#scrap-image').attr('value'));
+						},
+					error : function() {
+						console.log('error')
+					}
+						
 					})
-	  		    }
-            	
-            	
-            	
-			 
-			 
-            
-           	<% } %>
-            
-            // 
-            // if (스크랩 버튼 on && DB에 엔트리가 없음--최초로 스크랩 버튼 눌렀을 때) {
-            // ajax로 컨트롤러로 상태 보내기
-            // } else if (스크랩 버튼 off)
-           // } else if (스크랩 버튼 on, DB에 엔트리가 있음-- 스크랩 버튼 눌렀던 적이 있고 삭제한적도 있음){
-            // 
-          // }
-              
-            
-
-            
+				} 
     </script>
-	
 <%@ include file="../common/footer.jsp" %>
-	
 </body>
 </html>
