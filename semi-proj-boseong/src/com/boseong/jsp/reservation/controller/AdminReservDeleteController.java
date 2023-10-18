@@ -30,6 +30,12 @@ public class AdminReservDeleteController extends HttpServlet {
 		String reservType = request.getParameter("reservType");
 		System.out.println("reservNo : " +reservNo);
 		System.out.println("type : "+reservType);
+		switch(reservType) {
+		case "승마장": ; break;
+		case "녹차 체험" : ; break;
+		case "한옥 스테이" : ; break;
+		case "한달 살기" : ; break;
+		}
 	}
 
 	/**
