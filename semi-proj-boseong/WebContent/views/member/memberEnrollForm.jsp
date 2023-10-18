@@ -30,19 +30,19 @@
 	      		</tr>
 	      		<tr>
 	      			<td>* 비밀번호</td>
-	      			<td><input type="password" name="memPwd" maxlength="15" id="pwd" required></td>
+	      			<td><input type="password" name="memPwd" id="memPwd" required></td>
 	      		</tr>
 	      		<tr>
 	      			<td>* 비밀번호 확인</td>
-	      			<td><input type="password" maxlength="15" id="pwdcheck" required></td>
+	      			<td><input type="password" id="pwdcheck" required></td>
 	      		</tr>
 	      		<tr>
 					<td>* 이름</td>
-					<td><input type="text" name="memName" maxlength="5" id="memName" required></td>
+					<td><input type="text" name="memName" id="memName" required></td>
 				</tr>
 				<tr>
 					<td>&nbsp;&nbsp;이메일</td>
-					<td><input type="email" name="email"></td>
+					<td><input type="email" name="email" id="email"></td>
 				</tr>
 				<tr>
 					<td>* 전화번호</td>
@@ -66,7 +66,7 @@
 	      	</table>
 	      	
 	      	<div align="center" id="enroll-button">
-				<button type="submit" disabled onclick="checkMail" class="btn btn-success">회원가입</button>
+				<button type="submit" disabled class="btn btn-success">회원가입</button>
 			</div>
 	      	
 	      </form>
@@ -105,6 +105,8 @@
 	      		});
 	      	}
 	      	
+	      	// 유효성 검사
+	      	
 	      	// 아이디 유효성 검사
 	      	$('#memberEnrollForm').on('submit',() => {
 		    	let idval = $('#memId').val()
@@ -119,22 +121,48 @@
 	      	
 	      	// 비밀번호 유효성 검사
 	      	$('#memberEnrollForm').on('submit',() => {
-		    	let pwdval = $('#pwd').val()
-		        let pwdvalcheck = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
-		        if (!pwdvalcheck.test(pwdval) || pwdval.length<8){
+		    	let memPwdval = $('#memPwd').val()
+		        let memPwdvalcheck = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+		        if (!memPwdvalcheck.test(memPwdval) || memPwdval.length<8){
 		        	alert('비밀번호는 대소문자 및 숫자를 포함하여 8자 이상으로 입력해주세요.');
-		            $('#pwd').focus()
+		            $('#memPwd').focus()
 		            return false
 		        }
-		        	/*
-		        	if(pwd.value != pwdcheck.value) {
-		        		alert('비밀번호 확인을 다시 입력해주세요.');
-			            $('#pwdcheck').focus()
-			            return false
-		        	}
-		        	*/
 		    });
 	      	
+	      	// 비밀번호 확인 유효성 검사
+	      	$('#memberEnrollForm').on('submit',() => {
+	      		let memPwdval = $('#memPwd').val()
+	      		let pwdcheck = $('#pwdcheck').val()
+	      		if (memPwd.value != pwdcheck.value) {
+	      			alert('비밀번호 확인을 다시 입력해주세요.');
+		            $('#pwdcheck').focus()
+		            return false
+	      		}
+	      	});
+	      	
+	       // 이름 유효성 검사
+	       $('#memberEnrollForm').on('submit',() => {
+		       let memNameval = $('#memName').val()
+		       let memNamevalcheck = /^[가-힣]{2,6}$/;
+		       if (!memNamevalcheck.test(memNameval) || memNameval.length<1){
+		           alert('이름은 한글로 2자~6자 사이로 입력해주세요.')
+		           $('#memName').focus()
+		           return false
+		       }
+		    }); 
+	       
+	        // 이메일주소 유효성 검사
+	      	$('#memberEnrollForm').on('submit',() => {
+		    	let emailval = $('#email').val()
+		        let emailvalcheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		        if (!emailvalcheck.test(emailval) || emailval.length<3){
+		        	alert('이메일')
+		            $('#email').focus()
+		            return false
+		        }
+		    });
+	       
 	      	// 핸드폰번호 유효성 검사
 	      	$('#memberEnrollForm').on('submit',() => {
 		    	let phoneval = $('#phone').val()
@@ -145,26 +173,9 @@
 		            return false
 		        }
 		    });
-	      	
-	      	
-	      	
-	      	
-	      	
-	      	
-	        
+	    
 	      </script>
-	      
-	      
-	      
-	      
-	      
-	    
-	    
-	      
-	      
-	      
-	      	
-	
+	     
 	      <!-- Modal footer -->
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
