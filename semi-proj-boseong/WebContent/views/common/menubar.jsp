@@ -205,7 +205,7 @@
 			
 				<div id="user-info">
 					<div>
-						<a href="<%= contextPath %>/logout.me">로그아웃</a>
+						<a href="<%= contextPath %>/logout.me" id="login-form">로그아웃</a>
 					</div>
 				</div>
 				

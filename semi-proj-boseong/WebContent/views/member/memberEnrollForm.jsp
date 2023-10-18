@@ -25,16 +25,16 @@
 	      	<table>
 	      		<tr>
 	      			<td>* 아이디</td>
-	      			<td><input type="text" name="memId" maxlength="12" required></td>
-	      			<td><button type="button" onclick="idCheck();">중복확인</button>
+	      			<td><input type="text" name="memId" maxlength="12" id="memId" required ></td>
+	      			<td><button type="button" onclick="idCheck();" class="btn btn-outline-dark">중복확인</button>
 	      		</tr>
 	      		<tr>
 	      			<td>* 비밀번호</td>
-	      			<td><input type="password" name="memPwd" maxlength="15" required></td>
+	      			<td><input type="password" name="memPwd" maxlength="15" id="memPwd" required></td>
 	      		</tr>
 	      		<tr>
 	      			<td>* 비밀번호 확인</td>
-	      			<td><input type="password" maxlength="15" required></td>
+	      			<td><input type="password" maxlength="15" id="pwdcheck" required></td>
 	      		</tr>
 	      		<tr>
 					<td>* 이름</td>
@@ -66,13 +66,16 @@
 	      	</table>
 	      	
 	      	<div align="center" id="enroll-button">
-				<button type="submit" disabled>회원가입</button>
+				<button type="submit" disabled onclick="chkPW()" class="btn btn-success">회원가입</button>
 			</div>
 	      	
 	      </form>
 	      </div>
 	      
 	      <script>
+	      
+	      	// 아이디 중복체크
+	      	
 	      	function idCheck(){
 	      		
 	      		const $memId = $('#enroll-form input[name=memId]');
@@ -99,21 +102,55 @@
 	      			error : function(){
 	      				console.log('아이디 중복체크 실패');
 	      			}
-	      			
 	      		});
-	      		
-	      		
-	      		
-	      		
-	      		
-	      		
 	      	}
+	      		
+	      	// 유효성 검사
+	      	
+	      	// 아이디
+	      	$('#memberEnrollForm').on('submit',()=>{
+		    	let idval = $('#memId').val()
+		        let idvalcheck = /^[a-z0-9]+$/
+		        if (!idvalcheck.test(idval) || idval.length<6){
+		        	alert('아이디는 영소문자,숫자로 구성된 6글자 이상으로 조합하시오.')
+		            $('#memId').focus()
+		            return false
+		        }
+		    });
+	      	
 	      
 	      </script>
+	      <script>
+	      function chkPW(){
+
+	    	  var pw = $("#memPwd").val();
+	    	  var num = pw.search(/[0-9]/g);
+	    	  var eng = pw.search(/[a-z]/ig);
+	    	  var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+	    	  if(pw.length < 10 || pw.length > 20){
+	    	   alert("10자리 ~ 20자리 이내로 입력해주세요.");
+	    	   return false;
+	    	  }else if(pw.search(/\s/) != -1){
+	    	   alert("비밀번호는 공백 없이 입력해주세요.");
+	    	   return false;
+	    	  }else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+	    	   alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+	    	   return false;
+	    	  }else {
+	    	 	console.log("통과");	 
+	    	  }
+
+	    	 }
+	      
+	      </script>
+	      
+	      
+	      	
 	
 	      <!-- Modal footer -->
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
 	      </div>
 	
 	    </div>

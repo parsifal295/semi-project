@@ -93,9 +93,9 @@
 	      	
 	      	<br><br>
 	      	<div align="center">
-				<button type="submit" class="btn btn-secondary btn-sm">정보수정</button>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle ="modal" data-target="#updatePwdForm">비밀번호 수정</button>
-                <button type="button" class="btn btn-danger btn-sm" data-toggle ="modal" data-target="#deleteForm">회원탈퇴</button>
+				<button type="submit" class="btn btn-success">정보수정</button>
+                <button type="button" class="btn btn-warning" data-toggle ="modal" data-target="#updatePwdForm">비밀번호 수정</button>
+                <button type="button" class="btn btn-dark" data-toggle ="modal" data-target="#deleteForm">회원탈퇴</button>
 			</div>
 	      </form>
 		</div>
@@ -178,7 +178,7 @@
                     <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." id="deletePwd" name="memPwd" required >
               		</div>
                  
-                 	<button type="submit" class="btn btn-sm btn-danger">회원 탈퇴</button>
+                 	<button type="submit" class="btn btn-dark">회원 탈퇴</button>
 							      	
 		      	</form>  
 		      </div>
