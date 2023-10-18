@@ -31,12 +31,11 @@
 	
 	<div class="outer">
 	<br>
-	<h2 align="center">공지사항 작성하기</h2>
+	<h2 align="center">공지사항 수정하기</h2>
 	<br><br>
-	
-	<form action="<%= contextPath %>/updateForm.pn" method="post" id="update-form">
+	<form action="<%= contextPath %>/update.pn" method="post" id="update-form">
 		
-		<input type="hidden" name="nno" value="<% p.getNoticeNo() %>">
+		<input type="hidden" name="nno" value="<%= p.getNoticeNo() %>">
 		<%if(loginUser != null){ %>
 		<table align="center">
 		<tr>
@@ -54,7 +53,6 @@
 				<textarea name="content" rows="10" style="resize:none;" required><%= p.getNoticeContent() %></textarea>
 		</table>
 		<br><br>
-		
 		<div align="center">
 			<button type="submit" class="btn btn-sm btn-primary">등록하기</button>
 			<button type="button" class="btn btn-sm btn-secondary" onclick="history.back();" >뒤로가기</button>
@@ -62,8 +60,6 @@
 		</div>
 		<%}else{ %>
 		<%} %>
-	
-	
 		<br><br>
 	</div>
 

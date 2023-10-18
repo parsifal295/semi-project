@@ -39,7 +39,7 @@
     }
     
     .parent {
-    	border : 1px solid blue;
+    	border : 1px solid black;
     }
     .parent>div{
     	float:left;

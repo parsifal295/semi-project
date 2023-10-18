@@ -63,8 +63,6 @@ public class ProductNoticeService implements ProductNoticeServiceI{
 		
 		Connection conn = getConnection();
 		
-		new ProductNoticeDao().updateNotice(conn, p);
-		
 		int result = new ProductNoticeDao().updateNotice(conn, p);
 		
 		if(result > 0) {
@@ -91,6 +89,18 @@ public class ProductNoticeService implements ProductNoticeServiceI{
 		
 		return result;
 		
+	}
+	
+	@Override
+	public ArrayList<ProductNotice> selectProductReviewList(){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductNotice> list = new ProductNoticeDao().selectProductReviewList(conn);
+		
+		close(conn);
+		
+		return list;
 	}
 
 }

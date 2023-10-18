@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.regional.model.service.ProductNoticeService;
-import com.boseong.jsp.regional.model.vo.ProductNotice;
-
 /**
- * Servlet implementation class ProductNoticeUpdateController
+ * Servlet implementation class ProductReviewListController
  */
-@WebServlet("/updateForm.pn")
-public class ProductNoticeUpdateController extends HttpServlet {
+@WebServlet("/review.pn")
+public class ProductReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductNoticeUpdateController() {
+    public ProductReviewListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +26,9 @@ public class ProductNoticeUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		request.setCharacterEncoding("UTF-8");
-		
-//		int noticeNo = Integer.parseInt(request.getParameter("nno"));
-//		String noticeTitle = request.getParameter("title");
-//		String noticeContent = request.getParameter("content");
-//		
-//		ProductNotice p = new ProductNotice();
-//		p.setNoticeNo(noticeNo);
-//		p.setNoticeTitle(noticeTitle);
-//		p.setNoticeContent(noticeContent);
-//		
-//		int result = new ProductNoticeService().updateNotice(noticeNo);
-		
-			
-//		response.sendRedirect(request.getContextPath() + "/detail.pn?nno=" + noticeNo);
-		
-		request.getRequestDispatcher("views/regional/productnoticeUpdateForm.jsp").forward(request, response);
+
+		request.getRequestDispatcher("/views/regional/regionalProductReviewListView.jsp").forward(request, response);
+	
 	}
 
 	/**

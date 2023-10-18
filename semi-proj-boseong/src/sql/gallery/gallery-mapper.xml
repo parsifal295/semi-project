@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment> 갤러리 테이블용 SQL문 </comment>
+	<entry key="insertGallery">
+		INSERT
+			INTO
+				TB_GALLERY
+				(
+				GALLERY_NO,
+				STATUS,
+				FILE_NO,
+				ORIGIN_NAME,
+				MODIFIED_NAME,
+				SAVE_PATH,
+				LINK
+				)
+			VALUES
+				(
+				SEQ_GY_NO.NEXTVAL,
+				'Y',
+				SEQ_GY_FNO.NEXTVAL,
+				?,
+				?,
+				?,
+				?
+				)
+	</entry>
+	<entry key="selectList">
+		SELECT 
+		        GALLERY_NO,
+		        FILE_NO,
+		        ORIGIN_NAME,
+		        MODIFIED_NAME,
+		        SAVE_PATH,
+		        LINK
+		  FROM
+		        TB_GALLERY
+		 WHERE
+				STATUS = 'Y'
+	</entry>
+</properties>

@@ -104,9 +104,10 @@
             <div class="iboardImg"></div>
             <div id="info">
             <% if(loginUser != null) { %>
+
 							<div id="scrap-area">
 							
-							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
+							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image" value="">
 							</div>
             <% } %>
             <div id="userInfo">
@@ -213,36 +214,62 @@
     	});
 			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
 			
-			$(function(){
-				$('#scrap-image').click(function(){
-					setScrapStatus();
-				});
-			})
-			
-			function setScrapStatus(){
-				let scrap = '<%= contextPath%>/resources/image/scrap.png';
-				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
+	
+			// 게시글 조회시 DB조회하여 스크랩 여부 리턴해주는 Ajax script
+			$(() => {
+				let on = '<%= contextPath%>/resources/image/scrap.png';
+				let off = '<%= contextPath%>/resources/image/scrapted.png';
 				$.ajax({
-					url : 'scrap.ib',
-					type : 'POST',
+					url : 'scrapselect.ib',
+					type : 'post',
 					data : {
 						boardNo : '<%= ib.getBoardNo() %>',
 						memberNo : '<%= loginUser.getMemNo() %>',
 					},
-					success : function(e){ // e가 반환값임 
-						console.log(e.status);
-							$('#scrap-image').attr({'src' : scrap}).click(function(){
-							if(e.status == 'scrapted'&& e.memberNo == <%=loginUser.getMemNo()%>) { // DB에서 뽑혀온 값 
-								$('#scrap-image').attr({'src' : scrapted});  
-								// ↑ 이건 id가 scrap-image인 태그의 src attribute를 scrap으로 지정하는 것. => image 경로 
-							}
-							else{
-								$('#scrap-image').attr({'src' : scrap});
-							}
-							});
+					success : function(r) {
+						if (r == 'Y') {
+							$('#scrap-image').attr('src', off);
+						} else {
+							$('#scrap-image').attr('src', on);
 						}
+					}
+				})
+			})
+			
+			$('#scrap-image').click(function(){
+				let on = '<%= contextPath%>/resources/image/scrap.png';
+				let off = '<%= contextPath%>/resources/image/scrapted.png';
+				// 스크랩 버튼 상태에 따라 img 태그의 value 값을 넘길 준비 
+				if ($('#scrap-image').attr('src') == on) {
+						$('#scrap-image').attr('src', off);
+						$('#scrap-image').attr('value', 'Y')
+					} else {
+						$('#scrap-image').attr('src', on);
+						$('#scrap-image').attr('value', 'N')
+					}
+				$.ajax({
+					url : 'scrap.ib',
+					type : 'POST',
+					data : {
+						status : $('#scrap-image').attr('value'),
+						boardNo : '<%= ib.getBoardNo() %>',
+						memberNo : '<%= loginUser.getMemNo() %>'
+					},
+					success : function(){  
+						if ($('#scrap-image').attr('src') == on) {
+							$('#scrap-image').attr('value', 'Y')
+						} else if ($('#scrap-image').attr('src') == off) {
+							$('#scrap-image').attr('value', 'N')
+						}
+						console.log($('#scrap-image').attr('value'));
+						},
+					error : function() {
+						console.log('error')
+					}
+						
 					})
-				} 
+				})
+		
     </script>
 <%@ include file="../common/footer.jsp" %>
 </body>
