@@ -34,7 +34,6 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 			<% } %>
 			<a class="btn btn-primary" href="<%= contextPath %>/enrollForm.fb">글쓰기</a>
 	
-            
 			<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default">
 				<thead class="thead-light">
 					<tr>

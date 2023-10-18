@@ -213,8 +213,6 @@
           })
     	});
 			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
-			
-	
 			// 게시글 조회시 DB조회하여 스크랩 여부 리턴해주는 Ajax script
 			$(() => {
 				let on = '<%= contextPath%>/resources/image/scrap.png';
