@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<comment>monthLiving 관련 sql문</comment>
+	
+	<entry key="selectMonthlivinginfo">
+	SELECT
+		LODGE_NO,
+		LODGE_NAME,
+		LODGE_LOCATION,
+		PRICE,
+		LODGE_INFO
+	FROM
+		MONTH_INFO
+	WHERE
+		LODGE_NO = ?
+	</entry>
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+</properties>

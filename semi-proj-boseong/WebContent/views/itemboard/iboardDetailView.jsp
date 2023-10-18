@@ -5,6 +5,7 @@
 			     com.boseong.jsp.scrap.model.vo.Scrap" %>
 <%@ page import="java.util.ArrayList" %>
 <%
+  
 	ItemBoard ib = (ItemBoard)request.getAttribute("ib");
 	Attachment at = (Attachment)request.getAttribute("at");
 %>
@@ -79,6 +80,9 @@
         width: 100%;
         height: 100%;
     }
+    .outer div{
+    	 border : 1px solid black;
+    }
     #userBtn{
     	width : 40px;
     	height : 20px;
@@ -89,21 +93,22 @@
 		height : 70%;
 		margin: 20px;
 	}
-
+	
 </style>
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
 
-    <div class="outer" id="content">
         <div style="height: 200px;"></div>
+    <div class="outer" id="content">
         <div class="outer">
             <div class="iboardImg"></div>
             <div id="info">
             <% if(loginUser != null) { %>
-                <div id="scrap-area">
-	            	<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
-                </div>
+							<div id="scrap-area">
+							
+							<img src="<%= contextPath%>/resources/image/scrap.png" id="scrap-image">
+							</div>
             <% } %>
             <div id="userInfo">
 	            <% if(loginUser != null && loginUser.getMemNo() == ib.getMemberNo() ) {%>
@@ -207,15 +212,15 @@
         	  }
           })
     	});
-    	
-           // $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
+			// $('.userPf').css('background-image') 나중에 스크랩 수 만큼 사용자 레벨에따라 사진이 달라짐
+		</script>
 
            
-           
+		<script>
            //----------------------------------------------------------------------------------//
                
 			//새로 다시 코드를 짜보자...
-            <% if(loginUser != null) { %>
+          
 				let scrap = '<%= contextPath%>/resources/image/scrap.png';
 				let scrapted = '<%= contextPath%>/resources/image/scrapted.png';
 				
@@ -234,13 +239,16 @@
 							memberNo : '<%= loginUser.getMemNo() %>',
 						},
 						success : function(e){ // e가 반환값임 
-							if(e.status == 'N'&& e.memberNo == <%=loginUser.getMemNo()%>) { // DB에서 뽑혀온 값 
-								$('#scrap-image').attr({'src' : scrap});  
+							console.log(e.status);
+							$('#scrap-image').attr({'src' : scrap}).click(function(){
+							if(e.status == 'scrapted'&& e.memberNo == <%=loginUser.getMemNo()%>) { // DB에서 뽑혀온 값 
+								$('#scrap-image').attr({'src' : scrapted});  
 								// ↑ 이건 id가 scrap-image인 태그의 src attribute를 scrap으로 지정하는 것. => image 경로 
 							}
 							else{
-								$('#scrap-image').attr({'src' : scrapted});
+								$('#scrap-image').attr({'src' : scrap});
 							}
+							});
 						}
 					})
 	  		    }

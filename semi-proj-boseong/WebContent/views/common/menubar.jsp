@@ -20,7 +20,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
 <style>
+	#font{
+		font-family: 'Young Serif', serif;
+	}
+	.font{
+		font-family: 'Young Serif', serif;
+	}
 	#menubar {
 		margin: 0;
 		padding: 0;
@@ -31,7 +40,7 @@
 	}
 	div {
 		box-sizing: border-box;
-		border: 1px solid red;
+		/* border: 1px solid black; */
 	}
 	#wrap {
 		width: 100%;
@@ -48,13 +57,45 @@
 		color: black;
 	}
 	#header {
+		z-index: 30;
 		margin: 0;
 		padding: 0;
 		width: 100%;
 		height: 200px;
+		transition: 0.6s;
+		border-bottom: 1px solid rgba(161, 161, 161, 0.589);
 		/* ↓ 스크롤을 해도 같이 내려오는 효과 */
 		position: fixed;
 		top: 0;
+	}
+	#header.sticky{
+		background-color: #fff;
+		position: fixed;
+		top: 0;
+	}
+	#logoPlace{
+		width: 200px;
+		height: 200px;
+		margin-left: 50px;
+		background-image: url('<%= contextPath %>/resources/image/logo/logo-2.png');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+	}
+	#header.sticky #logoPlace{
+		background-image: url('<%= contextPath %>/resources/image/logo/logo-1.png');
+	}
+	#header.sticky #navi  a {
+		color : #657265d2;
+	}
+	#header.sticky #navi > li > ul{
+		background-color: #fff;
+	}
+	#header.sticky #navi a:hover{
+		color : #182d18d2;
+	}
+	#header.sticky #login-form a {
+		color : #657265d2;
 	}
 	#content {
 		width: 1302px;
@@ -66,6 +107,11 @@
 		width: 100%;
 		text-align: right;
 		float: right;
+		color : #e5e8e5c3;
+	}
+	#login-form a{
+		text-decoration: none;
+		color : #e5e8e5c3;	
 	}
 	/* ---------------- navigator 영역 부분 ---------------- */
 	#navi {
@@ -88,6 +134,7 @@
 		text-align: center;
 	}
 	#navi a {
+		color : #e5e8e5c3;
 		text-decoration: none;
 		width: 100%;
 		height: 100%;
@@ -95,10 +142,9 @@
 		line-height: 30px;
 	}
 	#navi a:hover {
-		color: orangered;
+		color: #9bbca2;
 	}
 	#navi > li > ul {
-		background-color: rgba(0, 128, 0, 0.457);
 		list-style: none;
 		padding: 0;
 		display: none;
@@ -122,23 +168,19 @@
 		position: fixed;
 		bottom: 0;
 	}
-	#logoPlace {
-		width: 200px;
-		height: 200px;
-		margin-left: 50px;
-		background-image: url("<%= contextPath %>/resources/image/12.png");
-		/*일단은 로고 사진은 임시 */
-		background-repeat: no-repeat;
-		background-position: center;
-		background-size: 100%;
-	}
 	#box{
 	height:210px;
 	}
+	/*----------------------------------------------------------*/
 </style>
 </head>
 <body> 
-
+	<script>
+		window.addEventListener("scroll", function(){
+			var header = document.querySelector('#header');
+			header.classList.toggle("sticky", window.scrollY > 0);
+		})
+	</script>
 	<script>
 		var msg  = '<%= alertMsg %>';
 		
@@ -149,7 +191,7 @@
 	
 	</script>
 	
-	<div id="menubar">
+	<header id="menubar">
 			
 		<div id="header">
 			<!-- 회원이 아닐때 보여지는 태그 -->
@@ -221,9 +263,9 @@
 				</li>
 			</ul>
 			<!-- navi 영역 end -->
-			<div id="logoPlace"></div>
+			<div id="logoPlace" class="font"></div>
 		</div>
-	</div>
+	</header>
 	<%@ include file = "../member/memberLoginView.jsp" %>
 	<%@ include file = "../member/memberEnrollForm.jsp" %>
 </body>

@@ -4,15 +4,15 @@
 	<comment>Scrap SQL문 </comment>
 	<entry key="iboardInsertScrap">
 		INSERT 
-		  INTO 
-		  		TB_SCRAP
-		  		(
-		  		SCRAP_NO,
-		  		MEM_NO,
-		  		IBOARD_NO,
-		  		CREATE_DATE,
-		  		STATUS
-		  		)
+			INTO 
+				TB_SCRAP
+					(
+					SCRAP_NO,
+					MEM_NO,
+					IBOARD_NO,
+					CREATE_DATE,
+					STATUS
+					)
 		VALUES
 				(
 				SEQ_SC_NO.NEXTVAL,
@@ -25,23 +25,23 @@
 	<entry key="iboardScrapSelect">
 		
 		SELECT 
-				SC.MEM_NO, 
-				IBOARD_NO, 
-				SC.STATUS
-  		  FROM 
-  		  		TB_SCRAP SC
- 		  JOIN 
- 		  		TB_ITEMBOARD IB ON SC.IBOARD_NO = IB.BOARD_NO
- 		  JOIN 
- 		  		TB_MEMBER MEM ON SC.MEM_NO = MEM.MEM_NO
- 		 WHERE
+			SC.MEM_NO, 
+			IBOARD_NO, 
+			SC.STATUS
+		FROM 
+			TB_SCRAP SC
+		JOIN 
+			TB_ITEMBOARD IB ON SC.IBOARD_NO = IB.BOARD_NO
+		JOIN 
+			TB_MEMBER MEM ON SC.MEM_NO = MEM.MEM_NO
+		WHERE
 				MEM.STATUS != 'N'
-  		   AND 
-  		   		IB.STATUS = 'Y'
-   		   AND 
-   		   		SC.MEM_NO = ?
-  		   AND 
-  		   		IBOARD_NO = ?
+			AND 
+				IB.STATUS = 'Y'
+			AND 
+				SC.MEM_NO = ?
+			AND 
+				IBOARD_NO = ?
 	</entry>
 	<entry key="iboardInsertNo">
 		SELECT 

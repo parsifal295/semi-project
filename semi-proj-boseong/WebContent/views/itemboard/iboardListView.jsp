@@ -17,8 +17,27 @@
 <title>보성마켓</title>
 <style>
 	#btn{
-		margin-left: 84.5%;
-		margin-bottom: 10px;
+		float : left;
+		margin-left : 144px;
+		margin-bottom : 20px;
+	}
+	#searchbar{
+		width : 200px; 
+		float : right;
+		margin-right : 20px;
+	}
+	#searchBtn{
+		float : right;
+	}
+	#search-area{
+		width : 350px;
+		margin-right : 144px;
+		margin-bottom : 20px;
+		float : right;
+	}
+	#select{
+		float : left;
+		margin-right : 10px; 
 	}
 </style>
 </head>
@@ -31,25 +50,16 @@
 		<%if(loginUser != null){ %>
 		<a type="submit" href="<%= contextPath %>/enrollform.ib" class="btn btn-primary btn-sm" id="btn">글작성</a>
 		<%} %>
-		<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default;">
-		<thead class="thead-light">
-	      <tr>
-	        <th width="10%">No.</th>
-	        <th width="40%">제목</th>
-	        <th width="17.5%">작성자</th>
-	        <th width="10%">조회수</th>
-	        <th width="17.5%">작성일시</th>
-	        <th width="15%"> - </th>
-	      </tr>
-	    </thead>
-	      <tr>
-	        <td>공지</td>
-	        <td>욕설,폭언 등..은 안됩니다...</td>
-	        <td>관리자</td>
-	        <td>2023-05-12</td>
-	        <td> - </td>
-	      </tr>
-		</table>
+		<div id="search-area">
+			<!-- <select name="select" class="custom-select-sm" id="select">
+				<option name=value="item">제품</option>
+				<option value="price">가격</option>
+			</select> -->
+			<form  action="<%= contextPath %>/search.ib?cpage=1" method="post">
+				<button type="submit" class="btn btn-primary btn-sm" id="searchBtn">검색</button>
+				<input type="text" name="keyword" class="form-control form-control-sm" id="searchbar" placeholder="제품입력">
+			</form>
+		</div>
 		<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default">
 	    <thead class="thead-light">
 	      <tr>

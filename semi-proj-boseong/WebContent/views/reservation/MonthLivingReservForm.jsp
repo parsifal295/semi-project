@@ -1,83 +1,85 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" 
+    import="java.util.ArrayList,
+            com.boseong.jsp.reservation.model.vo.Monthlivinginfo"
+%>
+    
+<%
+	ArrayList<Monthlivinginfo> list = (ArrayList<Monthlivinginfo>)request.getAttribute("list");
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>한달살기 예약 페이지</title>
+<title>한달살기 예약페이지</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
   <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/index.global.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/index.global.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 
-
-
-
 <style>
-	.outer{
-				width : 1400px;
-				height : 2370px;
-				margin : auto;
-				margin-top : 300px;
-			}
-			
+	
+	.page{
+		padding:0;
+		margin:0;
+		width:100%;
+		height : 100vh;
+		color : black;
+	}
 
+	#content{
+		width : 1302px;
+		height : 100%;
+		margin : auto;
+	}
+	
 	.content12{
-			width : 1400px;
-			height : 650px;
-			
+		width : 1400px;
+		height : 650px;	
 	}	
 		
-		
 	.content1{
-			width : 700px;
-			height : 500px;
-			margin : auto;
-			margin-top : 30px;
-			float : left;
-	
-	
+		width : 700px;
+		height : 600px;
+		margin : auto;
+		margin-top : 30px;
+		float : left;
 	}	
 		
 	.content2{
-	width : 630px;
-			height : 500px;
-			margin : auto;
-			margin-top : 30px;
-			margin-left:50px;
-			float : left;
-	
+		width : 630px;
+		height : 500px;
+		margin : auto;
+		margin-top : 30px;
+		margin-left:50px;
+		float : left;
 	}	
 		
-		
-		
-		
-		
 	.content3_1{
-			width:400px;
-			height:70px;
-			
+		width:400px;
+		height:70px;
+		margin-top : 30px;
 	}	
 		
 	.content3_2{
-			width:500px;
-			height:50px;
+		width:500px;
+		height:50px;
 		float : left;
-			
 	}		
 		
 	.button{
-	float:right;
+		float:right;
 	}	
-
-
-
-
-
+		
 </style>
+
+
+
+
 
 </head>
 <body>
@@ -94,71 +96,92 @@
               right: 'dayGridMonth'
             },
             dateClick: function(info) {
-              alert('clicked ' + info.dateStr);
+            	$("#startDate").val(info.dateStr);
+            	console.log(info);
+            	
+            	 var str = info.dateStr;
+            	 var result1 = str.substring(0,7);
+            	 console.log(result1);
+            	 $("#startMonth").val(result1);
+            	 //자바스크립트로 값을 지정해줘야댄다고 하심
+            	 //method를 써서...substr 써서..
+            	 //2023-10-14
             },
-            select: function(info) {
-              alert('selected ' + info.startStr + ' to ' + info.endStr);
-            }
+ 
           });
         calendar.render();
       });
-
+		
+     
+      
+      
+      
+      
     </script>
 	<!-- 스크립트끝 -->
+	
+	
+	<%@ include file="../common/menubar.jsp" %>
 
 
-
-
-<%@ include file="../common/menubar.jsp" %>
-
-	<div class="outer">
+	<div class="page" id="content">
+	<form action="<%=contextPath %>/month.in" method="get">
+	<div style="height:200px;"></div>
+	<div class="page" style="height:800px;">
 	<hr style="border:solid 0.5px grey;">
 	<h2 align="center">한달살기 예약하기</h2>
 	<hr style="border:solid 0.5px grey;">
 	
 	<br><br>
-	
 	<div class="content12">
 	
 		<div class="content1">
+		
 		<div id='calendar'></div>
-		<!--  <img src="https://7calendar.com/calendar/monthly/png/9-2023-a4-l-0-24-kr.png" width="700", height="500";>-->
 		</div>
 		
 		<div class="content2">
-			<h2>내 예약 정보</h2>
-			예약일:
-			
-			<br><br>
-			
-			
-			인원:
-				<input type="number" name="amount" min="0" max="10" value="1" step="1">
+			<h3><strong>내 예약 정보</strong></h3>
+			<hr>
+				
+				예약 월: 
+				<input id="startMonth" name="startMonth"><a id="startMonth"> </a>
+				
+				
+				
+				
 
+			<br><br>
+			<a>인원:
+				<input type="number" name="bookNum" min="0" max="10" value="1" step="1">
+			명(최대인원:10명)</a>
 			<br>
 			
-		
-		
+		</div>
 		</div>
 		
-		
 	</div>
-	<br><br><br>
+	<br><br>
 	
-	<div class="content3_1">
+
+	<div class="page"><!-- div class="content3_1"엿던것 -->
 	<h2>예약자 세부 정보 입력</h2>
+	
 		<div class="content3_2">
-		<input type="checkbox" id="same" name="same" value="same"><label for="same"></label>
-		예약자와 투숙객이 일치하다면 체크해주세요
+		<br>
+		<!-- 
+		<input type="checkbox" id="same" name="same" value="same"><label for="same">예약자와 투숙객이 일치하다면 체크해주세요</label>
+		 -->
+		<!-- 이거 쉽다고 나중에 해도된다고 하심 -->
 	
 		</div>
 	
-	</div>
+	
 	<hr style="border:solid 1px grey;">
 	
 	
 	<div class="content3">
-	<br>
+	<br><br>
 	 이름 : <input type="text" name="memName" placeholder="이름을 입력해주세요." required>
 	 <br><br>
 	 전화번호 : <input type="text" name="phone" placeholder="전화번호를 입력해주세요." required>
@@ -167,6 +190,10 @@
 	
 	<div class="content4">
 	<h2>한달 살기 규칙 검토</h2><br>
+	<div class="content4_1" align="right">
+	<input type="checkbox" value="체험확인" name="mustCheck" required>규칙을 확인하였습니다.
+	</div>
+	<hr>
 		체크인<br>
 		15:00~21:00<br>
 		
@@ -186,31 +213,20 @@
 		파티/행사를 허용하지 않습니다.<br>
 
 		반려동물 동반이 불가능합니다.<br>
-	<hr>
+		<hr>
+		<br><br>
 		
-	</div>
-	<br>
+		<input type="hidden" id="memNo1" name="memNo" value="<%= loginUser.getMemNo() %>">											
 		<div class="button">
-		<button type="button" class="btn btn-primary">예약하기</button>
+		<button type="submit" class="btn btn-primary">예약하기</button>
 		</div>
+	</div>
+	</div>
+	</form>
 	
 	
 	</div>
-	</div>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	</div>
 
 
 
@@ -220,14 +236,6 @@
 
 
 
-
-
-
-
-
-
-
-
-<%@ include file="../common/footer.jsp" %>
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
