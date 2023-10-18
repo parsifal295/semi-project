@@ -77,7 +77,7 @@
     }
     
     .parent {
-    	border : 1px solid blue;
+    	border : 1px solid black;
     }
     .parent>div{
     	float:left;
@@ -103,6 +103,7 @@
 		</div>
 		<div class="section-table">
 		<table>
+		<h1>국내산 녹차 세트 (2023년산)</h1>
 		<tr>
              	<tr><td id="option1" width="200">원산지</td><td>국내</td></tr>
                 <tr><td id="option2">소비자가</td><td>7000원</td></tr>
