@@ -21,10 +21,6 @@
           	      start: nowDate
           	    };
           	  }
-            
-            
-            
-            
           });
         
         

@@ -37,8 +37,6 @@
 	.main_image{
 		float:left;
 	}
-	
-	
 
 	.box1{
 		background-color : white;
@@ -106,14 +104,7 @@
 		
 </style>
 
-
-<script type="text/javascript" src="resources/scripts/reservation/MonthLivingFrontViewScript.js"></script>
-
-
 </head>
-
-
-
 
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -145,11 +136,8 @@
 				<div class="box2" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;">예약조회</button></div>
 			</form>
 			</div>
-		<% } %>
-				
+		<% } %>		
 	</div>
-		
-		
 		
 		
 	<div class="page" style="height:600px;" clear="both">
@@ -174,7 +162,6 @@
 					
 					
 					<div class="thumbnail" align="center">
-					<!--  <input type="hidden" >-->
 					
 		            <img src="<%=contextPath %>/resources/image/reservation/house2.jpg" alt="">
 		                   <p>
@@ -185,7 +172,6 @@
 					
 					
 					<div class="thumbnail" align="center">
-					<!--  <input type="hidden" >-->
 					
 					<img src="<%=contextPath %>/resources/image/reservation/house3.jpg" alt="">
 		                    <p>
@@ -193,7 +179,6 @@
 		                       	 보성의 조성면에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다.
 		                    </p>
 					</div>
-					
 				</div>
 			</div>	
 		</div>			
@@ -204,8 +189,25 @@
 
 
 <%@ include file="../common/footer.jsp" %>
-
+	<script>
 	
+			let thumbnails = document.getElementsByClassName("thumbnail");
+			for(i=0; i<thumbnails.length;i++){
+				let lodgeNo = i+1;
+				thumbnails[i].onclick= function(){
+			        location.href="<%=contextPath%>/month.de?lodgeNo=" + lodgeNo;
+			        return;
+			    }
+			}
+			
+			function list(memNo){
+				location.href = "<%=contextPath%>/month.li?memNo="+memNo;
+			}
+	
+	
+	
+	</script>
+		
 
 
 </body>
