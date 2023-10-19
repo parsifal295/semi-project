@@ -24,6 +24,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
       margin-bottom: 5px
     }
 		</style>
+
 	</head>
 	<body>
 		<%@ include file = "../common/menubar.jsp" %>
@@ -124,20 +125,6 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 				</div>
 		</div>
 		<%@ include file = "../common/footer.jsp" %>
-    <script>
-      $(()=>{
-				$("#tb > tbody > tr").click(function(){
-					var index = $(this).children().eq(0).text();
-						if (index =='공지') {
-							index = $(this).attr("value");
-							console.log(index);
-							location.href = "<%=contextPath%>/noticeView.no?nno=" + index;
-						}
-						else {
-							location.href = "<%=contextPath%>/detailView.fb?bno=" + index;
-						}
-					})
-      })
-    </script>
+		<script type="text/javascript" src="resources/scripts/freeboard/fboardListViewScript.js"></script>
 	</body>
 </html>

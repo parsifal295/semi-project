@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 수정</title>
+<script type="text/javascript" src="resources/scripts/freeboard/fboardUpdateViewScript.js"></script>
 </head>
 <body>
     <%@ include file = "../common/menubar.jsp" %>
@@ -123,25 +124,25 @@
       </table>
     </div>
     <script>
-     $(()=>{
-      $('[data-toggle="tooltip"]').tooltip();
+   $(() => {
+    $('[data-toggle="tooltip"]').tooltip();
 
-      // 첨부파일이 있을 경우 => 첨부파일의 이름을 표시
-      var attFile;
-      <% if (att != null) { %>
-        attFile = "<%=att.getOriginName()%>";
-        <% } %> 
-      if (attFile != undefined) {
-        $(".custom-file-label").addClass("selected").html(attFile);
-      } else {
-        
-      }
-      
-      $(".custom-file-input").on("change", function () {
-					var fileName = $(this).val().split("\\").pop();
-					$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-				});
-     })
+  // 첨부파일이 있을 경우 => 첨부파일의 이름을 표시
+    var attFile;
+ <% if (att != null) { %>
+    attFile = "<%=att.getOriginName()%>";
+   <% } %> 
+ if (attFile != undefined) {
+    $(".custom-file-label").addClass("selected").html(attFile);
+  } else {
+
+  }
+
+  $(".custom-file-input").on("change", function () {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+})
     </script>
 </body>
 </html>

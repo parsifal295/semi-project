@@ -49,7 +49,8 @@
 	left: 150px;
 }
 </style>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript" src="resources/scripts/hanokScript.js"></script>
 </head>
 <body>
 	<%@include file="../common/menubar.jsp"%>
@@ -93,25 +94,6 @@
 		</div>
 	</div>
 	<%@include file="../common/footer.jsp"%>
-	<script>
-    let rooms = document.getElementsByClassName("room");
-    for(i=0; i<rooms.length;i++){
-    	let roomNo = i+1;
-        rooms[i].onclick= function(){
-            location.href="<%=contextPath%>/roomdetail.rsv?roomNo="+roomNo;
-            return;
-        }
-    }
-
-    $(function(){
-    	
-    	$('#main-pic')
-    	.css('background', 'url="<%=contextPath%>/resources/image/reservation/horsewide.jpg"');
-    	$('#reserv-hanok').click(function(){location.href="<%=contextPath%>/hanokForm.rsv"});
-    })
-	</script>
-
-
 </body>
 </html>
 

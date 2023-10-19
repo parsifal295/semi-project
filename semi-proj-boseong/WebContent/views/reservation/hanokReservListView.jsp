@@ -17,13 +17,17 @@
 <title>한옥 예약조회</title>
 <style>
 .reservation-list{
-	text-align:center;
+text-align:center;
 }
 #reserv-edit-area{
 text-align:right;}
 .reserv-paging-area{
 text-align:center;}
 </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript" src="resources/scripts/hanokScript.js"></script>
+
 </head>
 <body>
 		
@@ -76,27 +80,23 @@ text-align:center;}
 			
 			<div class="reserv-paging-area">
 				<%if(currentPage!=1){ %>
-					<button onclick="reservPageShift('<%=currentPage-1%>');">&lt;</button>
+					<button onclick="reservPageShift('<%=currentPage-1%>','<%=memNo%>');">&lt;</button>
 				<%} %>
 				<%for(int i=startPage;i<endPage+1;i++){ %>
 					<%if(currentPage != i){ %>
-					<button onclick="reservPageShift('<%=i%>');"><%=i %></button>
+					<button onclick="reservPageShift('<%=i%>','<%=memNo%>');"><%=i %></button>
 					<%}else{ %>
 					<button disabled><%=i%></button>
 					<%} %>
 				<%} %>
 				<%if(currentPage != maxPage){ %>
-					<button onclick="reservPageShift('<%=currentPage+1%>');">&gt;</button>
+					<button onclick="reservPageShift('<%=currentPage+1%>','<%=memNo%>');">&gt;</button>
 				<%} %>
 			</div>
 		</div>
 	</div>
 	<%@include file = "../common/footer.jsp" %>
 	<script>
-		function reservPageShift(page){
-			let pageLocation = '<%=contextPath%>/list.hk?memNo=<%=memNo%>&cpage='+page;
-			location.href=pageLocation;
-		}
 	</script>
 	
 	<!-- 모달해보기 -->
@@ -125,34 +125,7 @@ text-align:center;}
 			</div>
 		</div>
 	</div>
-	
-	<script>
-		$(function(){
-//			let reservations = $('.hanok-rserv-info');
-//			for(let i= 0; i<reservations.length;i++){
-//				console.log(reservations[i].children[0].innerText);
-//			}
-			$('.hanok-rserv-info').each(function(){
-				let reservation = $(this);
-				$.ajax({
-					url:'roominfo.rsv',
-					data : {roomNo : $(this).children().eq(1).text()},
-					success : function(result){
-						let clientNo =reservation.children().eq(3).text();
-						reservation.children().eq(1).text(result.roomType);
-						reservation.children().eq(3).text(clientNo+' / '+result.maxNum);
-						let price = (clientNo-result.baseNum)*result.extraPrice + result.price;
-						reservation.children().eq(5).text(price + '원');
 
-					},
-					error : function(){
-						console.log('ajax실패');
-					}
-				})
-			})
-		
-		})
-	</script>
 		<div class = "modal" id="hanok-update">
 		<div class="modal-dialog">
 			<div class = "modal-content">
@@ -164,8 +137,8 @@ text-align:center;}
 			<!-- Modal body -->
 			<div class= "modal-body">
 				<form action="updateForm.hk">
-					<label for = "reservNo">예약 번호 :</label>
-					<input type = "text" name="reservNo" id="reservNo" required>
+					<label for = "reservNum">예약 번호 :</label>
+					<input type = "text" name="reservNo" id="reservNum" required>
 					<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>">
 					<input type="hidden" name="cpage" value="<%=currentPage%>">
 					<button type="submit">수정</button>

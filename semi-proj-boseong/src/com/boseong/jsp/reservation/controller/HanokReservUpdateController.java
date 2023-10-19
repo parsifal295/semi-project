@@ -43,10 +43,10 @@ public class HanokReservUpdateController extends HttpServlet {
 		int result = new HanokService().updateReservation(hanokRsv);
 		if(result>0) {//새로운 예약 추가 성공
 			request.getSession().setAttribute("alertMsg", "예약변경에 성공하였습니다.");
-			response.sendRedirect(request.getContextPath()+"/list.hk?memNo="+userNo);
+			response.sendRedirect(request.getContextPath()+"/list.hk?cpage=1&memNo="+userNo);
 		}else {//예약 실패
 			request.getSession().setAttribute("alertMsg", "예약변경 실패ㅜㅜ");
-			response.sendRedirect(request.getContextPath()+"/list.hk?memNo="+userNo);
+			response.sendRedirect(request.getContextPath()+"/list.hk?cpage=1&memNo="+userNo);
 		}
 	}
 
