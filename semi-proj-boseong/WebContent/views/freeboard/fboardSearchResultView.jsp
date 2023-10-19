@@ -26,6 +26,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
       margin-bottom: 5px
     }
 		</style>
+		<script type="text/javascript" src="resources/scripts/freeboard/fboardSearchResultViewScript.js"></script>
 	</head>
 	<body>
 		<%@ include file = "../common/menubar.jsp" %>
@@ -108,12 +109,5 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*" %>
 				</div>
 		</div>
 		<%@ include file = "../common/footer.jsp" %>
-    <script>
-      $(()=>{
-        $("#tb > tbody > tr").click(function(){
-          location.href = "<%=contextPath%>/detailView.fb?bno=" + $(this).children().eq(0).text();
-        })
-      })
-    </script>
 	</body>
 </html>
