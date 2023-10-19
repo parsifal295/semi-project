@@ -45,6 +45,7 @@
     }
 
 </style>
+
 </head>
 <body>
 <%@ include file="../common/menubar.jsp"%>
@@ -70,19 +71,8 @@
            
         </div>
     </div>
-    <script>
-	function teaPurchase(){
-		location.href = "<%=contextPath%>/detail.rp";
-	}
-	function Purchase(){
-		location.href = "<%=contextPath%>/tea.rp";
-	}
-	function soapPurchase(){
-		location.href = "<%=contextPath%>/soap.rp";
-	}
-	
-	</script>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<script type="text/javascript" src="resources/scripts/regional/regionalProductListViewScript.js"></script>
 </body>
 </html>

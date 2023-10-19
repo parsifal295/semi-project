@@ -70,6 +70,7 @@
     }
 
 </style>
+<script type="text/javascript" src="resources/scripts/regional/regionalProductRecipeListViewScript.js"></script>
 </head>
 <body>
 <%@ include file="../common/menubar.jsp"%>
@@ -94,18 +95,7 @@
            
         </div>
     </div>
-    <script>
-	function jamRecipe(){
-		location.href = "<%=contextPath%>/jam.re";
-	}
-	function cookieRecipe(){
-		location.href = "<%=contextPath%>/cookie.re";
-	}
-	function soupRecipe(){
-		location.href = "<%=contextPath%>/soup.re";
-	}
-	
-	</script>
+   
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 </body>

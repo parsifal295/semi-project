@@ -15,7 +15,7 @@
         padding: 2px;
     }
 </style>
-<script type="text/javascript" src="resources/script.js"></script>
+<script type="text/javascript" src="resources/scripts/freeboard/fboardDetailViewScript.js"></script>
 </head>
 <body>
     <%@ include file = "../common/menubar.jsp" %>
