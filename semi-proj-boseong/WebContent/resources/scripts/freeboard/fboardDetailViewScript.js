@@ -37,6 +37,7 @@ function checkDelete() {
   })
   location.href = "<%=contextPath%>/detailView.fb?bno=" + boardNo;
 };
+
 function insertReply() {
   $.ajax({
     url: 'replyinsert.fb',
@@ -59,6 +60,7 @@ function insertReply() {
   });
   location.reload();
 };
+
 function selectReplyList() {
   $.ajax({
     url: 'replylist.fb',
@@ -89,6 +91,7 @@ function selectReplyList() {
     }
   })
 };
+
 $(() => {
   selectReplyList();
   //setInterval(selectReplyList, 1000);
