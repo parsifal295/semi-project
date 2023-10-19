@@ -107,6 +107,9 @@
 		
 </style>
 
+<script type="text/javascript" src="resources/scripts/reservation/GreenteaFrontViewScript.js"></script>
+
+
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -205,11 +208,7 @@
 		</div>
 		</div>
 </div>
-		<script>
-		function list(memNo){
-			location.href = "<%=contextPath%>/green.li?memNo="+memNo;
-		}
-		</script>
+		
 
 
 

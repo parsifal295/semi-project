@@ -11,6 +11,7 @@
   
 <title>한달살기 메인페이지</title>
   
+  
 <style>
 	
 	.page{
@@ -104,7 +105,15 @@
 		
 		
 </style>
+
+
+<script type="text/javascript" src="resources/scripts/reservation/MonthLivingFrontViewScript.js"></script>
+
+
 </head>
+
+
+
 
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -193,24 +202,10 @@
 
 	<br><br>
 
-	
+
 <%@ include file="../common/footer.jsp" %>
 
-	<script>
-        	 let thumbnails = document.getElementsByClassName("thumbnail");
-        	    for(i=0; i<thumbnails.length;i++){
-        	    	let lodgeNo = i+1;
-        	    	thumbnails[i].onclick= function(){
-        	            location.href="<%=contextPath%>/month.de?lodgeNo=" + lodgeNo;
-        	            return;
-        	        }
-        	    }
-        	    
-        	    function list(memNo){
-        			location.href = "<%=contextPath%>/month.li?memNo="+memNo;
-        		}
-        	    
-    </script>  
+	
 
 
 </body>
