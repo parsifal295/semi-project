@@ -88,7 +88,6 @@
 	      				$(this).attr('selected', 'true');
 	      			}
 	      		});
-	      	
 	      	</script>
 	      	
 	      	<br><br>
@@ -159,20 +158,6 @@
 					 <button type="submit" onclick="return validatePwd();" class="btn btn-warning">비밀번호 변경</button>
 					 
 					 <input type="hidden" name="memNo" value="<%= loginUser.getMemNo() %>">
-					 
-					 <script>
-					 	function validatePwd(){
-					 		
-					 		if($('#updatePwd').val() != $('#checkPwd').val()){
-					 			alert('새 비밀번호와 비밀번호 확인이 일치하지 않습니다.');
-					 			$('#checkPwd').focus();
-					 			return false;
-					 		}
-					 		
-					 		return true;
-					 	}
-					    
-					 </script>
 							      	
 		      	</form>  
 		      </div>
@@ -226,5 +211,7 @@
 		</div>
 	
 	</div>
+	
+<script type="text/javascript" src="resources/scripts/member/myPageScript.js"></script>
 </body>
 </html>
