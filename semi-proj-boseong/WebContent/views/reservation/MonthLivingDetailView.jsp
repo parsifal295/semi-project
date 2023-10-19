@@ -18,7 +18,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>한달살기 상세페이지(예약하기에다가 lodgeno를 여기서 보내줘야댄다...) </title>
+<title>한달살기 상세페이지 </title>
 <style>
 
 	.page{
@@ -78,6 +78,10 @@
 	
 
 </style>
+
+
+
+<script type="text/javascript" src="resources/scripts/reservation/MonthLivingDetailViewScript.js"></script>
 
 </head>
 <body>
@@ -144,15 +148,11 @@
 					
 	</div>
 			
-		<script>
-		function list(memNo){
-			location.href = "<%=contextPath%>/month.in?memNo="+memNo;
-			location.href = "<%=contextPath%>/month.in?lodgeNo="+lodgeNo;
-		}
-		</script>
+	
 		
 		
 <%@ include file="../common/footer.jsp" %>
+
 
 </body>
 </html>
