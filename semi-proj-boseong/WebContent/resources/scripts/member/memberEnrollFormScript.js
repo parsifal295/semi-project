@@ -53,8 +53,17 @@
 		            return false
 		        }
 		    });
-	      	
-	      	
+
+			// 비밀번호 확인 유효성 검사
+			$('#memberEnrollForm').on('submit',() => {
+				const memPwdval = $('#memPwd').val()
+				const pwdcheck = $('#pwdcheck').val()
+				if (memPwdval.value != pwdcheck.value) {
+					alert('비밀번호 확인을 다시 입력해주세요.');
+				  $('#pwdcheck').focus()
+				  return false
+				}
+			});
 	      	
 	       // 이름 유효성 검사
 	       $('#memberEnrollForm').on('submit',() => {
@@ -66,17 +75,6 @@
 		           return false
 		       }
 		    }); 
-
-            // 비밀번호 확인 유효성 검사
-		      	$('#memberEnrollForm').on('submit',() => {
-                    const memPwdval = $('#memPwd').val()
-                    const pwdcheck = $('#pwdcheck').val()
-                    if (memPwdval.value != pwdcheck.value) {
-                        alert('비밀번호 확인을 다시 입력해주세요.');
-                      $('#pwdcheck').focus()
-                      return false
-                    }
-                });
 	       
 	        // 이메일주소 유효성 검사
 	      	$('#memberEnrollForm').on('submit',() => {
