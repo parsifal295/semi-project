@@ -119,7 +119,7 @@
 	</div>
 	<script>
 	$(function(){
-		$('#tb > tbody > tr').click(function(){
+		$('#tbRs > tbody > tr').click(function(){
 			location.href = '<%= contextPath %>/detail.ib?bno=' + $(this).children().eq(0).text();
 		});
 	});
