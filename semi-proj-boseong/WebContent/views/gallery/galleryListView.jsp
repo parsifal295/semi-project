@@ -48,6 +48,8 @@
     	height : 300px;
     }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript" src="resources/scripts/gallery/galleryList.js"></script>
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -74,16 +76,6 @@
 					<img src="<%= g.getSavePath() %>/<%= g.getModifiedName() %>" id="image">
 					<a href="<%= g.getLink() %>" id="tag"></a>
 				</div>
-			   <script>
-				$(function(){
-					$('#tag').hide();
-					
-					$('#image').click(function(){
-						$('#tag').click();
-						// location.href = '<%= g.getLink() %>';
-					})
-				});
-			   </script>
 				<%} %>
 			<%}%> 
 	       </div>

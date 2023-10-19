@@ -175,24 +175,13 @@
 	}
 	/*----------------------------------------------------------*/
 </style>
+<script type="text/javascript" src="resources/scripts/menubar/menubar.js"></script>
 </head>
 <body> 
 	<script>
-		window.addEventListener("scroll", function(){
-			var header = document.querySelector('#header');
-			header.classList.toggle("sticky", window.scrollY > 0);
-		})
-	</script>
-	<script>
+		let indexPath = '<%= contextPath %>';
 		var msg  = '<%= alertMsg %>';
-		
-		if(msg != 'null'){
-			alert(msg);
-			<% session.removeAttribute("alertMsg"); %>
-		}
-	
 	</script>
-	
 	<header id="menubar">
 			
 		<div id="header">
@@ -266,12 +255,6 @@
 			<!-- navi 영역 end -->
 			<div id="logoPlace" class="font" onclick="backtoindex();"></div>
 		</div>
-		<script>
-			function backtoindex(){
-				location.href = '<%= contextPath %>';
-			}
-			
-		</script>
 	</header>
 	<%@ include file = "../member/memberLoginView.jsp" %>
 	<%@ include file = "../member/memberEnrollForm.jsp" %>
