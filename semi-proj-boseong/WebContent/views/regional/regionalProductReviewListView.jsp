@@ -22,6 +22,7 @@
     }
 
 </style>
+<script type="text/javascript" src="resources/scripts/regional/regionalProductReviewListViewScript.js"></script>
 </head>
 <body>
 
@@ -71,22 +72,7 @@
 			</table>	
 		</div>
 	
-		<script>
-			$(function(){
-			
-				$('.table>tbody>tr').click(function(){
-				
-					const nno = $(this).children().eq(0).text();
-					
-					location.href="<%=contextPath%>/detail.pn?nno=" + nno;
-					
-				})
-			
-			});
-			
-			
-		
-		</script>
+	
 
 
 </body>
