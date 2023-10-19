@@ -40,7 +40,8 @@
 }
 
 </style>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript" src="resources/scripts/reservation/horseScript.js"></script>
 </head>
 <body>
 
@@ -81,26 +82,20 @@
 								<option>19</option>
 								<option>20</option>
 						</select>시</td>
-						<script>
-					$(function(){
-						$('#horseTime>option').each(function(){
-							let horseTime = "<%=horseTime%>";
-							if($(this).val() == horseTime){
-								$(this).attr('selected', true);
-							}
-						})	
-						$('#programNo>option').each(function(){
-							if($(this).val() == <%=programNo%>){
-								$(this).attr('selected', true);
-							}
-						})
-						$('#riderNum>option').each(function(){
-							if($(this).val() == <%=riderNum%>){
-								$(this).attr('selected', true);
-							}
-						})
-					})
-						</script>
+				<script>
+			$(function(){
+				$('#horseTime>option').each(function(){
+					let horseTime = "<%=horseTime%>";
+					if($(this).val() == horseTime){$(this).attr('selected', true);}
+				})	
+				$('#programNo>option').each(function(){
+					if($(this).val() == <%=programNo%>){$(this).attr('selected', true);}
+				})
+				$('#riderNum>option').each(function(){
+					if($(this).val() == <%=riderNum%>){$(this).attr('selected', true);}
+				})
+			})
+				</script>
 						<td><select name="riderNum" id="riderNum">
 								<option value="1">1명</option>
 								<option value="2">2명</option>
@@ -165,61 +160,6 @@
 			</div>
 		</form>
 	</div>
-	<script>
-		$(function() {
-			let now = new Date();
-			let year = now.getFullYear();
-			let month = now.getMonth()+1;
-			let date = now.getDate();
-			let tomorrow = new Date(year, month, date+1);
-//			year = tomorrow.getFullYear();
-//			month = tomorrow.getMonth()+1;
-//			date = tomorrow.getDate();
-			
-			if(month<10){
-				month = '0'+month;
-			}
-			if(date<10){
-				date = '0'+date;
-			}
-			let today = year+'-'+month+'-'+date;
-			$('#horseDate').attr('min', today).val(today);
-			
-			
-			$(':text').click(function() {
-				alert('예약자 성함과 연락처가 다르다면 회원정보를 변경해주세요!');
-			});
-			$('#horseDate').change(
-					function() {
-						$.ajax({
-							url : 'datecheck.hs',
-							data : {
-								horseDate : $('#horseDate').val()
-							},
-							type : 'get',
-							success : function(result) {
-							$('#horseTime').empty();
-							let $choice = $('<option value="0"></option>').text('시간');
-							$('#horseTime').append($choice);
-								//자바스크립트, 제이쿼리 혼합문에서 제이쿼리 형식으로 바꿈!
-							for (let i = 10; i < 21; i++) {
-								if (result.indexOf(i) == -1) {
-								let $time = $('<option></option>').text(i);
-								$('#horseTime').append($time);
-								}
-
-							}
-
-							},
-							error : function(result) {
-								console.log('실패');
-								console.log(result);
-
-							}
-						})
-					})
-		})
-	</script>
 	<br>
 	<br>
 	<br>

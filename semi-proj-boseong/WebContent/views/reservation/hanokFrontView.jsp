@@ -7,13 +7,24 @@
 <title>보성 한옥스테이</title>
 
 <style>
+@font-face {
+    font-family: '국립박물관문화재단클래식B';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/국립박물관문화재단클래식B.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 #main-pic {
 	width: 100%;
 	height: 70%;
 	box-sizing: border-box;
 	background:
-		url("<%=request.getContextPath() %>/resources/image/reservation/building1.jpeg");
-	background-size: cover;
+		url("<%=request.getContextPath() %>/resources/image/reservation/building1.jpg");
+	background-size: contain;
+}
+#main-pic button{
+position: relative;
+font-family: '국립박물관문화재단클래식B';
+top : 430px;
 }
 
 #main-pic>div{
@@ -30,10 +41,10 @@
 
 .room {
 	float: left;
-	width: 415px;
+	width: 432px;
 	height: 260px;
 	box-sizing: border-box;
-	margin: 8px;
+	margin: 1px;
 }
 
 .room>img {
@@ -50,7 +61,7 @@
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-<script type="text/javascript" src="resources/scripts/hanokScript.js"></script>
+<script type="text/javascript" src="resources/scripts/reservation/hanokScript.js"></script>
 </head>
 <body>
 	<%@include file="../common/menubar.jsp"%>
@@ -61,10 +72,10 @@
 			<%if(loginUser == null){ %>
 			<div><h1>예약하려면 로그인하세요!</h1></div>
 			<%}else{ %>
-				<button class="btn btn-outline-secondary" id="reserv-hanok">
+				<button class="btn btn-outline-light btn-block" id="reserv-hanok">
 					<h1>예약 하기</h1>
 				</button>
-				<button class="btn btn-outline-secondary" id="hk-reserv-list"><h1>예약 조회</h1></button>
+				<button class="btn btn-outline-light btn-block" id="hk-reserv-list"><h1>예약 조회</h1></button>
 				<script>
 				$(function(){
 			    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk?memNo=<%=loginUser.getMemNo()%>&cpage=1"});

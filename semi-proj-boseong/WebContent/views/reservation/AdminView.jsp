@@ -12,9 +12,20 @@
 <meta charset="UTF-8">
 <title>예약 관리</title>
 <style>
+@font-face {
+    font-family: 'SOYOMapleBoldTTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+	#content{
+	font-family : 'SOYOMapleBoldTTF';}
 	#reserv-type{
 		color:green;
 		font-weight: bold;
+	}
+	h3,h4{
+		color:rgb(160, 88, 20);
 	}
 	.reserv-type{
 		width:250px;
@@ -46,6 +57,9 @@
 		text-align:center;
 		padding-top:100px;
 	}
+	.verticalbar>h1{
+		color:rgb(172, 16, 16);
+	}
 	#search-reserv{
 		height:750px;
 	}
@@ -61,9 +75,6 @@
 	#update-area{
 		padding-left:900px;
 	}
-	.reserv-page{
-	background-color: rgb(242, 245, 236);
-	}
 	
 </style>
 
@@ -77,7 +88,7 @@
 		<div class = "page">
 			<h1><span id="reserv-type">통합</span>예약 관리</h1>
 			<div>
-				<h2>주요 현황</h2>
+				<h3>주요 현황</h3>
 				
 				<div>
 					<div class="reserv-type">
@@ -87,19 +98,19 @@
 						</div>
 					</div>
 					<div class="verticalbar">
-						<div>
-							<h1><%=horseCount %></h1>
-						</div>
+						<h1><%=horseCount %></h1>
 					</div>
+			
 					<div class="reserv-type">
 						<img src="<%=contextPath %>/resources/image/reservation/tea-icon.png">
 						<div>
 							<h5>녹차 체험</h5>
 						</div>
 					</div>
-						<div class="verticalbar">
+					<div class="verticalbar">
 						<h1><%=teaCount %></h1>
-						</div>
+					</div>
+					
 					<div class="reserv-type">
 						<img src="<%=contextPath %>/resources/image/reservation/hanok-icon.png">
 						<div>
@@ -221,7 +232,7 @@
 				</script>
 
 
-				<table class="table">
+				<table class="table table-hover">
 					<thead>
 						<tr id="reserv-table-head">
 							<th>예약 번호</th>
@@ -261,17 +272,19 @@
 								{
 									for(let i in e){
 									$el =$('<table></table>');
-									$el.append($('<tr><td></td><td>').text(e[i].reservNo+'('+e[i].reservType+')'));
-									$el.append($('<tr><td></td><td>').text(e[i].member));
-									$el.append($('<tr><td></td><td>').text(e[i].phone));
-									$el.append($('<tr><td></td><td>').text(e[i].type));
-									$el.append($('<tr><td></td><td>').text(e[i].startDate));
-									$el.append($('<tr><td></td><td>').text(e[i].status));
-									$('#admin-delete .modal-body>form').append($('<h3></h3>').text('해당 번호의 예약 내용입니다.'));
+									$el.append($('<tr><td></td></tr>').text(e[i].reservNo+'('+e[i].reservType+')'));
+									$userInfo =$('<tr></tr>');
+									$userInfo.append($('<td></td>').text('예약자 : '+e[i].member));
+									$userInfo.append($('<td></td>').text(e[i].phone));
+									$el.append($userInfo);
+									$reservInfo =$('<tr></tr>');
+									$reservInfo.append($('<td colspan="2"></td>').text('예약내역 : '+e[i].type+' - '+e[i].startDate+'('+e[i].status+')'));
+									$el.append($reservInfo);
+									$('#admin-delete .modal-body>form').append($('<h4></h4>').text('해당 번호의 예약 내용입니다.'));
 									$('#admin-delete .modal-body>form').append($el);
 									$('#admin-delete .modal-body>form').append($('<input type="hidden" name="reservType">').val(e[i].reservType));
 									$('#admin-delete .modal-body>form').append($('<input type="hidden" name="reservNo">').val(e[i].reservNo));
-									$('#admin-delete .modal-body>form').append($('<button type="submit"></button>').text('예약 삭제'));
+									$('#admin-delete .modal-body>form').append($('<button type="submit" class="btn btn-outline-warning" style="margin-left:370px;"></button>').text('예약 삭제'));
 									}
 								}
 							}
@@ -290,7 +303,7 @@
 			<div class = "modal-content">
 			<!-- Modal Header -->
 			<div class = "modal-header">
-				<h4 class="modal-title"> </h4>
+				<h2 class="modal-title">예약 삭제</h2>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<!-- Modal body -->
