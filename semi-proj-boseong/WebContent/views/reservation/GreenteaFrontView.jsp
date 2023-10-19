@@ -41,7 +41,7 @@
 	float:left;
 	}
 	
-
+	
 
 	.box1{
 		background-color : white;
@@ -87,7 +87,7 @@
 		
 	.content1_0{
 			width:1500px;
-			height:700px;
+			height:580px;
 	}	
 		
 	.content1{
@@ -114,13 +114,15 @@
 	<div class="page" id="content">
 	<div style="height:200px;"></div>
 	
-		<div class="page">
+		<div class="page" style="height:900px;">
+		
 			
 				<div class="mainpic">
-					<img src="https://blog.kakaocdn.net/dn/LD4SQ/btqESqHavW4/0ll3OGWhaVkEwtQRWPT391/img.jpg" width="1300" height="780" id="img9" >
+					<img src="<%=contextPath %>/resources/image/reservation/greenteamain.jpg" width="1300" height="780" id="img9" >
 				</div>
 				
-	
+				
+				
 				<% if(loginUser != null){ %>
 				
 				<div class="formtag">
@@ -142,7 +144,7 @@
 				</div>
 			
 		
-		<div class="page" >
+		<div class="page" style="height:550px;">
 			<div class="content1_0">
 				<div class="content1">
 					<img src="https://blog.kakaocdn.net/dn/LD4SQ/btqESqHavW4/0ll3OGWhaVkEwtQRWPT391/img.jpg" width="600" height="500" id="img10">
@@ -162,11 +164,11 @@
 				</div>
 			</div>
 		</div>
-		</div>
 		
-		<div class="page"></div>
 		
-		<div class="page"  style="margin-left:2em">
+	
+		
+		<div class="page"  style="height:650px;">
 		
 			<div class="content3" >
 			<br>
@@ -202,7 +204,7 @@
 			<br><br>
 		</div>
 		</div>
-
+</div>
 		<script>
 		function list(memNo){
 			location.href = "<%=contextPath%>/green.li?memNo="+memNo;
