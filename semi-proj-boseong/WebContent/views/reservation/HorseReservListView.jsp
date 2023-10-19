@@ -17,13 +17,23 @@
 <meta charset="UTF-8">
 <title>승마장 예약 확인</title>
 <style>
-
+@font-face {
+    font-family: 'GangwonEduHyeonokT_OTFMediumA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduHyeonokT_OTFMediumA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+#content *{
+font-family: 'GangwonEduHyeonokT_OTFMediumA';}
 ul, li {
 	list-style: none;
+	padding:0;
+	margin:0;
 }
+h1{font-size:35px;}
 
 #horse-reserv-list {
-	font-size: 25px;
+	font-size: 30px;
 }
 
 #horse-reserv-list fieldset {
@@ -45,39 +55,40 @@ ul, li {
 	margin-right: 15px;
 	margin-bottom : 10px;
 }
+.horse-reserv{
+border:5px solid white;
+}
 </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript" src="resources/scripts/reservation/horseScript.js"></script>
+
 </head>
 <body>
 
 	<%@include file="../common/menubar.jsp"%>
 	<%int memNo = (loginUser == null)? 0 : loginUser.getMemNo(); %>
 	<div id="box"></div>
+	<div class="reserv-page">
 	<div class="page" id="content">
 		
 		<div class="page">
 			<h1>예약 조회</h1>
-			<div class="reserv-paging-area">
+			<div class="reserv-paging-area btn-group">
 				<%if(currentPage!=1){ %>
-					<button onclick="reservPageShift('<%=currentPage-1%>');">&lt;</button>
+					<button class="btn btn-lg" onclick="reservPageShift('<%=currentPage-1%>','<%=memNo%>');">&lt;</button>
 				<%} %>
 				<%for(int i=startPage;i<endPage+1;i++){ %>
 					<%if(currentPage != i){ %>
-					<button onclick="reservPageShift('<%=i%>');"><%=i %></button>
+					<button class="btn btn-lg" onclick="reservPageShift('<%=i%>','<%=memNo%>');"><%=i %></button>
 					<%}else{ %>
-					<button disabled><%=i%></button>
+					<button class="btn btn-lg" disabled><%=i%></button>
 					<%} %>
 				<%} %>
 				<%if(currentPage != maxPage){ %>
-					<button onclick="reservPageShift('<%=currentPage+1%>');">&gt;</button>
+					<button class="btn btn-lg" onclick="reservPageShift('<%=currentPage+1%>','<%=memNo%>');">&gt;</button>
 				<%} %>
-			</div>
-				<script>
-			function reservPageShift(page){
-				let pageLocation = '<%=contextPath%>/list.hs?memNo=<%=memNo%>&cpage='+page;
-				location.href=pageLocation;
-			}
-				</script>
-			
+			</div>	
 			<ul id="horse-reserv-list">
 					<%
 						if (list.isEmpty()) {
@@ -91,7 +102,7 @@ ul, li {
 						<legend>
 							<h2><%=hr.getProgramNo() %></h2>
 						</legend>
-						<div>
+						<div class="horse-reserv">
 							<table>
 
 								<tr>
@@ -114,6 +125,7 @@ ul, li {
 						<%}%>
 			</ul>
 
+	</div>
 	</div>
 	</div>
 	
@@ -144,16 +156,6 @@ ul, li {
 		</div>
 
 	</div>
-	
-	
-	<script>
-		$(function(){
-			$('.update-hs').click(function(){
-				let reservNo = $(this).parent().parent().children().eq(0).text();
-				location.href = "<%=contextPath%>/updateForm.hs?cpage=<%=currentPage%>&reservNo="+reservNo;
-			});
-		})
-	</script>
 
 	<%@include file="../common/footer.jsp"%>
 

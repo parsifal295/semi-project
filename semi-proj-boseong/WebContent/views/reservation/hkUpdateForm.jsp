@@ -42,7 +42,7 @@
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-<script type="text/javascript" src="resources/scripts/hanokScript.js"></script>
+<script type="text/javascript" src="resources/scripts/reservation/hanokScript.js"></script>
 
 </head>
 <body>

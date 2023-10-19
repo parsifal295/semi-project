@@ -83,6 +83,9 @@
 		background-position: center;
 		background-size: 100%;
 	}
+	#logoPlace:hover{
+		cursor: pointer;
+	}
 	#header.sticky #logoPlace{
 		background-image: url('<%= contextPath %>/resources/image/logo/logo-1.png');
 	}
@@ -175,6 +178,9 @@
 	height:200px;
 	}
 	/*----------------------------------------------------------*/
+	.reserv-page{
+	background-color: rgb(242, 245, 236);
+	}
 </style>
 <script type="text/javascript" src="resources/scripts/menubar/menubar.js"></script>
 </head>
@@ -187,6 +193,18 @@
 			alert(msg);
 			<% session.removeAttribute("alertMsg"); %>
 		}
+
+		function backtoindex(indexPath){
+		location.href = indexPath;
+
+	}
+		
+
+window.addEventListener("scroll", function(){
+    var header = document.querySelector('#header');
+    header.classList.toggle("sticky", window.scrollY > 0);
+})
+
 	</script>
 	<header id="menubar">
 			

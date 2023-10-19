@@ -16,6 +16,17 @@
 <meta charset="UTF-8">
 <title>한옥 예약조회</title>
 <style>
+@font-face {
+    font-family: 'GangwonEduHyeonokT_OTFMediumA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduHyeonokT_OTFMediumA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+#content *{
+font-family: 'GangwonEduHyeonokT_OTFMediumA';
+color:black;
+}
+
 .reservation-list{
 text-align:center;
 }
@@ -23,22 +34,27 @@ text-align:center;
 text-align:right;}
 .reserv-paging-area{
 text-align:center;}
+td{
+font-size:22px;}
+th{
+font-size:24px;}
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-<script type="text/javascript" src="resources/scripts/hanokScript.js"></script>
+<script type="text/javascript" src="resources/scripts/reservation/hanokScript.js"></script>
 
 </head>
 <body>
 		
 	<%@include file = "../common/menubar.jsp" %>
 	<%int memNo = (loginUser == null)? 0 : loginUser.getMemNo(); %>
-	<div id="content" class="page">
 	<div id="box"></div>
+	<div class="reserv-page">
 	<div id="content" class="page">
 		<div class="page">
 			<table class="table table-borderless reservation-list">
-				<h2>한옥예약 조회</h2>
+				<br>
+				<h1>한옥예약 조회</h1>
 				<thead>
 					<tr>
 						<th>예약번호</th>
@@ -52,10 +68,29 @@ text-align:center;}
 				</thead>
 				<tbody>
 					<tr>
-					<td colspan="4"></td>
-					<td colspan="2" id="reserv-edit-area"><button class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#hanok-update">예약 변경</button>
-					<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#hanok-delete">예약 취소</button></td>
-							
+					<td>
+			<div class="reserv-paging-area btn-group">
+				<%if(currentPage!=1){ %>
+					<button class="btn btn-lg" onclick="reservPageShift('<%=currentPage-1%>','<%=memNo%>');">&lt;</button>
+				<%} %>
+				<%for(int i=startPage;i<endPage+1;i++){ %>
+					<%if(currentPage != i){ %>
+					<button class="btn btn-lg" onclick="reservPageShift('<%=i%>','<%=memNo%>');"><%=i %></button>
+					<%}else{ %>
+					<button class="btn btn-lg" disabled><%=i%></button>
+					<%} %>
+				<%} %>
+				<%if(currentPage != maxPage){ %>
+					<button class="btn btn-lg" onclick="reservPageShift('<%=currentPage+1%>','<%=memNo%>');">&gt;</button>
+				<%} %>
+			</div>
+					</td>
+					<td colspan="3"></td>
+					<td colspan="2" id="reserv-edit-area">
+					<div class="btn-group">
+					<button class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#hanok-update"><h4>예약 변경</h4></button>
+					<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#hanok-delete"><h4>예약 취소</h4></button></td>		
+					</div>
 					</tr>
 
 					<%if(list.isEmpty()){ %>
@@ -78,22 +113,8 @@ text-align:center;}
 
 			</table>
 			
-			<div class="reserv-paging-area">
-				<%if(currentPage!=1){ %>
-					<button onclick="reservPageShift('<%=currentPage-1%>','<%=memNo%>');">&lt;</button>
-				<%} %>
-				<%for(int i=startPage;i<endPage+1;i++){ %>
-					<%if(currentPage != i){ %>
-					<button onclick="reservPageShift('<%=i%>','<%=memNo%>');"><%=i %></button>
-					<%}else{ %>
-					<button disabled><%=i%></button>
-					<%} %>
-				<%} %>
-				<%if(currentPage != maxPage){ %>
-					<button onclick="reservPageShift('<%=currentPage+1%>','<%=memNo%>');">&gt;</button>
-				<%} %>
-			</div>
 		</div>
+	</div>
 	</div>
 	<%@include file = "../common/footer.jsp" %>
 	<script>

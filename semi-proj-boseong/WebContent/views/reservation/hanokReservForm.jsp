@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <title>한옥 예약</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-<script type="text/javascript" src="resources/scripts/hanokScript.js"></script>
+<script type="text/javascript" src="resources/scripts/reservation/hanokScript.js"></script>
 <style>
 @font-face {
 	font-family: 'Hangeuljaemin4-Regular';

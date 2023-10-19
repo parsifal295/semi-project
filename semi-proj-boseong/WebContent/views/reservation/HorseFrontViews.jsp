@@ -14,20 +14,29 @@
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript" src="resources/scripts/reservation/horseScript.js"></script>
 
 
 <style>
 @font-face {
-	font-family: 'Hangeuljaemin4-Regular';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Hangeuljaemin4-Regular.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
 }
-
-#content * {
-	font-family: 'Hangeuljaemin4-Regular';
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+#content button, h2, h3, h4{
+	font-family: 'TheJamsil5Bold';
+}
+#content pre, table{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:20px;
 }
 
 /* 이미지 영역 사이즈 조절 */
@@ -64,9 +73,8 @@
 }
 
 .rsv {
-	width: 240px;
-	height: 240px;
-	border-radius: 10px;
+	width: 245px;
+	height: 245px;
 	font-size: 50px;
 	font-weight: 600;
 	margin-top:5px;
@@ -92,6 +100,8 @@
 	width:200px;
 }
 </style>
+
+
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp"%>
@@ -100,21 +110,21 @@
 		<div id="horse-top">
 		<%if(loginUser != null){ %>
 			<div id="rsv-buttons">
-			<button onclick="reserveAride('Y');"class="btn-outline-secondary rsv top">
+			<button onclick="reserveAride('Y');"class="btn-outline-light text-dark rsv">
 			예약하기
 			</button>
 
-			<button onclick="rideList(<%=loginUser.getMemNo() %>);" class="btn-outline-secondary rsv">
+			<button onclick="rideList('<%=loginUser.getMemNo() %>');" class="btn-outline-light rsv text-dark">
 			예약조회
 			</button>
 			</div>
 		<%}else{ %>
 			<div id="rsv-buttons">
-			<button onclick="reserveAride('N');"class="btn-outline-secondary rsv top">
+			<button onclick="reserveAride('N');"class="btn-outline-light rsv text-dark">
 			예약하기
 			</button>
 
-			<button onclick="reserveAride('N');" class="btn-outline-secondary rsv">
+			<button onclick="reserveAride('N');" class="btn-outline-light rsv text-dark">
 			예약조회
 			</button>
 			</div>
@@ -157,10 +167,29 @@
 				<!-- If we need scrollbar -->
 				<div class="swiper-scrollbar"></div>
 			</div>
+			<script>
+			const swiper = new Swiper('.swiper', {
+				autoplay : {
+					delay : 3000
+					// 3초마다 이미지 변경
+				},
+				loop : true, //반복 재생 여부
+				slidesPerView : 1, // 이전, 이후 사진 미리보기 갯수
+				pagination : { // 페이징 버튼 클릭 시 이미지 이동 가능
+					el : '.swiper-pagination',
+					clickable : true
+				},
+				navigation : { // 화살표 버튼 클릭 시 이미지 이동 가능
+					prevEl : '.swiper-button-prev',
+					nextEl : '.swiper-button-next'
+				}
+			});
+			</script>
 		</div>
 		<!-- end of horse-top area -->
 
 		<div id="horse-bottom">
+			<br>
 			<h2>승마장 소개</h2>
 			<hr>
 			<pre>
@@ -202,46 +231,10 @@
 	차량 픽업이 불포함된 상품입니다. 이동은 개별적으로 하셔야합니다.
 	차량 픽업은 별도의 선택옵션으로 이용이 가능합니다.
 	운영에 대한 책임은 승마장에 있습니다. 개인 부주의 또는 적혀있는 사항을 위반하여 발생된 사고는 당사와 승마장은 책임지지 않습니다.
-
 			</pre>
-
 		</div>
-
-
 	</div>
 	<%@ include file="../common/footer.jsp"%>
-
-	<script>
-//원래는 여기서 둘 다 회원번호를 가져가야 해
-	function reserveAride(login){
-		if(login=='Y'){
-			location.href = "<%=contextPath%>/horseForm.rsv";
-		}
-		else{
-			alert('로그인 후 사용가능한 서비스입니다.');
-		}	
-	};
-	function rideList(memNo){
-			location.href = "<%=contextPath%>/list.hs?memNo="+memNo+"&cpage=1";
-		}
-		// 슬라이더 동작 정의
-		const swiper = new Swiper('.swiper', {
-			autoplay : {
-				delay : 3000
-			// 3초마다 이미지 변경
-			},
-			loop : true, //반복 재생 여부
-			slidesPerView : 1, // 이전, 이후 사진 미리보기 갯수
-			pagination : { // 페이징 버튼 클릭 시 이미지 이동 가능
-				el : '.swiper-pagination',
-				clickable : true
-			},
-			navigation : { // 화살표 버튼 클릭 시 이미지 이동 가능
-				prevEl : '.swiper-button-prev',
-				nextEl : '.swiper-button-next'
-			}
-		});
-	</script>
 
 </body>
 </html>
