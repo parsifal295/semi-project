@@ -26,54 +26,57 @@
 
 	#content{
 		width : 1302px;
-		height : 100%;
+		height : 900px;
 		margin : auto;
 		
 	}
 
 	.mainpic{
-		width : 2000px;
+		width : 1050px;
 		height : 800px;
-		margin : auto;
+		float : left;
 	}
 
 	.main_image{
-		position:relative;
+	float:left;
 	}
 	
-	.main_image_text{
-		position:absolute;
-		top:50%;
-		left:50%;
-		transform:translate(-50%, 90%);
-		color:white;
-	}
+
 
 	.box1{
 		background-color : white;
 		font-size:30px;
-		width : 200px;
+		width : 180px;
 		height : 210px;
 		text-align:center;
-		position:absolute;
 		top:30%;
 		left:90%;
 		line-height: 200px;
-		transform:translate(-50%, 40%);
+		float : left;
 	}
 	
 	.box2{
 		background-color : white;
 		font-size:30px;
-		width : 200px;
+		width : 180px;
 		height : 210px;
 		text-align:center;
-		position:absolute;
 		line-height: 200px;
 		top:60%;
 		left:90%;
-		transform:translate(-50%, 50%);
+		float : left;
 	}
+	
+	.formtag{
+		align:left;
+		width:190px;
+		height:220px;
+		float : left;
+		margin-left:10px;
+		margin-top:120px;
+		
+	}
+	
 	
 	.outer{
 			width : 1400px;
@@ -83,7 +86,7 @@
 		}
 		
 	.content1_0{
-			width:2000px;
+			width:1500px;
 			height:700px;
 	}	
 		
@@ -91,7 +94,7 @@
  		width:700px; 
  		height:500px;
  		float : left;
- 		margin-left:200px;
+ 	
 	}
 		
 	.content2{
@@ -108,36 +111,41 @@
 <body>
 	<%@ include file="../common/menubar.jsp" %>
 
-	<div class="page">
+	<div class="page" id="content">
 	<div style="height:200px;"></div>
 	
 		<div class="page">
-			<div class="mainpic">
-				<img src="https://blog.kakaocdn.net/dn/LD4SQ/btqESqHavW4/0ll3OGWhaVkEwtQRWPT391/img.jpg" width="2000" height="780" id="img9">
-			</div>
-			<div class="main_image_text"><h2 align=center style="font-size:60px;">녹차밭 체험하기</h2></div>
 			
-
-			<% if(loginUser != null){ %>
-			
-			<form action="<%=contextPath%>/green.re" method="get">
-				<input type="hidden" id="memNo1" name="memNo" value="<%= loginUser.getMemNo() %>">											
-				<div class="box1" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;" >예약하기</button></div>
-			</form>
-			
-			<form action="<%=contextPath%>/green.li" method="post">
-				<input type="hidden" id="memNo" name="memNo" value="<%= loginUser.getMemNo() %>">
-				<div class="box2" style="border:1px solid white;" ><button type="submit" style="background-color:white; border:none;" >예약조회</button></div>
-			</form>
-			<% } %>
+				<div class="mainpic">
+					<img src="https://blog.kakaocdn.net/dn/LD4SQ/btqESqHavW4/0ll3OGWhaVkEwtQRWPT391/img.jpg" width="1300" height="780" id="img9" >
+				</div>
 				
-		</div>
+	
+				<% if(loginUser != null){ %>
+				
+				<div class="formtag">
+					<form action="<%=contextPath%>/green.re" method="get">
+						<input type="hidden" id="memNo1" name="memNo" value="<%= loginUser.getMemNo() %>">											
+						<div class="box1" style="border:1px solid black;" ><button type="submit" style="background-color:white; border:none;" >예약하기</button></div>
+					</form>
+				</div>	
+					
+				<div class="formtag">	
+					<form action="<%=contextPath%>/green.li" method="post">
+						<input type="hidden" id="memNo" name="memNo" value="<%= loginUser.getMemNo() %>">
+						<div class="box2" style="border:1px solid black;" ><button type="submit" style="background-color:white; border:none;" >예약조회</button></div>
+					</form>
+				</div>	
+				
+				<% } %>
+					
+				</div>
+			
 		
-		
-		<div class="page" style="height:500px">
+		<div class="page" >
 			<div class="content1_0">
 				<div class="content1">
-					<img src="https://blog.kakaocdn.net/dn/LD4SQ/btqESqHavW4/0ll3OGWhaVkEwtQRWPT391/img.jpg" width="700" height="500" id="img10">
+					<img src="https://blog.kakaocdn.net/dn/LD4SQ/btqESqHavW4/0ll3OGWhaVkEwtQRWPT391/img.jpg" width="600" height="500" id="img10">
 				</div>
 				
 				<div class="content2">
@@ -158,7 +166,7 @@
 		
 		<div class="page"></div>
 		
-		<div class="page" clear="both" style="margin-left:1em">
+		<div class="page"  style="margin-left:2em">
 		
 			<div class="content3" >
 			<br>
