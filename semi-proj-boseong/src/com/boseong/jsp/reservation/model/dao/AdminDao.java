@@ -149,4 +149,21 @@ public class AdminDao {
 		}
 		return list;
 	}
+	public int deleteReservation(Connection conn, String key, int reservNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty(key);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, reservNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

@@ -1,13 +1,14 @@
 package com.boseong.jsp.reservation.model.service;
 
 import static com.boseong.jsp.common.JDBCTemplate.close;
+import static com.boseong.jsp.common.JDBCTemplate.commit;
 import static com.boseong.jsp.common.JDBCTemplate.getConnection;
+import static com.boseong.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.boseong.jsp.freeboard.model.vo.PageInfo;
 import com.boseong.jsp.reservation.model.dao.AdminDao;
 import com.boseong.jsp.reservation.model.vo.AdminReservation;
 
@@ -36,6 +37,17 @@ public class AdminService {
 		ArrayList<AdminReservation> list = new AdminDao().selectById(conn, searchKey);
 		close(conn);
 		return list;
+	}
+	public int deleteReservation(int reservNo, String key) {
+		Connection conn = getConnection();
+		int result = new AdminDao().deleteReservation(conn, key, reservNo);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 

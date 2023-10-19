@@ -265,6 +265,18 @@ FROM (
          )ORDER BY RESERVATION_NO DESC)
 WHERE MEM_ID = ? AND ROWNUM BETWEEN 1 AND 7
 </entry>
+<entry key="deleteFromHorse">
+	DELETE FROM HORSE_RESERVATION WHERE RESERVATION_NO = ?
+</entry>
+<entry key="deleteFromTea">
+DELETE FROM TEA_RESERVATION WHERE RESERVATION_NO = ?
+</entry>
+<entry key="deleteFromHanok">
+DELETE FROM HANOK_RESERVATION WHERE RESERVATION_NO = ?
+</entry>
+<entry key="deleteFromMonth">
+DELETE FROM MONTH_RESERVATION WHERE RESERVATION_NO = ?
+</entry>
 
 
 
