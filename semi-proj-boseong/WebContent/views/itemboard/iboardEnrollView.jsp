@@ -10,6 +10,7 @@
         width: 100%;
     }
 </style>
+<!-- iboardEnrollView는 script가 없음 -->
 </head>
 <body>
     <!--중고거래리스트 조회(R)-썸네일, 사진상세조회(R), 

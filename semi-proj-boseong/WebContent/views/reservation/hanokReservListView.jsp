@@ -17,7 +17,7 @@
 <title>한옥 예약조회</title>
 <style>
 .reservation-list{
-	text-align:center;
+text-align:center;
 }
 #reserv-edit-area{
 text-align:right;}
@@ -80,17 +80,17 @@ text-align:center;}
 			
 			<div class="reserv-paging-area">
 				<%if(currentPage!=1){ %>
-					<button onclick="reservPageShift('<%=currentPage-1%>');">&lt;</button>
+					<button onclick="reservPageShift('<%=currentPage-1%>','<%=memNo%>');">&lt;</button>
 				<%} %>
 				<%for(int i=startPage;i<endPage+1;i++){ %>
 					<%if(currentPage != i){ %>
-					<button onclick="reservPageShift('<%=i%>');"><%=i %></button>
+					<button onclick="reservPageShift('<%=i%>','<%=memNo%>');"><%=i %></button>
 					<%}else{ %>
 					<button disabled><%=i%></button>
 					<%} %>
 				<%} %>
 				<%if(currentPage != maxPage){ %>
-					<button onclick="reservPageShift('<%=currentPage+1%>');">&gt;</button>
+					<button onclick="reservPageShift('<%=currentPage+1%>','<%=memNo%>');">&gt;</button>
 				<%} %>
 			</div>
 		</div>
