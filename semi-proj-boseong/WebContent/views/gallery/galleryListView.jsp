@@ -79,12 +79,16 @@
 				<% for(Gallery g : list){ %>
 				<!-- 등록된 사진이 있을 경우 -->
 				<div class="gallery-area" align="center"  id="imageTag">
-					<img src="<%= g.getSavePath() %>/<%= g.getModifiedName() %>" id="image">
-					<a href="<%= g.getLink() %>" id="tag"></a>
+					<img src="<%= g.getSavePath() %>/<%= g.getModifiedName() %>" id="image" onclick="galleryImgTag('<%= g.getLink() %>');">
 				</div>
 				<%} %>
 			<%}%> 
 	       </div>
+		   <script>
+				function galleryImgTag(path){
+					this.location.href = path;
+			}
+		   </script>
        </div>
 	<%@ include file="../common/footer.jsp" %>
 </body>
