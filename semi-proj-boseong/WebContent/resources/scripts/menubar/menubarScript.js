@@ -1,9 +1,4 @@
 
-		
-if(msg != 'null'){
-    alert(msg);
-    <% session.removeAttribute("alertMsg"); %>
-}
 
 window.addEventListener("scroll", function(){
     var header = document.querySelector('#header');
@@ -11,6 +6,6 @@ window.addEventListener("scroll", function(){
 })
 
 
-function backtoindex(){
+function backtoindex(indexPath){
     location.href = indexPath;
 }

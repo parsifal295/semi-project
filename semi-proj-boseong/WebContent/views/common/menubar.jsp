@@ -57,12 +57,13 @@
 		color: black;
 	}
 	#header {
-		z-index: 30;
+		z-index: 100;
 		margin: 0;
 		padding: 0;
 		width: 100%;
 		height: 200px;
 		transition: 0.6s;
+		
 		border-bottom: 1px solid rgba(161, 161, 161, 0.589);
 		/* ↓ 스크롤을 해도 같이 내려오는 효과 */
 		position: fixed;
@@ -181,6 +182,11 @@
 	<script>
 		let indexPath = '<%= contextPath %>';
 		var msg  = '<%= alertMsg %>';
+				
+		if(msg != 'null'){
+			alert(msg);
+			<% session.removeAttribute("alertMsg"); %>
+		}
 	</script>
 	<header id="menubar">
 			
@@ -253,7 +259,7 @@
 				</li>
 			</ul>
 			<!-- navi 영역 end -->
-			<div id="logoPlace" class="font" onclick="backtoindex();"></div>
+			<div id="logoPlace" class="font" onclick="backtoindex(indexPath);"></div>
 		</div>
 	</header>
 	<%@ include file = "../member/memberLoginView.jsp" %>

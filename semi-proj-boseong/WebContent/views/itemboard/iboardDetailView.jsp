@@ -98,88 +98,6 @@
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
-        <script>
-     // iboardImg에 사진 삽입
-     $(function(){
-        $('.iboardImg').css({
-            'background-image'  : 'url("<%=at.getSavePath()%>/<%= at.getModifiedName() %>")',
-            'background-repeat' : 'no-repeat',
-            'background-position' : 'center',
-            'background-size' : 'contain'
-            });
-        $('.iboardImg').click(function(){
-           // console.log($('.iboardImg')[0].style.height == "730px");
-           // console.log($('.iboardImg')[0].style[7] == $('.iboardImg')[0].style[7]);
-            if($('.iboardImg')[0].style.height == "500px"){
-              $('.iboardImg').css({
-                  'width' : '100%',
-                  'height' : '730px'
-              })
-            }
-            else{
-                 $('.iboardImg').css({
-                     'width' : '100%',
-                     'height' : '500px'
-                 })
-            }
-        })
-      });
-
-          // 게시글 조회시 DB조회하여 스크랩 여부 리턴해주는 Ajax script
-          $(() => {
-              let on = 'resources/image/scrap.png';
-              let off = 'resources/image/scrapted.png';
-              $.ajax({
-                  url : 'scrapselect.ib',
-                  type : 'post',
-                  data : {
-                      boardNo : '<%= ib.getBoardNo() %>',
-                      memberNo : '<%= loginUser.getMemNo() %>',
-                  },
-                  success : function(r) {
-                      if (r == 'Y') {
-                          $('#scrap-image').attr('src', off);
-                      } else {
-                          $('#scrap-image').attr('src', on);
-                      }
-                  }
-              })
-          })
-          
-          $('#scrap-image').click(function(){
-              let on = 'resources/image/scrap.png';
-              let off = 'resources/image/scrapted.png';
-              // 스크랩 버튼 상태에 따라 img 태그의 value 값을 넘길 준비 
-              if ($('#scrap-image').attr('src') == on) {
-                      $('#scrap-image').attr('src', off);
-                      $('#scrap-image').attr('value', 'Y')
-                  } else {
-                      $('#scrap-image').attr('src', on);
-                      $('#scrap-image').attr('value', 'N')
-                  }
-              $.ajax({
-                  url : 'scrap.ib',
-                  type : 'POST',
-                  data : {
-                      status : $('#scrap-image').attr('value'),
-                      boardNo : '<%= ib.getBoardNo() %>',
-                      memberNo : '<%= loginUser.getMemNo() %>'
-                  },
-                  success : function(){  
-                      if ($('#scrap-image').attr('src') == on) {
-                          $('#scrap-image').attr('value', 'Y')
-                      } else if ($('#scrap-image').attr('src') == off) {
-                          $('#scrap-image').attr('value', 'N')
-                      }
-                      console.log($('#scrap-image').attr('value'));
-                      },
-                  error : function() {
-                      console.log('error')
-                  }
-                      
-                  })
-              })
-        </script>
         <div style="height: 200px;"></div>
         <div class="outer" id="content">
         <div class="outer">
@@ -263,6 +181,90 @@
             </div>
         </div>
     </div>
+    <script>
+         <% if(loginUser != null) {%>
+     // iboardImg에 사진 삽입
+     $(function(){
+        $('.iboardImg').css({
+            'background-image'  : 'url("<%=at.getSavePath()%>/<%= at.getModifiedName() %>")',
+            'background-repeat' : 'no-repeat',
+            'background-position' : 'center',
+            'background-size' : 'contain'
+            });
+        $('.iboardImg').click(function(){
+           // console.log($('.iboardImg')[0].style.height == "730px");
+           // console.log($('.iboardImg')[0].style[7] == $('.iboardImg')[0].style[7]);
+            if($('.iboardImg')[0].style.height == "500px"){
+              $('.iboardImg').css({
+                  'width' : '100%',
+                  'height' : '730px'
+              })
+            }
+            else{
+                 $('.iboardImg').css({
+                     'width' : '100%',
+                     'height' : '500px'
+                 })
+            }
+        })
+      });
+
+          // 게시글 조회시 DB조회하여 스크랩 여부 리턴해주는 Ajax script
+          $(() => {
+              let on = '<%= contextPath %>/resources/image/scrap.png';
+              let off = '<%= contextPath %>/resources/image/scrapted.png';
+              $.ajax({
+                  url : 'scrapselect.ib',
+                  type : 'post',
+                  data : {
+                      boardNo : '<%= ib.getBoardNo() %>',
+                      memberNo : '<%= loginUser.getMemNo() %>',
+                  },
+                  success : function(r) {
+                      if (r == 'Y') {
+                          $('#scrap-image').attr('src', off);
+                      } else {
+                          $('#scrap-image').attr('src', on);
+                      }
+                  }
+              })
+          })
+          
+          $('#scrap-image').click(function(){
+              let on = '<%= contextPath %>/resources/image/scrap.png';
+              let off = '<%= contextPath %>/resources/image/scrapted.png';
+              // 스크랩 버튼 상태에 따라 img 태그의 value 값을 넘길 준비 
+              if ($('#scrap-image').attr('src') == on) {
+                      $('#scrap-image').attr('src', off);
+                      $('#scrap-image').attr('value', 'Y')
+                  } else {
+                      $('#scrap-image').attr('src', on);
+                      $('#scrap-image').attr('value', 'N')
+                  }
+              $.ajax({
+                  url : 'scrap.ib',
+                  type : 'POST',
+                  data : {
+                      status : $('#scrap-image').attr('value'),
+                      boardNo : '<%= ib.getBoardNo() %>',
+                      memberNo : '<%= loginUser.getMemNo() %>'
+                  },
+                  success : function(){  
+                      if ($('#scrap-image').attr('src') == on) {
+                          $('#scrap-image').attr('value', 'Y')
+                      } else if ($('#scrap-image').attr('src') == off) {
+                          $('#scrap-image').attr('value', 'N')
+                      }
+                      console.log($('#scrap-image').attr('value'));
+                      },
+                  error : function() {
+                      console.log('error')
+                  }
+                      
+                  })
+              })
+              <%}%>
+        </script>
 <%@ include file="../common/footer.jsp" %>
 <script type="text/javascript" src="resources/scripts/iboard/iboardDetail.js"></script>
 </body>
