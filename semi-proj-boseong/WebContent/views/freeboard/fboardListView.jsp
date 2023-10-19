@@ -24,7 +24,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
       margin-bottom: 5px
     }
 		</style>
-		<script type="text/javascript" src="resources/scripts/freeboard/fboardListViewScript.js"></script>
+
 	</head>
 	<body>
 		<%@ include file = "../common/menubar.jsp" %>
@@ -125,5 +125,6 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 				</div>
 		</div>
 		<%@ include file = "../common/footer.jsp" %>
+		<script type="text/javascript" src="resources/scripts/freeboard/fboardListViewScript.js"></script>
 	</body>
 </html>
