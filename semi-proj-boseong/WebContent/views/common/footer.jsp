@@ -10,11 +10,13 @@
      width: 100%;
      height: 500px;
      text-align: center;
+	 background-color: rgb(33, 49, 33);
+	 color : #fff;
    }
 </style>
 </head>
 <body>
-	<div id="footer">
+	<div id="footer" id="font">
 		<span>
 			(예시) <br /><br /><br /><br/>
 			Copyright ⓒ 2023. All Rights Reserved by AJY Company. Designed By JIJI. <br /><br />

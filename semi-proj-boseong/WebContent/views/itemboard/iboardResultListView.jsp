@@ -41,6 +41,8 @@
 		margin-right : 10px; 
 	}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript" src="resources/scripts/iboard/iboardResultListView.js"></script>
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -61,7 +63,7 @@
 				<input type="text" name="keyword" class="form-control form-control-sm" id="searchbar" placeholder="제품입력">
 			</form>
 		</div>
-		<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default">
+		<table id="tbRs" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default">
 	    <thead class="thead-light">
 	      <tr>
 	        <th width="10%">No.</th>
@@ -117,14 +119,6 @@
 			</div>  
 		</div> 
 	</div>
-	<script>
-	$(function(){
-		$('#tbRs > tbody > tr').click(function(){
-			location.href = '<%= contextPath %>/detail.ib?bno=' + $(this).children().eq(0).text();
-		});
-	});
-	</script>
-	
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

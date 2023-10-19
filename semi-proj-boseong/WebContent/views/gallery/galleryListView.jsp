@@ -17,9 +17,12 @@
 	    width: 100px;
 	    height: 100px;
 	    margin: auto;
+		align-items: center;
 	}
-	div{
-		border : 1px solid black;
+	#iglogo-area{
+		width: 120px;
+		height: 120px;
+		margin: auto;
 	}
 	.list-area{
  		width : 60%;
@@ -47,7 +50,12 @@
     	width : 300px;
     	height : 300px;
     }
+	#content{
+		background-color: rgba(0, 128, 0, 0.286);
+	}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript" src="resources/scripts/gallery/galleryList.js"></script>
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -55,7 +63,7 @@
 	<!---------------------인스타그램 갤러리 페이지---------------->
     <div style="height: 200px;"></div>
     <div id="iglogo-area">
-		<img src="<%= contextPath %>/resources/image/ig-logo.png"  id="ig-logo">
+		<img src="<%= contextPath %>/resources/image/ig-logo.png"  id="ig-logo" align="center">
     </div>
        <div id="content">
 		<% if(loginUser != null && loginUser.getMemNo() == 1) { %>
@@ -71,22 +79,16 @@
 				<% for(Gallery g : list){ %>
 				<!-- 등록된 사진이 있을 경우 -->
 				<div class="gallery-area" align="center"  id="imageTag">
-					<img src="<%= g.getSavePath() %>/<%= g.getModifiedName() %>" id="image">
-					<a href="<%= g.getLink() %>" id="tag"></a>
+					<img src="<%= g.getSavePath() %>/<%= g.getModifiedName() %>" id="image" onclick="galleryImgTag('<%= g.getLink() %>');">
 				</div>
-			   <script>
-				$(function(){
-					$('#tag').hide();
-					
-					$('#image').click(function(){
-						$('#tag').click();
-						// location.href = '<%= g.getLink() %>';
-					})
-				});
-			   </script>
 				<%} %>
 			<%}%> 
 	       </div>
+		   <script>
+				function galleryImgTag(path){
+					this.location.href = path;
+			}
+		   </script>
        </div>
 	<%@ include file="../common/footer.jsp" %>
 </body>

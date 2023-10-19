@@ -34,11 +34,11 @@
 }
 </style>
 </head>
+
+
 <body>
 <%@ include file="../common/menubar.jsp" %>
 
-
-	
 	<div class="page" id="content">
 		
 	<div style="height:200px;"></div>
@@ -47,20 +47,15 @@
 	<div class="title"><h2>예약 조회</h2></div>
 	<br>
 		
-			
 			<div class="title1"><h4>한달살기 예약</h4></div>
 			
 			<%
 				if(list.isEmpty()){
-					
 			%>
 			
 			<h2 align="center">예약이 없습니다.</h2>
 			
 			<% } else { %>
-			
-			
-			
 			
 			
 			<table border="1" id="table2">
@@ -74,8 +69,6 @@
 			</tr>
 			
 			<% for(int i = 0; i < list.size(); i++) {%>
-			
-			
 			
 			
 			<tr>

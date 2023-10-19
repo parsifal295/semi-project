@@ -92,7 +92,6 @@ public class MonthlivingDao {
 			pstmt.setInt(4,  mr.getPeopleNum());
 			
 			result = pstmt.executeUpdate();
-			//System.out.println(result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -149,7 +148,6 @@ public class MonthlivingDao {
 
 	public ArrayList<MonthlivingReservation> selectReservation(Connection conn, int memNo) {
 		ArrayList<MonthlivingReservation> list = new ArrayList();
-		//ArrayList<Monthlivinginfo> list1 = new ArrayList();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectReservation");
@@ -162,7 +160,6 @@ public class MonthlivingDao {
 			
 			while(rset.next()) {
 				MonthlivingReservation mr = new MonthlivingReservation() ;
-				
 				mr.setReservationNo(rset.getInt("RESERVATION_NO"));
 				mr.setMemNo(memNo);
 				mr.setLodgeNo(rset.getInt("LODGE_NO"));
@@ -171,15 +168,12 @@ public class MonthlivingDao {
 				mr.setPrice(rset.getInt("PRICE"));
 				list.add(mr);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		
-		
 		return list;
 	}
 

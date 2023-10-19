@@ -84,10 +84,6 @@
 
 </head>
 <body>
-<!-- 스크립트시작 -->
-	
-	<!-- 스크립트끝 -->
-	
 	
 	<%@ include file="../common/menubar.jsp" %>
 
@@ -143,7 +139,7 @@
 	<br><br>
 	
 
-	<div class="page"><!-- div class="content3_1"엿던것 -->
+	<div class="page">
 	<h2>예약자 세부 정보 입력</h2>
 	
 		<div class="content3_2">
@@ -161,9 +157,9 @@
 	
 	<div class="content3">
 	<br>
-	 이름 : <input type="text" name="memName" placeholder="이름을 입력해주세요." required>
-	 <br><br>
-	 전화번호 : <input type="text" name="phone" placeholder="전화번호를 입력해주세요." required>
+	 	이름 : <input type="text" name="memName" placeholder="이름을 입력해주세요." required>
+	<br><br>
+	 	전화번호 : <input type="text" name="phone" placeholder="전화번호를 입력해주세요." required>
 	</div>
 	<br><br><br>
 	
@@ -211,12 +207,7 @@
 		function list(memNo){
 			location.href = "<%=contextPath%>/month.li?memNo="+memNo;
 		}
-		</script>
-
-
-
-
-
+	</script>
 
 
 
