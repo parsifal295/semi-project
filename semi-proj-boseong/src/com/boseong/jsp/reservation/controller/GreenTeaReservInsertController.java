@@ -30,8 +30,6 @@ public class GreenTeaReservInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//나중에 수정필요->수정완료(10/12)
-		//int memNo = 1;
 		int memNo = Integer.parseInt(request.getParameter("memNo")); 
 		String startDate = request.getParameter("startDate");
 		String courseNum = request.getParameter("courseNum");

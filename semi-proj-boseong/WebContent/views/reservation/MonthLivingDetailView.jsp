@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.boseong.jsp.reservation.model.vo.Monthlivinginfo" %>    
+
 <%
 	int lodgeNo = (int)request.getAttribute("lodgeNo");
 	Monthlivinginfo m = (Monthlivinginfo)request.getAttribute("Monthlivinginfo");
@@ -9,16 +10,15 @@
 	case 1 : img = "house1.jpg"; break;
 	case 2 : img = "house2.jpg"; break;
 	case 3 : img = "house3.jpg"; break;
-}
+					}
 %>    
     
-    
-    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>한달살기 상세페이지 </title>
+<title>한달살기 상세페이지</title>
 <style>
 
 	.page{
@@ -36,61 +36,58 @@
 	}
 
 	.allouter{
-	width:1500px;
-	height : 2000px;
-	align : center;
-	margin : auto;
+		width:1500px;
+		height : 2000px;
+		align : center;
+		margin : auto;
 	}
 
 	.title{
-
-	float : left;
+		float : left;
 	}
 	
 	.reserv_btn{
-	width:150px;
-	height:100px;
-	float : right;
+		width:150px;
+		height:100px;
+		float : right;
 	}
 
 	.mainpic{
-	margin-bottom:70px;
+		margin-bottom:70px;
 	
 	}
 	
 	.room_info{
-	margin-bottom:70px;
+		margin-bottom:70px;
 	}
 	
 	.map{
-	margin-bottom:70px;
-	width:700px;
-	height:540px;
+		margin-bottom:70px;
+		width:700px;
+		height:540px;
 	}
 	
 	.calender{
-	margin-bottom:70px;
-	margin-left:90px;
-	width:700px;
-	height:540px;
-	float:left;
+		margin-bottom:70px;
+		margin-left:90px;
+		width:700px;
+		height:540px;
+		float:left;
 	}
 	
-
 </style>
 
-
-
-<script type="text/javascript" src="resources/scripts/reservation/MonthLivingDetailViewScript.js"></script>
-
 </head>
+
+
+
 <body>
 <%@ include file="../common/menubar.jsp" %>
 
 	<div class="page" id="content">
 
 		<!-- page0 -->
-		<div class="page" style="height:300px;" ></div>
+		<div class="page" style="height:300px;"></div>
 		
 		<!-- page1 -->
 		<div class="page" style="height:1500px;">
@@ -113,11 +110,9 @@
 						
 						<div class="main_image">
 							<div class="mainpic">
-								<img src="<%=contextPath %>/resources/image/reservation/<%=img %>" alt="Monthlivinginfo<%=lodgeNo%>" style="width:1300px; height:800px; ">
+								<img src="<%=contextPath %>/resources/image/reservation/<%=img %>" alt="Monthlivinginfo<%=lodgeNo %>" style="width:1300px; height:800px; ">
 							</div>
 						</div>
-							
-						
 						
 		
 						<div class="room_info">
@@ -153,6 +148,14 @@
 		
 <%@ include file="../common/footer.jsp" %>
 
+	<script>
+	
+		function list(memNo){
+		    location.href = "<%=contextPath%>/month.in?memNo="+memNo;
+		    location.href = "<%=contextPath%>/month.in?lodgeNo="+lodgeNo;
+		}
+	
+	</script>
 
 </body>
 </html>
