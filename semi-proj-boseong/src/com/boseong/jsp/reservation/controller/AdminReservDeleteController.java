@@ -1,27 +1,23 @@
 package com.boseong.jsp.reservation.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boseong.jsp.reservation.model.service.HorseService;
-import com.boseong.jsp.reservation.model.vo.HorseReservation;
-
 /**
- * Servlet implementation class HorseReservUpdateController
+ * Servlet implementation class AdminReservDeleteController
  */
-@WebServlet("/updateForm.hs")
-public class HorseReservUpdateFormController extends HttpServlet {
+@WebServlet("/delete.admin")
+public class AdminReservDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HorseReservUpdateFormController() {
+    public AdminReservDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +27,15 @@ public class HorseReservUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int reservNo = Integer.parseInt(request.getParameter("reservNo"));
-		int cpage = Integer.parseInt(request.getParameter("cpage"));
-		HorseReservation selectedRsv = new HorseService().selectRide(reservNo);
-		System.out.println(selectedRsv);
-		request.setAttribute("selectedRsv", selectedRsv);
-		request.setAttribute("cpage", cpage);
-		
-		request.getRequestDispatcher("views/reservation/HrsUpdateForm.jsp").forward(request, response);
+		String reservType = request.getParameter("reservType");
+		System.out.println("reservNo : " +reservNo);
+		System.out.println("type : "+reservType);
+		switch(reservType) {
+		case "승마장": ; break;
+		case "녹차 체험" : ; break;
+		case "한옥 스테이" : ; break;
+		case "한달 살기" : ; break;
+		}
 	}
 
 	/**

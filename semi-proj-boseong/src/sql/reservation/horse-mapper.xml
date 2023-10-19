@@ -25,7 +25,7 @@
 </entry>
 
 <entry key="selectRides">
-	SELECT 
+SELECT 
 			RNUM,
 			RESERVATION_NO,
 			HORSE_PRO_NAME,
@@ -36,6 +36,7 @@
 	SELECT ROWNUM RNUM, A.* 
 	FROM(
 		SELECT
+				MEM_NO, 
 				RESERVATION_NO,
 				HORSE_PRO_NAME,
 				TO_CHAR(HORSE_DATE) "HORSE_DATE",
@@ -48,10 +49,10 @@
 			WHERE 
 				STATUS = 'Y'
 			AND 
-				MEM_NO = ?
+				MEM_NO = ? 
 			ORDER 
 			   BY 
-			    HORSE_DATE)A ) 
+			    HORSE_DATE )A ) 
 	WHERE RNUM BETWEEN ? AND ?
 </entry>
 <entry key="selectPrograms">

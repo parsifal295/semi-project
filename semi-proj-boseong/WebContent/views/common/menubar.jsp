@@ -270,6 +270,7 @@
 			function backtoindex(){
 				location.href = '<%= contextPath %>';
 			}
+			
 		</script>
 	</header>
 	<%@ include file = "../member/memberLoginView.jsp" %>

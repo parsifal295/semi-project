@@ -242,18 +242,70 @@
 			</div>
 			<div id="update-area">
 				<div class="btn-group">
-					<input type="text" placeholder="예약 번호" id="reservNo" name="reservNo">
-					<button class="btn btn-success">예약 삭제</button>
+					<input type="text" placeholder="예약 번호" id="reservNo" name="reservNo" value="000">
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#admin-delete">예약 삭제</button>
 				</div>
 			</div>
 			<script>
-			
+				$(function(){
+					$('#update-area').click(function(){
+						$.ajax({
+							url:'search.rsv',
+							data:{searchKey:$('input[name=reservNo]').val(), searchType:'no'},
+							success:function(e){
+								$('#admin-delete .modal-body>form').empty();
+								if(e == null || e.length==0){
+									$('#admin-delete .modal-body>form').append($('<h3></h3>').text('예약번호를 확인하세요.'));
+								}
+								else
+								{
+									for(let i in e){
+									$el =$('<table></table>');
+									$el.append($('<tr><td></td><td>').text(e[i].reservNo+'('+e[i].reservType+')'));
+									$el.append($('<tr><td></td><td>').text(e[i].member));
+									$el.append($('<tr><td></td><td>').text(e[i].phone));
+									$el.append($('<tr><td></td><td>').text(e[i].type));
+									$el.append($('<tr><td></td><td>').text(e[i].startDate));
+									$el.append($('<tr><td></td><td>').text(e[i].status));
+									$('#admin-delete .modal-body>form').append($('<h3></h3>').text('해당 번호의 예약 내용입니다.'));
+									$('#admin-delete .modal-body>form').append($el);
+									$('#admin-delete .modal-body>form').append($('<input type="hidden" name="reservType">').val(e[i].reservType));
+									$('#admin-delete .modal-body>form').append($('<input type="hidden" name="reservNo">').val(e[i].reservNo));
+									$('#admin-delete .modal-body>form').append($('<button type="submit"></button>').text('예약 삭제'));
+									}
+								}
+							}
+						})
+					})
+				})
 			</script>
 		
 		</div>
 	</div>
 	</div>
 <%@include file = "../common/footer.jsp" %>
+
+<div class = "modal" id="admin-delete">
+		<div class="modal-dialog">
+			<div class = "modal-content">
+			<!-- Modal Header -->
+			<div class = "modal-header">
+				<h4 class="modal-title"> </h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!-- Modal body -->
+			<div class= "modal-body">
+				<form action="delete.admin">
+					<button type="submit">취소</button>
+				</form>
+			</div>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+			</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

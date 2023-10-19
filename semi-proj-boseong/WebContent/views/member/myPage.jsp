@@ -39,7 +39,7 @@
 	
 	<div style="height : 200px"></div>
 	
-		<div class="page">
+		<div class="page" id="myPage">
 			<h3 align="center">마이페이지</h3>
 			<br>
 			
@@ -57,11 +57,11 @@
 				</tr>
 				<tr>
 					<td>&nbsp;&nbsp;이메일</td>
-					<td><input type="email" name="email" value="<%= email %>"></td>
+					<td><input type="email" name="email" id="email" value="<%= email %>"></td>
 				</tr>
 				<tr>
 					<td>&nbsp;&nbsp;전화번호</td>
-					<td><input type="text" name="phone" value="<%= phone %>" placeholder="-포함해서 입력해주세요."></td>
+					<td><input type="text" name="phone" id="phone" value="<%= phone %>" placeholder="-포함해서 입력해주세요."></td>
 				</tr>
 				<tr>
 				<td>&nbsp;&nbsp;주소</td>
@@ -97,9 +97,37 @@
                 <button type="button" class="btn btn-warning" data-toggle ="modal" data-target="#updatePwdForm">비밀번호 수정</button>
                 <button type="button" class="btn btn-dark" data-toggle ="modal" data-target="#deleteForm">회원탈퇴</button>
 			</div>
+			
+			
 	      </form>
 		</div>
 		
+		<script>
+		/*
+			// 이메일주소 유효성 검사
+	      	$('#myPage').on('submit',() => {
+		    	let emailval = $('#email').val()
+		        let emailvalcheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		        if (!emailvalcheck.test(emailval) || emailval.length<3){
+		        	alert('이메일')
+		            $('#email').focus()
+		            return false
+		        }
+		    });
+	       
+	      	// 핸드폰번호 유효성 검사
+	      	$('#myPage').on('submit',() => {
+		    	let phoneval = $('#phone').val()
+		        let phonevalcheck = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		        if (!phonevalcheck.test(phoneval) || phoneval.length<12){
+		        	alert('핸드폰번호는 -포함해서 입력해주세요.')
+		            $('#phone').focus()
+		            return false
+		        }
+		    });
+	      	*/
+			</script>
+			
 		<!-- 비밀번호 수정 모달창 -->
 		
 		<!-- The Modal -->
@@ -143,6 +171,7 @@
 					 		
 					 		return true;
 					 	}
+					    
 					 </script>
 							      	
 		      	</form>  

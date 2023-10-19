@@ -84,27 +84,6 @@ public class AdminDao {
 		
 		return list;
 	}
-	public int selectListCount(Connection conn, String key) {
-		int listCount = 0;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty(key);
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			rset = pstmt.executeQuery();
-			if(rset.next()) {
-				listCount = rset.getInt("COUNT(*)");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return listCount;
-	}
 	
 	public AdminReservation selectReservation(Connection conn, int searchKey) {
 		PreparedStatement pstmt = null;

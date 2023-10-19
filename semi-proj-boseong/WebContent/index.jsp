@@ -5,6 +5,8 @@
 <meta charset="UTF-8" />
 <title>www.Boseong.com</title>
 <style>
+	
+	/* --------------------- */
 	.front-page{
 		padding : 0;
         margin : 0;
