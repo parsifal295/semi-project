@@ -98,11 +98,25 @@
             dateClick: function(info) {
             	$("#startDate").val(info.dateStr);
             	console.log(info);
-            	
-            	
-            },
- 
+            }
+            
+            ,validRange: function(nowDate) {
+        	    return {
+          	      start: nowDate-1
+          	    };
+          	  }
+            
+            
+            
+            
           });
+        
+        
+        
+        
+        
+        
+        
         calendar.render();
       });
 		

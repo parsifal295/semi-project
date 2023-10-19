@@ -83,7 +83,7 @@
 				<td height="50"><%=list.get(i).getLodgeNo() %> </td>
 				<td><%= list.get(i).getStartDate() %></td>
 				<td><%=list.get(i).getPeopleNum() %></td>
-				<td>2000000</td>
+				<td><%=list.get(i).getPrice() %></td>
 				<td><%=list.get(i).getReservationNo() %></td>
 				
 				<!-- 예약 취소하기 -->

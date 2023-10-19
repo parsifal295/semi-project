@@ -107,7 +107,12 @@
             	 //자바스크립트로 값을 지정해줘야댄다고 하심
             	 //method를 써서...substr 써서..
             	 //2023-10-14
-            },
+            }
+            ,validRange: function(nowDate) {
+        	    return {
+          	      start: nowDate-1
+          	    };
+          	  }
  
           });
         calendar.render();

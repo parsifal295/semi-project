@@ -7,6 +7,7 @@ public class MonthlivingReservation {
 	private String startDate;
 	private int peopleNum;
 	private String status;
+	private int price; // price 테이블 join때문에 불러옴.
 	
 
 	//전체
@@ -44,8 +45,33 @@ public class MonthlivingReservation {
 		this.peopleNum = peopleNum;
 	}
 
+	
+	
+	
+	// price 테이블 join때문에 불러옴.
+	public MonthlivingReservation(int reservationNo, int lodgeNo, int memNo, String startDate, int peopleNum,
+			int price) {
+		super();
+		this.reservationNo = reservationNo;
+		this.lodgeNo = lodgeNo;
+		this.memNo = memNo;
+		this.startDate = startDate;
+		this.peopleNum = peopleNum;
+		this.price = price;
+	}
 
 
+
+	
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	//getset끝
 
 	
 	
