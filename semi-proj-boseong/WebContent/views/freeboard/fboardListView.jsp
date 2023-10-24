@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ page
 import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.jsp.notice.model.vo.*" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%  ArrayList<Freeboard> list = (ArrayList<Freeboard>)request.getAttribute("list"); 
     ArrayList<Notice> noticeList = (ArrayList<Notice>)request.getAttribute("noticeList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi"); 
@@ -46,32 +47,33 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 					</tr>
 				</thead>
 				<tbody style="cursor:default">
-					<% if (list.isEmpty()) { %>
-					<tr>
-						<td colspan="5">조회된 게시글이 없습니다..</td>
-					</tr>
-					<% } else { %> 
-					<% if (!noticeList.isEmpty()) { %>
-						<% for (Notice n : noticeList) { %>
-							<tr value="<%=n.getNoticeNo()%>">
-								<td>공지</td>
-								<td><%=n.getNoticeTitle() %></td>
-								<td>관리자</td>
-								<td><%=n.getCount() %></td>
-								<td><%=n.getModifyDate() %></td>
-							</tr>
-						<% } %>
-					<% } %>
-						<% for (Freeboard b : list) { %>
+					<c:choose>
+						<c:when test="${empty requestScope.list}">
 							<tr>
-								<td><%=b.getBoardNo()%></td>
-								<td><%=b.getTitle() %></td>
-								<td><%=b.getWriter() %></td>
-								<td><%=b.getCount() %></td>
-								<td><%=b.getCreateDate() %></td>
+								<td colspan="5">조회된 게시글이 없습니다..</td>
 							</tr>
-						<% } %>
-					<% } %>
+						</c:when>
+						<c:when test="${not empty requestScope.noticeList}">
+							<c:forEach items="${requestScope.noticeList}" var="n">	
+								<tr value="${n.noticeNo}">
+									<td>공지</td>
+									<td>${n.noticeTitle}</td>
+									<td>관리자</td>
+									<td>${n.count}</td>
+									<td>${n.modifyDate}</td>
+								</tr>
+							</c:forEach>
+							<c:forEach items={requestScope.list} var="b">
+								<tr>
+									<td>${b.boardNo}</td>
+									<td>${b.title}</td>
+									<td>${b.writer}</td>
+									<td>${b.count}</td>
+									<td>${b.createDate}</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+					</c:choose>
 				</tbody>
 			</table>
 			<div class="paging-area" align="center">
