@@ -2,10 +2,7 @@
     pageEncoding="UTF-8"
     import = "java.util.ArrayList, com.boseong.jsp.reservation.model.vo.Room"
 %>
-    
-<%
-	ArrayList<Room> list = (ArrayList<Room>)request.getAttribute("list");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +46,7 @@ box-sizing : border-box;
 	<div id="content" class="page">
 		<div class="page">
 			<form action="insertHanok.rsv">
-				<input type="hidden" name="userNo" 
-				<%if(loginUser != null){ %> value="<%=loginUser.getMemNo()%>" <%} %>>
+				<input type="hidden" name="userNo" value="${loginUser.memNo }">
 				<h2>객실 선택</h2>
 				<table class="table">
 					<tr>
@@ -65,9 +61,9 @@ box-sizing : border-box;
 						<td>
 							<select name="roomType" id="roomType" required>
 									<option value="0">객실 타입 선택</option>
-								<%for(Room r : list){ %>
-									<option value="<%=r.getRoomNo()%>"><%=r.getRoomType() %></option>
-								<%} %>
+								<c:forEach var="r" items="${list }">
+									<option value="${r.roomNo }">${r.roomType }</option>
+								</c:forEach>
 							</select>
 						</td>
 						<td>
@@ -92,20 +88,23 @@ box-sizing : border-box;
 				</table>
 				<h2>투숙객 정보</h2>
 				 <table class="table">
-				 <%if(loginUser!=null){ %>
+				 <c:choose>
+					<c:when test="${!empty loginUser }">
 					<tr>
 						<th>투숙객 성함</th>
-						<td><input type="text" readonly value="<%=loginUser.getMemName() %>"></td>
+						<td><input type="text" readonly value="${loginUser.memName }"></td>
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td><input type="text" readonly value="<%=loginUser.getPhone()%>"></td>
+						<td><input type="text" readonly value="${loginUser.phone }"></td>
 					</tr>
-				<%}else{ %>
+					</c:when>
+				<c:otherwise>
 					<tr>
 						<td>예약하시려면 로그인해주세요.</td>
 					</tr>
-				<%} %>
+				</c:otherwise>
+				</c:choose>
 					<tr>
 						<th>요청사항</th>
 						<td>
@@ -140,13 +139,5 @@ box-sizing : border-box;
 	</div>
 
 <%@ include file = "../common/footer.jsp" %>
-<script>
-	$(function(){
-
-	});
-
-	
-
-</script>
 </body>
 </html>

@@ -1,21 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import = "com.boseong.jsp.reservation.model.vo.Room"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	int roomNo = (int)request.getAttribute("roomNo");
 	Room r = (Room)request.getAttribute("room");
-	String imgName = "";
-	switch(roomNo){
-	case 1 : imgName="room1.avif"; break;
-	case 2 : imgName = "room2.avif"; break;
-	case 3 : imgName = "room4.jpeg"; break;
-	}
 %>
+<c:choose>
+	<c:when test="${room.roomNo eq 1 }">
+		<c:set var="imgName" value="room1.avif"/>
+	</c:when>
+	<c:when test="${room.roomNo eq 2 }">
+		<c:set var="imgName" value="room2.avif"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="imgName" value="room4.jpeg"/>
+	</c:otherwise>
+
+</c:choose>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Room<%=roomNo %> 상세정보 </title>
+<title>Room${room.roomNo} 상세정보 </title>
 <style>
 .outer {
 	float: left;
@@ -67,12 +73,12 @@ h4 {
 			</div>
 			<div class="outer right">
 				<div id="room-pictures">
-					<img src="<%=contextPath %>/resources/image/reservation/<%=imgName %>" alt="room<%=roomNo%>">
+					<img src="<%=contextPath %>/resources/image/reservation/${imgName}" alt="room${room.roomNo }">
 				</div>
 				<hr>
 				<div id="room-detail">
-					<h4><%=r.getRoomType() %></h4>
-					<p><%=r.getRoomIntro() %></p>
+					<h4>${room.roomType }</h4>
+					<p>${room.roomIntro }</p>
 					<table>
 						<tr>
 							<th colspan="2">객실 정보</th>
@@ -80,16 +86,16 @@ h4 {
 						</tr>
 						<tr>
 							<th>인원</th>
-							<td><%=r.getBaseNum() %>/<%=r.getMaxNum() %></td>
-							<td rowspan="3"><%=r.getRoomDetail() %></td>
+							<td>${room.baseNum }/${room.maxNum }</td>
+							<td rowspan="3">${room.roomDetail }</td>
 						</tr>
 						<tr>
 							<th>규모</th>
-							<td><%=r.getSize() %></td>
+							<td>${room.size }</td>
 						</tr>
 						<tr>
 							<th>어메니티</th>
-							<td><%=r.getAmenity() %></td>
+							<td>${room.amenity }</td>
 						</tr>
 
 					</table>

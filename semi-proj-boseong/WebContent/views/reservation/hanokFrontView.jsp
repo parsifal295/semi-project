@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,20 +70,22 @@ top : 430px;
 	<div class="page" id="content">
 		<div class="page">
 			<div id="main-pic">
-			<%if(loginUser == null){ %>
+			<c:choose>
+			<c:when test="${empty loginUser }">
 			<div><h1>예약하려면 로그인하세요!</h1></div>
-			<%}else{ %>
+			</c:when>
+			<c:otherwise>
 				<button class="btn btn-outline-light btn-block" id="reserv-hanok">
 					<h1>예약 하기</h1>
 				</button>
 				<button class="btn btn-outline-light btn-block" id="hk-reserv-list"><h1>예약 조회</h1></button>
 				<script>
 				$(function(){
-			    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk?memNo=<%=loginUser.getMemNo()%>&cpage=1"});
+			    	$('#hk-reserv-list').click(function(){location.href="<%=contextPath%>/list.hk?memNo=${loginUser.memNo}&cpage=1"});
 				})
 				</script>
-				
-			<%} %>
+				</c:otherwise>
+			</c:choose>	
 			</div>
 			<div id="rooms">
 				<div class="room">

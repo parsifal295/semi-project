@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     import = "java.util.ArrayList, com.boseong.jsp.reservation.model.vo.HanokReservation, 
     com.boseong.jsp.freeboard.model.vo.PageInfo"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	ArrayList<HanokReservation> list = (ArrayList<HanokReservation>)request.getAttribute("rsvList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
@@ -47,7 +48,6 @@ font-size:24px;}
 <body>
 		
 	<%@include file = "../common/menubar.jsp" %>
-	<%int memNo = (loginUser == null)? 0 : loginUser.getMemNo(); %>
 	<div id="box"></div>
 	<div class="reserv-page">
 	<div id="content" class="page">
@@ -70,9 +70,10 @@ font-size:24px;}
 					<tr>
 					<td>
 			<div class="reserv-paging-area btn-group">
-				<%if(currentPage!=1){ %>
-					<button class="btn btn-lg" onclick="reservPageShift('<%=currentPage-1%>','<%=memNo%>');">&lt;</button>
-				<%} %>
+				<c:if test="${pi.currentPage eq 1 }">
+					<button class="btn btn-lg" onclick="reservPageShift('${pi.currentPage }','${loginUser.memNo }');">&lt;</button>
+				</c:if>
+				<c:forEach var="i" begin ="${pi.startPage }" end="${pi.endPage }">
 				<%for(int i=startPage;i<endPage+1;i++){ %>
 					<%if(currentPage != i){ %>
 					<button class="btn btn-lg" onclick="reservPageShift('<%=i%>','<%=memNo%>');"><%=i %></button>

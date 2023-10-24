@@ -98,7 +98,7 @@
 						</div>
 					</div>
 					<div class="verticalbar">
-						<h1><%=horseCount %></h1>
+						<h1>${horseCount}</h1>
 					</div>
 			
 					<div class="reserv-type">
@@ -108,7 +108,7 @@
 						</div>
 					</div>
 					<div class="verticalbar">
-						<h1><%=teaCount %></h1>
+						<h1>${teaCount }</h1>
 					</div>
 					
 					<div class="reserv-type">
@@ -118,7 +118,7 @@
 						</div>
 					</div>
 					<div class="verticalbar">
-					<h1><%=hanokCount %></h1>
+					<h1>${hanokCount }</h1>
 					</div>
 					<div class="reserv-type">
 						<img src="<%=contextPath %>/resources/image/reservation/month-icon.png">
@@ -127,7 +127,7 @@
 						</div>
 					</div>
 					<div class="verticalbar">
-					<h1><%=monthCount %></h1>
+					<h1>${monthCount }></h1>
 					</div>
 				</div>
 			</div>
