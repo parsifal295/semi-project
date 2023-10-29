@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.boseong.jsp.freeboard.model.vo.*, com.boseong.jsp.Attachment.model.vo.*" %>
-<%
-   Freeboard fb = (Freeboard)request.getAttribute("fb");
-   Attachment att = (Attachment)request.getAttribute("att");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +15,7 @@
 
 </head>
 <body>
-    <%@ include file = "../common/menubar.jsp" %>
+    <jsp:include page = "../common/menubar.jsp" />
     <div class="outer" id="content">
     <div style="height: 250px"></div>
       <table class="table table-borderless table-sm" align="center" style="width: 50%">
@@ -44,7 +41,7 @@
                                   >닉네임</span
                               >
                           </div>
-                          <p class="form-control" name="nickname" style="cursor : default"><%=fb.getWriter() %></p>
+                          <p class="form-control" name="nickname" style="cursor : default">${requestScope.fb.writer}</p>
                       </div>
                   </td>
                   <td colspan="2">
@@ -57,7 +54,7 @@
                                   >조회수</span
                               >
                           </div>
-                          <p class="form-control" name="viewcount" style="cursor : default"><%=fb.getCount() %></p>
+                          <p class="form-control" name="viewcount" style="cursor : default">${requestScope.fb.count}</p>
                       </div>
                   </td>
                   <td colspan="2">
@@ -70,7 +67,7 @@
                                   >IP주소</span
                               >
                           </div>
-                          <p class="form-control" id="ipaddr" style="cursor : default"><%=fb.getIpAddress() %></p>
+                          <p class="form-control" id="ipaddr" style="cursor : default">${requestScope.fb.ipAddress}</p>
                       </div>
                   </td>
               </tr>
@@ -80,7 +77,7 @@
                           <div class="input-group-prepend">
                               <span class="input-group-text">제목</span>
                           </div>
-                          <p class="form-control" name="title" style="cursor : default"><%=fb.getTitle() %></p>
+                          <p class="form-control" name="title" style="cursor : default">${requestScope.fb.title}</p>
                       </div>
                   </td>
               </tr>
@@ -93,7 +90,7 @@
                               id="article"
                               name="content"
                               style="cursor : default"
-                          ><%=fb.getContent() %></p>
+                          >${requestScope.fb.content}</p>
                       </div>
                   </td>
               </tr>
@@ -108,11 +105,20 @@
                               >첨부파일</span
                           >
                       </div>
-                      <% if (att == null) { %>
+                     <c:choose>
+	                     <c:when test="${empty requestScope.att}">
+	                       <p class="form-control" name="viewcount" style="cursor : default">첨부파일 없음</p>
+	                     </c:when>
+                         <c:otherwise>
+                           <a href="${requestScope.att.savePath}/${requestScope.att.modifiedName}" download="${requestScope.att.originName}">${requestScope.att.originName}</a>
+                         </c:otherwise>
+                     </c:choose>
+                     
+              <%--         <% if (att == null) { %>
                         <p class="form-control" name="viewcount" style="cursor : default">첨부파일 없음</p>
                       <% } else { %>
                         <a href="<%=contextPath %>/<%=att.getSavePath()%>/<%= att.getModifiedName()%>" download="<%= att.getOriginName()%>"><%= att.getOriginName()%></a>
-                      <% } %>
+                      <% } %> --%>
                       
                   </div>
               </td>
@@ -129,7 +135,7 @@
                     </button>
                 </td>
                 <td colspan="2">
-                  <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
+                  <a href="fboard.fb?cpage=1" class="btn btn-primary btn-block" >
                       목록으로
                   </a>
               </td>
@@ -183,7 +189,7 @@
             </td>
           </tr>
         </tbody>
-        <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
+        <input type="hidden" name="bno" value="${requestScope.fb.boardNo}"></input>
         </table>
       </div>
       <!--update modal-->
@@ -204,7 +210,7 @@
                 <input type="text" class="form-control" id="passwd" required>
               </div>
               <form action="" method="post" id="checker" method="post">
-                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
+                <input type="hidden" name="bno" value="${requestScope.fb.boardNo}"></input>
                 <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();">확인</button>
               </form>
             </div>
@@ -232,7 +238,7 @@
               게시글을 삭제하시려면 암호를 입력해 주세요:
               <input type="text" class="form-control" id="pass" required>
               <form action="" method="post" id="chkr" method="post">
-                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
+                <input type="hidden" name="bno" value="${requestScope.fb.boardNo}"></input>
                 <button type="submit" style="float:right" class="btn btn-primary" onclick="passwordCheck();">확인</button>
               </form>
             </div>
@@ -254,8 +260,8 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body" id="edit-reply-area">
-              <form method="post" action="<%=contextPath%>/updateReply.fb" >
-                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>">
+              <form method="post" action="updateReply.fb" >
+                <input type="hidden" name="bno" value="${requestScope.fb.boardNo}">
                 <input type="hidden" id="reply-password" name="replyPass" value=""> 
                 <input type="hidden" id="reply-number" name="rNum" value=""> 
               <table align="center" style="width: 90%">
@@ -311,7 +317,7 @@
               댓글을 삭제하시려면 비밀번호를 입력해 주세요:
               <input type="password" class="form-control" id="pass-delete" placeholder="작성시 입력했던 비밀번호" required autocomplete="off">
               <form method="post" action="#">
-                <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"></input>
+                <input type="hidden" name="bno" value="${requestScope.fb.boardNo}"></input>
                 <button type="submit" style="float:right" class="btn btn-primary" onclick="checkDelete();">확인</button>
               </form>
             </div>
@@ -328,7 +334,7 @@
     <%@ include file = "../common/footer.jsp" %>
     <script>
       function passwordCheck() {
-  var temp = '<%=fb.getPassword() %>';
+  var temp = '${requestScope.fb.password}';
   var pw1 = $("#passwd").val();
   var pw2 = $("#pass").val();
   if (pw1 == temp) {
@@ -348,7 +354,7 @@ function checkDelete() {
   var rNum = $('#reply-number').attr("value");
   console.log(rNum);
   var usrPass = $('#pass-delete').val();
-  var boardNo = '<%=fb.getBoardNo() %>';
+  var boardNo = '${requestScope.fb.boardNo}';
   $.ajax({
     url: 'deleteReply.fb',
     data: {
@@ -372,7 +378,7 @@ function insertReply() {
     url: 'replyinsert.fb',
     type: 'POST',
     data: {
-      bno: '<%= fb.getBoardNo() %>',
+      bno: '${requestScope.fb.boardNo}',
       id: $('#replyId').val(),
       pw: $('#replyPw').val(),
       content: $('#replyContent').val(),
@@ -393,7 +399,7 @@ function insertReply() {
 function selectReplyList() {
   $.ajax({
     url: 'replylist.fb',
-    data: { bno: <%= fb.getBoardNo() %> },
+    data: { bno: ${requestScope.fb.boardNo}},
     success: function (result) {
       // 댓글 개수만큼 루프반복 (댓글전체출력을 위해서..)
       let resultStr = '';
@@ -432,7 +438,7 @@ function showEditReply(f) {
     url: 'replyUpdateForm.fb',
     data: {
       replyNo: rNum,
-      bno: '<%= fb.getBoardNo() %>'
+      bno: '${requestScope.fb.boardNo}'
     },
     success: function (result) {
       $('#reply-number').attr("value", rNum);
@@ -445,7 +451,7 @@ function checkReplyPassword() {
   var userPwd = $('#reply-passform').val();
   var replyPwd = $('#reply-password').val();
   var replyToUpdate = $('#replyEdit').val();
-  var boardNo = '<%= fb.getBoardNo() %>';
+  var boardNo = '${requestScope.fb.boardNo}';
   // 암호 일치시 
   if (userPwd == replyPwd) {
     $.ajax({

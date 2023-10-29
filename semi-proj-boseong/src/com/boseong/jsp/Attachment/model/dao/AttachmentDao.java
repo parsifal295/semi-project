@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Properties;
+
+import org.apache.ibatis.session.SqlSession;
 
 public class AttachmentDao implements AttachmentDaoI {
   private Properties prop = new Properties();
@@ -24,78 +27,33 @@ public class AttachmentDao implements AttachmentDaoI {
   }
 
   @Override
-  public int insertAttachment(Connection conn, Attachment att, int categoryNo) {
-    int result = 0;
-    String sql = "";
-    if (categoryNo == 10) {
-      sql = prop.getProperty("insertAttachmentFB");
-    } else if (categoryNo == 20) {
-      sql = prop.getProperty("insertAttachmentIB");
-    }
-    try (PreparedStatement ps = conn.prepareStatement(sql)) {
-      ps.setInt(1, categoryNo);
-      ps.setString(2, att.getOriginName());
-      ps.setString(3, att.getModifiedName());
-      ps.setString(4, att.getSavePath());
-      result = ps.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return result;
+  public int insertAttachment(SqlSession sqlSession, Attachment att) {
+	  return sqlSession.insert("attachmentMapper.insertAttachment", att);
+  }
+  
+  @Override
+  public int addAttachment(SqlSession sqlSession, Attachment att) {
+	  return sqlSession.insert("attachmentMapper.addAttachment", att);
   }
 
   @Override
-  public Attachment selectAttachment(Connection conn, int boardNo, int categoryNo) {
-    Attachment att = null;
-    String sql = prop.getProperty("selectAttachment");
-    try (PreparedStatement ps = conn.prepareStatement(sql)) {
-      ps.setInt(1, categoryNo);
-      ps.setInt(2, boardNo);
-      try (ResultSet rs = ps.executeQuery()) {
-        if (rs.next()) {
-          att = new Attachment();
-          att.setFileNo(rs.getInt("FILE_NO"));
-          att.setRefNo(rs.getInt("REF_NO"));
-          att.setOriginName(rs.getString("ORIGIN_NAME"));
-          att.setModifiedName(rs.getString("MODIFIED_NAME"));
-          att.setSavePath(rs.getString("SAVE_PATH"));
-          att.setUploadDate(rs.getDate("UPLOAD_DATE"));
-        }
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return att;
+  public Attachment selectAttachment(SqlSession sqlSession, int boardNo, int categoryNo) {
+    HashMap<String, Integer> map = new HashMap<>();
+    map.put("boardNo", boardNo);
+    map.put("categoryNo", categoryNo);
+    return sqlSession.selectOne("attachmentMapper.selectAttachment", map);
   }
 
   @Override
-  public int updateAttachment(Connection conn, Attachment att) {
-    int result = 0;
-    String sql = prop.getProperty("updateAttachment");
-    try (PreparedStatement ps = conn.prepareStatement(sql)) {
-      ps.setString(1, att.getOriginName());
-      ps.setString(2, att.getModifiedName());
-      ps.setString(3, att.getSavePath());
-      ps.setInt(4, att.getFileNo());
-      result = ps.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return result;
+  public int updateAttachment(SqlSession sqlSession, Attachment att) {
+    return sqlSession.update("attachmentMapper.updateAttachment", att);
   }
 
   @Override
-  public int deleteAttachment(Connection conn, int boardNo, int categoryNo) {
-    int result = 0;
-    String sql = prop.getProperty("deleteAttachment");
-    try (PreparedStatement ps = conn.prepareStatement(sql)) {
-      ps.setInt(1, boardNo);
-      ps.setInt(2, categoryNo);
-      System.out.println("delete category : " + categoryNo);
-      result = ps.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return result;
+  public int deleteAttachment(SqlSession sqlSession, int boardNo, int categoryNo) {
+	HashMap<String, Integer> map = new HashMap<>();
+	map.put("boardNo", boardNo);
+	map.put("categoryNo", categoryNo);
+	return sqlSession.selectOne("attachmentMapper.deleteAttachment", map);
   }
 }

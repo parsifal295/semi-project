@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.boseong.jsp.freeboard.model.vo.*, com.boseong.jsp.Attachment.model.vo.*" %>
-<%
-   Freeboard fb = (Freeboard)request.getAttribute("fb");
-   Attachment att = (Attachment)request.getAttribute("att");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,16 +10,16 @@
 <script type="text/javascript" src="resources/scripts/freeboard/fboardUpdateViewScript.js"></script>
 </head>
 <body>
-    <%@ include file = "../common/menubar.jsp" %>
+    <jsp:include page="../common/menubar.jsp"/>
     <div class="outer" id="content">
     <div style="height: 250px"></div>
       <table class="table table-borderless table-sm" align="center" style="width: 50%">
-        <form enctype="multipart/form-data" action="<%=contextPath%>/updateArticle.fb" method="post">
-          <input type="hidden" name="bno" value="<%=fb.getBoardNo()%>"/>
-          <% if (att != null) { %>
-            <input type="hidden" name="originFileNo" value="<%=att.getFileNo()%>"/>
-            <input type="hidden" name="originFileName" value="<%=att.getModifiedName()%>"/>
-          <% } %>
+        <form enctype="multipart/form-data" action="updateArticle.fb" method="post">
+          <input type="hidden" name="bno" value="${requestScope.fb.boardNo}"/>
+          <c:if test="${requestScope.att ne null}">
+            <input type="hidden" name="originFileNo" value="${requestScope.att.fileNo}"/>
+            <input type="hidden" name="originFileName" value="${requestScope.att.modifiedName}"/>
+          </c:if>
           <thead>
               <tr>
                   <th width="100"></th>
@@ -45,7 +42,7 @@
                                   >닉네임</span
                               >
                           </div>
-                          <input class="form-control" name="nickname" style="cursor : default" value="<%=fb.getWriter() %>" readonly/>
+                          <input class="form-control" name="nickname" style="cursor : default" value="${requestScope.fb.writer}" readonly/>
                       </div>
                   </td>
                   <td colspan="2">
@@ -58,7 +55,7 @@
                                   >비밀번호</span
                               >
                           </div>
-                          <input class="form-control" type="password" name="password" style="cursor : default" value="<%=fb.getPassword() %>" required/>
+                          <input class="form-control" type="password" name="password" style="cursor : default" value="${requestScope.fb.password}" required/>
                       </div>
                   </td>
                   <td colspan="2">
@@ -71,7 +68,7 @@
                                   >IP주소</span
                               >
                           </div>
-                          <input class="form-control" id="ipaddr" style="cursor : default" value="<%=fb.getIpAddress() %>" readonly/>
+                          <input class="form-control" id="ipaddr" style="cursor : default" value="${requestScope.fb.ipAddress}" readonly/>
                       </div>
                   </td>
               </tr>
@@ -81,7 +78,7 @@
                           <div class="input-group-prepend">
                               <span class="input-group-text">제목</span>
                           </div>
-                          <input class="form-control" name="title" style="cursor : default" value="<%=fb.getTitle() %>" required/>
+                          <input class="form-control" name="title" style="cursor : default" value="${requestScope.fb.title}" required/>
                       </div>
                   </td>
               </tr>
@@ -95,7 +92,7 @@
                           id="article"
                           name="content"
                           required
-                        ><%=fb.getContent() %></textarea>
+                        >${requestScope.fb.content}</textarea>
                       </div>
                   </td>
               </tr>
@@ -114,7 +111,7 @@
                       </button>
                   </td>
                 <td colspan="3">
-                  <a href="<%= contextPath %>/fboard.fb?cpage=1" class="btn btn-primary btn-block" >
+                  <a href="fboard.fb?cpage=1" class="btn btn-primary btn-block" >
                       목록으로
                   </a>
               </td>
@@ -129,9 +126,9 @@
 
   // 첨부파일이 있을 경우 => 첨부파일의 이름을 표시
     var attFile;
- <% if (att != null) { %>
-    attFile = "<%=att.getOriginName()%>";
-   <% } %> 
+  <c:if test="${requestScope.att ne null}">
+    attFile = "${requestScope.att.originName}"
+  </c:if>
  if (attFile != undefined) {
     $(".custom-file-label").addClass("selected").html(attFile);
   } else {

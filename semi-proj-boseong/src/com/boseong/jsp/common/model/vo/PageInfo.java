@@ -1,4 +1,4 @@
-package com.boseong.jsp.freeboard.model.vo;
+package com.boseong.jsp.common.model.vo;
 
 public class PageInfo {
   private int listCount; // 현재 일반게시글의 게시글 총 개수 => DB에서 총 게시글 개수 질의 count(*) / status='Y'

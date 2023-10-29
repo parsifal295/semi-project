@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ page
 import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.jsp.notice.model.vo.*" %> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%  ArrayList<Freeboard> list = (ArrayList<Freeboard>)request.getAttribute("list"); 
-    ArrayList<Notice> noticeList = (ArrayList<Notice>)request.getAttribute("noticeList");
-	PageInfo pi = (PageInfo)request.getAttribute("pi"); 
-	int currentPage = pi.getCurrentPage(); 
-	int startPage = pi.getStartPage(); 
-	int endPage = pi.getEndPage(); 
-	int maxPage = pi.getMaxPage(); 
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,24 +17,35 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
       margin-right: 145px;
       margin-bottom: 5px
     }
+    .paging-area {
+      position: absolute;
+      margin-left : 440px;
+    }
+    .button-area {
+      position: relative;
+      margin-left: 1000px;
+      margin-top: 0px;
+    } 
+    .search-area {
+      position: relative;
+      margin-top : 22px;
+    }
 		</style>
 
 	</head>
 	<body>
-		<%@ include file = "../common/menubar.jsp" %>
+		<%@ include file = "../common/menubar.jsp"%>
 		<div class="outer" id="content">
 			<div style="height:200px"></div>
-			<% if ((loginUser != null) && (loginUser.getStatus().equals("A"))) { %>
-			<a class="btn btn-primary btn-warning" href="views/notice/noticeInsertView.jsp">공지작성</a>
-			<% } %>
-			<a class="btn btn-primary" href="<%= contextPath %>/enrollForm.fb">글쓰기</a>
+
 	
 			<table id="tb" class="table table-sm table-hover" align="center" style="width: 78%" style="cursor:default">
 				<thead class="thead-light">
 					<tr>
 						<th width="100">번호</th>
 						<th width="300">제목</th>
-						<th width="170">작성자</th>
+						<th width="50">작성자</th>
+						<th width="140">IP주소</th>
 						<th width="60">조회수</th>
 						<th width="170">작성일</th>
 					</tr>
@@ -59,15 +63,17 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 									<td>공지</td>
 									<td>${n.noticeTitle}</td>
 									<td>관리자</td>
+									<td>N/A</td>
 									<td>${n.count}</td>
 									<td>${n.modifyDate}</td>
 								</tr>
 							</c:forEach>
-							<c:forEach items={requestScope.list} var="b">
+							<c:forEach items="${requestScope.list}" var="b">
 								<tr>
 									<td>${b.boardNo}</td>
 									<td>${b.title}</td>
 									<td>${b.writer}</td>
+									<td>${b.ipAddress}</td>
 									<td>${b.count}</td>
 									<td>${b.createDate}</td>
 								</tr>
@@ -78,36 +84,61 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 			</table>
 			<div class="paging-area" align="center">
 			<ul class="pagination justify-content-center" style="margin: 20px 0">
-				<% if(currentPage != 1) { %>
-				<li class="page-item">
-					<a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%= currentPage - 1 %>"
-						>Previous</a
-					>
-				</li>
-				<% } %> 
-				<% for(int i = startPage; i <= endPage; i++) { %>
-				 <% if(currentPage != i) { %>
-				 <li class="page-item">
-                             <a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%=i%>"><%=i%></a>
-                          </li>
-				 <% } else { %>
-			     <li class="page-item active">
-                             <a class="page-link" href=""><%=i%></a>
-                          </li>
-				 <% } %>
-				<% } %> 
-				<% if (currentPage!= maxPage) { %>
-				<li class="page-item"><a class="page-link" href="<%=contextPath%>/fboard.fb?cpage=<%= currentPage + 1 %>">Next</a></li>
-				<% } %>
+			    <c:if test="${requestScope.pi.currentPage != 1}">
+			     <li class="page-item">
+                    <a class="page-link" href="fboard.fb?cpage=${requestScope.pi.currentPage - 1}">Previous</a>
+                 </li>
+			    </c:if>
+			    <c:forEach var="i" begin="${requestScope.pi.startPage}" end="${requestScope.pi.endPage}">
+			      <c:if test="${empty condition}">
+				     <c:choose>
+				         <c:when test="${requestScope.pi.currentPage ne i}">
+				             <li class="page-item">
+	                             <a class="page-link" href="fboard.fb?cpage=${i}">${i}</a>
+	                         </li>
+				         </c:when>
+				         <c:otherwise>
+				             <li class="page-item active">
+	                            <a class="page-link" href="">${i}</a>
+	                         </li>
+				         </c:otherwise>
+				     </c:choose>				    
+				   </c:if>
+				   <c:if test="${condition ne null}">
+				     <c:choose>
+                         <c:when test="${requestScope.pi.currentPage ne i}">
+                             <li class="page-item">
+                                 <a class="page-link" href="search.fb?cpage=${i}&condition=${condition}&keyword=${keyword}">${i}</a>
+                             </li>
+                         </c:when>
+                         <c:otherwise>
+                             <li class="page-item active">
+                                <a class="page-link" href="">${i}</a>
+                             </li>
+                         </c:otherwise>
+                     </c:choose>        
+				   </c:if>
+			    </c:forEach>
+		        <c:if test="${requestScope.pi.currentPage ne requestScope.pi.maxPage}">
+		        <li class="page-item">
+		          <a class="page-link" href="fboard.fb?cpage=${requestScope.pi.currentPage}">Next</a>
+		        </li>
+		        </c:if>
 			</ul>
 			</div>    
+			<div class="button-area">
+			<c:if test="${(empty sessionScope.loginUser) and (sessionScope.loginUser.status eq 'A')}">
+             <a class="btn btn-primary btn-warning" href="views/notice/noticeInsertView.jsp">공지작성</a>
+            </c:if>
+            <a class="btn btn-primary" href="enrollForm.fb">글쓰기</a>
+            </div>
 				<div class="search-area">
-					<form action="<%=contextPath%>/search.fb" method="post">
+					<form action="search.fb" method="get">
 						<table class="table table-sm" align="center" style="width: 32%" style="cursor:default">
 						<tr>
 							<th width="100">
 								<!--검색 조건 설정 (form 태그로 넘어가는)-->
-									<select name="condition" class="custom-select-sm">
+									<select name="condition" class="custom-select-sm" id="search-area">
 										<option value="titleContent">제목+내용</option>
 										<option value="writer">작성자</option>
 										<option value="ip">IP주소</option>
@@ -115,7 +146,7 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 							</th>
 							<th width="250">
 								<!--검색어 (form태그로 넘어가는)-->
-								<input type="text" name="conditionText" class="form-control form-control-sm">
+								<input type="text" name="keyword" class="form-control form-control-sm" value="${requestScope.keyword}">
 							</th>
 							<th>
 								<input type="hidden" name="cpage" value="1">
@@ -128,5 +159,12 @@ import="java.util.ArrayList, com.boseong.jsp.freeboard.model.vo.*, com.boseong.j
 		</div>
 		<%@ include file = "../common/footer.jsp" %>
 		<script type="text/javascript" src="resources/scripts/freeboard/fboardListViewScript.js"></script>
+		  <c:if test="${not empty condition}">
+        <script>
+            $(() => {   
+                $('#search-area option[value=${condition}]').attr('selected', true);
+            });
+        </script>
+    </c:if>
 	</body>
 </html>

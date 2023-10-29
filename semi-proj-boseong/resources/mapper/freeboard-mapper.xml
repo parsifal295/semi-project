@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="freeboardMapper">
+  <resultMap id="freeBoardResultSet" type="freeboard">
+    <result column="BOARD_NO" property="boardNo"/>
+    <result column="CATEGORY_NO" property="categoryNo"/>
+    <result column="ART_WRITER" property="writer"/>
+    <result column="IP_ADDRESS" property="ipAddress"/>
+    <result column="ART_TITLE" property="title"/>
+    <result column="ART_PASSWORD" property="password"/>
+    <result column="ART_CONTENT" property="content"/>
+    <result column="COUNT" property="count"/>
+    <result column="CREATE_DATE" property="createDate"/>
+  </resultMap>
+  <resultMap id="replyResultSet" type="reply">
+    <result column="REPLY_NO" property="replyNo"/>
+    <result column="REF_BNO" property="refNo"/>
+    <result column="WRITER" property="writer"/>
+    <result column="IP_ADDRESS" property="ipAddress"/>
+    <result column="REPLY_CONTENT" property="content"/>
+    <result column="CREATE_DATE" property="createDate"/>
+    <result column="STATUS" property="status"/>
+    <result column="PASSWORD" property="password"/>
+  </resultMap>
+  <select id="getListCount" resultType="_int">
+    SELECT
+      COUNT(*)
+    FROM
+      TB_FREEBOARD
+    WHERE
+      STATUS = 'Y'
+  </select>
+  <select id="selectFboardList" resultMap="freeBoardResultSet">
+    SELECT 
+      BOARD_NO,
+      ART_WRITER,
+      IP_ADDRESS,
+      ART_TITLE,
+      COUNT,
+      CREATE_DATE
+      FROM    
+        TB_FREEBOARD
+      WHERE
+        STATUS = 'Y'
+      ORDER
+        BY
+          BOARD_NO DESC
+  </select>
+  <select id="selectFreeboard" parameterType="_int" resultMap="freeBoardResultSet">
+    SELECT
+      BOARD_NO,
+      CATEGORY_NO,
+      ART_WRITER,
+      IP_ADDRESS,
+      ART_TITLE,
+      ART_CONTENT,
+      ART_PASSWORD,
+      COUNT,
+      CREATE_DATE
+    FROM
+      TB_FREEBOARD
+    WHERE
+      BOARD_NO = #{boardNo}
+    AND
+      STATUS = 'Y'
+  </select>
+  <insert id="insertBoard" parameterType="freeboard">
+    INSERT
+      INTO
+        TB_FREEBOARD
+        (
+        BOARD_NO,
+        ART_WRITER,
+        IP_ADDRESS,
+        ART_TITLE,
+        ART_PASSWORD,
+        ART_CONTENT
+        )
+      VALUES
+        (
+        SEQ_FB_BN.NEXTVAL,
+        #{writer},
+        #{ipAddress},
+        #{title},
+        #{password},
+        #{content}
+        )
+  </insert>
+  <update id="increaseCount" parameterType="_int">
+    UPDATE
+      TB_FREEBOARD
+    SET 
+      COUNT = COUNT + 1
+    WHERE 
+      BOARD_NO = #{boardNo} 
+    AND
+      STATUS = 'Y'
+  </update>
+  <update id="updateFreeboard" parameterType="freeboard">
+    UPDATE
+      TB_FREEBOARD
+    SET
+      ART_TITLE = #{title},
+      ART_PASSWORD = #{password},
+      ART_CONTENT = #{content}
+    WHERE
+      BOARD_NO = #{boardNo}
+    AND
+      STATUS = 'Y'
+  </update>
+  <update id="deleteFreeboard" parameterType="_int">
+    UPDATE
+      TB_FREEBOARD
+    SET
+      STATUS = 'N'
+    WHERE
+      BOARD_NO = #{boardNo}
+    AND
+      STATUS = 'Y'
+  </update>
+  <select id="getSearchCount" parameterType="hashmap" resultType="_int">
+    SELECT 
+      COUNT(*)
+    FROM 
+      TB_FREEBOARD
+    WHERE 
+      STATUS = 'Y'
+    <choose>
+      <when test="condition == 'titleContent'">
+      AND 
+        ART_TITLE LIKE '%' || #{keyword} || '%'
+      OR
+        ART_CONTENT LIKE '%' || #{keyword} || '%'
+      </when>
+      <when test="condition == 'writer'">
+      AND
+        ART_WRITER LIKE '%' || #{keyword} || '%'
+      </when>
+      <otherwise>
+      AND
+        IP_ADDRESS LIKE '%' || #{keyword} || '%'
+      </otherwise>
+    </choose>
+  </select>
+  <select id="getSearchResult" parameterType="hashmap" resultMap="freeBoardResultSet">
+    SELECT 
+      BOARD_NO,
+      ART_WRITER,
+      IP_ADDRESS,
+      ART_TITLE,
+      COUNT,
+      CREATE_DATE
+    FROM
+      TB_FREEBOARD
+    WHERE 
+      STATUS = 'Y'
+    <choose>
+      <when test="condition == 'titleContent'">
+        AND 
+          ART_TITLE LIKE '%' || #{keyword} || '%'
+        OR
+          ART_CONTENT LIKE '%' || #{keyword} || '%'
+      </when>
+      <when test="condition == 'writer'">
+        AND
+          ART_WRITER LIKE '%' || #{keyword} || '%'
+      </when>
+      <otherwise>
+        AND
+          IP_ADDRESS LIKE '%' || #{keyword} || '%'
+      </otherwise>
+    </choose>
+  </select>
+  <select id="selectReplyList" resultMap="replyResultSet">
+    SELECT
+      REPLY_NO,
+      WRITER,
+      IP_ADDRESS,
+      REPLY_CONTENT,
+      (TO_CHAR(CREATE_DATE, 'YYYY/MM/DD HH24:MI:SS')) A,
+      PASSWORD
+    FROM
+      FB_REPLY
+    WHERE
+      REF_BNO = #{boardNo}	
+    AND
+      STATUS = 'Y'
+    ORDER BY
+      REPLY_NO 
+  </select>
+  <insert id="insertReply" parameterType="reply">
+    INSERT
+    INTO
+      FB_REPLY
+      (
+      REPLY_NO,
+      REF_BNO,
+      WRITER,
+      IP_ADDRESS,
+      REPLY_CONTENT,
+      PASSWORD
+      )
+  VALUES
+    (
+    SEQ_FB_REPLY_NO.NEXTVAL,
+    #{refNo},
+    #{writer},
+    #{ipAddress},
+    #{content},
+    #{password}
+    )
+  </insert>
+  <update id="updateReply" parameterType="reply">
+		UPDATE
+			FB_REPLY
+		SET
+			REPLY_CONTENT = #{content},
+			CREATE_DATE = SYSDATE
+		WHERE
+			REPLY_NO = #{replyNo}
+		AND
+			STATUS = 'Y' 
+  </update>
+  <update id="deleteReply" parameterType="reply">
+		UPDATE
+			FB_REPLY
+		SET
+			STATUS = 'N'
+		WHERE
+			REPLY_NO = #{replyNo}
+		AND
+			STATUS = 'Y'
+  </update>
+</mapper>

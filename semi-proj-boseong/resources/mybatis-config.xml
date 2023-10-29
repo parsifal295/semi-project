@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 
+    이 문서의 형식이 configuration 임을 정의.
+    => configuration tag가 문서 전체를 감싸는 형태
+    DTD: 유효성 검사 (제시된 url을 참조하여 자식 요소들이 configuration tag 안에 존재 할 수 있는지 검사)
+  -->
+<configuration>
+  <settings>
+    <setting name="jdbcTypeForNull" value="NULL"/>
+    <!--(SQL statement placeholder)만약 null로 데이터가 전달되었다면 빈칸이 아닌 Null로 인식하라는 설정-->
+  </settings>
+  <!--
+    typeAliases 
+    클래스의 별칭을 정의해주는 곳 
+    풀클래스명을 단순하게 처리하기위해..
+  -->
+  <typeAliases>
+    <typeAlias type="com.boseong.jsp.freeboard.model.vo.Freeboard" alias="freeboard"/>
+    <typeAlias type="com.boseong.jsp.Attachment.model.vo.Attachment" alias="attachment" />
+    <typeAlias type="com.boseong.jsp.freeboard.model.vo.FreeboardReply" alias="reply"/>
+  </typeAliases>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@172.25.185.187:1521:xe"/>
+        <property name="username" value="BOSEONG"/>
+        <property name="password" value="BOSEONG"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="/mapper/freeboard-mapper.xml"/>
+    <mapper resource="/mapper/attachment-mapper.xml"/>
+  </mappers>
+</configuration>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="attachmentMapper">
+  <resultMap id="attachmentResultSet" type="attachment">
+    <result column="FILE_NO" property="fileNo"/>
+    <result column="CATEGORY_NO" property="categoryNo"/>
+    <result column="REF_NO" property="refNo"/>
+    <result column="ORIGIN_NAME" property="originName"/>
+    <result column="MODIFIED_NAME" property="modifiedName"/>
+    <result column="SAVE_PATH" property="savePath"/>
+    <result column="UPLOAD_DATE" property="uploadDate"/>
+    <result column="STATUS" property="status"/>
+  </resultMap>
+  <insert id="insertAttachment" parameterType="attachment">
+    INSERT
+    INTO
+      ATTACHMENT
+      (
+      FILE_NO,
+      CATEGORY_NO,
+      REF_NO,
+      ORIGIN_NAME,
+      MODIFIED_NAME,
+      SAVE_PATH
+      )
+    VALUES
+      (
+      SEQ_AT_NO.NEXTVAL,
+      #{categoryNo},
+      SEQ_FB_BN.CURRVAL,
+      #{originName},
+      #{modifiedName},
+      #{savePath}
+      )
+  </insert>
+  <insert id="addAttachment" parameterType="attachment">
+    INSERT
+      INTO
+        ATTACHMENT
+        (
+        FILE_NO,
+        CATEGORY_NO,
+        REF_NO,
+        ORIGIN_NAME,
+        MODIFIED_NAME,
+        SAVE_PATH
+        )
+      VALUES
+        (
+        SEQ_AT_NO.NEXTVAL,
+        #{categoryNo},
+        #{refNo},
+        #{originName},
+        #{modifiedName},
+        #{savePath}
+        )
+  </insert>
+  <select id="selectAttachment" parameterType="HashMap" resultMap="attachmentResultSet">
+    SELECT
+    FILE_NO,
+    REF_NO,
+    ORIGIN_NAME,
+    MODIFIED_NAME,
+    SAVE_PATH,
+    UPLOAD_DATE
+  FROM
+    ATTACHMENT
+  WHERE
+    CATEGORY_NO = #{categoryNo}
+  AND	
+    REF_NO = #{boardNo}
+  AND 
+    STATUS = 'Y'
+  </select>
+  <update id="updateAttachment" parameterType="attachment">
+    UPDATE
+      ATTACHMENT
+    SET
+      ORIGIN_NAME = #{originName},
+      MODIFIED_NAME = #{modifiedName},
+      SAVE_PATH = #{savePath},
+      UPLOAD_DATE = SYSDATE
+    WHERE
+      FILE_NO = #{fileNo}
+    AND
+      STATUS = 'Y'
+  </update>
+  <update id="deleteAttachment">
+    UPDATE
+      ATTACHMENT
+    SET
+      STATUS = 'N'
+    WHERE
+      REF_NO = #{boardNo}
+    AND
+      CATEGORY_NO = #{categoryNo}
+  </update>
+</mapper>
