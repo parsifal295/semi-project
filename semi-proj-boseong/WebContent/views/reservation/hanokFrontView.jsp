@@ -89,17 +89,17 @@ top : 430px;
 			</div>
 			<div id="rooms">
 				<div class="room">
-					<img src="<%=contextPath %>/resources/image/reservation/room1.avif"
+					<img src="../../resources/image/reservation/room1.avif"
 						alt="">
 					<h1>room1</h1>
 				</div>
 				<div class="room">
-					<img src="<%=contextPath %>/resources/image/reservation/room2.avif"
+					<img src="../../resources/image/reservation/room2.avif"
 						alt="">
 					<h1>room2</h1>
 				</div>
 				<div class="room">
-					<img src="<%=contextPath %>/resources/image/reservation/room4.jpeg"
+					<img src="../../resources/image/reservation/room4.jpeg"
 						alt="">
 					<h1>room3</h1>
 				</div>
