@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>보성 한옥스테이</title>
+<title>Hanok Stay in Beautiful Boseong</title>
 
 <style>
 @font-face {
@@ -72,11 +72,11 @@ top : 430px;
 			<div id="main-pic">
 			<c:choose>
 			<c:when test="${empty loginUser }">
-			<div><h1>예약하려면 로그인하세요!</h1></div>
+			<div><h1>Sign in to reserv a stay!</h1></div>
 			</c:when>
 			<c:otherwise>
 				<button class="btn btn-outline-light btn-block" id="reserv-hanok">
-					<h1>예약 하기</h1>
+					<h1>Book</h1>
 				</button>
 				<button class="btn btn-outline-light btn-block" id="hk-reserv-list"><h1>예약 조회</h1></button>
 				<script>
